@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#bfe8ff" />
+  <meta name="description" content="Portfolio interattivo di Gianmarco — un arcipelago di progetti UX/UI." />
+  <title>Gianmarco — Project Archipelago</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar" aria-label="Navigazione del portfolio">
+      <a class="brand" href="#" id="brandHome" aria-label="Torna alla bolla">
+        <span class="brand-orb" aria-hidden="true"></span>
+        <span>Gianmarco</span>
+      </a>
+
+      <div class="topbar-center" id="locationLabel" aria-live="polite">
+        <span class="location-dot"></span>
+        <span>Outside the bubble</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="round-button" id="soundToggle" type="button" aria-label="Attiva i suoni" aria-pressed="false">
+          <span class="sound-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <button class="round-button hidden" id="mapButton" type="button" aria-label="Torna all'arcipelago">
+          <span aria-hidden="true">⌁</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro intro-clouds" id="intro" aria-labelledby="introTitle">
+        <a class="cloud-entry" id="cloudEntry" href="#world" aria-label="Clicca per esplorare l'arcipelago">
+          <span class="hero-cloud hc-1" aria-hidden="true"></span>
+          <span class="hero-cloud hc-2" aria-hidden="true"></span>
+          <span class="hero-cloud hc-3" aria-hidden="true"></span>
+          <span class="hero-cloud hc-4" aria-hidden="true"></span>
+          <span class="hero-cloud hc-5" aria-hidden="true"></span>
+          <span class="hero-cloud hc-6" aria-hidden="true"></span>
+
+          <span class="cloud-entry-copy">
+            <span class="hero-signature">Gianmarco · UX/UI Designer</span>
+            <h1 id="introTitle">Ogni progetto<br />è un mondo</h1>
+            <span class="cloud-entry-hint">Clicca per esplorare l’arcipelago <i aria-hidden="true">↘</i></span>
+          </span>
+        </a>
+
+        <div class="intro-coordinates" aria-hidden="true">
+          <span>41.1171° N</span>
+          <i></i>
+          <span>16.8719° E</span>
+        </div>
+      </section>
+
+      <section class="world hidden" id="world" aria-label="Arcipelago dei progetti">
+        <canvas id="worldCanvas"></canvas>
+
+        <div class="static-fallback" aria-label="Versione compatibile dell'arcipelago">
+          <div class="fallback-sky"></div>
+          <div class="fallback-copy">
+            <p class="eyebrow">Project archipelago</p>
+            <h2>Scegli un’isola.</h2>
+            <p>Questa modalità compatibile funziona anche quando l’anteprima del telefono blocca JavaScript.</p>
+          </div>
+
+          <a class="fallback-island fallback-bloop" href="#fallback-bloop">
+            <span class="fallback-land"></span>
+            <strong>Bloop</strong>
+            <small>Event discovery</small>
+          </a>
+
+          <a class="fallback-island fallback-merqorn" href="#fallback-merqorn">
+            <span class="fallback-land"></span>
+            <strong>Merqorn</strong>
+            <small>B2B software</small>
+          </a>
+
+          <a class="fallback-island fallback-dreambase" href="#fallback-dreambase">
+            <span class="fallback-land"></span>
+            <strong>Dreambase</strong>
+            <small>Wellness concept</small>
+          </a>
+
+          <div class="fallback-project" id="fallback-bloop">
+            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
+            <p>01 · Event discovery</p>
+            <h3>Bloop</h3>
+            <div class="fallback-phases">
+              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Eventi sparsi tra social, passaparola e siti diversi.</span></article>
+              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Dalla scoperta all’RSVP in pochi gesti.</span></article>
+              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Curiosa, leggera e profondamente locale.</span></article>
+            </div>
+          </div>
+
+          <div class="fallback-project" id="fallback-merqorn">
+            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
+            <p>02 · B2B software</p>
+            <h3>Merqorn</h3>
+            <div class="fallback-phases">
+              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>I processi reali vengono prima del software.</span></article>
+              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Dashboard orientate a decisioni operative.</span></article>
+              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Pragmatica, intelligente e umana.</span></article>
+            </div>
+          </div>
+
+          <div class="fallback-project" id="fallback-dreambase">
+            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
+            <p>03 · Wellness concept</p>
+            <h3>Dreambase</h3>
+            <div class="fallback-phases">
+              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Un rituale connesso, non un’altra dashboard.</span></article>
+              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Poche decisioni nel momento giusto.</span></article>
+              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Calma, presenza e protezione.</span></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="world-vignette" aria-hidden="true"></div>
+        <div class="cloud-layer cloud-layer-back" id="cloudBack" aria-hidden="true"></div>
+        <div class="cloud-layer cloud-layer-front" id="cloudFront" aria-hidden="true"></div>
+
+        <aside class="map-intro" id="mapIntro">
+          <p class="eyebrow">Project archipelago</p>
+          <h2>Scegli un’isola.</h2>
+          <p>
+            Ogni territorio racconta un progetto. Avvicinati per scoprire
+            fondamenta, persone e carattere.
+          </p>
+          <div class="map-legend">
+            <span><i class="legend-house"></i> Casa · struttura</span>
+            <span><i class="legend-person"></i> Persona · esperienza</span>
+            <span><i class="legend-animal"></i> Animale · identità</span>
+          </div>
+        </aside>
+
+        <div class="project-index" id="projectIndex" aria-label="Indice dei progetti">
+          <button type="button" data-project="bloop">
+            <span>01</span>
+            <strong>Bloop</strong>
+          </button>
+          <button type="button" data-project="merqorn">
+            <span>02</span>
+            <strong>Merqorn</strong>
+          </button>
+          <button type="button" data-project="dreambase">
+            <span>03</span>
+            <strong>Dreambase</strong>
+          </button>
+        </div>
+
+        <div class="island-title hidden" id="islandTitle">
+          <p id="islandType"></p>
+          <h2 id="islandName"></h2>
+          <span id="islandTagline"></span>
+        </div>
+
+        <div class="hotspots hidden" id="hotspots" aria-label="Fasi del progetto">
+          <button class="hotspot hotspot-house" type="button" data-phase="house">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-label"><small>01</small> Fondamenta</span>
+          </button>
+          <button class="hotspot hotspot-person" type="button" data-phase="person">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-label"><small>02</small> Esperienza</span>
+          </button>
+          <button class="hotspot hotspot-animal" type="button" data-phase="animal">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-label"><small>03</small> Carattere</span>
+          </button>
+        </div>
+
+        <div class="world-help" id="worldHelp">
+          <span>Drag to move</span>
+          <span>Scroll to zoom</span>
+          <span>B / M / D to jump</span>
+        </div>
+
+        <div class="compass" id="compass" aria-hidden="true">
+          <span>N</span>
+          <i></i>
+        </div>
+
+        <button class="back-island hidden" id="backIsland" type="button">
+          <span aria-hidden="true">←</span>
+          Arcipelago
+        </button>
+
+        <aside class="story-panel" id="storyPanel" aria-live="polite" aria-hidden="true">
+          <button class="story-close" id="storyClose" type="button" aria-label="Chiudi la fase">×</button>
+          <div class="story-number" id="storyNumber">01</div>
+          <p class="story-kicker" id="storyKicker">Fondamenta</p>
+          <h3 id="storyTitle"></h3>
+          <p class="story-copy" id="storyCopy"></p>
+          <div class="story-facts" id="storyFacts"></div>
+          <button class="story-next" id="storyNext" type="button">
+            Fase successiva
+            <span aria-hidden="true">→</span>
+          </button>
+        </aside>
+      </section>
+
+      <div class="transition-clouds" id="transitionClouds" aria-hidden="true">
+        <div class="transition-cloud tc-1"></div>
+        <div class="transition-cloud tc-2"></div>
+        <div class="transition-cloud tc-3"></div>
+        <div class="transition-cloud tc-4"></div>
+        <div class="transition-cloud tc-5"></div>
+        <div class="transition-cloud tc-6"></div>
+        <div class="transition-copy">
+          <span>Descending through the clouds</span>
+          <i></i>
+        </div>
+      </div>
+
+      <div class="burst-particles" id="burstParticles" aria-hidden="true"></div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
