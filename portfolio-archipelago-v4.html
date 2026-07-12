@@ -1,0 +1,3292 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#bfe8ff" />
+  <meta name="description" content="Portfolio interattivo di Gianmarco — un arcipelago di progetti UX/UI." />
+  <title>Gianmarco — Project Archipelago</title>
+  <style>
+:root {
+  --ink: #151515;
+  --muted: #656a70;
+  --paper: #f8fbfb;
+  --line: rgba(18, 25, 29, 0.15);
+  --glass: rgba(255,255,255,.67);
+  --purple: #9a7cff;
+  --coral: #ff785d;
+  --sea: #80ccef;
+  --safe-top: max(18px, env(safe-area-inset-top));
+  --safe-bottom: max(18px, env(safe-area-inset-bottom));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #c6ebff;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+a {
+  color: inherit;
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  border: 0;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(112, 86, 255, .38);
+  outline-offset: 4px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.app,
+main {
+  width: 100%;
+  height: 100dvh;
+}
+
+.topbar {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(74px + var(--safe-top));
+  padding: var(--safe-top) clamp(18px, 4vw, 54px) 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  pointer-events: none;
+}
+
+.topbar > * {
+  pointer-events: auto;
+}
+
+.brand {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+.brand-orb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 31% 25%, white 0 9%, transparent 10%),
+    linear-gradient(145deg, rgba(255,255,255,.9), rgba(154,124,255,.64) 58%, rgba(255,120,93,.75));
+  box-shadow:
+    inset -5px -6px 10px rgba(80,47,125,.16),
+    0 6px 14px rgba(74,66,127,.18);
+}
+
+.topbar-center {
+  justify-self: center;
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid rgba(255,255,255,.58);
+  border-radius: 999px;
+  background: rgba(255,255,255,.56);
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(59,101,132,.08);
+}
+
+.location-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #50b78c;
+  box-shadow: 0 0 0 5px rgba(80,183,140,.13);
+}
+
+.topbar-actions {
+  justify-self: end;
+  display: flex;
+  gap: 8px;
+}
+
+.round-button {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.66);
+  background: rgba(255,255,255,.58);
+  backdrop-filter: blur(18px);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(59,101,132,.08);
+}
+
+.round-button > span:not(.sound-icon) {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.sound-icon {
+  height: 15px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.sound-icon i {
+  width: 2px;
+  height: 5px;
+  border-radius: 3px;
+  background: currentColor;
+}
+
+.sound-icon i:nth-child(2) {
+  height: 11px;
+}
+
+#soundToggle[aria-pressed="true"] .sound-icon i {
+  animation: soundbar .9s ease-in-out infinite alternate;
+}
+
+#soundToggle[aria-pressed="true"] .sound-icon i:nth-child(2) {
+  animation-delay: .18s;
+}
+
+#soundToggle[aria-pressed="true"] .sound-icon i:nth-child(3) {
+  animation-delay: .36s;
+}
+
+@keyframes soundbar {
+  to { transform: scaleY(1.8); }
+}
+
+/* INTRO */
+
+.intro {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 43%, rgba(255,255,255,.94), rgba(255,255,255,.54) 17%, transparent 40%),
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.9), transparent 25%),
+    linear-gradient(180deg, #e9f8ff 0%, #c6ebff 53%, #a7dcf7 100%);
+}
+
+.intro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .34;
+  background-image:
+    radial-gradient(circle at 10% 25%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+    radial-gradient(circle at 70% 16%, rgba(255,255,255,.8) 0 1px, transparent 2px);
+  background-size: 110px 110px, 170px 170px;
+}
+
+.intro-copy {
+  position: absolute;
+  z-index: 4;
+  left: clamp(20px, 6vw, 90px);
+  top: 17%;
+  max-width: 510px;
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: rgba(21,21,21,.61);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.intro h1 {
+  margin: 0;
+  max-width: 650px;
+  font-family: "Arial Black", "Helvetica Neue", sans-serif;
+  font-size: clamp(54px, 8.8vw, 132px);
+  line-height: .82;
+  letter-spacing: -.075em;
+  font-weight: 900;
+}
+
+.intro-note {
+  max-width: 320px;
+  margin: 28px 0 0;
+  color: rgba(21,21,21,.61);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.hero-bubble {
+  position: absolute;
+  z-index: 3;
+  left: 61%;
+  top: 51%;
+  width: clamp(240px, 32vw, 520px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+  animation: bubbleFloat 5.8s ease-in-out infinite;
+}
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(-1deg); }
+  50% { transform: translate(-50%, -50%) translateY(-16px) rotate(1deg); }
+}
+
+.bubble-skin {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255,255,255,.96) 0 4%, rgba(255,255,255,.46) 8%, transparent 21%),
+    radial-gradient(circle at 65% 73%, rgba(255,119,89,.25), transparent 36%),
+    radial-gradient(circle at 38% 68%, rgba(142,104,255,.31), transparent 39%),
+    linear-gradient(140deg, rgba(255,255,255,.72), rgba(255,255,255,.16) 44%, rgba(119,215,255,.18) 70%, rgba(255,255,255,.46));
+  border: 1px solid rgba(255,255,255,.86);
+  box-shadow:
+    inset 22px 24px 44px rgba(255,255,255,.48),
+    inset -28px -24px 55px rgba(98,93,169,.18),
+    0 44px 90px rgba(75,130,170,.20),
+    0 0 0 1px rgba(98,164,205,.10);
+  transition: transform .45s cubic-bezier(.2,.9,.2,1), filter .45s ease;
+}
+
+.hero-bubble:hover .bubble-skin {
+  transform: scale(1.035);
+  filter: saturate(1.18);
+}
+
+.hero-bubble:active .bubble-skin {
+  transform: scale(.975);
+}
+
+.bubble-skin::after {
+  content: "";
+  position: absolute;
+  inset: 5%;
+  border: 1px solid rgba(255,255,255,.48);
+  border-radius: 50%;
+  filter: blur(.2px);
+}
+
+.bubble-reflection {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: rgba(255,255,255,.88);
+  filter: blur(2px);
+}
+
+.reflection-a {
+  width: 24%;
+  height: 8%;
+  left: 22%;
+  top: 13%;
+  transform: rotate(-29deg);
+}
+
+.reflection-b {
+  width: 7%;
+  height: 17%;
+  right: 15%;
+  top: 25%;
+  opacity: .55;
+  transform: rotate(22deg);
+}
+
+.bubble-color {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(18px);
+  mix-blend-mode: multiply;
+}
+
+.color-a {
+  width: 34%;
+  height: 34%;
+  left: -4%;
+  bottom: 9%;
+  background: rgba(161,116,255,.22);
+}
+
+.color-b {
+  width: 42%;
+  height: 42%;
+  right: -5%;
+  bottom: -4%;
+  background: rgba(255,117,90,.19);
+}
+
+.bubble-copy {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.bubble-copy small {
+  text-transform: uppercase;
+  letter-spacing: .17em;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(21,21,21,.55);
+}
+
+.bubble-copy strong {
+  margin-top: 4px;
+  font-size: clamp(32px, 5vw, 64px);
+  letter-spacing: -.055em;
+}
+
+.hero-bubble.burst {
+  animation: none;
+  pointer-events: none;
+}
+
+.hero-bubble.burst .bubble-skin {
+  animation: bubbleBurst .48s cubic-bezier(.4,0,.6,1) forwards;
+}
+
+.hero-bubble.burst .bubble-copy {
+  animation: copyVanish .24s ease forwards;
+}
+
+@keyframes bubbleBurst {
+  0% { transform: scale(1); opacity: 1; filter: blur(0); }
+  40% { transform: scale(1.14); opacity: .8; }
+  100% { transform: scale(1.55); opacity: 0; filter: blur(12px); }
+}
+
+@keyframes copyVanish {
+  to { transform: scale(.7); opacity: 0; }
+}
+
+.intro-coordinates {
+  position: absolute;
+  left: clamp(20px, 6vw, 90px);
+  bottom: calc(34px + var(--safe-bottom));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(21,21,21,.47);
+  font-size: 10px;
+  letter-spacing: .13em;
+}
+
+.intro-coordinates i {
+  width: 32px;
+  height: 1px;
+  background: rgba(21,21,21,.26);
+}
+
+.intro-hint {
+  position: absolute;
+  right: clamp(20px, 5vw, 78px);
+  bottom: calc(32px + var(--safe-bottom));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(21,21,21,.52);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.mouse-glyph {
+  width: 20px;
+  height: 28px;
+  border: 1px solid rgba(21,21,21,.45);
+  border-radius: 12px;
+  position: relative;
+}
+
+.mouse-glyph::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  width: 2px;
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(21,21,21,.5);
+  transform: translateX(-50%);
+  animation: mouseMove 1.3s ease infinite;
+}
+
+@keyframes mouseMove {
+  60%, 100% { transform: translate(-50%, 7px); opacity: 0; }
+}
+
+/* BURST */
+
+.burst-particles {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  pointer-events: none;
+}
+
+.burst-particle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.8);
+  background: radial-gradient(circle at 30% 25%, white, rgba(161,120,255,.36) 42%, rgba(255,116,91,.18));
+  box-shadow: 0 6px 14px rgba(85,119,151,.14);
+  animation: particleFly var(--duration) cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+@keyframes particleFly {
+  to {
+    transform: translate(var(--dx), var(--dy)) scale(.1) rotate(var(--rotate));
+    opacity: 0;
+  }
+}
+
+/* CLOUD TRANSITION */
+
+.transition-clouds {
+  position: fixed;
+  z-index: 140;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(221,244,255,.08);
+}
+
+.transition-clouds.active {
+  visibility: visible;
+  animation: transitionLayer 2.65s ease forwards;
+}
+
+@keyframes transitionLayer {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  76% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.transition-cloud {
+  position: absolute;
+  width: 60vw;
+  height: 38vw;
+  min-width: 420px;
+  min-height: 270px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 24% 55%, rgba(255,255,255,.98) 0 30%, transparent 31%),
+    radial-gradient(circle at 49% 37%, rgba(255,255,255,.98) 0 37%, transparent 38%),
+    radial-gradient(circle at 72% 58%, rgba(255,255,255,.96) 0 32%, transparent 33%);
+  filter: blur(10px);
+  opacity: .96;
+}
+
+.transition-clouds.active .transition-cloud {
+  animation: cloudRush 2.5s cubic-bezier(.25,.75,.25,1) forwards;
+}
+
+.tc-1 { left: -35%; top: -20%; }
+.tc-2 { right: -34%; top: -12%; animation-delay: .08s !important; }
+.tc-3 { left: -30%; top: 27%; animation-delay: .18s !important; }
+.tc-4 { right: -35%; top: 32%; animation-delay: .12s !important; }
+.tc-5 { left: -23%; bottom: -28%; animation-delay: .24s !important; }
+.tc-6 { right: -20%; bottom: -26%; animation-delay: .2s !important; }
+
+@keyframes cloudRush {
+  0% { transform: scale(.6); opacity: 0; }
+  26% { transform: scale(1.2); opacity: 1; }
+  62% { transform: scale(1.9); opacity: 1; }
+  100% { transform: scale(2.7) translateY(-12vh); opacity: 0; }
+}
+
+.transition-copy {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 13px;
+  color: rgba(21,21,21,.54);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.transition-copy i {
+  width: 80px;
+  height: 1px;
+  background: rgba(21,21,21,.18);
+  overflow: hidden;
+  position: relative;
+}
+
+.transition-copy i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(21,21,21,.65);
+  transform: translateX(-100%);
+  animation: transitionProgress 2.2s ease forwards;
+}
+
+@keyframes transitionProgress {
+  to { transform: translateX(100%); }
+}
+
+/* WORLD */
+
+.world {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: #8cd4f1;
+}
+
+#worldCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+#worldCanvas:active {
+  cursor: grabbing;
+}
+
+.world-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 160px rgba(45,112,145,.20);
+}
+
+.cloud-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.world-cloud {
+  position: absolute;
+  width: var(--w);
+  height: calc(var(--w) * .48);
+  opacity: var(--opacity);
+  filter: blur(var(--blur));
+  animation: worldCloud var(--duration) linear infinite;
+  animation-delay: var(--delay);
+  transform: translateX(-30vw);
+}
+
+.world-cloud::before,
+.world-cloud::after,
+.world-cloud i {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.93);
+}
+
+.world-cloud::before {
+  width: 52%;
+  height: 80%;
+  left: 0;
+  bottom: 0;
+}
+
+.world-cloud::after {
+  width: 54%;
+  height: 100%;
+  left: 29%;
+  top: 0;
+}
+
+.world-cloud i {
+  width: 48%;
+  height: 72%;
+  right: 0;
+  bottom: 1%;
+}
+
+@keyframes worldCloud {
+  from { transform: translateX(-32vw); }
+  to { transform: translateX(132vw); }
+}
+
+.map-intro {
+  position: absolute;
+  z-index: 20;
+  left: clamp(20px, 5vw, 76px);
+  top: 20%;
+  width: min(340px, calc(100vw - 40px));
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,.64);
+  border-radius: 25px;
+  background: rgba(248,252,252,.64);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 70px rgba(38,101,133,.14);
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+.map-intro.minimized {
+  opacity: 0;
+  transform: translateY(-18px);
+  pointer-events: none;
+}
+
+.map-intro h2 {
+  margin: 0;
+  font-family: "Arial Black", "Helvetica Neue", sans-serif;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+
+.map-intro > p:not(.eyebrow) {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.map-legend {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+  color: #495259;
+  font-size: 11px;
+}
+
+.map-legend span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.map-legend i {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+.legend-house {
+  border-radius: 3px;
+  background: #ff785d;
+  clip-path: polygon(50% 0, 100% 39%, 88% 39%, 88% 100%, 12% 100%, 12% 39%, 0 39%);
+}
+
+.legend-person {
+  border-radius: 50% 50% 46% 46%;
+  background: #8b6eff;
+}
+
+.legend-animal {
+  border-radius: 48% 52% 55% 45%;
+  background: #2d8068;
+}
+
+.project-index {
+  position: absolute;
+  z-index: 21;
+  right: clamp(18px, 4vw, 54px);
+  top: 19%;
+  display: grid;
+  gap: 8px;
+}
+
+.project-index button {
+  min-width: 170px;
+  padding: 13px 15px;
+  border-radius: 17px;
+  border: 1px solid rgba(255,255,255,.62);
+  background: rgba(248,252,252,.58);
+  backdrop-filter: blur(18px);
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(38,101,133,.08);
+  transition: transform .25s ease, background .25s ease;
+}
+
+.project-index button:hover,
+.project-index button.active {
+  transform: translateX(-7px);
+  background: rgba(255,255,255,.82);
+}
+
+.project-index span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.project-index strong {
+  font-size: 14px;
+}
+
+.island-title {
+  position: absolute;
+  z-index: 24;
+  left: clamp(20px, 5vw, 76px);
+  top: 17%;
+  width: min(420px, calc(100vw - 40px));
+  pointer-events: none;
+}
+
+.island-title p {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(21,21,21,.55);
+}
+
+.island-title h2 {
+  margin: 0;
+  font-family: "Arial Black", "Helvetica Neue", sans-serif;
+  font-size: clamp(54px, 7.8vw, 108px);
+  line-height: .8;
+  letter-spacing: -.075em;
+}
+
+.island-title span {
+  display: block;
+  margin-top: 16px;
+  max-width: 340px;
+  color: rgba(21,21,21,.60);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.world-help {
+  position: absolute;
+  z-index: 22;
+  left: clamp(18px, 4vw, 54px);
+  bottom: calc(20px + var(--safe-bottom));
+  display: flex;
+  gap: 9px;
+}
+
+.world-help span {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.54);
+  backdrop-filter: blur(15px);
+  color: rgba(21,21,21,.58);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.compass {
+  position: absolute;
+  z-index: 22;
+  right: clamp(18px, 4vw, 54px);
+  bottom: calc(22px + var(--safe-bottom));
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255,255,255,.64);
+  border-radius: 50%;
+  background: rgba(255,255,255,.48);
+  backdrop-filter: blur(16px);
+  display: grid;
+  place-items: center;
+  color: rgba(21,21,21,.58);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.compass i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 15px;
+  transform: translate(-50%, -50%);
+  background: currentColor;
+}
+
+.compass i::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  background: var(--coral);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.back-island {
+  position: absolute;
+  z-index: 25;
+  left: clamp(18px, 4vw, 54px);
+  bottom: calc(22px + var(--safe-bottom));
+  min-height: 46px;
+  padding: 0 17px;
+  border: 1px solid rgba(255,255,255,.64);
+  border-radius: 999px;
+  background: rgba(255,255,255,.62);
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 14px 40px rgba(38,101,133,.12);
+}
+
+/* HOTSPOTS */
+
+.hotspots {
+  position: absolute;
+  z-index: 26;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hotspot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 44px;
+  min-height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: rgba(255,255,255,.86);
+  border: 1px solid rgba(255,255,255,.96);
+  box-shadow: 0 14px 34px rgba(31,79,101,.22);
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  transition: transform .25s ease, padding .25s ease;
+}
+
+.hotspot:hover,
+.hotspot.active {
+  transform: translate(-50%, -50%) scale(1.06);
+  padding-right: 13px;
+}
+
+.hotspot-pulse {
+  position: relative;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--pulse, #ff785d);
+}
+
+.hotspot-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid var(--pulse, #ff785d);
+  border-radius: 50%;
+  opacity: .45;
+  animation: hotspotPulse 1.8s ease-out infinite;
+}
+
+.hotspot-house { --pulse: #ff785d; }
+.hotspot-person { --pulse: #8b6eff; }
+.hotspot-animal { --pulse: #2f8b6f; }
+
+@keyframes hotspotPulse {
+  0% { transform: scale(.6); opacity: .7; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+
+.hotspot-label {
+  padding-right: 4px;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hotspot-label small {
+  margin-right: 6px;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+/* STORY PANEL */
+
+.story-panel {
+  position: absolute;
+  z-index: 60;
+  right: clamp(15px, 3vw, 42px);
+  bottom: calc(16px + var(--safe-bottom));
+  width: min(420px, calc(100vw - 30px));
+  max-height: min(620px, calc(100dvh - 120px));
+  overflow-y: auto;
+  padding: 28px;
+  border: 1px solid rgba(255,255,255,.82);
+  border-radius: 30px;
+  background: rgba(251,253,251,.84);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 30px 100px rgba(22,75,101,.24);
+  transform: translateY(24px) scale(.98);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .4s cubic-bezier(.16,1,.3,1), opacity .35s ease;
+}
+
+.story-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.story-close {
+  position: absolute;
+  right: 18px;
+  top: 17px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(21,21,21,.07);
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.story-number {
+  color: rgba(21,21,21,.35);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.story-kicker {
+  margin: 28px 0 8px;
+  color: rgba(21,21,21,.50);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.story-panel h3 {
+  margin: 0;
+  font-family: "Arial Black", "Helvetica Neue", sans-serif;
+  font-size: clamp(35px, 4vw, 53px);
+  line-height: .93;
+  letter-spacing: -.055em;
+}
+
+.story-copy {
+  margin: 20px 0 0;
+  color: #59636a;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.story-facts {
+  display: grid;
+  gap: 8px;
+  margin-top: 23px;
+}
+
+.story-facts span {
+  display: block;
+  padding: 13px 15px;
+  border: 1px solid rgba(21,21,21,.09);
+  border-radius: 15px;
+  background: rgba(255,255,255,.48);
+  color: #465057;
+  font-size: 11px;
+  line-height: 1.42;
+}
+
+.story-next {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 20px;
+  border-radius: 999px;
+  background: #171717;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 19px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* MISC */
+
+.toast {
+  position: fixed;
+  z-index: 200;
+  left: 50%;
+  bottom: calc(24px + var(--safe-bottom));
+  transform: translate(-50%, 20px);
+  padding: 10px 15px;
+  border-radius: 999px;
+  background: rgba(20,20,20,.88);
+  color: white;
+  font-size: 11px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s ease;
+}
+
+.toast.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+  .topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .topbar-center {
+    display: none;
+  }
+
+  .intro-copy {
+    top: 15%;
+  }
+
+  .intro h1 {
+    font-size: clamp(54px, 14vw, 92px);
+  }
+
+  .hero-bubble {
+    left: 60%;
+    top: 61%;
+    width: min(68vw, 430px);
+  }
+
+  .map-intro {
+    top: 13%;
+    padding: 20px;
+  }
+
+  .project-index {
+    top: auto;
+    left: 18px;
+    right: 18px;
+    bottom: calc(18px + var(--safe-bottom));
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .project-index::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-index button {
+    min-width: 135px;
+    grid-template-columns: 27px 1fr;
+  }
+
+  .world-help,
+  .compass {
+    display: none;
+  }
+
+  .island-title {
+    top: 13%;
+  }
+
+  .back-island {
+    bottom: calc(18px + var(--safe-bottom));
+  }
+
+  .story-panel {
+    right: 12px;
+    bottom: calc(12px + var(--safe-bottom));
+    width: calc(100vw - 24px);
+    max-height: 61dvh;
+    border-radius: 25px;
+  }
+
+  .hotspot-label {
+    display: none;
+  }
+
+  .hotspot:hover,
+  .hotspot.active {
+    padding-right: 5px;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand span:last-child {
+    display: none;
+  }
+
+  .intro-copy {
+    left: 20px;
+    right: 20px;
+    top: 14%;
+  }
+
+  .intro h1 {
+    font-size: 15vw;
+  }
+
+  .intro-note {
+    max-width: 260px;
+  }
+
+  .hero-bubble {
+    left: 56%;
+    top: 62%;
+    width: min(74vw, 360px);
+  }
+
+  .intro-coordinates {
+    display: none;
+  }
+
+  .intro-hint {
+    right: 20px;
+    bottom: calc(22px + var(--safe-bottom));
+  }
+
+  .map-intro {
+    left: 14px;
+    right: 14px;
+    width: auto;
+    top: 12%;
+  }
+
+  .map-intro h2 {
+    font-size: 36px;
+  }
+
+  .map-legend {
+    grid-template-columns: repeat(3, auto);
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .map-legend span {
+    min-width: max-content;
+  }
+
+  .island-title {
+    left: 18px;
+    right: 18px;
+    width: auto;
+    top: 13%;
+  }
+
+  .island-title h2 {
+    font-size: 58px;
+  }
+
+  .island-title span {
+    font-size: 12px;
+    max-width: 270px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Compatibility fallback for iOS Quick Look and restricted previews */
+.hero-bubble {
+  text-decoration: none;
+  color: inherit;
+}
+
+.world:target {
+  display: block !important;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+}
+
+.static-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255,255,255,.25), transparent 20%),
+    linear-gradient(180deg, #a8e3f8, #70c2e3);
+}
+
+.world.world-ready .static-fallback {
+  display: none;
+}
+
+.fallback-sky {
+  position: absolute;
+  inset: 0;
+  opacity: .26;
+  background-image:
+    radial-gradient(ellipse at 12% 18%, white 0 7%, transparent 8%),
+    radial-gradient(ellipse at 79% 12%, white 0 10%, transparent 11%),
+    radial-gradient(ellipse at 88% 72%, white 0 8%, transparent 9%);
+  filter: blur(10px);
+}
+
+.fallback-copy {
+  position: absolute;
+  z-index: 5;
+  left: clamp(18px, 5vw, 70px);
+  top: 15%;
+  max-width: 340px;
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.62);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.7);
+}
+
+.fallback-copy h2 {
+  margin: 0;
+  font-family: "Arial Black", "Helvetica Neue", sans-serif;
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: .9;
+  letter-spacing: -.06em;
+}
+
+.fallback-copy > p:last-child {
+  color: #59636a;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.fallback-island {
+  position: absolute;
+  z-index: 6;
+  width: clamp(150px, 20vw, 255px);
+  aspect-ratio: 1.18;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  color: #1b2023;
+  text-decoration: none;
+  transition: transform .2s ease;
+}
+
+.fallback-island:hover,
+.fallback-island:focus-visible {
+  transform: translateY(-8px) scale(1.03);
+}
+
+.fallback-land {
+  position: absolute;
+  inset: 10%;
+  border-radius: 46% 54% 50% 50% / 58% 43% 57% 42%;
+  border: 10px solid #ffe2ad;
+  box-shadow: 12px 20px 0 rgba(41,92,118,.18), 0 26px 55px rgba(39,95,122,.18);
+  transform: rotate(-5deg);
+}
+
+.fallback-island::before,
+.fallback-island::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  border-radius: 50%;
+  background: rgba(255,255,255,.38);
+}
+
+.fallback-island::before {
+  width: 18px;
+  height: 18px;
+  left: 19%;
+  top: 28%;
+}
+
+.fallback-island::after {
+  width: 10px;
+  height: 10px;
+  right: 21%;
+  top: 42%;
+}
+
+.fallback-island strong,
+.fallback-island small {
+  position: relative;
+  z-index: 4;
+}
+
+.fallback-island strong {
+  margin-top: 8px;
+  font-size: clamp(20px, 2.5vw, 34px);
+  letter-spacing: -.04em;
+}
+
+.fallback-island small {
+  color: rgba(20,28,32,.58);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.fallback-bloop {
+  left: 23%;
+  top: 50%;
+}
+
+.fallback-bloop .fallback-land {
+  background: linear-gradient(145deg, #bca1f5, #8064cf);
+}
+
+.fallback-merqorn {
+  right: 13%;
+  top: 26%;
+}
+
+.fallback-merqorn .fallback-land {
+  background: linear-gradient(145deg, #ff9a55, #d85c1b);
+}
+
+.fallback-dreambase {
+  right: 31%;
+  bottom: 5%;
+}
+
+.fallback-dreambase .fallback-land {
+  background:
+    radial-gradient(circle at 45% 38%, #b59bff, transparent 17%),
+    linear-gradient(145deg, #6c6aa9, #414174);
+}
+
+.fallback-project {
+  display: none;
+  position: fixed;
+  z-index: 120;
+  inset: auto clamp(14px, 4vw, 48px) calc(14px + var(--safe-bottom));
+  max-height: 74dvh;
+  overflow-y: auto;
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: 30px;
+  background: rgba(251,253,251,.93);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 30px 100px rgba(25,74,98,.28);
+}
+
+.fallback-project:target {
+  display: block;
+}
+
+.fallback-project > p {
+  margin: 0 0 12px;
+  color: #6d7479;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.fallback-project h3 {
+  margin: 0;
+  font-family: "Arial Black", "Helvetica Neue", sans-serif;
+  font-size: clamp(48px, 8vw, 92px);
+  line-height: .85;
+  letter-spacing: -.07em;
+}
+
+.fallback-close {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(20,20,20,.07);
+  color: #151515;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+.fallback-phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.fallback-phases article {
+  min-height: 150px;
+  padding: 18px;
+  border: 1px solid rgba(20,20,20,.09);
+  border-radius: 20px;
+  background: rgba(255,255,255,.6);
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.fallback-phases i {
+  width: 28px;
+  height: 28px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.fallback-house {
+  background: #ff785d;
+  clip-path: polygon(50% 0, 100% 40%, 87% 40%, 87% 100%, 13% 100%, 13% 40%, 0 40%);
+}
+
+.fallback-person {
+  border-radius: 50% 50% 45% 45%;
+  background: #8b6eff;
+}
+
+.fallback-animal {
+  border-radius: 47% 53% 58% 42%;
+  background: #2f8b6f;
+}
+
+.fallback-phases strong {
+  font-size: 14px;
+}
+
+.fallback-phases span {
+  color: #5d666c;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .fallback-copy {
+    top: 11%;
+    left: 14px;
+    right: 14px;
+    max-width: none;
+  }
+
+  .fallback-copy h2 {
+    font-size: 38px;
+  }
+
+  .fallback-bloop {
+    left: 5%;
+    top: 45%;
+  }
+
+  .fallback-merqorn {
+    right: 1%;
+    top: 41%;
+  }
+
+  .fallback-dreambase {
+    right: 28%;
+    bottom: 3%;
+  }
+
+  .fallback-island {
+    width: 42vw;
+    max-width: 190px;
+  }
+
+  .fallback-phases {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* V4 — transition-style cloud hero */
+.intro-clouds {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(255,255,255,.88), rgba(255,255,255,.30) 31%, transparent 58%),
+    linear-gradient(180deg, #eaf8ff 0%, #c9edff 53%, #a9ddf5 100%);
+}
+
+.intro-clouds::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16), transparent 45%),
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.38), transparent 22%),
+    radial-gradient(circle at 82% 72%, rgba(255,255,255,.30), transparent 24%);
+}
+
+.cloud-entry {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-cloud {
+  position: absolute;
+  display: block;
+  width: min(720px, 58vw);
+  height: min(440px, 36vw);
+  min-width: 390px;
+  min-height: 240px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 24% 55%, rgba(255,255,255,.99) 0 30%, transparent 31%),
+    radial-gradient(circle at 49% 37%, rgba(255,255,255,.99) 0 37%, transparent 38%),
+    radial-gradient(circle at 72% 58%, rgba(255,255,255,.97) 0 32%, transparent 33%);
+  filter: blur(7px);
+  opacity: .96;
+  pointer-events: none;
+  transition:
+    transform .65s cubic-bezier(.16,1,.3,1),
+    opacity .45s ease,
+    filter .45s ease;
+}
+
+.hc-1 { left: -17%; top: -14%; transform: rotate(8deg) scale(.90); }
+.hc-2 { right: -18%; top: -10%; transform: rotate(-9deg) scale(.94); }
+.hc-3 { left: -23%; top: 30%; transform: rotate(-5deg) scale(1.04); }
+.hc-4 { right: -24%; top: 34%; transform: rotate(7deg) scale(1.08); }
+.hc-5 { left: -14%; bottom: -23%; transform: rotate(4deg) scale(.93); }
+.hc-6 { right: -12%; bottom: -24%; transform: rotate(-6deg) scale(.97); }
+
+.cloud-entry::before,
+.cloud-entry::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: min(440px, 35vw);
+  height: min(260px, 21vw);
+  min-width: 260px;
+  min-height: 155px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 24% 55%, rgba(255,255,255,.80) 0 30%, transparent 31%),
+    radial-gradient(circle at 49% 37%, rgba(255,255,255,.78) 0 37%, transparent 38%),
+    radial-gradient(circle at 72% 58%, rgba(255,255,255,.75) 0 32%, transparent 33%);
+  filter: blur(12px);
+  opacity: .58;
+  pointer-events: none;
+}
+
+.cloud-entry::before {
+  left: 18%;
+  top: 7%;
+  transform: rotate(-8deg);
+}
+
+.cloud-entry::after {
+  right: 17%;
+  bottom: 5%;
+  transform: rotate(9deg);
+}
+
+.cloud-entry-copy {
+  position: relative;
+  z-index: 8;
+  width: min(940px, 88vw);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: 36px;
+}
+
+.hero-signature {
+  margin-bottom: 20px;
+  color: rgba(21,21,21,.52);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.cloud-entry-copy h1 {
+  margin: 0;
+  color: #171717;
+  font-family: "Arial Black", "Helvetica Neue", sans-serif;
+  font-size: clamp(64px, 10vw, 148px);
+  line-height: .82;
+  letter-spacing: -.078em;
+  text-wrap: balance;
+}
+
+.cloud-entry-hint {
+  margin-top: 30px;
+  min-height: 52px;
+  padding: 0 20px;
+  border: 1px solid rgba(255,255,255,.90);
+  border-radius: 999px;
+  background: rgba(255,255,255,.62);
+  backdrop-filter: blur(18px);
+  color: rgba(21,21,21,.70);
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 16px 44px rgba(64,113,139,.12);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  transition: transform .28s ease, background .28s ease, box-shadow .28s ease;
+}
+
+.cloud-entry-hint i {
+  font-style: normal;
+  font-size: 18px;
+}
+
+.cloud-entry:hover .cloud-entry-hint {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 22px 54px rgba(64,113,139,.17);
+}
+
+.cloud-entry:hover .hc-1 { transform: translate(12px, 9px) rotate(8deg) scale(.94); }
+.cloud-entry:hover .hc-2 { transform: translate(-12px, 10px) rotate(-9deg) scale(.98); }
+.cloud-entry:hover .hc-3 { transform: translate(18px, -4px) rotate(-5deg) scale(1.08); }
+.cloud-entry:hover .hc-4 { transform: translate(-18px, -5px) rotate(7deg) scale(1.12); }
+.cloud-entry:hover .hc-5 { transform: translate(12px, -12px) rotate(4deg) scale(.97); }
+.cloud-entry:hover .hc-6 { transform: translate(-12px, -12px) rotate(-6deg) scale(1.01); }
+
+.cloud-entry.entering .hero-cloud {
+  animation: heroCloudRush 1.05s cubic-bezier(.2,.72,.2,1) forwards;
+}
+
+.cloud-entry.entering .hc-2 { animation-delay: .05s; }
+.cloud-entry.entering .hc-3 { animation-delay: .10s; }
+.cloud-entry.entering .hc-4 { animation-delay: .07s; }
+.cloud-entry.entering .hc-5 { animation-delay: .14s; }
+.cloud-entry.entering .hc-6 { animation-delay: .11s; }
+
+.cloud-entry.entering .cloud-entry-copy {
+  animation: heroCopyDisappear .34s ease forwards;
+}
+
+.cloud-entry.entering::before,
+.cloud-entry.entering::after {
+  animation: softCloudRush .9s ease forwards;
+}
+
+@keyframes heroCloudRush {
+  0% { opacity: .96; filter: blur(7px); }
+  45% { opacity: 1; filter: blur(10px); }
+  100% { transform: scale(2.65) translateY(-4vh); opacity: 0; filter: blur(24px); }
+}
+
+@keyframes softCloudRush {
+  to { transform: scale(2.8); opacity: 0; filter: blur(26px); }
+}
+
+@keyframes heroCopyDisappear {
+  to { opacity: 0; transform: translateY(12px) scale(.975); }
+}
+
+@media (max-width: 760px) {
+  .hero-cloud {
+    width: 92vw;
+    height: 58vw;
+  }
+
+  .hc-1 { left: -44%; top: -7%; }
+  .hc-2 { right: -46%; top: 2%; }
+  .hc-3 { left: -51%; top: 34%; }
+  .hc-4 { right: -53%; top: 38%; }
+  .hc-5 { left: -43%; bottom: -12%; }
+  .hc-6 { right: -42%; bottom: -13%; }
+
+  .cloud-entry-copy {
+    padding: 24px 18px;
+  }
+
+  .cloud-entry-copy h1 {
+    font-size: clamp(60px, 17vw, 92px);
+  }
+
+  .cloud-entry-hint {
+    max-width: 90vw;
+    min-height: 48px;
+    margin-top: 24px;
+    padding: 0 16px;
+    font-size: 9px;
+    letter-spacing: .08em;
+  }
+
+  .intro-coordinates {
+    display: none;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar" aria-label="Navigazione del portfolio">
+      <a class="brand" href="#" id="brandHome" aria-label="Torna alla bolla">
+        <span class="brand-orb" aria-hidden="true"></span>
+        <span>Gianmarco</span>
+      </a>
+
+      <div class="topbar-center" id="locationLabel" aria-live="polite">
+        <span class="location-dot"></span>
+        <span>Outside the bubble</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="round-button" id="soundToggle" type="button" aria-label="Attiva i suoni" aria-pressed="false">
+          <span class="sound-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <button class="round-button hidden" id="mapButton" type="button" aria-label="Torna all'arcipelago">
+          <span aria-hidden="true">⌁</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro intro-clouds" id="intro" aria-labelledby="introTitle">
+        <a class="cloud-entry" id="cloudEntry" href="#world" aria-label="Clicca per esplorare l'arcipelago">
+          <span class="hero-cloud hc-1" aria-hidden="true"></span>
+          <span class="hero-cloud hc-2" aria-hidden="true"></span>
+          <span class="hero-cloud hc-3" aria-hidden="true"></span>
+          <span class="hero-cloud hc-4" aria-hidden="true"></span>
+          <span class="hero-cloud hc-5" aria-hidden="true"></span>
+          <span class="hero-cloud hc-6" aria-hidden="true"></span>
+
+          <span class="cloud-entry-copy">
+            <span class="hero-signature">Gianmarco · UX/UI Designer</span>
+            <h1 id="introTitle">Ogni progetto<br />è un mondo</h1>
+            <span class="cloud-entry-hint">Clicca per esplorare l’arcipelago <i aria-hidden="true">↘</i></span>
+          </span>
+        </a>
+
+        <div class="intro-coordinates" aria-hidden="true">
+          <span>41.1171° N</span>
+          <i></i>
+          <span>16.8719° E</span>
+        </div>
+      </section>
+
+      <section class="world hidden" id="world" aria-label="Arcipelago dei progetti">
+        <canvas id="worldCanvas"></canvas>
+
+        <div class="static-fallback" aria-label="Versione compatibile dell'arcipelago">
+          <div class="fallback-sky"></div>
+          <div class="fallback-copy">
+            <p class="eyebrow">Project archipelago</p>
+            <h2>Scegli un’isola.</h2>
+            <p>Questa modalità compatibile funziona anche quando l’anteprima del telefono blocca JavaScript.</p>
+          </div>
+
+          <a class="fallback-island fallback-bloop" href="#fallback-bloop">
+            <span class="fallback-land"></span>
+            <strong>Bloop</strong>
+            <small>Event discovery</small>
+          </a>
+
+          <a class="fallback-island fallback-merqorn" href="#fallback-merqorn">
+            <span class="fallback-land"></span>
+            <strong>Merqorn</strong>
+            <small>B2B software</small>
+          </a>
+
+          <a class="fallback-island fallback-dreambase" href="#fallback-dreambase">
+            <span class="fallback-land"></span>
+            <strong>Dreambase</strong>
+            <small>Wellness concept</small>
+          </a>
+
+          <div class="fallback-project" id="fallback-bloop">
+            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
+            <p>01 · Event discovery</p>
+            <h3>Bloop</h3>
+            <div class="fallback-phases">
+              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Eventi sparsi tra social, passaparola e siti diversi.</span></article>
+              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Dalla scoperta all’RSVP in pochi gesti.</span></article>
+              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Curiosa, leggera e profondamente locale.</span></article>
+            </div>
+          </div>
+
+          <div class="fallback-project" id="fallback-merqorn">
+            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
+            <p>02 · B2B software</p>
+            <h3>Merqorn</h3>
+            <div class="fallback-phases">
+              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>I processi reali vengono prima del software.</span></article>
+              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Dashboard orientate a decisioni operative.</span></article>
+              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Pragmatica, intelligente e umana.</span></article>
+            </div>
+          </div>
+
+          <div class="fallback-project" id="fallback-dreambase">
+            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
+            <p>03 · Wellness concept</p>
+            <h3>Dreambase</h3>
+            <div class="fallback-phases">
+              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Un rituale connesso, non un’altra dashboard.</span></article>
+              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Poche decisioni nel momento giusto.</span></article>
+              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Calma, presenza e protezione.</span></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="world-vignette" aria-hidden="true"></div>
+        <div class="cloud-layer cloud-layer-back" id="cloudBack" aria-hidden="true"></div>
+        <div class="cloud-layer cloud-layer-front" id="cloudFront" aria-hidden="true"></div>
+
+        <aside class="map-intro" id="mapIntro">
+          <p class="eyebrow">Project archipelago</p>
+          <h2>Scegli un’isola.</h2>
+          <p>
+            Ogni territorio racconta un progetto. Avvicinati per scoprire
+            fondamenta, persone e carattere.
+          </p>
+          <div class="map-legend">
+            <span><i class="legend-house"></i> Casa · struttura</span>
+            <span><i class="legend-person"></i> Persona · esperienza</span>
+            <span><i class="legend-animal"></i> Animale · identità</span>
+          </div>
+        </aside>
+
+        <div class="project-index" id="projectIndex" aria-label="Indice dei progetti">
+          <button type="button" data-project="bloop">
+            <span>01</span>
+            <strong>Bloop</strong>
+          </button>
+          <button type="button" data-project="merqorn">
+            <span>02</span>
+            <strong>Merqorn</strong>
+          </button>
+          <button type="button" data-project="dreambase">
+            <span>03</span>
+            <strong>Dreambase</strong>
+          </button>
+        </div>
+
+        <div class="island-title hidden" id="islandTitle">
+          <p id="islandType"></p>
+          <h2 id="islandName"></h2>
+          <span id="islandTagline"></span>
+        </div>
+
+        <div class="hotspots hidden" id="hotspots" aria-label="Fasi del progetto">
+          <button class="hotspot hotspot-house" type="button" data-phase="house">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-label"><small>01</small> Fondamenta</span>
+          </button>
+          <button class="hotspot hotspot-person" type="button" data-phase="person">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-label"><small>02</small> Esperienza</span>
+          </button>
+          <button class="hotspot hotspot-animal" type="button" data-phase="animal">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-label"><small>03</small> Carattere</span>
+          </button>
+        </div>
+
+        <div class="world-help" id="worldHelp">
+          <span>Drag to move</span>
+          <span>Scroll to zoom</span>
+          <span>B / M / D to jump</span>
+        </div>
+
+        <div class="compass" id="compass" aria-hidden="true">
+          <span>N</span>
+          <i></i>
+        </div>
+
+        <button class="back-island hidden" id="backIsland" type="button">
+          <span aria-hidden="true">←</span>
+          Arcipelago
+        </button>
+
+        <aside class="story-panel" id="storyPanel" aria-live="polite" aria-hidden="true">
+          <button class="story-close" id="storyClose" type="button" aria-label="Chiudi la fase">×</button>
+          <div class="story-number" id="storyNumber">01</div>
+          <p class="story-kicker" id="storyKicker">Fondamenta</p>
+          <h3 id="storyTitle"></h3>
+          <p class="story-copy" id="storyCopy"></p>
+          <div class="story-facts" id="storyFacts"></div>
+          <button class="story-next" id="storyNext" type="button">
+            Fase successiva
+            <span aria-hidden="true">→</span>
+          </button>
+        </aside>
+      </section>
+
+      <div class="transition-clouds" id="transitionClouds" aria-hidden="true">
+        <div class="transition-cloud tc-1"></div>
+        <div class="transition-cloud tc-2"></div>
+        <div class="transition-cloud tc-3"></div>
+        <div class="transition-cloud tc-4"></div>
+        <div class="transition-cloud tc-5"></div>
+        <div class="transition-cloud tc-6"></div>
+        <div class="transition-copy">
+          <span>Descending through the clouds</span>
+          <i></i>
+        </div>
+      </div>
+
+      <div class="burst-particles" id="burstParticles" aria-hidden="true"></div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <script>
+(() => {
+  "use strict";
+
+  if (typeof CanvasRenderingContext2D !== "undefined" && !CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radii) {
+      const r = Array.isArray(radii) ? Number(radii[0] || 0) : Number(radii || 0);
+      const radius = Math.min(Math.abs(width) / 2, Math.abs(height) / 2, r);
+      this.moveTo(x + radius, y);
+      this.arcTo(x + width, y, x + width, y + height, radius);
+      this.arcTo(x + width, y + height, x, y + height, radius);
+      this.arcTo(x, y + height, x, y, radius);
+      this.arcTo(x, y, x + width, y, radius);
+      this.closePath();
+      return this;
+    };
+  }
+
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  const intro = $("#intro");
+  const world = $("#world");
+  const cloudEntry = $("#cloudEntry");
+  const transitionClouds = $("#transitionClouds");
+  const particlesLayer = $("#burstParticles");
+  const worldCanvas = $("#worldCanvas");
+  const mapIntro = $("#mapIntro");
+  const projectIndex = $("#projectIndex");
+  const islandTitle = $("#islandTitle");
+  const islandName = $("#islandName");
+  const islandType = $("#islandType");
+  const islandTagline = $("#islandTagline");
+  const hotspots = $("#hotspots");
+  const storyPanel = $("#storyPanel");
+  const storyClose = $("#storyClose");
+  const storyNext = $("#storyNext");
+  const backIsland = $("#backIsland");
+  const mapButton = $("#mapButton");
+  const brandHome = $("#brandHome");
+  const soundToggle = $("#soundToggle");
+  const locationLabel = $("#locationLabel span:last-child");
+  const toast = $("#toast");
+
+  const ctx = worldCanvas.getContext("2d", { alpha: false });
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let width = 0;
+  let height = 0;
+  let lastTime = performance.now();
+  let worldStarted = false;
+  let activeProject = null;
+  let activePhase = null;
+  let hoverProject = null;
+  let pointerDown = false;
+  let dragMoved = false;
+  let dragStart = { x: 0, y: 0 };
+  let cameraStart = { x: 0, y: 0 };
+  let audioContext = null;
+  let soundEnabled = false;
+
+  const camera = {
+    x: 0,
+    y: 0,
+    zoom: 0.78,
+    targetX: 0,
+    targetY: 0,
+    targetZoom: 0.78
+  };
+
+  const phases = ["house", "person", "animal"];
+
+  const projects = {
+    bloop: {
+      id: "bloop",
+      name: "Bloop",
+      type: "Event discovery · Product design",
+      tagline: "Un’isola sociale dove scoprire cosa succede davvero intorno a te.",
+      x: -420,
+      y: -70,
+      radius: 220,
+      rotation: -0.10,
+      colors: {
+        cliff: "#976fc9",
+        sand: "#ffe1a8",
+        land: "#a98be9",
+        land2: "#7d62c7",
+        accent: "#ff775c",
+        water: "#77c9ea"
+      },
+      phasePositions: {
+        house: { x: -72, y: -30 },
+        person: { x: 49, y: 38 },
+        animal: { x: 90, y: -70 }
+      },
+      phases: {
+        house: {
+          number: "01",
+          kicker: "Fondamenta · Problem framing",
+          title: "Il caos prima della scoperta.",
+          copy: "Eventi sparsi tra stories, passaparola e siti diversi. La sfida era costruire un punto d’accesso locale, immediato e non promozionale.",
+          facts: [
+            "Discovery basata su rilevanza, distanza e momento.",
+            "RSVP gratuito con capienza e rilasci programmati.",
+            "Strumenti dedicati anche ai piccoli organizzatori."
+          ]
+        },
+        person: {
+          number: "02",
+          kicker: "Esperienza · UX flow",
+          title: "Tre gesti dalla curiosità all’RSVP.",
+          copy: "La persona entra, riconosce il contesto, capisce se l’evento fa per lei e conferma la partecipazione senza attraversare un labirinto.",
+          facts: [
+            "Feed Per te, Oggi e Popolare.",
+            "Mappa, filtri e schede evento leggibili.",
+            "QR personale e wallet dei propri RSVP."
+          ]
+        },
+        animal: {
+          number: "03",
+          kicker: "Carattere · Brand behavior",
+          title: "Curiosa, leggera, locale.",
+          copy: "La creatura di Bloop è un uccello esploratore: si muove, osserva e collega luoghi diversi. È la metafora del prodotto e della community.",
+          facts: [
+            "Tono fresco ma mai infantile.",
+            "Palette lilla, corallo e luce naturale.",
+            "Microinterazioni che premiano la scoperta."
+          ]
+        }
+      }
+    },
+    merqorn: {
+      id: "merqorn",
+      name: "Merqorn",
+      type: "B2B software · Product strategy",
+      tagline: "Un’isola operativa: meno attrito, più controllo, dati che servono davvero.",
+      x: 370,
+      y: -155,
+      radius: 235,
+      rotation: 0.08,
+      colors: {
+        cliff: "#9a4b21",
+        sand: "#ffd4a6",
+        land: "#ff9147",
+        land2: "#d9621f",
+        accent: "#202025",
+        water: "#72c3e3"
+      },
+      phasePositions: {
+        house: { x: -58, y: -57 },
+        person: { x: 60, y: 40 },
+        animal: { x: 78, y: -58 }
+      },
+      phases: {
+        house: {
+          number: "01",
+          kicker: "Fondamenta · Service design",
+          title: "Il software parte dall’azienda.",
+          copy: "Prima dei wireframe vengono i processi reali: fogli Excel, passaggi manuali, responsabilità e decisioni che oggi vivono nella testa delle persone.",
+          facts: [
+            "Osservazione sul campo prima della progettazione.",
+            "Mappatura di dati, ruoli e colli di bottiglia.",
+            "MVP costruito sui processi ad alto impatto."
+          ]
+        },
+        person: {
+          number: "02",
+          kicker: "Esperienza · Operational UX",
+          title: "Ogni schermata deve far decidere.",
+          copy: "Dashboard e flussi non mostrano semplicemente dati. Rispondono a domande operative: cosa sta andando storto, dove intervenire e cosa succede dopo.",
+          facts: [
+            "Gerarchia visiva orientata all’azione.",
+            "Complessità progressiva per utenti diversi.",
+            "Design system modulare e verticale."
+          ]
+        },
+        animal: {
+          number: "03",
+          kicker: "Carattere · Product logic",
+          title: "La volpe osserva prima di agire.",
+          copy: "Il carattere Merqorn è intelligente, pragmatico e umano. Non promette magia: elimina lavoro inutile e rende visibili le scelte.",
+          facts: [
+            "Identità tech ma accessibile.",
+            "Metafore visive legate a costruzione e orbite.",
+            "Tono diretto, giovane e competente."
+          ]
+        }
+      }
+    },
+    dreambase: {
+      id: "dreambase",
+      name: "Dreambase",
+      type: "Wellness concept · Experience design",
+      tagline: "Un’isola notturna dove la tecnologia si abbassa di volume.",
+      x: 30,
+      y: 365,
+      radius: 225,
+      rotation: -0.02,
+      colors: {
+        cliff: "#3c3b72",
+        sand: "#ddd8ef",
+        land: "#6866a6",
+        land2: "#44437b",
+        accent: "#b79aff",
+        water: "#74c2df"
+      },
+      phasePositions: {
+        house: { x: -68, y: -43 },
+        person: { x: 42, y: 45 },
+        animal: { x: 91, y: -55 }
+      },
+      phases: {
+        house: {
+          number: "01",
+          kicker: "Fondamenta · Ecosystem",
+          title: "Un rituale, non un’altra dashboard.",
+          copy: "Il progetto collega dispositivo e app senza trasformare il sonno in una performance. Il sistema accompagna, suggerisce e poi scompare.",
+          facts: [
+            "Pairing semplice tra hardware e app.",
+            "Programmi di luce, suono e respirazione.",
+            "Esperienza serale a basso carico cognitivo."
+          ]
+        },
+        person: {
+          number: "02",
+          kicker: "Esperienza · Calm interaction",
+          title: "Poche decisioni nel momento giusto.",
+          copy: "Di sera l’interfaccia riduce contrasto, testo e scelta. Al risveglio restituisce solo ciò che è utile, senza giudicare la notte appena trascorsa.",
+          facts: [
+            "Rituali attivabili con un gesto.",
+            "Feedback morbidi e non invasivi.",
+            "Personalizzazione progressiva."
+          ]
+        },
+        animal: {
+          number: "03",
+          kicker: "Carattere · Emotional layer",
+          title: "La balena si muove senza rumore.",
+          copy: "Dreambase prende il carattere da una creatura lenta e profonda. Il prodotto deve trasmettere presenza, calma e protezione.",
+          facts: [
+            "Toni notturni e bagliori morbidi.",
+            "Animazioni sincronizzate con il respiro.",
+            "Tecnologia percepita come atmosfera."
+          ]
+        }
+      }
+    }
+  };
+
+  const islandOrder = ["bloop", "merqorn", "dreambase"];
+
+  const birds = [
+    { x: -530, y: -175, t: .1 },
+    { x: -340, y: -220, t: 1.2 },
+    { x: -440, y: 25, t: 2.1 }
+  ];
+
+  const boats = [
+    { x: -40, y: -150, angle: .7 },
+    { x: 260, y: 210, angle: -1.2 }
+  ];
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function ensureAudio() {
+    if (!audioContext) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+  }
+
+  function tone(freq = 260, duration = .08, type = "sine", volume = .025) {
+    if (!soundEnabled) return;
+    ensureAudio();
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    oscillator.type = type;
+    oscillator.frequency.value = freq;
+    gain.gain.setValueAtTime(volume, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.0001, audioContext.currentTime + duration);
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + duration);
+  }
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove("show"), 1800);
+  }
+
+  function resizeCanvas() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    worldCanvas.width = Math.round(width * dpr);
+    worldCanvas.height = Math.round(height * dpr);
+    worldCanvas.style.width = `${width}px`;
+    worldCanvas.style.height = `${height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function worldToScreen(x, y) {
+    return {
+      x: width / 2 + (x - camera.x) * camera.zoom,
+      y: height / 2 + (y - camera.y) * camera.zoom
+    };
+  }
+
+  function screenToWorld(x, y) {
+    return {
+      x: camera.x + (x - width / 2) / camera.zoom,
+      y: camera.y + (y - height / 2) / camera.zoom
+    };
+  }
+
+  function roundedPolygonPath(cx, cy, radius, seed = 1, count = 18, squeezeY = .68) {
+    const points = [];
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 * i) / count;
+      const wave =
+        1 +
+        Math.sin(angle * 3 + seed) * .07 +
+        Math.sin(angle * 5 - seed * 1.7) * .05 +
+        Math.cos(angle * 2 + seed * .4) * .035;
+      points.push({
+        x: cx + Math.cos(angle) * radius * wave,
+        y: cy + Math.sin(angle) * radius * squeezeY * wave
+      });
+    }
+
+    ctx.beginPath();
+    points.forEach((point, index) => {
+      const next = points[(index + 1) % points.length];
+      const mx = (point.x + next.x) / 2;
+      const my = (point.y + next.y) / 2;
+      if (index === 0) ctx.moveTo(mx, my);
+      ctx.quadraticCurveTo(point.x, point.y, mx, my);
+    });
+    ctx.closePath();
+  }
+
+  function drawOcean(time) {
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, "#a9e4fa");
+    gradient.addColorStop(.52, "#79c9e8");
+    gradient.addColorStop(1, "#63b8da");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.save();
+    ctx.globalAlpha = .17;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 1;
+
+    const spacing = 48;
+    const offset = (time * .012) % spacing;
+
+    for (let y = -spacing; y < height + spacing; y += spacing) {
+      ctx.beginPath();
+      for (let x = -20; x <= width + 20; x += 12) {
+        const yy = y + offset + Math.sin(x * .018 + time * .0014 + y * .02) * 5;
+        if (x === -20) ctx.moveTo(x, yy);
+        else ctx.lineTo(x, yy);
+      }
+      ctx.stroke();
+    }
+
+    ctx.globalAlpha = .08;
+    ctx.strokeStyle = "#205f82";
+    for (let x = -100; x < width + 100; x += 105) {
+      ctx.beginPath();
+      ctx.moveTo(x + Math.sin(time * .0004) * 25, 0);
+      ctx.lineTo(x + 65 + Math.sin(time * .0004) * 25, height);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawIsland(project, time) {
+    const center = worldToScreen(project.x, project.y);
+    const r = project.radius * camera.zoom;
+    const seed = project.id === "bloop" ? 1.3 : project.id === "merqorn" ? 2.7 : 4.1;
+    const hoverScale = hoverProject === project.id && !activeProject ? 1.035 : 1;
+    const detailPulse = activeProject === project.id ? 1 + Math.sin(time * .0015) * .004 : 1;
+    const radius = r * hoverScale * detailPulse;
+
+    ctx.save();
+    ctx.translate(center.x, center.y);
+    ctx.rotate(project.rotation);
+    ctx.translate(-center.x, -center.y);
+
+    // Underwater glow
+    ctx.save();
+    ctx.globalAlpha = .18;
+    ctx.shadowColor = "#ffffff";
+    ctx.shadowBlur = 45 * camera.zoom;
+    roundedPolygonPath(center.x, center.y + 14 * camera.zoom, radius * 1.10, seed, 20);
+    ctx.fillStyle = "#d9f8ff";
+    ctx.fill();
+    ctx.restore();
+
+    // Shadow
+    roundedPolygonPath(center.x + 10 * camera.zoom, center.y + 30 * camera.zoom, radius * 1.02, seed, 20);
+    ctx.fillStyle = "rgba(28,88,119,.22)";
+    ctx.fill();
+
+    // Cliff extrusion
+    roundedPolygonPath(center.x, center.y + 25 * camera.zoom, radius, seed, 20);
+    ctx.fillStyle = project.colors.cliff;
+    ctx.fill();
+
+    // Cliff striations
+    ctx.save();
+    ctx.globalAlpha = .18;
+    ctx.strokeStyle = "#261e2e";
+    ctx.lineWidth = Math.max(1, 2 * camera.zoom);
+    for (let i = 0; i < 6; i++) {
+      const yy = center.y + (7 + i * 5) * camera.zoom;
+      ctx.beginPath();
+      ctx.arc(center.x, yy, radius * (.82 - i * .025), 0.2, Math.PI - .18);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Sand rim
+    roundedPolygonPath(center.x, center.y, radius, seed, 20);
+    ctx.fillStyle = project.colors.sand;
+    ctx.fill();
+
+    // Land
+    roundedPolygonPath(center.x, center.y - 4 * camera.zoom, radius * .88, seed + .2, 20);
+    const landGradient = ctx.createRadialGradient(
+      center.x - radius * .25,
+      center.y - radius * .28,
+      radius * .08,
+      center.x,
+      center.y,
+      radius
+    );
+    landGradient.addColorStop(0, project.colors.land);
+    landGradient.addColorStop(1, project.colors.land2);
+    ctx.fillStyle = landGradient;
+    ctx.fill();
+
+    drawIslandTexture(project, center, radius, time);
+
+    if (camera.zoom < 1.32 && !activeProject) {
+      drawIslandMapLabel(project, center, radius);
+    }
+
+    ctx.restore();
+  }
+
+  function drawIslandTexture(project, center, radius, time) {
+    const scale = camera.zoom;
+    const detailMode = activeProject === project.id && camera.zoom > 1.25;
+
+    // Paths
+    ctx.save();
+    ctx.globalAlpha = .40;
+    ctx.strokeStyle = project.colors.sand;
+    ctx.lineWidth = Math.max(2, 8 * scale);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(center.x - 62 * scale, center.y + 45 * scale);
+    ctx.bezierCurveTo(
+      center.x - 30 * scale, center.y + 5 * scale,
+      center.x + 20 * scale, center.y + 20 * scale,
+      center.x + 78 * scale, center.y - 45 * scale
+    );
+    ctx.stroke();
+    ctx.restore();
+
+    // Trees / vegetation
+    const trees = [
+      [-94, -28, .9], [-118, 18, .75], [-38, -82, .8],
+      [20, -95, .68], [115, 12, .78], [87, 74, .65],
+      [-82, 76, .70], [8, 92, .56]
+    ];
+
+    trees.forEach(([x, y, s], index) => {
+      drawTree(
+        center.x + x * scale,
+        center.y + y * scale,
+        s * scale,
+        project.id,
+        time + index * 400
+      );
+    });
+
+    if (project.id === "bloop") drawBloopMotifs(center, scale, detailMode, time);
+    if (project.id === "merqorn") drawMerqornMotifs(center, scale, detailMode, time);
+    if (project.id === "dreambase") drawDreambaseMotifs(center, scale, detailMode, time);
+  }
+
+  function drawTree(x, y, scale, projectId, time) {
+    const palette =
+      projectId === "bloop" ? ["#3f8c70", "#66b884"] :
+      projectId === "merqorn" ? ["#4d7257", "#7fa26b"] :
+      ["#2f5368", "#5e7793"];
+
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.globalAlpha = .95;
+
+    ctx.fillStyle = "rgba(21,37,38,.18)";
+    ctx.beginPath();
+    ctx.ellipse(4 * scale, 8 * scale, 12 * scale, 5 * scale, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = "#6a4a34";
+    ctx.lineWidth = Math.max(1, 2.3 * scale);
+    ctx.beginPath();
+    ctx.moveTo(0, 6 * scale);
+    ctx.lineTo(Math.sin(time * .001) * 1.5 * scale, -5 * scale);
+    ctx.stroke();
+
+    ctx.fillStyle = palette[0];
+    ctx.beginPath();
+    ctx.arc(-4 * scale, -7 * scale, 8 * scale, 0, Math.PI * 2);
+    ctx.arc(5 * scale, -9 * scale, 8 * scale, 0, Math.PI * 2);
+    ctx.arc(1 * scale, -15 * scale, 9 * scale, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = palette[1];
+    ctx.globalAlpha = .75;
+    ctx.beginPath();
+    ctx.arc(-2 * scale, -15 * scale, 4 * scale, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawHouse(x, y, scale, projectId) {
+    const body =
+      projectId === "bloop" ? "#fff3df" :
+      projectId === "merqorn" ? "#f5eee6" :
+      "#dad9e9";
+    const roof =
+      projectId === "bloop" ? "#ff785d" :
+      projectId === "merqorn" ? "#202025" :
+      "#24264c";
+
+    ctx.save();
+    ctx.translate(x, y);
+
+    ctx.fillStyle = "rgba(20,34,40,.18)";
+    ctx.beginPath();
+    ctx.ellipse(6 * scale, 14 * scale, 26 * scale, 9 * scale, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = body;
+    ctx.fillRect(-19 * scale, -8 * scale, 38 * scale, 31 * scale);
+
+    ctx.fillStyle = roof;
+    ctx.beginPath();
+    ctx.moveTo(-26 * scale, -7 * scale);
+    ctx.lineTo(0, -29 * scale);
+    ctx.lineTo(26 * scale, -7 * scale);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = projectId === "dreambase" ? "#a989ff" : "#7ab4d2";
+    ctx.fillRect(-12 * scale, 1 * scale, 10 * scale, 9 * scale);
+    ctx.fillRect(5 * scale, 1 * scale, 9 * scale, 9 * scale);
+
+    ctx.fillStyle = "#6b4b39";
+    ctx.fillRect(-4 * scale, 9 * scale, 8 * scale, 14 * scale);
+
+    if (projectId === "merqorn") {
+      ctx.strokeStyle = "#ff7d31";
+      ctx.lineWidth = 2 * scale;
+      ctx.strokeRect(-17 * scale, -5 * scale, 34 * scale, 26 * scale);
+    }
+
+    ctx.restore();
+  }
+
+  function drawPerson(x, y, scale, projectId, time) {
+    const shirt =
+      projectId === "bloop" ? "#ff785d" :
+      projectId === "merqorn" ? "#202025" :
+      "#a98cff";
+
+    ctx.save();
+    ctx.translate(x, y + Math.sin(time * .003) * 1.2 * scale);
+
+    ctx.fillStyle = "rgba(20,34,40,.17)";
+    ctx.beginPath();
+    ctx.ellipse(2 * scale, 12 * scale, 10 * scale, 4 * scale, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = "#3e3330";
+    ctx.lineWidth = Math.max(1, 2 * scale);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(-2 * scale, 3 * scale);
+    ctx.lineTo(-6 * scale, 13 * scale);
+    ctx.moveTo(2 * scale, 3 * scale);
+    ctx.lineTo(7 * scale, 13 * scale);
+    ctx.stroke();
+
+    ctx.fillStyle = shirt;
+    ctx.beginPath();
+    ctx.roundRect(-8 * scale, -10 * scale, 16 * scale, 16 * scale, 6 * scale);
+    ctx.fill();
+
+    ctx.strokeStyle = "#3e3330";
+    ctx.beginPath();
+    ctx.moveTo(-7 * scale, -5 * scale);
+    ctx.lineTo(-13 * scale, 2 * scale);
+    ctx.moveTo(7 * scale, -5 * scale);
+    ctx.lineTo(13 * scale, -1 * scale);
+    ctx.stroke();
+
+    ctx.fillStyle = "#d99a73";
+    ctx.beginPath();
+    ctx.arc(0, -16 * scale, 6 * scale, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#392b2a";
+    ctx.beginPath();
+    ctx.arc(-1 * scale, -18 * scale, 6 * scale, Math.PI, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function drawAnimal(x, y, scale, projectId, time) {
+    ctx.save();
+    ctx.translate(x, y);
+
+    if (projectId === "bloop") {
+      const flap = Math.sin(time * .008) * 3 * scale;
+      ctx.strokeStyle = "#263b46";
+      ctx.lineWidth = Math.max(1, 2 * scale);
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(-1 * scale, 0);
+      ctx.quadraticCurveTo(-9 * scale, -8 * scale - flap, -18 * scale, -3 * scale);
+      ctx.moveTo(1 * scale, 0);
+      ctx.quadraticCurveTo(9 * scale, -8 * scale - flap, 18 * scale, -3 * scale);
+      ctx.stroke();
+      ctx.fillStyle = "#ffda60";
+      ctx.beginPath();
+      ctx.arc(0, 0, 4 * scale, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (projectId === "merqorn") {
+      ctx.fillStyle = "#ad6238";
+      ctx.beginPath();
+      ctx.ellipse(0, 2 * scale, 13 * scale, 8 * scale, -.1, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(-5 * scale, -4 * scale);
+      ctx.lineTo(-10 * scale, -14 * scale);
+      ctx.lineTo(0, -8 * scale);
+      ctx.closePath();
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(5 * scale, -4 * scale);
+      ctx.lineTo(10 * scale, -14 * scale);
+      ctx.lineTo(1 * scale, -8 * scale);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = "#f3dac1";
+      ctx.lineWidth = 3 * scale;
+      ctx.beginPath();
+      ctx.arc(13 * scale, 2 * scale, 8 * scale, -1.4, 1.5);
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = "#8d83c7";
+      ctx.beginPath();
+      ctx.ellipse(0, 2 * scale, 18 * scale, 8 * scale, -.1, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(15 * scale, 0);
+      ctx.lineTo(26 * scale, -8 * scale);
+      ctx.lineTo(24 * scale, 7 * scale);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = "#cfc5ff";
+      ctx.lineWidth = Math.max(1, 1.6 * scale);
+      ctx.beginPath();
+      ctx.moveTo(-6 * scale, -5 * scale);
+      ctx.quadraticCurveTo(-10 * scale, -17 * scale, -1 * scale, -14 * scale);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawBloopMotifs(center, scale, detailMode, time) {
+    // Event canopy
+    ctx.save();
+    ctx.translate(center.x + 15 * scale, center.y - 30 * scale);
+    ctx.fillStyle = "rgba(28,47,52,.16)";
+    ctx.beginPath();
+    ctx.ellipse(5 * scale, 11 * scale, 28 * scale, 8 * scale, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#ffe7ae";
+    ctx.fillRect(-23 * scale, -2 * scale, 46 * scale, 14 * scale);
+    ctx.fillStyle = "#ff785d";
+    for (let i = 0; i < 5; i++) {
+      ctx.beginPath();
+      ctx.moveTo((-25 + i * 10) * scale, -2 * scale);
+      ctx.lineTo((-20 + i * 10) * scale, -18 * scale);
+      ctx.lineTo((-15 + i * 10) * scale, -2 * scale);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+
+    // Tiny cloudEntrys
+    for (let i = 0; i < 5; i++) {
+      const angle = time * .0003 + i * 1.7;
+      const x = center.x + Math.cos(angle) * (90 + i * 7) * scale;
+      const y = center.y + Math.sin(angle * 1.2) * (52 + i * 5) * scale;
+      ctx.strokeStyle = "rgba(255,255,255,.74)";
+      ctx.lineWidth = Math.max(.7, scale);
+      ctx.beginPath();
+      ctx.arc(x, y, (3 + i % 2 * 2) * scale, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    if (detailMode) {
+      const p = projects.bloop.phasePositions;
+      drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "bloop");
+      drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "bloop", time);
+      drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.1 * scale, "bloop", time);
+    }
+  }
+
+  function drawMerqornMotifs(center, scale, detailMode, time) {
+    // Data blocks
+    const blocks = [
+      [-8, -25, 36, 24, "#252528"],
+      [36, -5, 28, 40, "#f4e7d8"],
+      [-48, 30, 34, 28, "#ffcf98"]
+    ];
+
+    blocks.forEach(([x, y, w, h, color], index) => {
+      ctx.save();
+      ctx.translate(center.x + x * scale, center.y + y * scale);
+      ctx.fillStyle = "rgba(30,37,39,.16)";
+      ctx.fillRect((-w/2 + 6) * scale, (-h/2 + 8) * scale, w * scale, h * scale);
+      ctx.fillStyle = color;
+      ctx.fillRect(-w/2 * scale, -h/2 * scale, w * scale, h * scale);
+      ctx.fillStyle = index === 0 ? "#ff7d31" : "#d46125";
+      ctx.fillRect((-w/2 + 5) * scale, (-h/2 + 5) * scale, (w - 10) * scale, 4 * scale);
+      ctx.restore();
+    });
+
+    // Orbit line
+    ctx.save();
+    ctx.strokeStyle = "rgba(32,32,37,.25)";
+    ctx.lineWidth = Math.max(1, scale);
+    ctx.setLineDash([5 * scale, 5 * scale]);
+    ctx.beginPath();
+    ctx.ellipse(center.x, center.y, 105 * scale, 57 * scale, .12, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    if (detailMode) {
+      const p = projects.merqorn.phasePositions;
+      drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "merqorn");
+      drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "merqorn", time);
+      drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.05 * scale, "merqorn", time);
+    }
+  }
+
+  function drawDreambaseMotifs(center, scale, detailMode, time) {
+    // Moon pool
+    const glow = ctx.createRadialGradient(
+      center.x - 10 * scale, center.y - 15 * scale, 2,
+      center.x - 10 * scale, center.y - 15 * scale, 45 * scale
+    );
+    glow.addColorStop(0, "rgba(220,211,255,.95)");
+    glow.addColorStop(.4, "rgba(168,139,255,.78)");
+    glow.addColorStop(1, "rgba(88,76,153,.12)");
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.ellipse(center.x - 10 * scale, center.y - 15 * scale, 42 * scale, 23 * scale, -.15, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Stars
+    ctx.fillStyle = "rgba(255,255,255,.8)";
+    for (let i = 0; i < 7; i++) {
+      const angle = i * 1.7 + .4;
+      const x = center.x + Math.cos(angle) * (75 + i * 4) * scale;
+      const y = center.y + Math.sin(angle) * (48 + i * 2) * scale;
+      const pulse = 1 + Math.sin(time * .003 + i) * .35;
+      ctx.beginPath();
+      ctx.arc(x, y, (1.4 + (i % 2)) * scale * pulse, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (detailMode) {
+      const p = projects.dreambase.phasePositions;
+      drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "dreambase");
+      drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "dreambase", time);
+      drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.08 * scale, "dreambase", time);
+    }
+  }
+
+  function drawIslandMapLabel(project, center, radius) {
+    const isHovered = hoverProject === project.id;
+    const labelY = center.y + radius * .78;
+    const text = project.name;
+    ctx.save();
+    ctx.font = `700 ${Math.max(11, 15 * camera.zoom)}px Inter, sans-serif`;
+    const textWidth = ctx.measureText(text).width;
+    const boxWidth = textWidth + 30;
+    const boxHeight = Math.max(30, 38 * camera.zoom);
+
+    ctx.fillStyle = isHovered ? "rgba(255,255,255,.94)" : "rgba(255,255,255,.72)";
+    ctx.strokeStyle = "rgba(255,255,255,.92)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(center.x - boxWidth / 2, labelY - boxHeight / 2, boxWidth, boxHeight, boxHeight / 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#1c252a";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, center.x, labelY + 1);
+    ctx.restore();
+  }
+
+  function drawBirds(time) {
+    if (activeProject && activeProject !== "bloop") return;
+
+    const project = projects.bloop;
+    birds.forEach((bird, index) => {
+      const angle = time * .00016 + bird.t;
+      const worldX = bird.x + Math.cos(angle + index) * 24;
+      const worldY = bird.y + Math.sin(angle * 1.2 + index) * 16;
+      const p = worldToScreen(worldX, worldY);
+      const s = Math.max(.55, camera.zoom);
+
+      ctx.save();
+      ctx.strokeStyle = "rgba(26,55,66,.7)";
+      ctx.lineWidth = Math.max(1, 1.6 * s);
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.quadraticCurveTo(p.x - 6 * s, p.y - 6 * s, p.x - 12 * s, p.y);
+      ctx.moveTo(p.x, p.y);
+      ctx.quadraticCurveTo(p.x + 6 * s, p.y - 6 * s, p.x + 12 * s, p.y);
+      ctx.stroke();
+      ctx.restore();
+    });
+  }
+
+  function drawBoats(time) {
+    boats.forEach((boat, index) => {
+      const drift = Math.sin(time * .00025 + index) * 16;
+      const p = worldToScreen(boat.x + drift, boat.y + drift * .25);
+      const s = camera.zoom;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(boat.angle);
+      ctx.fillStyle = "rgba(33,76,96,.18)";
+      ctx.beginPath();
+      ctx.ellipse(4 * s, 7 * s, 15 * s, 5 * s, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#f7efe1";
+      ctx.beginPath();
+      ctx.moveTo(-12 * s, 0);
+      ctx.lineTo(12 * s, 0);
+      ctx.lineTo(7 * s, 7 * s);
+      ctx.lineTo(-7 * s, 7 * s);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = "#7b543a";
+      ctx.lineWidth = Math.max(1, 1.4 * s);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, -18 * s);
+      ctx.stroke();
+      ctx.fillStyle = index === 0 ? "#ff785d" : "#9a7cff";
+      ctx.beginPath();
+      ctx.moveTo(1 * s, -17 * s);
+      ctx.lineTo(12 * s, -7 * s);
+      ctx.lineTo(1 * s, -7 * s);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  function render(time) {
+    const dt = Math.min(32, time - lastTime);
+    lastTime = time;
+
+    const smoothing = 1 - Math.pow(.001, dt / 1000);
+    camera.x = lerp(camera.x, camera.targetX, smoothing);
+    camera.y = lerp(camera.y, camera.targetY, smoothing);
+    camera.zoom = lerp(camera.zoom, camera.targetZoom, smoothing);
+
+    drawOcean(time);
+    drawBoats(time);
+
+    const sorted = Object.values(projects).sort((a, b) => a.y - b.y);
+    sorted.forEach(project => drawIsland(project, time));
+
+    drawBirds(time);
+    updateHotspotPositions();
+
+    requestAnimationFrame(render);
+  }
+
+  function createWorldClouds() {
+    const back = $("#cloudBack");
+    const front = $("#cloudFront");
+    const configs = [
+      [back, "22vw", "12%", ".25", "8px", "42s", "-9s"],
+      [back, "17vw", "58%", ".18", "10px", "52s", "-27s"],
+      [back, "27vw", "78%", ".17", "12px", "58s", "-14s"],
+      [front, "33vw", "18%", ".29", "15px", "48s", "-18s"],
+      [front, "28vw", "66%", ".24", "18px", "55s", "-36s"]
+    ];
+
+    configs.forEach(([parent, w, top, opacity, blur, duration, delay]) => {
+      const cloud = document.createElement("div");
+      cloud.className = "world-cloud";
+      cloud.style.setProperty("--w", w);
+      cloud.style.setProperty("--opacity", opacity);
+      cloud.style.setProperty("--blur", blur);
+      cloud.style.setProperty("--duration", duration);
+      cloud.style.setProperty("--delay", delay);
+      cloud.style.top = top;
+      cloud.innerHTML = "<i></i>";
+      parent.appendChild(cloud);
+    });
+  }
+
+  function createBurstParticles() {
+    const rect = cloudEntry.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const count = window.innerWidth < 700 ? 28 : 46;
+
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement("i");
+      particle.className = "burst-particle";
+      const angle = (Math.PI * 2 * i) / count + Math.random() * .26;
+      const distance = rect.width * (.36 + Math.random() * .9);
+      particle.style.setProperty("--x", `${x}px`);
+      particle.style.setProperty("--y", `${y}px`);
+      particle.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
+      particle.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
+      particle.style.setProperty("--size", `${4 + Math.random() * 17}px`);
+      particle.style.setProperty("--duration", `${.55 + Math.random() * .55}s`);
+      particle.style.setProperty("--rotate", `${Math.random() * 480 - 240}deg`);
+      particlesLayer.appendChild(particle);
+      setTimeout(() => particle.remove(), 1300);
+    }
+  }
+
+  function enterWorld() {
+    if (worldStarted) return;
+    worldStarted = true;
+    cloudEntry.classList.add("entering");
+    tone(610, .08, "sine", .03);
+    setTimeout(() => tone(180, .45, "sine", .045), 120);
+
+    setTimeout(() => {
+      transitionClouds.classList.add("active");
+    }, 260);
+
+    setTimeout(() => {
+      world.classList.remove("hidden");
+      world.classList.add("world-ready");
+      resizeCanvas();
+      createWorldClouds();
+      requestAnimationFrame(render);
+      locationLabel.textContent = "Project archipelago";
+      mapButton.classList.remove("hidden");
+    }, 900);
+
+    setTimeout(() => {
+      intro.classList.add("hidden");
+    }, 1400);
+
+    setTimeout(() => {
+      transitionClouds.classList.remove("active");
+      showToast("Benvenuto nell’arcipelago.");
+    }, 2950);
+  }
+
+  function resetToIntro() {
+    closeStory();
+    activeProject = null;
+    activePhase = null;
+    hoverProject = null;
+    camera.x = camera.targetX = 0;
+    camera.y = camera.targetY = 0;
+    camera.zoom = camera.targetZoom = .78;
+    world.classList.remove("world-ready");
+    world.classList.add("hidden");
+    intro.classList.remove("hidden");
+    cloudEntry.classList.remove("entering");
+    mapButton.classList.add("hidden");
+    worldStarted = false;
+    $("#cloudBack").innerHTML = "";
+    $("#cloudFront").innerHTML = "";
+    locationLabel.textContent = "Above the clouds";
+    showMapUI();
+  }
+
+  function selectProject(projectId) {
+    const project = projects[projectId];
+    if (!project) return;
+
+    activeProject = projectId;
+    activePhase = null;
+    hoverProject = projectId;
+    closeStory();
+
+    camera.targetX = project.x;
+    camera.targetY = project.y + 14;
+    camera.targetZoom = width < 650 ? 1.58 : 1.82;
+
+    mapIntro.classList.add("minimized");
+    projectIndex.classList.add("hidden");
+    $("#worldHelp").classList.add("hidden");
+    $("#compass").classList.add("hidden");
+    backIsland.classList.remove("hidden");
+    hotspots.classList.remove("hidden");
+    islandTitle.classList.remove("hidden");
+    mapButton.classList.remove("hidden");
+
+    islandName.textContent = project.name;
+    islandType.textContent = project.type;
+    islandTagline.textContent = project.tagline;
+    locationLabel.textContent = `${project.name} island`;
+
+    $$("#projectIndex button").forEach(button => {
+      button.classList.toggle("active", button.dataset.project === projectId);
+    });
+
+    tone(projectId === "bloop" ? 420 : projectId === "merqorn" ? 260 : 330, .13, "triangle", .03);
+  }
+
+  function showMapUI() {
+    activeProject = null;
+    activePhase = null;
+    hoverProject = null;
+    closeStory();
+
+    camera.targetX = 0;
+    camera.targetY = 45;
+    camera.targetZoom = width < 650 ? .66 : .78;
+
+    mapIntro.classList.remove("minimized");
+    projectIndex.classList.remove("hidden");
+    $("#worldHelp").classList.remove("hidden");
+    $("#compass").classList.remove("hidden");
+    backIsland.classList.add("hidden");
+    hotspots.classList.add("hidden");
+    islandTitle.classList.add("hidden");
+    locationLabel.textContent = "Project archipelago";
+
+    $$("#projectIndex button").forEach(button => button.classList.remove("active"));
+    tone(190, .10, "sine", .02);
+  }
+
+  function updateHotspotPositions() {
+    if (!activeProject || hotspots.classList.contains("hidden")) return;
+    const project = projects[activeProject];
+    const center = worldToScreen(project.x, project.y);
+
+    phases.forEach(phase => {
+      const pos = project.phasePositions[phase];
+      const screenX = center.x + pos.x * camera.zoom;
+      const screenY = center.y + pos.y * camera.zoom;
+      const button = $(`.hotspot-${phase}`);
+      button.style.left = `${screenX}px`;
+      button.style.top = `${screenY}px`;
+    });
+  }
+
+  function openPhase(phase) {
+    if (!activeProject) return;
+    const project = projects[activeProject];
+    const data = project.phases[phase];
+    if (!data) return;
+
+    activePhase = phase;
+    $("#storyNumber").textContent = data.number;
+    $("#storyKicker").textContent = data.kicker;
+    $("#storyTitle").textContent = data.title;
+    $("#storyCopy").textContent = data.copy;
+    $("#storyFacts").innerHTML = data.facts.map(fact => `<span>${fact}</span>`).join("");
+    storyPanel.classList.add("open");
+    storyPanel.setAttribute("aria-hidden", "false");
+
+    $$(".hotspot").forEach(button => {
+      button.classList.toggle("active", button.dataset.phase === phase);
+    });
+
+    tone(phase === "house" ? 240 : phase === "person" ? 330 : 480, .09, "sine", .025);
+  }
+
+  function closeStory() {
+    storyPanel.classList.remove("open");
+    storyPanel.setAttribute("aria-hidden", "true");
+    activePhase = null;
+    $$(".hotspot").forEach(button => button.classList.remove("active"));
+  }
+
+  function nextPhase() {
+    const current = Math.max(0, phases.indexOf(activePhase));
+    const next = phases[(current + 1) % phases.length];
+    openPhase(next);
+  }
+
+  function islandHitTest(screenX, screenY) {
+    const point = screenToWorld(screenX, screenY);
+    let hit = null;
+    let minDistance = Infinity;
+
+    Object.values(projects).forEach(project => {
+      const dx = point.x - project.x;
+      const dy = (point.y - project.y) / .70;
+      const distance = Math.hypot(dx, dy);
+      if (distance < project.radius * .94 && distance < minDistance) {
+        hit = project.id;
+        minDistance = distance;
+      }
+    });
+
+    return hit;
+  }
+
+  function onPointerMove(event) {
+    if (!worldStarted) return;
+
+    if (pointerDown && !activeProject) {
+      const dx = event.clientX - dragStart.x;
+      const dy = event.clientY - dragStart.y;
+      if (Math.hypot(dx, dy) > 4) dragMoved = true;
+
+      camera.targetX = cameraStart.x - dx / camera.zoom;
+      camera.targetY = cameraStart.y - dy / camera.zoom;
+      camera.targetX = clamp(camera.targetX, -320, 320);
+      camera.targetY = clamp(camera.targetY, -250, 310);
+    }
+
+    if (!pointerDown && !activeProject) {
+      hoverProject = islandHitTest(event.clientX, event.clientY);
+      worldCanvas.style.cursor = hoverProject ? "pointer" : "grab";
+    }
+  }
+
+  function onPointerDown(event) {
+    pointerDown = true;
+    dragMoved = false;
+    dragStart = { x: event.clientX, y: event.clientY };
+    cameraStart = { x: camera.targetX, y: camera.targetY };
+    worldCanvas.setPointerCapture?.(event.pointerId);
+  }
+
+  function onPointerUp(event) {
+    if (!pointerDown) return;
+    pointerDown = false;
+
+    if (!dragMoved && !activeProject) {
+      const hit = islandHitTest(event.clientX, event.clientY);
+      if (hit) selectProject(hit);
+    }
+
+    worldCanvas.style.cursor = hoverProject ? "pointer" : "grab";
+  }
+
+  function onWheel(event) {
+    if (!worldStarted || activeProject) return;
+    event.preventDefault();
+
+    const oldZoom = camera.targetZoom;
+    const zoomFactor = Math.exp(-event.deltaY * .001);
+    const newZoom = clamp(oldZoom * zoomFactor, .58, 1.12);
+
+    const pointerWorld = screenToWorld(event.clientX, event.clientY);
+    camera.targetZoom = newZoom;
+    camera.targetX = pointerWorld.x - (event.clientX - width / 2) / newZoom;
+    camera.targetY = pointerWorld.y - (event.clientY - height / 2) / newZoom;
+  }
+  intro.addEventListener("click", event => {
+    if (event.target.closest("#cloudEntry")) return;
+    enterWorld();
+  });
+
+  cloudEntry.addEventListener("click", event => {
+    event.preventDefault();
+    enterWorld();
+  });
+
+  cloudEntry.addEventListener("pointerup", event => {
+    if (event.pointerType === "touch") {
+      event.preventDefault();
+      enterWorld();
+    }
+  });
+
+  soundToggle.addEventListener("click", () => {
+    soundEnabled = !soundEnabled;
+    soundToggle.setAttribute("aria-pressed", String(soundEnabled));
+    soundToggle.setAttribute("aria-label", soundEnabled ? "Disattiva i suoni" : "Attiva i suoni");
+    if (soundEnabled) {
+      ensureAudio();
+      tone(520, .12, "sine", .035);
+      showToast("Suoni attivi.");
+    }
+  });
+
+  mapButton.addEventListener("click", () => {
+    if (activeProject) showMapUI();
+    else showToast("Sei già sull’arcipelago.");
+  });
+
+  backIsland.addEventListener("click", showMapUI);
+  storyClose.addEventListener("click", closeStory);
+  storyNext.addEventListener("click", nextPhase);
+
+  brandHome.addEventListener("click", event => {
+    event.preventDefault();
+    if (!worldStarted) return;
+    resetToIntro();
+  });
+
+  $$("#projectIndex button").forEach(button => {
+    button.addEventListener("click", () => selectProject(button.dataset.project));
+  });
+
+  $$(".hotspot").forEach(button => {
+    button.addEventListener("click", () => openPhase(button.dataset.phase));
+  });
+
+  worldCanvas.addEventListener("pointerdown", onPointerDown);
+  worldCanvas.addEventListener("pointermove", onPointerMove);
+  worldCanvas.addEventListener("pointerup", onPointerUp);
+  worldCanvas.addEventListener("pointercancel", () => { pointerDown = false; });
+  worldCanvas.addEventListener("wheel", onWheel, { passive: false });
+
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    if (!activeProject) {
+      camera.targetZoom = width < 650 ? .66 : .78;
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      if (storyPanel.classList.contains("open")) closeStory();
+      else if (activeProject) showMapUI();
+      return;
+    }
+
+    if (!worldStarted) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        enterWorld();
+      }
+      return;
+    }
+
+    const key = event.key.toLowerCase();
+    if (key === "b") selectProject("bloop");
+    if (key === "m") selectProject("merqorn");
+    if (key === "d") selectProject("dreambase");
+  });
+
+  resizeCanvas();
+})();
+
+</script>
+</body>
+</html>
