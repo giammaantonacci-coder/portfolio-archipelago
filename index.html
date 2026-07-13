@@ -5,7 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#bfe8ff" />
   <meta name="description" content="Portfolio interattivo di Gianmarco — un arcipelago di progetti UX/UI." />
+  <meta name="author" content="Gianmarco" />
   <title>Gianmarco — Project Archipelago</title>
+  <link rel="canonical" href="https://portfolio-archipelago.vercel.app/" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Gianmarco — Project Archipelago" />
+  <meta property="og:description" content="Portfolio interattivo di Gianmarco — un arcipelago di progetti UX/UI." />
+  <meta property="og:url" content="https://portfolio-archipelago.vercel.app/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Gianmarco — Project Archipelago" />
+  <meta name="twitter:description" content="Portfolio interattivo di Gianmarco — un arcipelago di progetti UX/UI." />
   <style>
 :root {
   --ink: #151515;
@@ -2050,6 +2061,7 @@ main {
   let height = 0;
   let lastTime = performance.now();
   let worldStarted = false;
+  let renderLoopActive = false;
   let activeProject = null;
   let activePhase = null;
   let hoverProject = null;
@@ -2901,6 +2913,13 @@ main {
     });
   }
 
+  function startRenderLoop() {
+    if (renderLoopActive) return;
+    renderLoopActive = true;
+    lastTime = performance.now();
+    requestAnimationFrame(render);
+  }
+
   function render(time) {
     const dt = Math.min(32, time - lastTime);
     lastTime = time;
@@ -2986,7 +3005,7 @@ main {
       world.classList.add("world-ready");
       resizeCanvas();
       createWorldClouds();
-      requestAnimationFrame(render);
+      startRenderLoop();
       locationLabel.textContent = "Project archipelago";
       mapButton.classList.remove("hidden");
     }, 900);
