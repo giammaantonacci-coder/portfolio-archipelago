@@ -2075,6 +2075,7 @@ main {
   let activeProject = null;
   let activePhase = null;
   let hoverProject = null;
+  let aboutWaveUntil = 0;
   let pointerDown = false;
   let dragMoved = false;
   let dragStart = { x: 0, y: 0 };
@@ -2891,10 +2892,11 @@ main {
     });
 
     // The elder — "this is me"
-    drawElder(center.x - 2 * scale, center.y - 6 * scale, (detailMode ? 1.15 : 1) * scale, time);
+    const waving = activeProject === "about" && time < aboutWaveUntil;
+    drawElder(center.x - 2 * scale, center.y - 6 * scale, (detailMode ? 1.15 : 1) * scale, time, waving);
   }
 
-  function drawElder(x, y, scale, time) {
+  function drawElder(x, y, scale, time, waving) {
     const bob = Math.sin(time * .0018) * 1.1 * scale;
     ctx.save();
     ctx.translate(x, y + bob);
@@ -2946,13 +2948,35 @@ main {
     ctx.closePath();
     ctx.fill();
 
-    // Arm to the cane
+    // Right arm resting on the cane
     ctx.strokeStyle = "#6f78b0";
     ctx.lineWidth = Math.max(2, 4 * scale);
+    ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(6 * scale, -5 * scale);
     ctx.lineTo(14 * scale, -6 * scale);
     ctx.stroke();
+
+    // Left arm — waves hello on greeting, otherwise rests
+    if (waving) {
+      const swing = Math.sin(time * .02) * 3.4 * scale;
+      const handX = -18 * scale + swing;
+      const handY = -30 * scale;
+      ctx.beginPath();
+      ctx.moveTo(-7 * scale, -6 * scale);
+      ctx.lineTo(-14 * scale, -17 * scale);
+      ctx.lineTo(handX, handY);
+      ctx.stroke();
+      ctx.fillStyle = "#e0b48c";
+      ctx.beginPath();
+      ctx.arc(handX, handY, 2.8 * scale, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.moveTo(-7 * scale, -5 * scale);
+      ctx.lineTo(-12 * scale, 3 * scale);
+      ctx.stroke();
+    }
 
     // Head
     ctx.fillStyle = "#e0b48c";
@@ -3234,6 +3258,7 @@ main {
     if (project.about) {
       hotspots.classList.add("hidden");
       openAbout(project);
+      aboutWaveUntil = performance.now() + 3000;
       tone(300, .16, "sine", .03);
     } else {
       hotspots.classList.remove("hidden");
