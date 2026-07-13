@@ -19,7 +19,7 @@ Portfolio interattivo in HTML, CSS e JavaScript puro.
 
 ## Avvio
 
-Apri `portfolio-archipelago-v4.html`.
+Apri `index.html`.
 
 Per sviluppo locale:
 
