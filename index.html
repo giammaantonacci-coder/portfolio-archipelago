@@ -531,6 +531,8 @@ main {
     radial-gradient(circle at 72% 58%, rgba(255,255,255,.96) 0 32%, transparent 33%);
   filter: blur(10px);
   opacity: .96;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .transition-clouds.active .transition-cloud {
@@ -634,6 +636,8 @@ main {
   animation: worldCloud var(--duration) linear infinite;
   animation-delay: var(--delay);
   transform: translateX(-30vw);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .world-cloud::before,
@@ -1729,6 +1733,8 @@ main {
 
 .cloud-entry.entering .hero-cloud {
   animation: heroCloudRush 1.05s cubic-bezier(.2,.72,.2,1) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .cloud-entry.entering .hc-2 { animation-delay: .05s; }
@@ -1747,13 +1753,13 @@ main {
 }
 
 @keyframes heroCloudRush {
-  0% { opacity: .96; filter: blur(7px); }
-  45% { opacity: 1; filter: blur(10px); }
-  100% { transform: scale(2.65) translateY(-4vh); opacity: 0; filter: blur(24px); }
+  0% { opacity: .96; }
+  45% { opacity: 1; }
+  100% { transform: scale(2.65) translateY(-4vh); opacity: 0; }
 }
 
 @keyframes softCloudRush {
-  to { transform: scale(2.8); opacity: 0; filter: blur(26px); }
+  to { transform: scale(2.8); opacity: 0; }
 }
 
 @keyframes heroCopyDisappear {
