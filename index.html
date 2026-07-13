@@ -2273,9 +2273,9 @@ main {
       name: "Gianmarco",
       type: "Chi sono · About",
       tagline: "L’isola più piccola dell’arcipelago: qui vive chi disegna le mappe.",
-      x: -55,
-      y: -210,
-      radius: 88,
+      x: -95,
+      y: -245,
+      radius: 66,
       rotation: -0.03,
       about: true,
       colors: {
@@ -2873,7 +2873,7 @@ main {
 
   function drawAboutMotifs(center, scale, detailMode, time) {
     // A couple of small bushes to keep the island alive
-    const bushes = [[-58, 30, .7], [54, 26, .62]];
+    const bushes = [[-38, 22, .6], [36, 18, .52]];
     bushes.forEach(([bx, by, bs]) => {
       ctx.save();
       ctx.translate(center.x + bx * scale, center.y + by * scale);
