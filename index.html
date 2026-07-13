@@ -1944,6 +1944,10 @@ main {
             <span>03</span>
             <strong>Dreambase</strong>
           </button>
+          <button type="button" data-project="about">
+            <span>04</span>
+            <strong>Chi sono</strong>
+          </button>
         </div>
 
         <div class="island-title hidden" id="islandTitle">
@@ -1970,7 +1974,7 @@ main {
         <div class="world-help" id="worldHelp">
           <span>Drag to move</span>
           <span>Scroll to zoom</span>
-          <span>B / M / D to jump</span>
+          <span>B / M / D / C to jump</span>
         </div>
 
         <div class="compass" id="compass" aria-hidden="true">
@@ -2263,6 +2267,36 @@ main {
           ]
         }
       }
+    },
+    about: {
+      id: "about",
+      name: "Gianmarco",
+      type: "Chi sono · About",
+      tagline: "L’isola più piccola dell’arcipelago: qui vive chi disegna le mappe.",
+      x: -30,
+      y: -120,
+      radius: 120,
+      rotation: -0.03,
+      about: true,
+      colors: {
+        cliff: "#5b7a5f",
+        sand: "#ffe9c2",
+        land: "#86a878",
+        land2: "#5f7f5a",
+        accent: "#6f78b0",
+        water: "#77c9ea"
+      },
+      aboutContent: {
+        number: "04",
+        kicker: "Chi sono · About",
+        title: "Il cartografo dell’arcipelago.",
+        copy: "Sono Gianmarco, designer UX/UI. Do forma a prodotti digitali come fossero territori: ogni isola di questo arcipelago è un progetto a cui ho lavorato. Questa piccola isola, invece, sono io — chi osserva, ascolta e disegna le rotte.",
+        facts: [
+          "UX/UI & product design.",
+          "Basato in Puglia · 41° N, 16° E.",
+          "Curiosità come metodo, semplicità come obiettivo."
+        ]
+      }
     }
   };
 
@@ -2485,6 +2519,11 @@ main {
   function drawIslandTexture(project, center, radius, time) {
     const scale = camera.zoom;
     const detailMode = activeProject === project.id && camera.zoom > 1.25;
+
+    if (project.about) {
+      drawAboutMotifs(center, scale, detailMode, time);
+      return;
+    }
 
     // Paths
     ctx.save();
@@ -2832,6 +2871,122 @@ main {
     }
   }
 
+  function drawAboutMotifs(center, scale, detailMode, time) {
+    // A couple of small bushes to keep the island alive
+    const bushes = [[-58, 30, .7], [54, 26, .62]];
+    bushes.forEach(([bx, by, bs]) => {
+      ctx.save();
+      ctx.translate(center.x + bx * scale, center.y + by * scale);
+      ctx.fillStyle = "rgba(21,37,38,.16)";
+      ctx.beginPath();
+      ctx.ellipse(2 * scale * bs, 6 * scale * bs, 11 * scale * bs, 4 * scale * bs, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#5f8a63";
+      ctx.beginPath();
+      ctx.arc(-4 * scale * bs, -2 * scale * bs, 7 * scale * bs, 0, Math.PI * 2);
+      ctx.arc(4 * scale * bs, -3 * scale * bs, 7 * scale * bs, 0, Math.PI * 2);
+      ctx.arc(0, -8 * scale * bs, 8 * scale * bs, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+
+    // The elder — "this is me"
+    drawElder(center.x - 2 * scale, center.y - 6 * scale, (detailMode ? 1.15 : 1) * scale, time);
+  }
+
+  function drawElder(x, y, scale, time) {
+    const bob = Math.sin(time * .0018) * 1.1 * scale;
+    ctx.save();
+    ctx.translate(x, y + bob);
+
+    // Ground shadow
+    ctx.fillStyle = "rgba(20,34,40,.18)";
+    ctx.beginPath();
+    ctx.ellipse(2 * scale, 21 * scale, 23 * scale, 6 * scale, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Rock he sits on
+    ctx.fillStyle = "#8f8798";
+    ctx.beginPath();
+    ctx.roundRect(-17 * scale, 6 * scale, 34 * scale, 15 * scale, 6 * scale);
+    ctx.fill();
+    ctx.fillStyle = "rgba(20,20,28,.16)";
+    ctx.beginPath();
+    ctx.roundRect(-17 * scale, 14 * scale, 34 * scale, 7 * scale, 5 * scale);
+    ctx.fill();
+
+    // Cane reaching the ground
+    ctx.strokeStyle = "#7b543a";
+    ctx.lineWidth = Math.max(1.4, 2.4 * scale);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(15 * scale, -7 * scale);
+    ctx.lineTo(19 * scale, 20 * scale);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(13 * scale, -7 * scale, 3.2 * scale, Math.PI * .15, Math.PI * 1.5);
+    ctx.stroke();
+
+    // Legs (seated, bent forward)
+    ctx.strokeStyle = "#45415c";
+    ctx.lineWidth = Math.max(2, 5 * scale);
+    ctx.beginPath();
+    ctx.moveTo(-6 * scale, 7 * scale);
+    ctx.lineTo(-11 * scale, 19 * scale);
+    ctx.moveTo(6 * scale, 7 * scale);
+    ctx.lineTo(9 * scale, 19 * scale);
+    ctx.stroke();
+
+    // Robe / body
+    ctx.fillStyle = "#6f78b0";
+    ctx.beginPath();
+    ctx.moveTo(-11 * scale, 9 * scale);
+    ctx.quadraticCurveTo(-13 * scale, -10 * scale, 0, -12 * scale);
+    ctx.quadraticCurveTo(13 * scale, -10 * scale, 11 * scale, 9 * scale);
+    ctx.closePath();
+    ctx.fill();
+
+    // Arm to the cane
+    ctx.strokeStyle = "#6f78b0";
+    ctx.lineWidth = Math.max(2, 4 * scale);
+    ctx.beginPath();
+    ctx.moveTo(6 * scale, -5 * scale);
+    ctx.lineTo(14 * scale, -6 * scale);
+    ctx.stroke();
+
+    // Head
+    ctx.fillStyle = "#e0b48c";
+    ctx.beginPath();
+    ctx.arc(0, -20 * scale, 7 * scale, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Grey hair at the temples
+    ctx.fillStyle = "#dfe3e8";
+    ctx.beginPath();
+    ctx.arc(-6 * scale, -21 * scale, 2.4 * scale, 0, Math.PI * 2);
+    ctx.arc(6 * scale, -21 * scale, 2.4 * scale, 0, Math.PI * 2);
+    ctx.fill();
+
+    // White beard
+    ctx.fillStyle = "#eef2f5";
+    ctx.beginPath();
+    ctx.moveTo(-6 * scale, -18 * scale);
+    ctx.quadraticCurveTo(-8 * scale, -4 * scale, 0, -1 * scale);
+    ctx.quadraticCurveTo(8 * scale, -4 * scale, 6 * scale, -18 * scale);
+    ctx.quadraticCurveTo(0, -13 * scale, -6 * scale, -18 * scale);
+    ctx.closePath();
+    ctx.fill();
+
+    // Eyes
+    ctx.fillStyle = "#392b2a";
+    ctx.beginPath();
+    ctx.arc(-2.5 * scale, -21 * scale, 1 * scale, 0, Math.PI * 2);
+    ctx.arc(2.5 * scale, -21 * scale, 1 * scale, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
   function drawIslandMapLabel(project, center, radius) {
     const isHovered = hoverProject === project.id;
     const labelY = center.y + radius * .78;
@@ -3064,20 +3219,40 @@ main {
     $("#worldHelp").classList.add("hidden");
     $("#compass").classList.add("hidden");
     backIsland.classList.remove("hidden");
-    hotspots.classList.remove("hidden");
     islandTitle.classList.remove("hidden");
     mapButton.classList.remove("hidden");
 
     islandName.textContent = project.name;
     islandType.textContent = project.type;
     islandTagline.textContent = project.tagline;
-    locationLabel.textContent = `${project.name} island`;
+    locationLabel.textContent = project.about ? project.name : `${project.name} island`;
 
     $$("#projectIndex button").forEach(button => {
       button.classList.toggle("active", button.dataset.project === projectId);
     });
 
-    tone(projectId === "bloop" ? 420 : projectId === "merqorn" ? 260 : 330, .13, "triangle", .03);
+    if (project.about) {
+      hotspots.classList.add("hidden");
+      openAbout(project);
+      tone(300, .16, "sine", .03);
+    } else {
+      hotspots.classList.remove("hidden");
+      tone(projectId === "bloop" ? 420 : projectId === "merqorn" ? 260 : 330, .13, "triangle", .03);
+    }
+  }
+
+  function openAbout(project) {
+    const a = project.aboutContent;
+    activePhase = null;
+    $("#storyNumber").textContent = a.number;
+    $("#storyKicker").textContent = a.kicker;
+    $("#storyTitle").textContent = a.title;
+    $("#storyCopy").textContent = a.copy;
+    $("#storyFacts").innerHTML = a.facts.map(fact => `<span>${fact}</span>`).join("");
+    storyNext.classList.add("hidden");
+    storyPanel.classList.add("open");
+    storyPanel.setAttribute("aria-hidden", "false");
+    $$(".hotspot").forEach(button => button.classList.remove("active"));
   }
 
   function showMapUI() {
@@ -3121,10 +3296,12 @@ main {
   function openPhase(phase) {
     if (!activeProject) return;
     const project = projects[activeProject];
+    if (!project.phases) return;
     const data = project.phases[phase];
     if (!data) return;
 
     activePhase = phase;
+    storyNext.classList.remove("hidden");
     $("#storyNumber").textContent = data.number;
     $("#storyKicker").textContent = data.kicker;
     $("#storyTitle").textContent = data.title;
@@ -3307,6 +3484,7 @@ main {
     if (key === "b") selectProject("bloop");
     if (key === "m") selectProject("merqorn");
     if (key === "d") selectProject("dreambase");
+    if (key === "c") selectProject("about");
   });
 
   resizeCanvas();
