@@ -3561,6 +3561,11 @@ main {
       hoverProject = islandHitTest(event.clientX, event.clientY);
       worldCanvas.style.cursor = hoverProject ? "pointer" : "grab";
     }
+
+    if (!pointerDown && activeProject === "about" && !storyPanel.classList.contains("open")) {
+      const overAbout = islandHitTest(event.clientX, event.clientY) === "about";
+      worldCanvas.style.cursor = overAbout ? "pointer" : "default";
+    }
   }
 
   function onPointerDown(event) {
@@ -3578,6 +3583,14 @@ main {
     if (!dragMoved && !activeProject) {
       const hit = islandHitTest(event.clientX, event.clientY);
       if (hit) selectProject(hit);
+    }
+
+    // Re-open the About card by clicking Gianmarco's island again
+    if (!dragMoved && activeProject === "about" && !storyPanel.classList.contains("open")) {
+      if (islandHitTest(event.clientX, event.clientY) === "about") {
+        openAbout(projects.about);
+        aboutWaveUntil = performance.now() + 3000;
+      }
     }
 
     worldCanvas.style.cursor = hoverProject ? "pointer" : "grab";
