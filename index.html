@@ -2434,8 +2434,18 @@ main {
   }
 
   function skyEnv(time) {
-    const CYCLE = 150000;
-    const phase = ((time % CYCLE) / CYCLE) * 4;
+    // Driven by the visitor's real local clock (day -> sunset -> night -> dawn)
+    const now = new Date();
+    const h = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
+    const pts = [[0, 2], [6, 3], [12, 4], [19, 5], [24, 6]]; // [hour, keyframe]: night,dawn,day,sunset,night
+    let ph = 2;
+    for (let k = 0; k < pts.length - 1; k++) {
+      if (h >= pts[k][0] && h <= pts[k + 1][0]) {
+        ph = lerp(pts[k][1], pts[k + 1][1], (h - pts[k][0]) / (pts[k + 1][0] - pts[k][0]));
+        break;
+      }
+    }
+    const phase = ((ph % 4) + 4) % 4;
     const i = Math.floor(phase) % 4, f = phase - Math.floor(phase);
     const a = daySky[i], b = daySky[(i + 1) % 4];
     const m = (arr, k) => Math.round(lerp(a[arr][k], b[arr][k], f));
