@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Footprints, Car, Clock, Wallet, Check, Sparkles, AlertTriangle } from 'lucide-react';
 import type { ScoredParking } from '@/types';
-import { formatDistance, formatMinutes, formatPrice, cn } from '@/lib/utils';
+import { formatDistance, formatMinutes, formatParkingPrice, cn } from '@/lib/utils';
 import { SmartScoreBadge } from './smart-score-badge';
 import { ParkingTags } from './parking-tags';
 import { ConfidenceBadge } from './confidence-badge';
@@ -81,11 +81,7 @@ export function ParkingCard({ item, recommended = false }: ParkingCardProps) {
           </div>
 
           <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 sm:grid-cols-4">
-            <Metric
-              icon={Wallet}
-              label="Stimato"
-              value={formatPrice(parking.estimatedTotalPrice)}
-            />
+            <Metric icon={Wallet} label="Stimato" value={formatParkingPrice(parking)} />
             <Metric
               icon={Footprints}
               label="A piedi"

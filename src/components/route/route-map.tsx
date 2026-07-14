@@ -1,8 +1,15 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { MapPinned, CircleParking, Flag } from 'lucide-react';
 import type { Coordinates } from '@/types';
 import { useDemoMap } from '@/lib/config';
+
+/** La mappa interattiva (MapLibre) è caricata solo lato client. */
+const InteractiveMap = dynamic(() => import('./interactive-map'), {
+  ssr: false,
+  loading: () => <div className="skeleton h-44 w-full rounded-3xl" aria-hidden />,
+});
 
 interface RouteMapProps {
   origin?: Coordinates;
@@ -11,20 +18,18 @@ interface RouteMapProps {
 }
 
 /**
- * Rappresentazione della mappa. In modalità demo mostra un placeholder elegante
- * (nessun token Mapbox richiesto). Con token configurato si potrebbe montare qui
- * una mappa Mapbox GL reale tramite l'adapter; l'MVP resta funzionante in demo.
+ * Mappa del percorso. In modalità demo mostra un placeholder elegante senza
+ * dipendenze di rete; altrimenti una mappa interattiva reale (OSM/MapLibre,
+ * o Mapbox se configurato).
  */
 export function RouteMap({ origin, parking, destination }: RouteMapProps) {
-  void origin;
-  void parking;
-  void destination;
-
   if (!useDemoMap) {
-    // Con Mapbox configurato, qui verrebbe montata la mappa reale.
-    // Manteniamo il placeholder per non introdurre dipendenze non necessarie nell'MVP.
+    return <InteractiveMap origin={origin} parking={parking} destination={destination} />;
   }
+  return <DemoMapPlaceholder />;
+}
 
+function DemoMapPlaceholder() {
   return (
     <div
       className="relative h-44 w-full overflow-hidden rounded-3xl border border-border bg-blue-soft"

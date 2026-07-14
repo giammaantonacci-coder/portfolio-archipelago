@@ -79,16 +79,23 @@ export function calculateParkingScore(
   const weights = PRIORITY_WEIGHTS[prefs.priority];
   const compat = checkCompatibility(parking, prefs);
 
-  const prices = group.map((p) => p.estimatedTotalPrice);
+  // Solo i parcheggi con prezzo noto entrano nella normalizzazione del costo.
+  const knownPrices = group
+    .filter((p) => p.hasKnownPrice !== false)
+    .map((p) => p.estimatedTotalPrice);
   const walks = group.map((p) => p.walkingDistanceMeters);
   const totals = group.map((p) => p.totalDurationMinutes);
 
-  const costScore = normalize(
-    parking.estimatedTotalPrice,
-    Math.min(...prices),
-    Math.max(...prices),
-    true,
-  );
+  // Prezzo sconosciuto → punteggio costo neutro (non è né il migliore né il peggiore).
+  const costScore =
+    parking.hasKnownPrice === false || knownPrices.length === 0
+      ? 0.5
+      : normalize(
+          parking.estimatedTotalPrice,
+          Math.min(...knownPrices),
+          Math.max(...knownPrices),
+          true,
+        );
   const walkingScore = normalize(
     parking.walkingDistanceMeters,
     Math.min(...walks),

@@ -109,12 +109,13 @@ create table if not exists public.parking_sources (
 -- ---------------------------------------------------------------------------
 -- favorite_parkings
 -- ---------------------------------------------------------------------------
+-- I preferiti sono denormalizzati (snapshot jsonb): i parcheggi reali possono
+-- provenire da fonti esterne (OSM) non presenti nella tabella `parkings`.
 create table if not exists public.favorite_parkings (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key,
   user_id uuid not null references auth.users (id) on delete cascade,
-  parking_id text not null references public.parkings (id) on delete cascade,
-  created_at timestamptz not null default now(),
-  unique (user_id, parking_id)
+  payload jsonb not null,
+  created_at timestamptz not null default now()
 );
 create index if not exists favorite_parkings_user_id_idx on public.favorite_parkings (user_id);
 
@@ -133,10 +134,14 @@ create index if not exists saved_searches_user_id_idx on public.saved_searches (
 -- ---------------------------------------------------------------------------
 -- parking_plans
 -- ---------------------------------------------------------------------------
+-- I piani salvano snapshot jsonb del parcheggio scelto e del piano B, così da
+-- essere indipendenti dalla sorgente dati (OSM, Supabase o demo).
 create table if not exists public.parking_plans (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key,
   user_id uuid not null references auth.users (id) on delete cascade,
   search_preferences jsonb not null,
+  selected_parking jsonb not null,
+  backup_parking jsonb,
   estimated_arrival_time text,
   note text,
   status plan_status not null default 'scheduled',
@@ -145,18 +150,6 @@ create table if not exists public.parking_plans (
   updated_at timestamptz not null default now()
 );
 create index if not exists parking_plans_user_id_idx on public.parking_plans (user_id);
-
--- ---------------------------------------------------------------------------
--- parking_plan_items (piano A / piano B come snapshot del parcheggio)
--- ---------------------------------------------------------------------------
-create table if not exists public.parking_plan_items (
-  id uuid primary key default gen_random_uuid(),
-  plan_id uuid not null references public.parking_plans (id) on delete cascade,
-  role text not null check (role in ('primary', 'backup')),
-  parking jsonb not null,
-  created_at timestamptz not null default now()
-);
-create index if not exists parking_plan_items_plan_id_idx on public.parking_plan_items (plan_id);
 
 -- ---------------------------------------------------------------------------
 -- updated_at trigger
@@ -186,7 +179,6 @@ alter table public.parking_sources enable row level security;
 alter table public.favorite_parkings enable row level security;
 alter table public.saved_searches enable row level security;
 alter table public.parking_plans enable row level security;
-alter table public.parking_plan_items enable row level security;
 
 -- Parkings & sources: lettura pubblica (le ricerche funzionano senza login).
 drop policy if exists "parkings_read_all" on public.parkings;
@@ -219,22 +211,6 @@ create policy "saved_searches_self" on public.saved_searches
 drop policy if exists "plans_self" on public.parking_plans;
 create policy "plans_self" on public.parking_plans
   using (auth.uid() = user_id) with check (auth.uid() = user_id);
-
--- parking_plan_items: accessibili solo tramite un piano di proprietà.
-drop policy if exists "plan_items_self" on public.parking_plan_items;
-create policy "plan_items_self" on public.parking_plan_items
-  using (
-    exists (
-      select 1 from public.parking_plans p
-      where p.id = plan_id and p.user_id = auth.uid()
-    )
-  )
-  with check (
-    exists (
-      select 1 from public.parking_plans p
-      where p.id = plan_id and p.user_id = auth.uid()
-    )
-  );
 
 -- Crea automaticamente un profilo alla registrazione.
 create or replace function public.handle_new_user()

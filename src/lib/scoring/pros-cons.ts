@@ -14,7 +14,11 @@ interface GroupStats {
 
 export function computeGroupStats(parkings: Parking[]): GroupStats {
   if (parkings.length === 0) return { avgPrice: 0, minWalking: 0 };
-  const avgPrice = parkings.reduce((sum, p) => sum + p.estimatedTotalPrice, 0) / parkings.length;
+  const priced = parkings.filter((p) => p.hasKnownPrice !== false);
+  const avgPrice =
+    priced.length > 0
+      ? priced.reduce((sum, p) => sum + p.estimatedTotalPrice, 0) / priced.length
+      : 0;
   const minWalking = Math.min(...parkings.map((p) => p.walkingDistanceMeters));
   return { avgPrice, minWalking };
 }
@@ -44,14 +48,19 @@ export function generateProsCons(
   const pros: ProCon[] = [];
   const cons: ProCon[] = [];
 
+  const priceKnown = parking.hasKnownPrice !== false;
+  const knownPriced = group.filter((p) => p.hasKnownPrice !== false);
   const priceDelta = stats.avgPrice - parking.estimatedTotalPrice;
   const isCheapest =
-    group.length > 0 &&
-    parking.estimatedTotalPrice === Math.min(...group.map((p) => p.estimatedTotalPrice));
+    priceKnown &&
+    knownPriced.length > 0 &&
+    parking.estimatedTotalPrice === Math.min(...knownPriced.map((p) => p.estimatedTotalPrice));
   const isClosest = parking.walkingDistanceMeters === stats.minWalking;
 
   // --- PRO ---
-  if (priceDelta > 0.5) {
+  if (priceKnown && parking.estimatedTotalPrice === 0) {
+    pros.push({ text: 'Il parcheggio è gratuito.', relevance: rel.cost + 1 });
+  } else if (priceKnown && priceDelta > 0.5) {
     pros.push({
       text: `Costa ${formatPrice(priceDelta)} meno della media.`,
       relevance: rel.cost + (isCheapest ? 1 : 0),
@@ -101,7 +110,9 @@ export function generateProsCons(
   }
 
   // --- CONTRO ---
-  if (priceDelta < -0.5) {
+  if (!priceKnown) {
+    cons.push({ text: 'La tariffa non è disponibile: verificala sul posto.', relevance: rel.cost });
+  } else if (priceDelta < -0.5) {
     cons.push({
       text: `Costa ${formatPrice(-priceDelta)} più della media.`,
       relevance: rel.cost,
@@ -156,8 +167,14 @@ export function generateExplanation(
   prefs: SearchPreferences,
 ): string {
   const stats = computeGroupStats(group);
+  const priceKnown = parking.hasKnownPrice !== false;
   const priceDelta = stats.avgPrice - parking.estimatedTotalPrice;
-  const cheaperPart = priceDelta > 0.5 ? `Costa ${formatPrice(priceDelta)} meno della media` : null;
+  const cheaperPart =
+    priceKnown && parking.estimatedTotalPrice === 0
+      ? 'è gratuito'
+      : priceKnown && priceDelta > 0.5
+        ? `costa ${formatPrice(priceDelta)} meno della media`
+        : null;
   const walkPart = `richiede soltanto ${parking.walkingDurationMinutes} minuti a piedi`;
 
   const lead: Record<Priority, string> = {

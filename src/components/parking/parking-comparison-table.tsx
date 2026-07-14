@@ -2,7 +2,7 @@
 
 import { Check, X } from 'lucide-react';
 import type { ScoredParking } from '@/types';
-import { formatDistance, formatMinutes, formatPrice, cn } from '@/lib/utils';
+import { formatDistance, formatMinutes, formatParkingPrice, cn } from '@/lib/utils';
 
 interface ComparisonTableProps {
   items: ScoredParking[];
@@ -20,8 +20,9 @@ interface Row {
 const ROWS: Row[] = [
   {
     label: 'Costo stimato',
-    get: (i) => i.parking.estimatedTotalPrice,
-    render: (i) => formatPrice(i.parking.estimatedTotalPrice),
+    get: (i) =>
+      i.parking.hasKnownPrice === false ? Number.POSITIVE_INFINITY : i.parking.estimatedTotalPrice,
+    render: (i) => formatParkingPrice(i.parking),
     best: 'min',
   },
   {
@@ -174,8 +175,11 @@ export function ParkingComparisonTable({ items }: ComparisonTableProps) {
 /** Riepilogo: migliore per prezzo, distanza, comodità e scelta complessiva. */
 export function ComparisonSummary({ items }: ComparisonTableProps) {
   if (items.length === 0) return null;
-  const byPrice = [...items].sort(
-    (a, b) => a.parking.estimatedTotalPrice - b.parking.estimatedTotalPrice,
+  const priceValue = (p: (typeof items)[number]) =>
+    p.parking.hasKnownPrice === false ? Number.POSITIVE_INFINITY : p.parking.estimatedTotalPrice;
+  const pricedItems = items.filter((i) => i.parking.hasKnownPrice !== false);
+  const byPrice = (pricedItems.length > 0 ? [...pricedItems] : [...items]).sort(
+    (a, b) => priceValue(a) - priceValue(b),
   )[0]!;
   const byDistance = [...items].sort(
     (a, b) => a.parking.walkingDistanceMeters - b.parking.walkingDistanceMeters,

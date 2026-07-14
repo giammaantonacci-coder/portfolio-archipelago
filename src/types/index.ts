@@ -25,6 +25,13 @@ export interface Parking {
   pricePerHour?: number;
   dailyMaxPrice?: number;
   estimatedTotalPrice: number;
+  /**
+   * false quando la tariffa reale non è nota (es. dato OSM senza prezzo):
+   * in questo caso estimatedTotalPrice non è affidabile e non va mostrato come
+   * prezzo reale né usato per proporre l'opzione come "più conveniente".
+   * Assente/true = prezzo noto.
+   */
+  hasKnownPrice?: boolean;
   currency: Currency;
   walkingDistanceMeters: number;
   walkingDurationMinutes: number;

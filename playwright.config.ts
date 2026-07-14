@@ -24,9 +24,11 @@ export default defineConfig({
     },
   ],
   webServer: {
+    // Gli e2e girano in modalità demo: deterministici e senza dipendenze di rete.
     command: 'pnpm dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    env: { NEXT_PUBLIC_DEMO_MODE: 'true' },
   },
 });

@@ -7,7 +7,7 @@ import { ArrowLeft, Trash2, XCircle, CheckCircle2 } from 'lucide-react';
 import type { PlanStatus } from '@/types';
 import { usePlansStore } from '@/store/plans-store';
 import { useHydrated } from '@/hooks/use-hydrated';
-import { formatMinutes, formatPrice } from '@/lib/utils';
+import { formatMinutes, formatParkingPrice } from '@/lib/utils';
 import { getPriorityMeta } from '@/lib/priorities';
 import { RouteSummary } from '@/components/route/route-summary';
 import { DemoDataNotice } from '@/components/parking/demo-data-notice';
@@ -77,7 +77,7 @@ export default function PlanDetailPage() {
       </Card>
 
       <div className="grid grid-cols-2 gap-2">
-        <Stat label="Costo stimato" value={formatPrice(plan.selectedParking.estimatedTotalPrice)} />
+        <Stat label="Costo stimato" value={formatParkingPrice(plan.selectedParking)} />
         <Stat
           label="Tempo totale"
           value={formatMinutes(plan.selectedParking.totalDurationMinutes)}
@@ -89,7 +89,7 @@ export default function PlanDetailPage() {
           <CardContent className="space-y-1">
             <h2 className="text-base font-bold">Piano B</h2>
             <p className="text-sm text-text-secondary">
-              {plan.backupParking.name} · {formatPrice(plan.backupParking.estimatedTotalPrice)}
+              {plan.backupParking.name} · {formatParkingPrice(plan.backupParking)}
             </p>
           </CardContent>
         </Card>

@@ -31,7 +31,8 @@ export default function ResultsPage() {
   const router = useRouter();
   const preferences = useSearchStore((s) => s.preferences);
   const vehicleHeight = useProfileStore((s) => s.profile.vehicle?.heightCm);
-  const { data, isLoading, isError, refetch } = useSearchResults(preferences);
+  const { data, isLoading, isError, error, refetch } = useSearchResults(preferences);
+  const isDestinationError = error?.name === 'DestinationNotFoundError';
 
   const [filters, setFilters] = React.useState<ParkingFilterState>(defaultFilterState);
   const [sort, setSort] = React.useState<SortKey>('recommended');
@@ -111,7 +112,16 @@ export default function ResultsPage() {
       </div>
 
       {isLoading && <LoadingSkeleton />}
-      {isError && <ErrorState onRetry={() => refetch()} />}
+      {isError &&
+        (isDestinationError ? (
+          <ErrorState
+            title="Destinazione non riconosciuta."
+            description="Prova a essere più specifico (via, città) o modifica la destinazione."
+            onRetry={() => router.push('/')}
+          />
+        ) : (
+          <ErrorState onRetry={() => refetch()} />
+        ))}
 
       {data && !isLoading && (
         <>

@@ -20,7 +20,7 @@ import { usePlanDraftStore } from '@/store/plan-draft-store';
 import { useFavoritesStore } from '@/store/favorites-store';
 import { analytics } from '@/lib/analytics';
 import { isDemoMode } from '@/lib/config';
-import { formatDistance, formatMinutes, formatPrice, createId, cn } from '@/lib/utils';
+import { formatDistance, formatMinutes, formatParkingPrice, createId, cn } from '@/lib/utils';
 import { getPriorityMeta } from '@/lib/priorities';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -129,7 +129,7 @@ export default function ParkingDetailPage() {
       </div>
 
       <div className="grid grid-cols-3 gap-2">
-        <StatBox label="Prezzo stimato" value={formatPrice(parking.estimatedTotalPrice)} />
+        <StatBox label="Prezzo stimato" value={formatParkingPrice(parking)} />
         <StatBox
           label="A piedi"
           value={`${formatMinutes(parking.walkingDurationMinutes)}`}
@@ -211,7 +211,7 @@ export default function ParkingDetailPage() {
               <Link href={`/parking/${backup.parking.id}`} className="font-semibold text-primary">
                 {backup.parking.name}
               </Link>{' '}
-              ({formatPrice(backup.parking.estimatedTotalPrice)} ·{' '}
+              ({formatParkingPrice(backup.parking)} ·{' '}
               {formatMinutes(backup.parking.walkingDurationMinutes)} a piedi).
             </p>
           </CardContent>

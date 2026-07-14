@@ -97,8 +97,14 @@ export function countActiveFilters(filters: ParkingFilterState): number {
 export function sortParkings(items: ScoredParking[], sort: SortKey): ScoredParking[] {
   const copy = [...items];
   switch (sort) {
-    case 'price':
-      return copy.sort((a, b) => a.parking.estimatedTotalPrice - b.parking.estimatedTotalPrice);
+    case 'price': {
+      // I parcheggi senza prezzo noto vanno in fondo, non trattati come i più economici.
+      const priceOf = (p: ScoredParking) =>
+        p.parking.hasKnownPrice === false
+          ? Number.POSITIVE_INFINITY
+          : p.parking.estimatedTotalPrice;
+      return copy.sort((a, b) => priceOf(a) - priceOf(b));
+    }
     case 'distance':
       return copy.sort((a, b) => a.parking.walkingDistanceMeters - b.parking.walkingDistanceMeters);
     case 'totalTime':

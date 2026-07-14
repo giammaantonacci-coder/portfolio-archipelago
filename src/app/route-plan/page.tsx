@@ -8,7 +8,13 @@ import { usePlansStore } from '@/store/plans-store';
 import { analytics } from '@/lib/analytics';
 import { isDemoMode } from '@/lib/config';
 import { googleMapsLink, appleMapsLink } from '@/lib/nav-links';
-import { addMinutesToTime, createId, formatMinutes, formatPrice, sanitizeText } from '@/lib/utils';
+import {
+  addMinutesToTime,
+  createId,
+  formatMinutes,
+  formatParkingPrice,
+  sanitizeText,
+} from '@/lib/utils';
 import type { ParkingPlan } from '@/types';
 import { RouteMap } from '@/components/route/route-map';
 import { RouteSummary } from '@/components/route/route-summary';
@@ -38,7 +44,6 @@ export default function RoutePlanPage() {
   }
 
   const totalMinutes = selectedParking.totalDurationMinutes;
-  const totalCost = selectedParking.estimatedTotalPrice;
   const arrival = preferences.arrivalTime;
   const departure = addMinutesToTime(preferences.arrivalTime, preferences.durationMinutes);
 
@@ -94,7 +99,7 @@ export default function RoutePlanPage() {
 
       <div className="grid grid-cols-3 gap-2">
         <Stat label="Tempo totale" value={formatMinutes(totalMinutes)} />
-        <Stat label="Costo parcheggio" value={formatPrice(totalCost)} />
+        <Stat label="Costo parcheggio" value={formatParkingPrice(selectedParking)} />
         <Stat label="Sosta" value={`${arrival}–${departure}`} />
       </div>
 
@@ -110,7 +115,7 @@ export default function RoutePlanPage() {
               Se <strong className="text-text-primary">{selectedParking.name}</strong> è pieno,
               Parqo ti porta direttamente a{' '}
               <strong className="text-text-primary">{backupParking.name}</strong> (
-              {formatPrice(backupParking.estimatedTotalPrice)} ·{' '}
+              {formatParkingPrice(backupParking)} ·{' '}
               {formatMinutes(backupParking.walkingDurationMinutes)} a piedi).
             </p>
           ) : (

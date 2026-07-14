@@ -5,15 +5,14 @@ import { User, Car, SlidersHorizontal, Check } from 'lucide-react';
 import type { Priority, VehicleType } from '@/types';
 import { useProfileStore } from '@/store/profile-store';
 import { useHydrated } from '@/hooks/use-hydrated';
-import { isDemoMode } from '@/lib/config';
 import { PRIORITIES } from '@/lib/priorities';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Button } from '@/components/ui/button';
 import { LoadingSkeleton } from '@/components/states';
+import { AuthSyncCard } from '@/components/auth/auth-sync-card';
 
 const VEHICLES: Array<{ value: VehicleType; label: string }> = [
   { value: 'city_car', label: 'City car' },
@@ -191,31 +190,7 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardContent className="space-y-2">
-          <h2 className="text-base font-bold">Sincronizzazione</h2>
-          {isDemoMode ? (
-            <p className="text-sm text-text-secondary">
-              Stai usando Parqo in modalità demo: i dati restano su questo dispositivo
-              (localStorage). Configura Supabase per sincronizzare piani e preferiti tra dispositivi
-              con un accesso via magic link.
-            </p>
-          ) : (
-            <div className="space-y-2">
-              <p className="text-sm text-text-secondary">
-                Inserisci la tua email per ricevere un magic link e sincronizzare i dati.
-              </p>
-              <div className="flex gap-2">
-                <Input placeholder="tua@email.com" type="email" />
-                <Button variant="secondary">Invia link</Button>
-              </div>
-              <p className="text-xs text-text-secondary">
-                L’autenticazione non è obbligatoria per cercare un parcheggio.
-              </p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      <AuthSyncCard />
 
       {savedAt && (
         <div

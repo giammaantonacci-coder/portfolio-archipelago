@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { CalendarClock, MapPin, CircleParking } from 'lucide-react';
 import type { ParkingPlan, PlanStatus } from '@/types';
-import { formatPrice } from '@/lib/utils';
+import { formatParkingPrice } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 
 const STATUS_META: Record<
@@ -38,7 +38,7 @@ export function PlanCard({ plan }: { plan: ParkingPlan }) {
         </p>
         <p className="flex items-center gap-2 text-sm text-text-secondary">
           <CircleParking className="h-4 w-4 text-primary" aria-hidden />
-          {plan.selectedParking.name} · {formatPrice(plan.selectedParking.estimatedTotalPrice)}
+          {plan.selectedParking.name} · {formatParkingPrice(plan.selectedParking)}
         </p>
       </div>
     </Link>

@@ -14,6 +14,20 @@ export function formatPrice(value: number, currency = 'EUR'): string {
   }).format(value);
 }
 
+/**
+ * Etichetta prezzo che non mostra mai un numero inventato:
+ * "Da verificare" se la tariffa non è nota, "Gratuito" se 0.
+ */
+export function formatParkingPrice(parking: {
+  estimatedTotalPrice: number;
+  hasKnownPrice?: boolean;
+  currency?: string;
+}): string {
+  if (parking.hasKnownPrice === false) return 'Da verificare';
+  if (parking.estimatedTotalPrice === 0) return 'Gratuito';
+  return formatPrice(parking.estimatedTotalPrice, parking.currency ?? 'EUR');
+}
+
 export function formatMinutes(minutes: number): string {
   const rounded = Math.round(minutes);
   if (rounded < 60) return `${rounded} min`;

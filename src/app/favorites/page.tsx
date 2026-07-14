@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Heart, CircleParking, Trash2 } from 'lucide-react';
 import { useFavoritesStore } from '@/store/favorites-store';
 import { useHydrated } from '@/hooks/use-hydrated';
-import { formatPrice } from '@/lib/utils';
+import { formatParkingPrice } from '@/lib/utils';
 import { EmptyState, LoadingSkeleton } from '@/components/states';
 import { Button } from '@/components/ui/button';
 
@@ -49,7 +49,7 @@ export default function FavoritesPage() {
                   )}
                   {fav.parking && (
                     <span className="text-xs text-text-secondary">
-                      {formatPrice(fav.parking.estimatedTotalPrice)} stimati
+                      {formatParkingPrice(fav.parking)}
                     </span>
                   )}
                 </div>

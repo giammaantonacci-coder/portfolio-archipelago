@@ -1,6 +1,6 @@
 import { MapPin, CircleParking, Flag, Car, Footprints } from 'lucide-react';
 import type { Parking, SearchPreferences } from '@/types';
-import { addMinutesToTime, formatMinutes, formatPrice } from '@/lib/utils';
+import { addMinutesToTime, formatMinutes, formatParkingPrice } from '@/lib/utils';
 
 interface RouteSummaryProps {
   preferences: SearchPreferences;
@@ -37,8 +37,7 @@ export function RouteSummary({ preferences, parking }: RouteSummaryProps) {
         meta={
           <span className="inline-flex items-center gap-1 text-text-secondary">
             <Footprints className="h-3.5 w-3.5" aria-hidden />
-            {formatMinutes(parking.walkingDurationMinutes)} a piedi ·{' '}
-            {formatPrice(parking.estimatedTotalPrice)}
+            {formatMinutes(parking.walkingDurationMinutes)} a piedi · {formatParkingPrice(parking)}
           </span>
         }
         connector
