@@ -1,0 +1,7 @@
+{
+  "extends": ["next/core-web-vitals", "prettier"],
+  "ignorePatterns": ["legacy/**", "public/**", "node_modules/**", ".next/**"],
+  "rules": {
+    "@next/next/no-img-element": "off"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Parqo — Parcheggiare meglio, ogni giorno",
+  "short_name": "Parqo",
+  "description": "Confrontiamo prezzo, distanza, tempi e comodità per consigliarti il parcheggio più adatto.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F8F8FC",
+  "theme_color": "#6754F4",
+  "lang": "it",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
