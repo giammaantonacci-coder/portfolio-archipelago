@@ -2072,6 +2072,7 @@ main {
   let lastTime = performance.now();
   let worldStarted = false;
   let renderLoopActive = false;
+  let viewOffsetX = 0, viewOffsetY = 0, targetOffX = 0, targetOffY = 0;
   let activeProject = null;
   let activePhase = null;
   let hoverProject = null;
@@ -2326,6 +2327,21 @@ main {
     { x: -150, y: -60, rx: 50, ry: 26, t: 2.1, spd: .00038, size: .82, color: "#9a7cff" }
   ];
 
+  const whaleSpots = [
+    { x: -180, y: 150 }, { x: 180, y: 60 }, { x: -60, y: 110 }, { x: 250, y: 150 }, { x: 60, y: -120 }
+  ];
+  const whale = { active: false, nextAt: 5000, startAt: 0, x: 0, y: 0, dir: 1 };
+  const lighthouse = { x: 255, y: 70 };
+
+  // Day / night keyframes: day -> sunset -> night -> dawn
+  const daySky = [
+    { top: [169, 228, 250], mid: [121, 201, 232], bot: [99, 184, 218], dark: 0.0 },
+    { top: [255, 198, 150], mid: [238, 150, 110], bot: [120, 122, 168], dark: 0.30 },
+    { top: [22, 38, 62],    mid: [16, 30, 50],    bot: [9, 20, 38],     dark: 0.85 },
+    { top: [255, 206, 192], mid: [172, 193, 223], bot: [122, 151, 196], dark: 0.12 }
+  ];
+  const stars = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random(), t: Math.random() * 6, s: Math.random() }));
+
   function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
   }
@@ -2379,15 +2395,15 @@ main {
 
   function worldToScreen(x, y) {
     return {
-      x: width / 2 + (x - camera.x) * camera.zoom,
-      y: height / 2 + (y - camera.y) * camera.zoom
+      x: width / 2 + (x - camera.x) * camera.zoom + viewOffsetX,
+      y: height / 2 + (y - camera.y) * camera.zoom + viewOffsetY
     };
   }
 
   function screenToWorld(x, y) {
     return {
-      x: camera.x + (x - width / 2) / camera.zoom,
-      y: camera.y + (y - height / 2) / camera.zoom
+      x: camera.x + (x - width / 2 - viewOffsetX) / camera.zoom,
+      y: camera.y + (y - height / 2 - viewOffsetY) / camera.zoom
     };
   }
 
@@ -2417,16 +2433,26 @@ main {
     ctx.closePath();
   }
 
-  function drawOcean(time) {
+  function skyEnv(time) {
+    const CYCLE = 150000;
+    const phase = ((time % CYCLE) / CYCLE) * 4;
+    const i = Math.floor(phase) % 4, f = phase - Math.floor(phase);
+    const a = daySky[i], b = daySky[(i + 1) % 4];
+    const m = (arr, k) => Math.round(lerp(a[arr][k], b[arr][k], f));
+    const col = arr => `rgb(${m(arr, 0)},${m(arr, 1)},${m(arr, 2)})`;
+    return { top: col("top"), mid: col("mid"), bot: col("bot"), dark: lerp(a.dark, b.dark, f) };
+  }
+
+  function drawOcean(time, env) {
     const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    gradient.addColorStop(0, "#a9e4fa");
-    gradient.addColorStop(.52, "#79c9e8");
-    gradient.addColorStop(1, "#63b8da");
+    gradient.addColorStop(0, env.top);
+    gradient.addColorStop(.52, env.mid);
+    gradient.addColorStop(1, env.bot);
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
     ctx.save();
-    ctx.globalAlpha = .17;
+    ctx.globalAlpha = .17 * (1 - env.dark * 0.55);
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 1;
 
@@ -2443,7 +2469,7 @@ main {
       ctx.stroke();
     }
 
-    ctx.globalAlpha = .08;
+    ctx.globalAlpha = .08 * (1 - env.dark * 0.5);
     ctx.strokeStyle = "#205f82";
     for (let x = -100; x < width + 100; x += 105) {
       ctx.beginPath();
@@ -3312,6 +3338,139 @@ main {
     });
   }
 
+  function drawWhale(time) {
+    if (!whale.active) {
+      if (time > whale.nextAt) {
+        const sp = whaleSpots[(Math.random() * whaleSpots.length) | 0];
+        whale.x = sp.x; whale.y = sp.y; whale.dir = Math.random() < .5 ? 1 : -1;
+        whale.active = true; whale.startAt = time;
+      }
+      return;
+    }
+    const DUR = 5200;
+    const p = (time - whale.startAt) / DUR;
+    if (p >= 1) { whale.active = false; whale.nextAt = time + 16000 + Math.random() * 16000; return; }
+    const alpha = Math.sin(p * Math.PI);
+    const wx = whale.x + whale.dir * (p - 0.5) * 90;
+    const scr = worldToScreen(wx, whale.y);
+    const s = camera.zoom;
+
+    ctx.save();
+    ctx.translate(scr.x, scr.y);
+    ctx.scale(whale.dir, 1);
+    ctx.globalAlpha = alpha * 0.9;
+    ctx.strokeStyle = "rgba(255,255,255,.5)";
+    ctx.lineWidth = Math.max(1, 1.5 * s);
+    ctx.beginPath();
+    ctx.moveTo(-12 * s, -14 * s); ctx.quadraticCurveTo(-48 * s, 0, -12 * s, 14 * s);
+    ctx.stroke();
+    ctx.fillStyle = "#33566a";
+    ctx.beginPath(); ctx.ellipse(0, 0, 40 * s, 15 * s, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#3f647a";
+    ctx.beginPath(); ctx.ellipse(11 * s, 0, 25 * s, 10 * s, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#2c4b5d";
+    ctx.beginPath();
+    ctx.moveTo(-34 * s, 0); ctx.lineTo(-53 * s, -15 * s); ctx.lineTo(-44 * s, 0); ctx.lineTo(-53 * s, 15 * s);
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+
+    const spout = Math.sin(Math.max(0, (p - 0.22)) / 0.5 * Math.PI);
+    if (spout > 0.05) {
+      const hp = worldToScreen(wx + whale.dir * 28, whale.y - 6);
+      ctx.save();
+      ctx.globalAlpha = spout * 0.7 * alpha;
+      ctx.fillStyle = "rgba(255,255,255,.9)";
+      for (let i = 0; i < 6; i++) {
+        const a = -Math.PI / 2 + (i - 2.5) * 0.17;
+        const d = (9 + (i % 3) * 6) * s;
+        ctx.beginPath();
+        ctx.arc(hp.x + Math.cos(a) * d, hp.y + Math.sin(a) * d - 10 * s * spout, (2.2 + (i % 2)) * s, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+
+  function drawLighthouse(env) {
+    const p = worldToScreen(lighthouse.x, lighthouse.y);
+    const s = camera.zoom;
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.fillStyle = "rgba(58,68,78,.92)";
+    ctx.beginPath(); ctx.ellipse(0, 6 * s, 22 * s, 9 * s, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#f4efe6";
+    ctx.beginPath();
+    ctx.moveTo(-7 * s, 4 * s); ctx.lineTo(-4.5 * s, -22 * s); ctx.lineTo(4.5 * s, -22 * s); ctx.lineTo(7 * s, 4 * s);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#e0574a";
+    ctx.fillRect(-6.4 * s, -6 * s, 12.8 * s, 5 * s);
+    ctx.fillRect(-5.4 * s, -17 * s, 10.8 * s, 4 * s);
+    ctx.fillStyle = "#33454f";
+    ctx.fillRect(-5 * s, -30 * s, 10 * s, 8 * s);
+    ctx.fillStyle = `rgba(255,236,150,${0.4 + env.dark * 0.6})`;
+    ctx.beginPath(); ctx.arc(0, -26 * s, 3 * s, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawLighthouseBeam(time, env) {
+    if (env.dark < 0.15) return;
+    const p = worldToScreen(lighthouse.x, lighthouse.y);
+    const s = camera.zoom;
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    ctx.translate(p.x, p.y - 26 * s);
+    ctx.rotate(time * 0.0012);
+    const g = ctx.createLinearGradient(0, 0, 320 * s, 0);
+    g.addColorStop(0, `rgba(255,240,170,${0.30 * env.dark})`);
+    g.addColorStop(1, "rgba(255,240,170,0)");
+    ctx.fillStyle = g;
+    for (let k = 0; k < 2; k++) {
+      ctx.beginPath();
+      ctx.moveTo(0, 0); ctx.lineTo(320 * s, -32 * s); ctx.lineTo(320 * s, 32 * s); ctx.closePath(); ctx.fill();
+      ctx.rotate(Math.PI);
+    }
+    ctx.restore();
+  }
+
+  function drawIslandLights(time, env) {
+    if (env.dark < 0.12) return;
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    Object.values(projects).forEach(pr => {
+      const center = worldToScreen(pr.x, pr.y);
+      const s = camera.zoom;
+      const seedN = pr.name.length;
+      for (let i = 0; i < 5; i++) {
+        const a = i * 2.3 + seedN;
+        const rr = pr.radius * (0.18 + 0.4 * (((i * 37) % 10) / 10));
+        const lx = center.x + Math.cos(a) * rr * s;
+        const ly = center.y + Math.sin(a) * rr * s * 0.7;
+        const tw = 0.6 + 0.4 * Math.sin(time * 0.004 + i + seedN);
+        const glow = ctx.createRadialGradient(lx, ly, 0, lx, ly, 7 * s);
+        glow.addColorStop(0, `rgba(255,214,130,${env.dark * tw})`);
+        glow.addColorStop(1, "rgba(255,214,130,0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath(); ctx.arc(lx, ly, 7 * s, 0, Math.PI * 2); ctx.fill();
+      }
+    });
+    ctx.restore();
+  }
+
+  function drawStars(time, env) {
+    if (env.dark < 0.3) return;
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    const base = (env.dark - 0.3) / 0.7;
+    stars.forEach(st => {
+      const tw = 0.4 + 0.6 * Math.sin(time * 0.002 + st.t * 5);
+      ctx.fillStyle = `rgba(255,255,255,${base * tw * (0.35 + st.s * 0.6)})`;
+      ctx.beginPath();
+      ctx.arc(st.x * width, st.y * height * 0.92, 0.6 + st.s * 1.3, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.restore();
+  }
+
   function startRenderLoop() {
     if (renderLoopActive) return;
     renderLoopActive = true;
@@ -3328,15 +3487,29 @@ main {
     camera.y = lerp(camera.y, camera.targetY, smoothing);
     camera.zoom = lerp(camera.zoom, camera.targetZoom, smoothing);
 
-    drawOcean(time);
+    viewOffsetX += (targetOffX - viewOffsetX) * 0.05;
+    viewOffsetY += (targetOffY - viewOffsetY) * 0.05;
+
+    const env = skyEnv(time);
+    drawOcean(time, env);
     drawFish(time);
+    drawWhale(time);
     drawBoats(time);
 
     const sorted = Object.values(projects).sort((a, b) => a.y - b.y);
     sorted.forEach(project => drawIsland(project, time));
 
+    drawLighthouse(env);
     drawBirds(time);
     drawAboutPlane(time);
+
+    if (env.dark > 0.01) {
+      ctx.fillStyle = `rgba(8,15,32,${env.dark * 0.5})`;
+      ctx.fillRect(0, 0, width, height);
+    }
+    drawIslandLights(time, env);
+    drawStars(time, env);
+    drawLighthouseBeam(time, env);
     updateHotspotPositions();
 
     requestAnimationFrame(render);
@@ -3394,6 +3567,9 @@ main {
     if (worldStarted) return;
     worldStarted = true;
     cloudEntry.classList.add("entering");
+    if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === "function") {
+      DeviceOrientationEvent.requestPermission().catch(() => {});
+    }
     tone(610, .08, "sine", .03);
     setTimeout(() => tone(180, .45, "sine", .045), 120);
 
@@ -3722,6 +3898,17 @@ main {
     if (!activeProject) {
       camera.targetZoom = width < 650 ? .66 : .78;
     }
+  });
+
+  // Parallax: gentle lean with the mouse (desktop) or device tilt (mobile)
+  window.addEventListener("mousemove", event => {
+    targetOffX = -(event.clientX / window.innerWidth - 0.5) * 30;
+    targetOffY = -(event.clientY / window.innerHeight - 0.5) * 22;
+  });
+  window.addEventListener("deviceorientation", event => {
+    if (event.gamma == null) return;
+    targetOffX = clamp(event.gamma, -35, 35) / 35 * 30;
+    targetOffY = clamp((event.beta || 0) - 45, -35, 35) / 35 * 22;
   });
 
   document.addEventListener("keydown", event => {
