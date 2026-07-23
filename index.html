@@ -1895,8 +1895,8 @@ main {
 
           <a class="fallback-island fallback-orsini" href="#fallback-orsini">
             <span class="fallback-land"></span>
-            <strong>Riccardo Orsini</strong>
-            <small>Photography portfolio</small>
+            <strong>Brand &amp; sito</strong>
+            <small>Fotografo · Brand identity</small>
           </a>
 
           <div class="fallback-project" id="fallback-bloop">
@@ -1934,12 +1934,12 @@ main {
 
           <div class="fallback-project" id="fallback-orsini">
             <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
-            <p>05 · Photography portfolio</p>
-            <h3>Riccardo Orsini</h3>
+            <p>05 · Brand identity · Web design</p>
+            <h3>Brand identity e sito fotografo</h3>
             <div class="fallback-phases">
               <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Le fotografie al centro, il resto scompare.</span></article>
               <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Guardare, non navigare.</span></article>
-              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Sobrio, neutro, a caccia di luce.</span></article>
+              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Logo su misura disegnato da Gianmarco, toni neutri, a caccia di luce.</span></article>
             </div>
           </div>
         </div>
@@ -1981,7 +1981,7 @@ main {
           </button>
           <button type="button" data-project="orsini">
             <span>05</span>
-            <strong>Orsini</strong>
+            <strong>Brand &amp; sito</strong>
           </button>
         </div>
 
@@ -2339,9 +2339,9 @@ main {
     },
     orsini: {
       id: "orsini",
-      name: "Riccardo Orsini",
-      type: "Photography portfolio · Web design",
-      tagline: "Un’isola di luce: il sito portfolio del fotografo Riccardo Orsini.",
+      name: "Brand identity e sito fotografo",
+      type: "Brand identity · Web design",
+      tagline: "Un’isola di luce: logo, identità e sito per il fotografo Riccardo Orsini.",
       x: 500,
       y: 210,
       radius: 205,
@@ -2364,7 +2364,7 @@ main {
           number: "01",
           kicker: "Fondamenta · Content first",
           title: "Le foto al centro, il resto scompare.",
-          copy: "Un sito portfolio per il fotografo Riccardo Orsini: gli scatti sparsi tra archivi e social diventano un unico luogo, con una struttura che mette le immagini davanti a tutto.",
+          copy: "Brand identity e sito per il fotografo Riccardo Orsini: gli scatti sparsi tra archivi e social diventano un unico luogo, con un’identità e una struttura che mettono le immagini davanti a tutto.",
           facts: [
             "Un solo posto per mostrare il lavoro.",
             "Serie e progetti al posto di un feed infinito.",
@@ -2384,12 +2384,12 @@ main {
         },
         animal: {
           number: "03",
-          kicker: "Carattere · Visual identity",
+          kicker: "Carattere · Brand identity",
           title: "Il gabbiano insegue la luce.",
-          copy: "L’identità del sito sta un passo indietro rispetto agli scatti: toni neutri, tipografia sobria e la luce come unica protagonista — come un gabbiano che segue il sole sull’acqua.",
+          copy: "L’identità parte dal logo, che ho disegnato io su misura per Riccardo, e sta un passo indietro rispetto agli scatti: toni neutri, tipografia sobria e la luce come unica protagonista.",
           facts: [
+            "Logo disegnato da me, su misura.",
             "Palette neutra che non compete con le foto.",
-            "Tipografia discreta, da didascalia.",
             "La cornice sparisce, l’immagine resta."
           ]
         }
@@ -3874,7 +3874,7 @@ main {
     islandName.textContent = project.name;
     islandType.textContent = project.type;
     islandTagline.textContent = project.tagline;
-    locationLabel.textContent = project.about ? project.name : `${project.name} island`;
+    locationLabel.textContent = project.about || project.id === "orsini" ? project.name : `${project.name} island`;
 
     $$("#projectIndex button").forEach(button => {
       button.classList.toggle("active", button.dataset.project === projectId);
