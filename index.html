@@ -1432,6 +1432,15 @@ main {
     linear-gradient(145deg, #6c6aa9, #414174);
 }
 
+.fallback-orsini {
+  right: 4%;
+  bottom: 22%;
+}
+
+.fallback-orsini .fallback-land {
+  background: linear-gradient(145deg, #8fd0d4, #3d7f8c);
+}
+
 .fallback-project {
   display: none;
   position: fixed;
@@ -1557,6 +1566,11 @@ main {
   .fallback-dreambase {
     right: 28%;
     bottom: 3%;
+  }
+
+  .fallback-orsini {
+    right: 2%;
+    bottom: 24%;
   }
 
   .fallback-island {
@@ -1879,6 +1893,12 @@ main {
             <small>Wellness concept</small>
           </a>
 
+          <a class="fallback-island fallback-orsini" href="#fallback-orsini">
+            <span class="fallback-land"></span>
+            <strong>Riccardo Orsini</strong>
+            <small>Photography portfolio</small>
+          </a>
+
           <div class="fallback-project" id="fallback-bloop">
             <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
             <p>01 · Event discovery</p>
@@ -1909,6 +1929,17 @@ main {
               <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Un rituale connesso, non un’altra dashboard.</span></article>
               <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Poche decisioni nel momento giusto.</span></article>
               <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Calma, presenza e protezione.</span></article>
+            </div>
+          </div>
+
+          <div class="fallback-project" id="fallback-orsini">
+            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
+            <p>05 · Photography portfolio</p>
+            <h3>Riccardo Orsini</h3>
+            <div class="fallback-phases">
+              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Le fotografie al centro, il resto scompare.</span></article>
+              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Guardare, non navigare.</span></article>
+              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Sobrio, neutro, a caccia di luce.</span></article>
             </div>
           </div>
         </div>
@@ -1950,7 +1981,7 @@ main {
           </button>
           <button type="button" data-project="orsini">
             <span>05</span>
-            <strong>Riccardo</strong>
+            <strong>Orsini</strong>
           </button>
         </div>
 
@@ -2309,31 +2340,59 @@ main {
     orsini: {
       id: "orsini",
       name: "Riccardo Orsini",
-      type: "Ospite · Guest",
-      tagline: "Un piccolo approdo amico, a est dell’arcipelago.",
-      x: 420,
-      y: 250,
-      radius: 78,
-      rotation: 0.04,
-      about: true,
+      type: "Photography portfolio · Web design",
+      tagline: "Un’isola di luce: il sito portfolio del fotografo Riccardo Orsini.",
+      x: 500,
+      y: 210,
+      radius: 205,
+      rotation: 0.05,
       colors: {
-        cliff: "#46656f",
+        cliff: "#35606c",
         sand: "#ffe4b8",
-        land: "#63a0ab",
-        land2: "#42798a",
-        accent: "#ff9a62",
+        land: "#5fa8b0",
+        land2: "#3d7f8c",
+        accent: "#ffb457",
         water: "#77c9ea"
       },
-      aboutContent: {
-        number: "05",
-        kicker: "Ospite · Guest",
-        title: "Riccardo Orsini.",
-        copy: "Non tutte le isole raccontano un progetto: alcune ospitano una persona. Questo piccolo approdo a est è dedicato a Riccardo Orsini, compagno di rotte dell’arcipelago.",
-        facts: [
-          "Ospite dell’arcipelago",
-          "Approdo a est · 41° N, 17° E",
-          "Rotte condivise con il cartografo"
-        ]
+      phasePositions: {
+        house: { x: -62, y: -40 },
+        person: { x: 52, y: 42 },
+        animal: { x: 84, y: -60 }
+      },
+      phases: {
+        house: {
+          number: "01",
+          kicker: "Fondamenta · Content first",
+          title: "Le foto al centro, il resto scompare.",
+          copy: "Un sito portfolio per il fotografo Riccardo Orsini: gli scatti sparsi tra archivi e social diventano un unico luogo, con una struttura che mette le immagini davanti a tutto.",
+          facts: [
+            "Un solo posto per mostrare il lavoro.",
+            "Serie e progetti al posto di un feed infinito.",
+            "<a style=\"text-decoration:underline\" href=\"https://riccardo-orsini-photography.giamma-antonacci.chatgpt.site\" target=\"_blank\" rel=\"noopener\">Visita il sito →</a>"
+          ]
+        },
+        person: {
+          number: "02",
+          kicker: "Esperienza · Viewing UX",
+          title: "Guardare, non navigare.",
+          copy: "Chi entra deve fare una cosa sola: guardare le fotografie. Percorsi brevi, niente distrazioni, e un contatto sempre a portata di mano per chi vuole lavorare con Riccardo.",
+          facts: [
+            "Navigazione essenziale tra le serie.",
+            "Ritmo visivo: pieni, vuoti e pause.",
+            "Contatto e commissioni in un passaggio."
+          ]
+        },
+        animal: {
+          number: "03",
+          kicker: "Carattere · Visual identity",
+          title: "Il gabbiano insegue la luce.",
+          copy: "L’identità del sito sta un passo indietro rispetto agli scatti: toni neutri, tipografia sobria e la luce come unica protagonista — come un gabbiano che segue il sole sull’acqua.",
+          facts: [
+            "Palette neutra che non compete con le foto.",
+            "Tipografia discreta, da didascalia.",
+            "La cornice sparisce, l’immagine resta."
+          ]
+        }
       }
     }
   };
@@ -2604,7 +2663,7 @@ main {
     const detailMode = activeProject === project.id && camera.zoom > 1.25;
 
     if (project.about) {
-      drawAboutMotifs(project, center, scale, detailMode, time);
+      drawAboutMotifs(center, scale, detailMode, time);
       return;
     }
 
@@ -2644,12 +2703,14 @@ main {
     if (project.id === "bloop") drawBloopMotifs(center, scale, detailMode, time);
     if (project.id === "merqorn") drawMerqornMotifs(center, scale, detailMode, time);
     if (project.id === "dreambase") drawDreambaseMotifs(center, scale, detailMode, time);
+    if (project.id === "orsini") drawOrsiniMotifs(center, scale, detailMode, time);
   }
 
   function drawTree(x, y, scale, projectId, time) {
     const palette =
       projectId === "bloop" ? ["#3f8c70", "#66b884"] :
       projectId === "merqorn" ? ["#4d7257", "#7fa26b"] :
+      projectId === "orsini" ? ["#2f6b5e", "#5aa98f"] :
       ["#2f5368", "#5e7793"];
 
     ctx.save();
@@ -2687,10 +2748,12 @@ main {
     const body =
       projectId === "bloop" ? "#fff3df" :
       projectId === "merqorn" ? "#f5eee6" :
+      projectId === "orsini" ? "#f7efe0" :
       "#dad9e9";
     const roof =
       projectId === "bloop" ? "#ff785d" :
       projectId === "merqorn" ? "#202025" :
+      projectId === "orsini" ? "#2e4a54" :
       "#24264c";
 
     ctx.save();
@@ -2732,6 +2795,7 @@ main {
     const shirt =
       projectId === "bloop" ? "#ff785d" :
       projectId === "merqorn" ? "#202025" :
+      projectId === "orsini" ? "#c96a3f" :
       "#a98cff";
 
     ctx.save();
@@ -2819,6 +2883,55 @@ main {
       ctx.beginPath();
       ctx.arc(13 * scale, 2 * scale, 8 * scale, -1.4, 1.5);
       ctx.stroke();
+    } else if (projectId === "orsini") {
+      // Seagull, chasing the light
+      const look = Math.sin(time * .0012) * 1.5 * scale;
+      ctx.fillStyle = "rgba(20,34,40,.15)";
+      ctx.beginPath();
+      ctx.ellipse(0, 8 * scale, 10 * scale, 3 * scale, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#e8a33d";
+      ctx.lineWidth = Math.max(1, 1.4 * scale);
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(-2 * scale, 3 * scale);
+      ctx.lineTo(-2.5 * scale, 8 * scale);
+      ctx.moveTo(2 * scale, 3 * scale);
+      ctx.lineTo(2.5 * scale, 8 * scale);
+      ctx.stroke();
+      ctx.fillStyle = "#f4f7f9";
+      ctx.beginPath();
+      ctx.ellipse(0, -1 * scale, 9 * scale, 5.5 * scale, -.08, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#c3ced6";
+      ctx.beginPath();
+      ctx.moveTo(-6 * scale, -2 * scale);
+      ctx.quadraticCurveTo(2 * scale, -4 * scale, 8 * scale, 1 * scale);
+      ctx.quadraticCurveTo(0, 2.5 * scale, -6 * scale, -2 * scale);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = "#dfe6ea";
+      ctx.beginPath();
+      ctx.moveTo(-8 * scale, -2 * scale);
+      ctx.lineTo(-14 * scale, -4 * scale);
+      ctx.lineTo(-8 * scale, 1 * scale);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = "#f4f7f9";
+      ctx.beginPath();
+      ctx.arc(7 * scale + look * .3, -7 * scale, 4 * scale, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#e8a33d";
+      ctx.beginPath();
+      ctx.moveTo(10.5 * scale + look * .3, -7.5 * scale);
+      ctx.lineTo(14.5 * scale + look * .3, -6.5 * scale);
+      ctx.lineTo(10.5 * scale + look * .3, -5.5 * scale);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = "#2b3336";
+      ctx.beginPath();
+      ctx.arc(8 * scale + look * .3, -7.5 * scale, .9 * scale, 0, Math.PI * 2);
+      ctx.fill();
     } else {
       ctx.fillStyle = "#8d83c7";
       ctx.beginPath();
@@ -2954,7 +3067,78 @@ main {
     }
   }
 
-  function drawAboutMotifs(project, center, scale, detailMode, time) {
+  function drawOrsiniMotifs(center, scale, detailMode, time) {
+    // Camera on a tripod, aimed at the horizon
+    ctx.save();
+    ctx.translate(center.x - 8 * scale, center.y + 66 * scale);
+
+    ctx.fillStyle = "rgba(21,37,38,.16)";
+    ctx.beginPath();
+    ctx.ellipse(0, 12 * scale, 16 * scale, 5 * scale, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Tripod legs
+    ctx.strokeStyle = "#2e4a54";
+    ctx.lineWidth = Math.max(1.2, 2 * scale);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(0, -4 * scale);
+    ctx.lineTo(-8 * scale, 11 * scale);
+    ctx.moveTo(0, -4 * scale);
+    ctx.lineTo(8 * scale, 11 * scale);
+    ctx.moveTo(0, -4 * scale);
+    ctx.lineTo(0, 12 * scale);
+    ctx.stroke();
+
+    // Camera body + lens
+    ctx.fillStyle = "#2b3940";
+    ctx.beginPath();
+    ctx.roundRect(-8 * scale, -14 * scale, 16 * scale, 10 * scale, 2.5 * scale);
+    ctx.fill();
+    ctx.fillStyle = "#1d2930";
+    ctx.beginPath();
+    ctx.arc(0, -9 * scale, 3.6 * scale, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#8fd0dc";
+    ctx.beginPath();
+    ctx.arc(1 * scale, -10 * scale, 1.4 * scale, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Shutter flash every few seconds
+    const flash = Math.pow(Math.max(0, Math.sin(time * .0016)), 24);
+    if (flash > .05) {
+      ctx.globalAlpha = flash * .85;
+      ctx.fillStyle = "#fff7dd";
+      ctx.beginPath();
+      ctx.arc(6 * scale, -15 * scale, 6 * scale, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+    ctx.restore();
+
+    // A small open-air gallery of framed prints
+    const prints = [[-96, 40, "#ffb457"], [-70, 62, "#8fd0dc"], [24, 88, "#f2e3c8"]];
+    prints.forEach(([px, py, tone]) => {
+      ctx.save();
+      ctx.translate(center.x + px * scale, center.y + py * scale);
+      ctx.fillStyle = "rgba(21,37,38,.16)";
+      ctx.beginPath();
+      ctx.ellipse(1 * scale, 9 * scale, 9 * scale, 3 * scale, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#f7f2e7";
+      ctx.fillRect(-8 * scale, -12 * scale, 16 * scale, 20 * scale);
+      ctx.fillStyle = tone;
+      ctx.fillRect(-5.5 * scale, -9.5 * scale, 11 * scale, 12 * scale);
+      ctx.restore();
+    });
+
+    const p = projects.orsini.phasePositions;
+    drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "orsini");
+    drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "orsini", time);
+    drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.05 * scale, "orsini", time);
+  }
+
+  function drawAboutMotifs(center, scale, detailMode, time) {
     // A couple of small bushes to keep the island alive
     const bushes = [[-38, 22, .6], [36, 18, .52]];
     bushes.forEach(([bx, by, bs]) => {
@@ -2973,98 +3157,9 @@ main {
       ctx.restore();
     });
 
-    const waving = activeProject === project.id && time < aboutWaveUntil;
-    if (project.id === "orsini") {
-      // The guest — Riccardo, standing by his mooring
-      drawFriend(center.x - 2 * scale, center.y - 6 * scale, (detailMode ? .82 : .7) * scale, time, waving);
-    } else {
-      // The elder — "this is me"
-      drawElder(center.x - 2 * scale, center.y - 4 * scale, (detailMode ? .82 : .7) * scale, time, waving);
-    }
-  }
-
-  function drawFriend(x, y, scale, time, waving) {
-    const bob = Math.sin(time * .0021) * 1.1 * scale;
-    ctx.save();
-    ctx.translate(x, y + bob);
-
-    // Ground shadow
-    ctx.fillStyle = "rgba(20,34,40,.18)";
-    ctx.beginPath();
-    ctx.ellipse(0, 21 * scale, 18 * scale, 5 * scale, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Legs (standing)
-    ctx.strokeStyle = "#3d4a63";
-    ctx.lineWidth = Math.max(2, 5 * scale);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(-4 * scale, 6 * scale);
-    ctx.lineTo(-5 * scale, 19 * scale);
-    ctx.moveTo(4 * scale, 6 * scale);
-    ctx.lineTo(5 * scale, 19 * scale);
-    ctx.stroke();
-
-    // Shirt / body
-    ctx.fillStyle = "#ff9a62";
-    ctx.beginPath();
-    ctx.moveTo(-10 * scale, 8 * scale);
-    ctx.quadraticCurveTo(-12 * scale, -10 * scale, 0, -12 * scale);
-    ctx.quadraticCurveTo(12 * scale, -10 * scale, 10 * scale, 8 * scale);
-    ctx.closePath();
-    ctx.fill();
-
-    // Right arm relaxed at the side
-    ctx.strokeStyle = "#ff9a62";
-    ctx.lineWidth = Math.max(2, 4 * scale);
-    ctx.beginPath();
-    ctx.moveTo(7 * scale, -5 * scale);
-    ctx.lineTo(11 * scale, 4 * scale);
-    ctx.stroke();
-
-    // Left arm — waves hello on greeting, otherwise rests
-    if (waving) {
-      const swing = Math.sin(time * .02) * 3.4 * scale;
-      const handX = -17 * scale + swing;
-      const handY = -29 * scale;
-      ctx.beginPath();
-      ctx.moveTo(-7 * scale, -6 * scale);
-      ctx.lineTo(-13 * scale, -17 * scale);
-      ctx.lineTo(handX, handY);
-      ctx.stroke();
-      ctx.fillStyle = "#e0b48c";
-      ctx.beginPath();
-      ctx.arc(handX, handY, 2.8 * scale, 0, Math.PI * 2);
-      ctx.fill();
-    } else {
-      ctx.beginPath();
-      ctx.moveTo(-7 * scale, -5 * scale);
-      ctx.lineTo(-11 * scale, 4 * scale);
-      ctx.stroke();
-    }
-
-    // Head
-    ctx.fillStyle = "#e0b48c";
-    ctx.beginPath();
-    ctx.arc(0, -20 * scale, 7 * scale, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Short dark hair
-    ctx.fillStyle = "#4a3628";
-    ctx.beginPath();
-    ctx.arc(0, -21 * scale, 7 * scale, Math.PI * 1.05, Math.PI * 1.95);
-    ctx.quadraticCurveTo(4 * scale, -26 * scale, 6.4 * scale, -23 * scale);
-    ctx.closePath();
-    ctx.fill();
-
-    // Eyes
-    ctx.fillStyle = "#392b2a";
-    ctx.beginPath();
-    ctx.arc(-2.5 * scale, -20 * scale, 1 * scale, 0, Math.PI * 2);
-    ctx.arc(2.5 * scale, -20 * scale, 1 * scale, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.restore();
+    // The elder — "this is me"
+    const waving = activeProject === "about" && time < aboutWaveUntil;
+    drawElder(center.x - 2 * scale, center.y - 4 * scale, (detailMode ? .82 : .7) * scale, time, waving);
   }
 
   function drawElder(x, y, scale, time, waving) {
@@ -3792,7 +3887,7 @@ main {
       tone(300, .16, "sine", .03);
     } else {
       hotspots.classList.remove("hidden");
-      tone(projectId === "bloop" ? 420 : projectId === "merqorn" ? 260 : 330, .13, "triangle", .03);
+      tone(projectId === "bloop" ? 420 : projectId === "merqorn" ? 260 : projectId === "orsini" ? 360 : 330, .13, "triangle", .03);
     }
   }
 
@@ -3913,7 +4008,7 @@ main {
 
       camera.targetX = cameraStart.x - dx / camera.zoom;
       camera.targetY = cameraStart.y - dy / camera.zoom;
-      camera.targetX = clamp(camera.targetX, -360, 430);
+      camera.targetX = clamp(camera.targetX, -360, 520);
       camera.targetY = clamp(camera.targetY, -380, 330);
     }
 
