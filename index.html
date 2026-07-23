@@ -1944,8 +1944,12 @@ main {
             <span>03</span>
             <strong>Dreambase</strong>
           </button>
-          <button type="button" data-project="about">
+          <button type="button" data-project="orsini">
             <span>04</span>
+            <strong>R. Orsini</strong>
+          </button>
+          <button type="button" data-project="about">
+            <span>05</span>
             <strong>Chi sono</strong>
           </button>
         </div>
@@ -1974,7 +1978,7 @@ main {
         <div class="world-help" id="worldHelp">
           <span>Drag to move</span>
           <span>Scroll to zoom</span>
-          <span>B / M / D / C to jump</span>
+          <span>B / M / D / O / C to jump</span>
         </div>
 
         <div class="compass" id="compass" aria-hidden="true">
@@ -2271,6 +2275,64 @@ main {
         }
       }
     },
+    orsini: {
+      id: "orsini",
+      name: "Riccardo Orsini",
+      type: "Photography · Matrimonio, moda, ritratto",
+      tagline: "Immagini che restano addosso.",
+      x: -10,
+      y: 75,
+      radius: 118,
+      rotation: 0.04,
+      colors: {
+        cliff: "#2a2a2d",
+        sand: "#efece6",
+        land: "#c9c8c6",
+        land2: "#8f8e90",
+        accent: "#141414",
+        water: "#77c9ea"
+      },
+      phasePositions: {
+        house: { x: -58, y: -30 },
+        person: { x: 48, y: 34 },
+        animal: { x: 82, y: -52 }
+      },
+      phases: {
+        house: {
+          number: "01",
+          kicker: "Fondamenta · Sguardo",
+          title: "Prima sento. Poi scatto.",
+          copy: "La fotografia migliore non interrompe il momento: lo riconosce. Prima ascolto la scena — luce, gesti, silenzi — e lo scatto arriva da sé.",
+          facts: [
+            "Matrimonio, moda e ritratto.",
+            "Italia · worldwide.",
+            "Bianco e nero come lingua madre."
+          ]
+        },
+        person: {
+          number: "02",
+          kicker: "Esperienza · Racconto",
+          title: "Immagini che restano addosso.",
+          copy: "Ogni servizio è una narrazione: dallo sguardo iniziale alla consegna curo ritmo, editing e stampa, perché le immagini restino nel tempo.",
+          facts: [
+            "Reportage naturale, senza pose forzate.",
+            "Editing coerente e riconoscibile.",
+            "Consegna curata: gallery, album, fine-art."
+          ]
+        },
+        animal: {
+          number: "03",
+          kicker: "Carattere · Firma",
+          title: "L’occhio dietro l’obiettivo.",
+          copy: "Uno stile essenziale ed elegante: contrasti netti, grana sottile, eleganza editoriale. Il bianco e nero toglie il superfluo e lascia l’emozione.",
+          facts: [
+            "Estetica editoriale, contrasti puliti.",
+            "Bianco e nero come scelta, non filtro.",
+            "Eleganza oltre la moda del momento."
+          ]
+        }
+      }
+    },
     about: {
       id: "about",
       name: "Gianmarco",
@@ -2290,7 +2352,7 @@ main {
         water: "#77c9ea"
       },
       aboutContent: {
-        number: "04",
+        number: "05",
         kicker: "Chi sono · About",
         title: "Il cartografo.",
         copy: "Sono Gianmarco, designer UX/UI. Do forma a prodotti digitali come fossero territori: ogni isola è un progetto. Questa piccola, invece, sono io — chi disegna le rotte.",
@@ -2610,12 +2672,14 @@ main {
     if (project.id === "bloop") drawBloopMotifs(center, scale, detailMode, time);
     if (project.id === "merqorn") drawMerqornMotifs(center, scale, detailMode, time);
     if (project.id === "dreambase") drawDreambaseMotifs(center, scale, detailMode, time);
+    if (project.id === "orsini") drawOrsiniMotifs(center, scale, detailMode, time);
   }
 
   function drawTree(x, y, scale, projectId, time) {
     const palette =
       projectId === "bloop" ? ["#3f8c70", "#66b884"] :
       projectId === "merqorn" ? ["#4d7257", "#7fa26b"] :
+      projectId === "orsini" ? ["#33333a", "#5a5a62"] :
       ["#2f5368", "#5e7793"];
 
     ctx.save();
@@ -3219,6 +3283,81 @@ main {
       ctx.lineTo(-20 * s, spin);
       ctx.stroke();
     }
+  }
+
+  function drawOrsiniMotifs(center, scale, detailMode, time) {
+    const s = scale;
+
+    // Film ring around the island (editorial B/W)
+    ctx.save();
+    ctx.globalAlpha = .5;
+    ctx.strokeStyle = "#1c1c1e";
+    ctx.lineWidth = Math.max(1, 1.4 * s);
+    ctx.setLineDash([6 * s, 5 * s]);
+    ctx.beginPath();
+    ctx.ellipse(center.x, center.y, 92 * s, 50 * s, 0.1, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    // Drifting lens rings (the logo motif)
+    for (let i = 0; i < 3; i++) {
+      const a = time * .0004 + i * 2.1;
+      const x = center.x + Math.cos(a) * (66 + i * 7) * s;
+      const y = center.y + Math.sin(a * 1.1) * (38 + i * 5) * s;
+      ctx.strokeStyle = "rgba(20,20,22,.55)";
+      ctx.lineWidth = Math.max(.8, 1.1 * s);
+      ctx.beginPath();
+      ctx.arc(x, y, (3 + i) * s, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // Camera on tripod — the signature
+    drawCamera(center.x + 4 * s, center.y - 16 * s, s * (detailMode ? 1.2 : 0.95), time);
+  }
+
+  function drawCamera(x, y, s, time) {
+    ctx.save();
+    ctx.translate(x, y);
+
+    ctx.fillStyle = "rgba(20,20,22,.18)";
+    ctx.beginPath();
+    ctx.ellipse(0, 30 * s, 20 * s, 5 * s, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Tripod
+    ctx.strokeStyle = "#2a2a2d";
+    ctx.lineWidth = Math.max(1, 2 * s);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(0, -1 * s); ctx.lineTo(-9 * s, 28 * s);
+    ctx.moveTo(0, -1 * s); ctx.lineTo(9 * s, 28 * s);
+    ctx.moveTo(0, -1 * s); ctx.lineTo(2 * s, 28 * s);
+    ctx.stroke();
+
+    // Body
+    ctx.fillStyle = "#151515";
+    ctx.beginPath();
+    ctx.roundRect(-12 * s, -15 * s, 24 * s, 14 * s, 3 * s);
+    ctx.fill();
+    // Pentaprism
+    ctx.beginPath();
+    ctx.moveTo(-4 * s, -15 * s); ctx.lineTo(0, -20 * s); ctx.lineTo(5 * s, -15 * s);
+    ctx.closePath(); ctx.fill();
+    // Lens
+    ctx.fillStyle = "#2a2a2d";
+    ctx.beginPath(); ctx.arc(0, -8 * s, 6 * s, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#efece6";
+    ctx.beginPath(); ctx.arc(0, -8 * s, 2.6 * s, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#151515";
+    ctx.beginPath(); ctx.arc(0, -8 * s, 1.1 * s, 0, Math.PI * 2); ctx.fill();
+
+    // Occasional flash blink
+    if (Math.sin(time * .006) > 0.985) {
+      ctx.fillStyle = "rgba(255,255,255,.92)";
+      ctx.beginPath(); ctx.arc(9 * s, -13 * s, 2.2 * s, 0, Math.PI * 2); ctx.fill();
+    }
+
+    ctx.restore();
   }
 
   function drawIslandMapLabel(project, center, radius) {
@@ -3940,6 +4079,7 @@ main {
     if (key === "b") selectProject("bloop");
     if (key === "m") selectProject("merqorn");
     if (key === "d") selectProject("dreambase");
+    if (key === "o") selectProject("orsini");
     if (key === "c") selectProject("about");
   });
 
