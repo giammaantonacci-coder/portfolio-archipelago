@@ -14,8 +14,10 @@ Portfolio interattivo in HTML, CSS e JavaScript puro.
 1. Click sulla hero.
 2. Attraversamento delle nuvole.
 3. Arrivo sull’arcipelago.
-4. Selezione di Bloop, Merqorn o Dreambase.
-5. Esplorazione delle tre fasi: casa, persona, animale.
+4. Selezione di un’isola: Bloop, Merqorn, Dreambase, Brand identity e sito fotografo, oppure l’isola Chi sono del cartografo.
+5. Per le isole progetto, esplorazione delle tre fasi: casa, persona, animale.
+
+Scorciatoie da tastiera: `B / M / D / C / R` per saltare alle isole.
 
 ## Avvio
 
