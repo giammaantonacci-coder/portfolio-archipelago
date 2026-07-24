@@ -3859,10 +3859,6 @@ main {
     hoverProject = projectId;
     closeStory();
 
-    camera.targetX = project.x;
-    camera.targetY = project.y + 14;
-    camera.targetZoom = width < 650 ? 1.58 : 1.82;
-
     mapIntro.classList.add("minimized");
     projectIndex.classList.add("hidden");
     $("#worldHelp").classList.add("hidden");
@@ -3875,6 +3871,21 @@ main {
     islandType.textContent = project.type;
     islandTagline.textContent = project.tagline;
     locationLabel.textContent = project.about || project.id === "orsini" ? project.name : `${project.name} island`;
+
+    // Frame the island: on small screens the title block wraps over the
+    // scene, so fit the island (and its hotspots) below it instead of
+    // centering it behind the text.
+    camera.targetX = project.x;
+    if (width < 650) {
+      const titleBottom = islandTitle.getBoundingClientRect().bottom;
+      const free = Math.max(220, height - titleBottom - 28);
+      camera.targetZoom = clamp(free / (project.radius * 1.6), .95, 1.58);
+      camera.targetY = project.y - project.radius * .78 -
+        (titleBottom + 18 - height / 2) / camera.targetZoom;
+    } else {
+      camera.targetY = project.y + 14;
+      camera.targetZoom = 1.82;
+    }
 
     $$("#projectIndex button").forEach(button => {
       button.classList.toggle("active", button.dataset.project === projectId);
