@@ -1055,6 +1055,71 @@ main {
   margin-top: 23px;
 }
 
+/* Staggered reveal of the phase panel content */
+.story-panel.revealing .story-number,
+.story-panel.revealing .story-kicker,
+.story-panel.revealing h3,
+.story-panel.revealing .story-copy,
+.story-panel.revealing .story-facts span,
+.story-panel.revealing .story-next {
+  animation: storyReveal .5s cubic-bezier(.16,1,.3,1) backwards;
+}
+
+.story-panel.revealing .story-number { animation-delay: .02s; }
+.story-panel.revealing .story-kicker { animation-delay: .08s; }
+.story-panel.revealing h3 { animation-delay: .14s; }
+.story-panel.revealing .story-copy { animation-delay: .22s; }
+.story-panel.revealing .story-facts span:nth-child(1) { animation-delay: .30s; }
+.story-panel.revealing .story-facts span:nth-child(2) { animation-delay: .37s; }
+.story-panel.revealing .story-facts span:nth-child(3) { animation-delay: .44s; }
+.story-panel.revealing .story-facts span:nth-child(4) { animation-delay: .51s; }
+.story-panel.revealing .story-next { animation-delay: .56s; }
+
+@keyframes storyReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Title micro-parallax on pointer move */
+.story-panel h3 {
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
+}
+
+/* Phase hotspot preview on hover/tap */
+.hotspot-preview {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translate(-50%, 6px);
+  width: max-content;
+  max-width: 210px;
+  padding: 9px 13px;
+  border-radius: 13px;
+  border: 1px solid rgba(255,255,255,.9);
+  background: rgba(20,20,20,.86);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 14px 34px rgba(20,52,68,.28);
+  transition: opacity .22s ease, transform .22s cubic-bezier(.16,1,.3,1);
+}
+
+.hotspot:hover .hotspot-preview,
+.hotspot.peek .hotspot-preview {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.hotspot.active .hotspot-preview {
+  opacity: 0;
+}
+
 .story-facts span {
   display: block;
   padding: 13px 15px;
@@ -1983,6 +2048,10 @@ main {
             <span>05</span>
             <strong>Brand &amp; sito</strong>
           </button>
+          <button type="button" data-project="trainee">
+            <span>06</span>
+            <strong>TraineeUX</strong>
+          </button>
         </div>
 
         <div class="island-title hidden" id="islandTitle">
@@ -1995,21 +2064,24 @@ main {
           <button class="hotspot hotspot-house" type="button" data-phase="house">
             <span class="hotspot-pulse"></span>
             <span class="hotspot-label"><small>01</small> Fondamenta</span>
+            <span class="hotspot-preview" data-preview="house" aria-hidden="true"></span>
           </button>
           <button class="hotspot hotspot-person" type="button" data-phase="person">
             <span class="hotspot-pulse"></span>
             <span class="hotspot-label"><small>02</small> Esperienza</span>
+            <span class="hotspot-preview" data-preview="person" aria-hidden="true"></span>
           </button>
           <button class="hotspot hotspot-animal" type="button" data-phase="animal">
             <span class="hotspot-pulse"></span>
             <span class="hotspot-label"><small>03</small> Carattere</span>
+            <span class="hotspot-preview" data-preview="animal" aria-hidden="true"></span>
           </button>
         </div>
 
         <div class="world-help" id="worldHelp">
           <span>Drag to move</span>
           <span>Scroll to zoom</span>
-          <span>B / M / D / C / R to jump</span>
+          <span>B / M / D / C / R / T to jump</span>
         </div>
 
         <div class="compass" id="compass" aria-hidden="true">
@@ -2302,6 +2374,64 @@ main {
             "Toni notturni e bagliori morbidi.",
             "Animazioni sincronizzate con il respiro.",
             "Tecnologia percepita come atmosfera."
+          ]
+        }
+      }
+    },
+    trainee: {
+      id: "trainee",
+      name: "TraineeUX",
+      type: "App · Formazione UX gamificata",
+      tagline: "Un’isola-palestra: dal mestiere al giudizio, un esercizio alla volta.",
+      x: -480,
+      y: 330,
+      radius: 205,
+      rotation: 0.05,
+      colors: {
+        cliff: "#2f6b52",
+        sand: "#eaf6ee",
+        land: "#a8dcc0",
+        land2: "#6cbb95",
+        accent: "#0e0e0e",
+        water: "#77c9ea"
+      },
+      phasePositions: {
+        house: { x: -66, y: -34 },
+        person: { x: 52, y: 36 },
+        animal: { x: 86, y: -62 }
+      },
+      phases: {
+        house: {
+          number: "01",
+          kicker: "Fondamenta · Product thinking",
+          title: "Studiare UX senza una rotta.",
+          copy: "Corsi infiniti, articoli sparsi, nessun criterio: si accumulano strumenti ma non si allena il giudizio. TraineeUX nasce come percorso strutturato — cinque livelli, dodici moduli — dove ogni passo allarga l’ambito su cui decidi.",
+          facts: [
+            "Percorso “Dal mestiere al giudizio”.",
+            "Esercizi pratici, non lezioni passive.",
+            "News di settore aggregate ogni ora."
+          ]
+        },
+        person: {
+          number: "02",
+          kicker: "Esperienza · Gamification",
+          title: "Tornare ogni giorno, senza sforzo.",
+          copy: "XP, gradi e serie non sono decorazioni: rendono visibile il progresso e trasformano lo studio in abitudine. L’app apre sempre su “riprendi da qui”, così la sessione parte in un tocco.",
+          facts: [
+            "XP, streak e gradi da Praticante a Expert.",
+            "Ripresa immediata dall’ultimo esercizio.",
+            "Quattro sezioni: Oggi, Percorso, News, Profilo."
+          ]
+        },
+        animal: {
+          number: "03",
+          kicker: "Carattere · Brand",
+          title: "Una bolla che impara con te.",
+          copy: "La mascotte è una bolla espressiva che reagisce ai tuoi progressi: amichevole ma mai infantile. Verde menta e nero, tipografia netta — un tono che tratta chi studia come un professionista.",
+          facts: [
+            "Mascotte-bolla con micro-espressioni.",
+            "Verde menta e nero, contrasti puliti.",
+            "Tono diretto: incoraggia, non celebra."
           ]
         }
       }
@@ -2704,6 +2834,7 @@ main {
     if (project.id === "merqorn") drawMerqornMotifs(center, scale, detailMode, time);
     if (project.id === "dreambase") drawDreambaseMotifs(center, scale, detailMode, time);
     if (project.id === "orsini") drawOrsiniMotifs(center, scale, detailMode, time);
+    if (project.id === "trainee") drawTraineeMotifs(center, scale, detailMode, time);
   }
 
   function drawTree(x, y, scale, projectId, time) {
@@ -2711,6 +2842,7 @@ main {
       projectId === "bloop" ? ["#3f8c70", "#66b884"] :
       projectId === "merqorn" ? ["#4d7257", "#7fa26b"] :
       projectId === "orsini" ? ["#2f6b5e", "#5aa98f"] :
+      projectId === "trainee" ? ["#2f7d5c", "#6fc79b"] :
       ["#2f5368", "#5e7793"];
 
     ctx.save();
@@ -3439,6 +3571,132 @@ main {
     }
   }
 
+  function drawTraineeMotifs(center, scale, detailMode, time) {
+    const s = scale;
+
+    // XP progress arc sweeping the island
+    ctx.save();
+    ctx.strokeStyle = "rgba(14,14,14,.22)";
+    ctx.lineWidth = Math.max(1.5, 4 * s);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.ellipse(center.x, center.y, 104 * s, 56 * s, .1, -2.5, .9);
+    ctx.stroke();
+    ctx.strokeStyle = "#6cbb95";
+    ctx.beginPath();
+    const sweep = -2.5 + (Math.sin(time * .0006) * .5 + .5) * 3.4;
+    ctx.ellipse(center.x, center.y, 104 * s, 56 * s, .1, -2.5, sweep);
+    ctx.stroke();
+    ctx.restore();
+
+    // Floating XP sparks
+    for (let i = 0; i < 4; i++) {
+      const a = time * .0009 + i * 1.6;
+      const x = center.x + Math.cos(a) * (74 + i * 6) * s;
+      const y = center.y + Math.sin(a * 1.3) * (44 + i * 4) * s - ((time * .02 + i * 90) % 60) * .12 * s;
+      ctx.fillStyle = "rgba(108,187,149,.75)";
+      ctx.beginPath();
+      ctx.arc(x, y, 2.2 * s, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Phone with the XP bar
+    drawTraineePhone(center.x - 52 * s, center.y + 6 * s, s * .95, time);
+
+    // The bubble mascot
+    drawBubbleMascot(center.x + 34 * s, center.y - 26 * s, s * (detailMode ? 1.25 : 1.05), time);
+  }
+
+  function drawTraineePhone(x, y, s, time) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.fillStyle = "rgba(20,34,40,.18)";
+    ctx.beginPath();
+    ctx.ellipse(3 * s, 26 * s, 17 * s, 5 * s, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#0e0e0e";
+    ctx.beginPath();
+    ctx.roundRect(-14 * s, -24 * s, 28 * s, 48 * s, 6 * s);
+    ctx.fill();
+    ctx.fillStyle = "#f7fbf8";
+    ctx.beginPath();
+    ctx.roundRect(-11.5 * s, -21 * s, 23 * s, 42 * s, 4 * s);
+    ctx.fill();
+
+    // progress bar filling up
+    ctx.fillStyle = "#dfe8e3";
+    ctx.beginPath();
+    ctx.roundRect(-8 * s, -4 * s, 16 * s, 3 * s, 1.5 * s);
+    ctx.fill();
+    const fill = (Math.sin(time * .0011) * .5 + .5) * 16;
+    ctx.fillStyle = "#6cbb95";
+    ctx.beginPath();
+    ctx.roundRect(-8 * s, -4 * s, Math.max(2, fill) * s, 3 * s, 1.5 * s);
+    ctx.fill();
+
+    // content lines
+    ctx.fillStyle = "rgba(14,14,14,.30)";
+    ctx.beginPath(); ctx.roundRect(-8 * s, -15 * s, 12 * s, 2.2 * s, 1 * s); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(-8 * s, 4 * s, 15 * s, 2.2 * s, 1 * s); ctx.fill();
+    ctx.fillStyle = "#a8dcc0";
+    ctx.beginPath(); ctx.roundRect(-8 * s, 10 * s, 16 * s, 8 * s, 2.5 * s); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawBubbleMascot(x, y, s, time) {
+    const bob = Math.sin(time * .0022) * 2.2 * s;
+    ctx.save();
+    ctx.translate(x, y + bob);
+
+    ctx.fillStyle = "rgba(20,34,40,.16)";
+    ctx.beginPath();
+    ctx.ellipse(2 * s, 17 * s, 13 * s, 4 * s, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // bubble body
+    const g = ctx.createRadialGradient(-5 * s, -6 * s, 1 * s, 0, 0, 15 * s);
+    g.addColorStop(0, "#eaf7ff");
+    g.addColorStop(.55, "#bfe4f7");
+    g.addColorStop(1, "#8fcbe8");
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(0, 0, 14 * s, 0, Math.PI * 2);
+    ctx.fill();
+
+    // highlight
+    ctx.fillStyle = "rgba(255,255,255,.85)";
+    ctx.beginPath();
+    ctx.ellipse(-5 * s, -6 * s, 4 * s, 2.8 * s, -.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // eyes (blink every few seconds)
+    const blink = Math.sin(time * .0016) > .985;
+    ctx.fillStyle = "#101418";
+    if (blink) {
+      ctx.strokeStyle = "#101418";
+      ctx.lineWidth = 1.4 * s;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(-6.5 * s, -1 * s); ctx.lineTo(-2.5 * s, -1 * s);
+      ctx.moveTo(2.5 * s, -1 * s); ctx.lineTo(6.5 * s, -1 * s);
+      ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.arc(-4.5 * s, -1.5 * s, 2.1 * s, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(4.5 * s, -1.5 * s, 2.1 * s, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // smile
+    ctx.strokeStyle = "#101418";
+    ctx.lineWidth = Math.max(1, 1.5 * s);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.arc(0, 2 * s, 5 * s, .35, Math.PI - .35);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
   function drawIslandMapLabel(project, center, radius) {
     const isHovered = hoverProject === project.id;
     const labelY = center.y + radius * .78;
@@ -3891,6 +4149,8 @@ main {
       button.classList.toggle("active", button.dataset.project === projectId);
     });
 
+    updatePhasePreviews(project);
+
     if (project.about) {
       hotspots.classList.add("hidden");
       openAbout(project);
@@ -3912,6 +4172,7 @@ main {
     $("#storyFacts").innerHTML = a.facts.map(fact => `<span>${fact}</span>`).join("");
     storyNext.classList.add("hidden");
     storyPanel.classList.add("open");
+    replayStoryReveal();
     storyPanel.setAttribute("aria-hidden", "false");
     $$(".hotspot").forEach(button => button.classList.remove("active"));
   }
@@ -3954,6 +4215,19 @@ main {
     });
   }
 
+  function updatePhasePreviews(project) {
+    $$(".hotspot-preview").forEach(el => {
+      const data = project.phases && project.phases[el.dataset.preview];
+      el.textContent = data ? data.title : "";
+    });
+  }
+
+  function replayStoryReveal() {
+    storyPanel.classList.remove("revealing");
+    void storyPanel.offsetWidth; // restart the CSS animations
+    storyPanel.classList.add("revealing");
+  }
+
   function openPhase(phase) {
     if (!activeProject) return;
     const project = projects[activeProject];
@@ -3969,6 +4243,7 @@ main {
     $("#storyCopy").textContent = data.copy;
     $("#storyFacts").innerHTML = data.facts.map(fact => `<span>${fact}</span>`).join("");
     storyPanel.classList.add("open");
+    replayStoryReveal();
     storyPanel.setAttribute("aria-hidden", "false");
 
     $$(".hotspot").forEach(button => {
@@ -4019,7 +4294,7 @@ main {
 
       camera.targetX = cameraStart.x - dx / camera.zoom;
       camera.targetY = cameraStart.y - dy / camera.zoom;
-      camera.targetX = clamp(camera.targetX, -360, 520);
+      camera.targetX = clamp(camera.targetX, -520, 520);
       camera.targetY = clamp(camera.targetY, -380, 330);
     }
 
@@ -4122,7 +4397,30 @@ main {
     button.addEventListener("click", () => selectProject(button.dataset.project));
   });
 
+  // Title micro-parallax: the panel heading drifts slightly with the pointer
+  storyPanel.addEventListener("pointermove", event => {
+    if (event.pointerType === "touch") return;
+    const rect = storyPanel.getBoundingClientRect();
+    const dx = (event.clientX - rect.left) / rect.width - .5;
+    const dy = (event.clientY - rect.top) / rect.height - .5;
+    $("#storyTitle").style.transform = `translate(${dx * 9}px, ${dy * 5}px)`;
+  });
+
+  storyPanel.addEventListener("pointerleave", () => {
+    $("#storyTitle").style.transform = "";
+  });
+
   $$(".hotspot").forEach(button => {
+    // On touch, first tap peeks the preview, second opens the phase
+    button.addEventListener("pointerdown", event => {
+      if (event.pointerType !== "touch") return;
+      if (!button.classList.contains("peek")) {
+        $$(".hotspot").forEach(other => other.classList.remove("peek"));
+        button.classList.add("peek");
+      }
+      setTimeout(() => button.classList.remove("peek"), 2200);
+    });
+
     button.addEventListener("click", () => openPhase(button.dataset.phase));
   });
 
@@ -4171,6 +4469,7 @@ main {
     if (key === "d") selectProject("dreambase");
     if (key === "c") selectProject("about");
     if (key === "r") selectProject("orsini");
+    if (key === "t") selectProject("trainee");
   });
 
   resizeCanvas();
