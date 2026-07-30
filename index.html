@@ -1477,12 +1477,12 @@ main {
   background: linear-gradient(145deg, #bca1f5, #8064cf);
 }
 
-.fallback-merqorn {
+.fallback-merkorn {
   right: 13%;
   top: 26%;
 }
 
-.fallback-merqorn .fallback-land {
+.fallback-merkorn .fallback-land {
   background: linear-gradient(145deg, #ff9a55, #d85c1b);
 }
 
@@ -1623,7 +1623,7 @@ main {
     top: 45%;
   }
 
-  .fallback-merqorn {
+  .fallback-merkorn {
     right: 1%;
     top: 41%;
   }
@@ -1946,9 +1946,9 @@ main {
             <small>Event discovery</small>
           </a>
 
-          <a class="fallback-island fallback-merqorn" href="#fallback-merqorn">
+          <a class="fallback-island fallback-merkorn" href="#fallback-merkorn">
             <span class="fallback-land"></span>
-            <strong>Merqorn</strong>
+            <strong>Merkorn</strong>
             <small>B2B software</small>
           </a>
 
@@ -1975,10 +1975,10 @@ main {
             </div>
           </div>
 
-          <div class="fallback-project" id="fallback-merqorn">
+          <div class="fallback-project" id="fallback-merkorn">
             <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
             <p>02 · B2B software</p>
-            <h3>Merqorn</h3>
+            <h3>Merkorn</h3>
             <div class="fallback-phases">
               <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>I processi reali vengono prima del software.</span></article>
               <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Dashboard orientate a decisioni operative.</span></article>
@@ -2032,9 +2032,9 @@ main {
             <span>01</span>
             <strong>Bloop</strong>
           </button>
-          <button type="button" data-project="merqorn">
+          <button type="button" data-project="merkorn">
             <span>02</span>
-            <strong>Merqorn</strong>
+            <strong>Merkorn</strong>
           </button>
           <button type="button" data-project="dreambase">
             <span>03</span>
@@ -2262,9 +2262,9 @@ main {
         }
       }
     },
-    merqorn: {
-      id: "merqorn",
-      name: "Merqorn",
+    merkorn: {
+      id: "merkorn",
+      name: "Merkorn",
       type: "B2B software · Product strategy",
       tagline: "Un’isola operativa: meno attrito, più controllo, dati che servono davvero.",
       x: 370,
@@ -2311,7 +2311,7 @@ main {
           number: "03",
           kicker: "Carattere · Product logic",
           title: "La volpe osserva prima di agire.",
-          copy: "Il carattere Merqorn è intelligente, pragmatico e umano. Non promette magia: elimina lavoro inutile e rende visibili le scelte.",
+          copy: "Il carattere Merkorn è intelligente, pragmatico e umano. Non promette magia: elimina lavoro inutile e rende visibili le scelte.",
           facts: [
             "Identità tech ma accessibile.",
             "Metafore visive legate a costruzione e orbite.",
@@ -2527,7 +2527,7 @@ main {
     }
   };
 
-  const islandOrder = ["bloop", "merqorn", "dreambase"];
+  const islandOrder = ["bloop", "merkorn", "dreambase"];
 
   const birds = [
     { x: -530, y: -175, t: .1 },
@@ -2716,7 +2716,7 @@ main {
   function drawIsland(project, time) {
     const center = worldToScreen(project.x, project.y);
     const r = project.radius * camera.zoom;
-    const seed = project.id === "bloop" ? 1.3 : project.id === "merqorn" ? 2.7 : 4.1;
+    const seed = project.id === "bloop" ? 1.3 : project.id === "merkorn" ? 2.7 : 4.1;
     const hoverScale = hoverProject === project.id && !activeProject ? 1.035 : 1;
     const detailPulse = activeProject === project.id ? 1 + Math.sin(time * .0015) * .004 : 1;
     const radius = r * hoverScale * detailPulse;
@@ -2831,7 +2831,7 @@ main {
     });
 
     if (project.id === "bloop") drawBloopMotifs(center, scale, detailMode, time);
-    if (project.id === "merqorn") drawMerqornMotifs(center, scale, detailMode, time);
+    if (project.id === "merkorn") drawMerkornMotifs(center, scale, detailMode, time);
     if (project.id === "dreambase") drawDreambaseMotifs(center, scale, detailMode, time);
     if (project.id === "orsini") drawOrsiniMotifs(center, scale, detailMode, time);
     if (project.id === "trainee") drawTraineeMotifs(center, scale, detailMode, time);
@@ -2840,7 +2840,7 @@ main {
   function drawTree(x, y, scale, projectId, time) {
     const palette =
       projectId === "bloop" ? ["#3f8c70", "#66b884"] :
-      projectId === "merqorn" ? ["#4d7257", "#7fa26b"] :
+      projectId === "merkorn" ? ["#4d7257", "#7fa26b"] :
       projectId === "orsini" ? ["#2f6b5e", "#5aa98f"] :
       projectId === "trainee" ? ["#2f7d5c", "#6fc79b"] :
       ["#2f5368", "#5e7793"];
@@ -2879,12 +2879,12 @@ main {
   function drawHouse(x, y, scale, projectId) {
     const body =
       projectId === "bloop" ? "#fff3df" :
-      projectId === "merqorn" ? "#f5eee6" :
+      projectId === "merkorn" ? "#f5eee6" :
       projectId === "orsini" ? "#f7efe0" :
       "#dad9e9";
     const roof =
       projectId === "bloop" ? "#ff785d" :
-      projectId === "merqorn" ? "#202025" :
+      projectId === "merkorn" ? "#202025" :
       projectId === "orsini" ? "#2e4a54" :
       "#24264c";
 
@@ -2914,7 +2914,7 @@ main {
     ctx.fillStyle = "#6b4b39";
     ctx.fillRect(-4 * scale, 9 * scale, 8 * scale, 14 * scale);
 
-    if (projectId === "merqorn") {
+    if (projectId === "merkorn") {
       ctx.strokeStyle = "#ff7d31";
       ctx.lineWidth = 2 * scale;
       ctx.strokeRect(-17 * scale, -5 * scale, 34 * scale, 26 * scale);
@@ -2926,7 +2926,7 @@ main {
   function drawPerson(x, y, scale, projectId, time) {
     const shirt =
       projectId === "bloop" ? "#ff785d" :
-      projectId === "merqorn" ? "#202025" :
+      projectId === "merkorn" ? "#202025" :
       projectId === "orsini" ? "#c96a3f" :
       "#a98cff";
 
@@ -2993,7 +2993,7 @@ main {
       ctx.beginPath();
       ctx.arc(0, 0, 4 * scale, 0, Math.PI * 2);
       ctx.fill();
-    } else if (projectId === "merqorn") {
+    } else if (projectId === "merkorn") {
       ctx.fillStyle = "#ad6238";
       ctx.beginPath();
       ctx.ellipse(0, 2 * scale, 13 * scale, 8 * scale, -.1, 0, Math.PI * 2);
@@ -3127,7 +3127,7 @@ main {
     }
   }
 
-  function drawMerqornMotifs(center, scale, detailMode, time) {
+  function drawMerkornMotifs(center, scale, detailMode, time) {
     // Data blocks
     const blocks = [
       [-8, -25, 36, 24, "#252528"],
@@ -3158,10 +3158,10 @@ main {
     ctx.restore();
 
     if (detailMode) {
-      const p = projects.merqorn.phasePositions;
-      drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "merqorn");
-      drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "merqorn", time);
-      drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.05 * scale, "merqorn", time);
+      const p = projects.merkorn.phasePositions;
+      drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "merkorn");
+      drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "merkorn", time);
+      drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.05 * scale, "merkorn", time);
     }
   }
 
@@ -4227,7 +4227,7 @@ main {
       tone(300, .16, "sine", .03);
     } else {
       hotspots.classList.remove("hidden");
-      tone(projectId === "bloop" ? 420 : projectId === "merqorn" ? 260 : projectId === "orsini" ? 360 : 330, .13, "triangle", .03);
+      tone(projectId === "bloop" ? 420 : projectId === "merkorn" ? 260 : projectId === "orsini" ? 360 : 330, .13, "triangle", .03);
     }
   }
 
@@ -4534,7 +4534,7 @@ main {
 
     const key = event.key.toLowerCase();
     if (key === "b") selectProject("bloop");
-    if (key === "m") selectProject("merqorn");
+    if (key === "m") selectProject("merkorn");
     if (key === "d") selectProject("dreambase");
     if (key === "c") selectProject("about");
     if (key === "r") selectProject("orsini");
