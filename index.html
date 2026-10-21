@@ -1,4549 +1,979 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#bfe8ff" />
-  <meta name="description" content="Portfolio interattivo di Gianmarco — un arcipelago di progetti UX/UI." />
-  <meta name="author" content="Gianmarco" />
-  <title>Gianmarco — Project Archipelago</title>
-  <link rel="canonical" href="https://portfolio-archipelago.vercel.app/" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Gianmarco — Project Archipelago" />
-  <meta property="og:description" content="Portfolio interattivo di Gianmarco — un arcipelago di progetti UX/UI." />
-  <meta property="og:url" content="https://portfolio-archipelago.vercel.app/" />
-  <meta property="og:locale" content="it_IT" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Gianmarco — Project Archipelago" />
-  <meta name="twitter:description" content="Portfolio interattivo di Gianmarco — un arcipelago di progetti UX/UI." />
-  <style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#1a1511" />
+<meta name="description" content="Il portfolio di Gianmarco Antonacci: una casa dove ogni stanza è un progetto." />
+<meta name="author" content="Gianmarco Antonacci" />
+<title>Gianmarco Antonacci — La casa dei progetti</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Gianmarco Antonacci — La casa dei progetti" />
+<meta property="og:description" content="Entra nella casa: ogni stanza è un progetto." />
+<style>
 :root {
-  --ink: #151515;
-  --muted: #656a70;
-  --paper: #f8fbfb;
-  --line: rgba(18, 25, 29, 0.15);
-  --glass: rgba(255,255,255,.67);
-  --purple: #9a7cff;
-  --coral: #ff785d;
-  --sea: #80ccef;
-  --safe-top: max(18px, env(safe-area-inset-top));
-  --safe-bottom: max(18px, env(safe-area-inset-bottom));
+  --ink: #16120e;
+  --paper: #f6f1e8;
+  --safe-top: max(16px, env(safe-area-inset-top));
+  --safe-bottom: max(16px, env(safe-area-inset-bottom));
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html,
-body {
-  width: 100%;
-  min-height: 100%;
+html, body {
   margin: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  background: #c6ebff;
-  color: var(--ink);
+  background: #120e0a;
+  color: var(--paper);
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-button,
-a {
-  color: inherit;
-  font: inherit;
-  -webkit-tap-highlight-color: transparent;
-}
+canvas { display: block; }
 
-button {
-  border: 0;
-}
+button { border: 0; font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 3px solid rgba(255, 214, 150, .5); outline-offset: 3px; }
 
-button:focus-visible,
-a:focus-visible {
-  outline: 3px solid rgba(112, 86, 255, .38);
-  outline-offset: 4px;
-}
+.hidden { display: none !important; }
 
-.hidden {
-  display: none !important;
-}
+/* ---------- Entrance ---------- */
 
-.app,
-main {
-  width: 100%;
-  height: 100dvh;
-}
-
-.topbar {
+#entrance {
   position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(74px + var(--safe-top));
-  padding: var(--safe-top) clamp(18px, 4vw, 54px) 0;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  pointer-events: none;
-}
-
-.topbar > * {
-  pointer-events: auto;
-}
-
-.brand {
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: -.02em;
-}
-
-.brand-orb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 31% 25%, white 0 9%, transparent 10%),
-    linear-gradient(145deg, rgba(255,255,255,.9), rgba(154,124,255,.64) 58%, rgba(255,120,93,.75));
-  box-shadow:
-    inset -5px -6px 10px rgba(80,47,125,.16),
-    0 6px 14px rgba(74,66,127,.18);
-}
-
-.topbar-center {
-  justify-self: center;
-  min-height: 38px;
-  padding: 0 15px;
-  border: 1px solid rgba(255,255,255,.58);
-  border-radius: 999px;
-  background: rgba(255,255,255,.56);
-  backdrop-filter: blur(18px);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  box-shadow: 0 10px 30px rgba(59,101,132,.08);
-}
-
-.location-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #50b78c;
-  box-shadow: 0 0 0 5px rgba(80,183,140,.13);
-}
-
-.topbar-actions {
-  justify-self: end;
-  display: flex;
-  gap: 8px;
-}
-
-.round-button {
-  width: 43px;
-  height: 43px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.66);
-  background: rgba(255,255,255,.58);
-  backdrop-filter: blur(18px);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(59,101,132,.08);
-}
-
-.round-button > span:not(.sound-icon) {
-  font-size: 24px;
-  line-height: 1;
-}
-
-.sound-icon {
-  height: 15px;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.sound-icon i {
-  width: 2px;
-  height: 5px;
-  border-radius: 3px;
-  background: currentColor;
-}
-
-.sound-icon i:nth-child(2) {
-  height: 11px;
-}
-
-#soundToggle[aria-pressed="true"] .sound-icon i {
-  animation: soundbar .9s ease-in-out infinite alternate;
-}
-
-#soundToggle[aria-pressed="true"] .sound-icon i:nth-child(2) {
-  animation-delay: .18s;
-}
-
-#soundToggle[aria-pressed="true"] .sound-icon i:nth-child(3) {
-  animation-delay: .36s;
-}
-
-@keyframes soundbar {
-  to { transform: scaleY(1.8); }
-}
-
-/* INTRO */
-
-.intro {
-  position: relative;
-  width: 100%;
-  height: 100dvh;
-  overflow: hidden;
-  isolation: isolate;
-  background:
-    radial-gradient(circle at 50% 43%, rgba(255,255,255,.94), rgba(255,255,255,.54) 17%, transparent 40%),
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,.9), transparent 25%),
-    linear-gradient(180deg, #e9f8ff 0%, #c6ebff 53%, #a7dcf7 100%);
-}
-
-.intro::before {
-  content: "";
-  position: absolute;
   inset: 0;
-  z-index: -1;
-  opacity: .34;
-  background-image:
-    radial-gradient(circle at 10% 25%, rgba(255,255,255,.9) 0 2px, transparent 3px),
-    radial-gradient(circle at 70% 16%, rgba(255,255,255,.8) 0 1px, transparent 2px);
-  background-size: 110px 110px, 170px 170px;
-}
-
-.intro-copy {
-  position: absolute;
-  z-index: 4;
-  left: clamp(20px, 6vw, 90px);
-  top: 17%;
-  max-width: 510px;
-}
-
-.eyebrow {
-  margin: 0 0 18px;
-  color: rgba(21,21,21,.61);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-}
-
-.intro h1 {
-  margin: 0;
-  max-width: 650px;
-  font-family: "Arial Black", "Helvetica Neue", sans-serif;
-  font-size: clamp(54px, 8.8vw, 132px);
-  line-height: .82;
-  letter-spacing: -.075em;
-  font-weight: 900;
-}
-
-.intro-note {
-  max-width: 320px;
-  margin: 28px 0 0;
-  color: rgba(21,21,21,.61);
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.hero-bubble {
-  position: absolute;
-  z-index: 3;
-  left: 61%;
-  top: 51%;
-  width: clamp(240px, 32vw, 520px);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  touch-action: none;
-  animation: bubbleFloat 5.8s ease-in-out infinite;
-}
-
-@keyframes bubbleFloat {
-  0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(-1deg); }
-  50% { transform: translate(-50%, -50%) translateY(-16px) rotate(1deg); }
-}
-
-.bubble-skin {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 35% 28%, rgba(255,255,255,.96) 0 4%, rgba(255,255,255,.46) 8%, transparent 21%),
-    radial-gradient(circle at 65% 73%, rgba(255,119,89,.25), transparent 36%),
-    radial-gradient(circle at 38% 68%, rgba(142,104,255,.31), transparent 39%),
-    linear-gradient(140deg, rgba(255,255,255,.72), rgba(255,255,255,.16) 44%, rgba(119,215,255,.18) 70%, rgba(255,255,255,.46));
-  border: 1px solid rgba(255,255,255,.86);
-  box-shadow:
-    inset 22px 24px 44px rgba(255,255,255,.48),
-    inset -28px -24px 55px rgba(98,93,169,.18),
-    0 44px 90px rgba(75,130,170,.20),
-    0 0 0 1px rgba(98,164,205,.10);
-  transition: transform .45s cubic-bezier(.2,.9,.2,1), filter .45s ease;
-}
-
-.hero-bubble:hover .bubble-skin {
-  transform: scale(1.035);
-  filter: saturate(1.18);
-}
-
-.hero-bubble:active .bubble-skin {
-  transform: scale(.975);
-}
-
-.bubble-skin::after {
-  content: "";
-  position: absolute;
-  inset: 5%;
-  border: 1px solid rgba(255,255,255,.48);
-  border-radius: 50%;
-  filter: blur(.2px);
-}
-
-.bubble-reflection {
-  position: absolute;
-  display: block;
-  border-radius: 50%;
-  background: rgba(255,255,255,.88);
-  filter: blur(2px);
-}
-
-.reflection-a {
-  width: 24%;
-  height: 8%;
-  left: 22%;
-  top: 13%;
-  transform: rotate(-29deg);
-}
-
-.reflection-b {
-  width: 7%;
-  height: 17%;
-  right: 15%;
-  top: 25%;
-  opacity: .55;
-  transform: rotate(22deg);
-}
-
-.bubble-color {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(18px);
-  mix-blend-mode: multiply;
-}
-
-.color-a {
-  width: 34%;
-  height: 34%;
-  left: -4%;
-  bottom: 9%;
-  background: rgba(161,116,255,.22);
-}
-
-.color-b {
-  width: 42%;
-  height: 42%;
-  right: -5%;
-  bottom: -4%;
-  background: rgba(255,117,90,.19);
-}
-
-.bubble-copy {
-  position: absolute;
-  z-index: 3;
-  inset: 0;
+  z-index: 60;
   display: grid;
   place-content: center;
+  justify-items: center;
   text-align: center;
-  pointer-events: none;
-}
-
-.bubble-copy small {
-  text-transform: uppercase;
-  letter-spacing: .17em;
-  font-size: 10px;
-  font-weight: 700;
-  color: rgba(21,21,21,.55);
-}
-
-.bubble-copy strong {
-  margin-top: 4px;
-  font-size: clamp(32px, 5vw, 64px);
-  letter-spacing: -.055em;
-}
-
-.hero-bubble.burst {
-  animation: none;
-  pointer-events: none;
-}
-
-.hero-bubble.burst .bubble-skin {
-  animation: bubbleBurst .48s cubic-bezier(.4,0,.6,1) forwards;
-}
-
-.hero-bubble.burst .bubble-copy {
-  animation: copyVanish .24s ease forwards;
-}
-
-@keyframes bubbleBurst {
-  0% { transform: scale(1); opacity: 1; filter: blur(0); }
-  40% { transform: scale(1.14); opacity: .8; }
-  100% { transform: scale(1.55); opacity: 0; filter: blur(12px); }
-}
-
-@keyframes copyVanish {
-  to { transform: scale(.7); opacity: 0; }
-}
-
-.intro-coordinates {
-  position: absolute;
-  left: clamp(20px, 6vw, 90px);
-  bottom: calc(34px + var(--safe-bottom));
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: rgba(21,21,21,.47);
-  font-size: 10px;
-  letter-spacing: .13em;
-}
-
-.intro-coordinates i {
-  width: 32px;
-  height: 1px;
-  background: rgba(21,21,21,.26);
-}
-
-.intro-hint {
-  position: absolute;
-  right: clamp(20px, 5vw, 78px);
-  bottom: calc(32px + var(--safe-bottom));
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: rgba(21,21,21,.52);
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.mouse-glyph {
-  width: 20px;
-  height: 28px;
-  border: 1px solid rgba(21,21,21,.45);
-  border-radius: 12px;
-  position: relative;
-}
-
-.mouse-glyph::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 5px;
-  width: 2px;
-  height: 5px;
-  border-radius: 2px;
-  background: rgba(21,21,21,.5);
-  transform: translateX(-50%);
-  animation: mouseMove 1.3s ease infinite;
-}
-
-@keyframes mouseMove {
-  60%, 100% { transform: translate(-50%, 7px); opacity: 0; }
-}
-
-/* BURST */
-
-.burst-particles {
-  position: fixed;
-  inset: 0;
-  z-index: 150;
-  pointer-events: none;
-}
-
-.burst-particle {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.8);
-  background: radial-gradient(circle at 30% 25%, white, rgba(161,120,255,.36) 42%, rgba(255,116,91,.18));
-  box-shadow: 0 6px 14px rgba(85,119,151,.14);
-  animation: particleFly var(--duration) cubic-bezier(.2,.7,.2,1) forwards;
-}
-
-@keyframes particleFly {
-  to {
-    transform: translate(var(--dx), var(--dy)) scale(.1) rotate(var(--rotate));
-    opacity: 0;
-  }
-}
-
-/* CLOUD TRANSITION */
-
-.transition-clouds {
-  position: fixed;
-  z-index: 140;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  background: rgba(221,244,255,.08);
-}
-
-.transition-clouds.active {
-  visibility: visible;
-  animation: transitionLayer 2.65s ease forwards;
-}
-
-@keyframes transitionLayer {
-  0% { opacity: 0; }
-  12% { opacity: 1; }
-  76% { opacity: 1; }
-  100% { opacity: 0; visibility: hidden; }
-}
-
-.transition-cloud {
-  position: absolute;
-  width: 60vw;
-  height: 38vw;
-  min-width: 420px;
-  min-height: 270px;
-  border-radius: 50%;
+  padding: 28px;
+  gap: 20px;
   background:
-    radial-gradient(circle at 24% 55%, rgba(255,255,255,.98) 0 30%, transparent 31%),
-    radial-gradient(circle at 49% 37%, rgba(255,255,255,.98) 0 37%, transparent 38%),
-    radial-gradient(circle at 72% 58%, rgba(255,255,255,.96) 0 32%, transparent 33%);
-  filter: blur(10px);
-  opacity: .96;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
+    radial-gradient(circle at 50% 42%, rgba(255, 206, 140, .20), transparent 55%),
+    linear-gradient(180deg, #1b1510 0%, #110d09 100%);
+  transition: opacity .9s ease;
 }
 
-.transition-clouds.active .transition-cloud {
-  animation: cloudRush 2.5s cubic-bezier(.25,.75,.25,1) forwards;
+#entrance.fading { opacity: 0; pointer-events: none; }
+
+#entrance .eyebrow {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 232, .55);
 }
 
-.tc-1 { left: -35%; top: -20%; }
-.tc-2 { right: -34%; top: -12%; animation-delay: .08s !important; }
-.tc-3 { left: -30%; top: 27%; animation-delay: .18s !important; }
-.tc-4 { right: -35%; top: 32%; animation-delay: .12s !important; }
-.tc-5 { left: -23%; bottom: -28%; animation-delay: .24s !important; }
-.tc-6 { right: -20%; bottom: -26%; animation-delay: .2s !important; }
-
-@keyframes cloudRush {
-  0% { transform: scale(.6); opacity: 0; }
-  26% { transform: scale(1.2); opacity: 1; }
-  62% { transform: scale(1.9); opacity: 1; }
-  100% { transform: scale(2.7) translateY(-12vh); opacity: 0; }
+#entrance h1 {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(42px, 7.5vw, 88px);
+  line-height: .92;
+  letter-spacing: -.04em;
+  font-weight: 800;
 }
 
-.transition-copy {
+#entrance p.lede {
+  margin: 0;
+  max-width: 44ch;
+  color: rgba(246, 241, 232, .66);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+#enterButton {
+  margin-top: 6px;
+  min-height: 54px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .45);
+  transition: transform .25s ease;
+}
+
+#enterButton:hover { transform: translateY(-2px); }
+
+.loading-note { margin: 0; font-size: 12px; color: rgba(246, 241, 232, .4); }
+
+/* ---------- HUD ---------- */
+
+#hud { position: fixed; inset: 0; z-index: 20; pointer-events: none; }
+
+#roomName {
   position: absolute;
   left: 50%;
-  bottom: 8%;
+  top: calc(var(--safe-top) + 10px);
   transform: translateX(-50%);
   display: grid;
   justify-items: center;
-  gap: 13px;
-  color: rgba(21,21,21,.54);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-
-.transition-copy i {
-  width: 80px;
-  height: 1px;
-  background: rgba(21,21,21,.18);
-  overflow: hidden;
-  position: relative;
-}
-
-.transition-copy i::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(21,21,21,.65);
-  transform: translateX(-100%);
-  animation: transitionProgress 2.2s ease forwards;
-}
-
-@keyframes transitionProgress {
-  to { transform: translateX(100%); }
-}
-
-/* WORLD */
-
-.world {
-  position: relative;
-  width: 100%;
-  height: 100dvh;
-  overflow: hidden;
-  background: #8cd4f1;
-}
-
-#worldCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  touch-action: none;
-  cursor: grab;
-}
-
-#worldCanvas:active {
-  cursor: grabbing;
-}
-
-.world-vignette {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  box-shadow: inset 0 0 160px rgba(45,112,145,.20);
-}
-
-.cloud-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.world-cloud {
-  position: absolute;
-  width: var(--w);
-  height: calc(var(--w) * .48);
-  opacity: var(--opacity);
-  filter: blur(var(--blur));
-  animation: worldCloud var(--duration) linear infinite;
-  animation-delay: var(--delay);
-  transform: translateX(-30vw);
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.world-cloud::before,
-.world-cloud::after,
-.world-cloud i {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,.93);
-}
-
-.world-cloud::before {
-  width: 52%;
-  height: 80%;
-  left: 0;
-  bottom: 0;
-}
-
-.world-cloud::after {
-  width: 54%;
-  height: 100%;
-  left: 29%;
-  top: 0;
-}
-
-.world-cloud i {
-  width: 48%;
-  height: 72%;
-  right: 0;
-  bottom: 1%;
-}
-
-@keyframes worldCloud {
-  from { transform: translateX(-32vw); }
-  to { transform: translateX(132vw); }
-}
-
-.map-intro {
-  position: absolute;
-  z-index: 20;
-  left: clamp(20px, 5vw, 76px);
-  top: 20%;
-  width: min(340px, calc(100vw - 40px));
-  padding: 24px;
-  border: 1px solid rgba(255,255,255,.64);
-  border-radius: 25px;
-  background: rgba(248,252,252,.64);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 25px 70px rgba(38,101,133,.14);
-  transition: opacity .45s ease, transform .45s ease;
-}
-
-.map-intro.minimized {
+  gap: 5px;
+  text-align: center;
   opacity: 0;
-  transform: translateY(-18px);
-  pointer-events: none;
+  transition: opacity .5s ease;
 }
 
-.map-intro h2 {
-  margin: 0;
-  font-family: "Arial Black", "Helvetica Neue", sans-serif;
-  font-size: clamp(34px, 4vw, 52px);
-  line-height: .92;
-  letter-spacing: -.055em;
-}
+#roomName.show { opacity: 1; }
 
-.map-intro > p:not(.eyebrow) {
-  margin: 16px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.map-legend {
-  display: grid;
-  gap: 8px;
-  margin-top: 20px;
-  color: #495259;
-  font-size: 11px;
-}
-
-.map-legend span {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.map-legend i {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-}
-
-.legend-house {
-  border-radius: 3px;
-  background: #ff785d;
-  clip-path: polygon(50% 0, 100% 39%, 88% 39%, 88% 100%, 12% 100%, 12% 39%, 0 39%);
-}
-
-.legend-person {
-  border-radius: 50% 50% 46% 46%;
-  background: #8b6eff;
-}
-
-.legend-animal {
-  border-radius: 48% 52% 55% 45%;
-  background: #2d8068;
-}
-
-.project-index {
-  position: absolute;
-  z-index: 21;
-  right: clamp(18px, 4vw, 54px);
-  top: 19%;
-  display: grid;
-  gap: 8px;
-}
-
-.project-index button {
-  min-width: 170px;
-  padding: 13px 15px;
-  border-radius: 17px;
-  border: 1px solid rgba(255,255,255,.62);
-  background: rgba(248,252,252,.58);
-  backdrop-filter: blur(18px);
-  display: grid;
-  grid-template-columns: 34px 1fr;
-  align-items: center;
-  text-align: left;
-  cursor: pointer;
-  box-shadow: 0 14px 34px rgba(38,101,133,.08);
-  transition: transform .25s ease, background .25s ease;
-}
-
-.project-index button:hover,
-.project-index button.active {
-  transform: translateX(-7px);
-  background: rgba(255,255,255,.82);
-}
-
-.project-index span {
-  color: var(--muted);
-  font-size: 10px;
-}
-
-.project-index strong {
-  font-size: 14px;
-}
-
-.island-title {
-  position: absolute;
-  z-index: 24;
-  left: clamp(20px, 5vw, 76px);
-  top: 17%;
-  width: min(420px, calc(100vw - 40px));
-  pointer-events: none;
-}
-
-.island-title p {
-  margin: 0 0 8px;
-  text-transform: uppercase;
-  letter-spacing: .15em;
+#roomName small {
   font-size: 10px;
   font-weight: 700;
-  color: rgba(21,21,21,.55);
-}
-
-.island-title h2 {
-  margin: 0;
-  font-family: "Arial Black", "Helvetica Neue", sans-serif;
-  font-size: clamp(54px, 7.8vw, 108px);
-  line-height: .8;
-  letter-spacing: -.075em;
-}
-
-.island-title span {
-  display: block;
-  margin-top: 16px;
-  max-width: 340px;
-  color: rgba(21,21,21,.60);
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.world-help {
-  position: absolute;
-  z-index: 22;
-  left: clamp(18px, 4vw, 54px);
-  bottom: calc(20px + var(--safe-bottom));
-  display: flex;
-  gap: 9px;
-}
-
-.world-help span {
-  padding: 8px 11px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.54);
-  backdrop-filter: blur(15px);
-  color: rgba(21,21,21,.58);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: .08em;
+  letter-spacing: .2em;
   text-transform: uppercase;
+  color: rgba(246, 241, 232, .55);
 }
 
-.compass {
-  position: absolute;
-  z-index: 22;
-  right: clamp(18px, 4vw, 54px);
-  bottom: calc(22px + var(--safe-bottom));
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(255,255,255,.64);
-  border-radius: 50%;
-  background: rgba(255,255,255,.48);
-  backdrop-filter: blur(16px);
-  display: grid;
-  place-items: center;
-  color: rgba(21,21,21,.58);
-  font-size: 9px;
-  font-weight: 800;
+#roomName strong {
+  font-size: clamp(20px, 3.4vw, 30px);
+  letter-spacing: -.03em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, .6);
 }
 
-.compass i {
+#crosshair {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 1px;
-  height: 15px;
-  transform: translate(-50%, -50%);
-  background: currentColor;
-}
-
-.compass i::before {
-  content: "";
-  position: absolute;
-  left: -3px;
-  top: -3px;
   width: 7px;
   height: 7px;
-  background: var(--coral);
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: rgba(246, 241, 232, .5);
+  box-shadow: 0 0 0 1.5px rgba(0, 0, 0, .25);
+  transition: transform .2s ease, background .2s ease;
 }
 
-.back-island {
+#crosshair.active { transform: scale(2.1); background: rgba(255, 214, 150, .95); }
+
+#prompt {
   position: absolute;
-  z-index: 25;
-  left: clamp(18px, 4vw, 54px);
-  bottom: calc(22px + var(--safe-bottom));
-  min-height: 46px;
-  padding: 0 17px;
-  border: 1px solid rgba(255,255,255,.64);
+  left: 50%;
+  top: calc(50% + 34px);
+  transform: translateX(-50%);
+  padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(255,255,255,.62);
-  backdrop-filter: blur(18px);
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  cursor: pointer;
+  background: rgba(10, 8, 6, .72);
+  border: 1px solid rgba(246, 241, 232, .16);
+  backdrop-filter: blur(10px);
   font-size: 12px;
-  font-weight: 700;
-  box-shadow: 0 14px 40px rgba(38,101,133,.12);
-}
-
-/* HOTSPOTS */
-
-.hotspots {
-  position: absolute;
-  z-index: 26;
-  inset: 0;
-  pointer-events: none;
-}
-
-.hotspot {
-  position: absolute;
-  left: 0;
-  top: 0;
-  min-width: 44px;
-  min-height: 44px;
-  transform: translate(-50%, -50%);
-  border-radius: 999px;
-  background: rgba(255,255,255,.86);
-  border: 1px solid rgba(255,255,255,.96);
-  box-shadow: 0 14px 34px rgba(31,79,101,.22);
-  cursor: pointer;
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px;
-  transition: transform .25s ease, padding .25s ease;
-}
-
-.hotspot:hover,
-.hotspot.active {
-  transform: translate(-50%, -50%) scale(1.06);
-  padding-right: 13px;
-}
-
-.hotspot-pulse {
-  position: relative;
-  flex: 0 0 34px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--pulse, #ff785d);
-}
-
-.hotspot-pulse::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border: 1px solid var(--pulse, #ff785d);
-  border-radius: 50%;
-  opacity: .45;
-  animation: hotspotPulse 1.8s ease-out infinite;
-}
-
-.hotspot-house { --pulse: #ff785d; }
-.hotspot-person { --pulse: #8b6eff; }
-.hotspot-animal { --pulse: #2f8b6f; }
-
-@keyframes hotspotPulse {
-  0% { transform: scale(.6); opacity: .7; }
-  100% { transform: scale(1.45); opacity: 0; }
-}
-
-.hotspot-label {
-  padding-right: 4px;
+  font-weight: 600;
   white-space: nowrap;
-  font-size: 11px;
-  font-weight: 700;
+  opacity: 0;
+  transition: opacity .2s ease;
 }
 
-.hotspot-label small {
-  margin-right: 6px;
-  color: var(--muted);
-  font-size: 8px;
-}
+#prompt.show { opacity: 1; }
 
-/* STORY PANEL */
-
-.story-panel {
+#hint {
   position: absolute;
-  z-index: 60;
-  right: clamp(15px, 3vw, 42px);
-  bottom: calc(16px + var(--safe-bottom));
-  width: min(420px, calc(100vw - 30px));
-  max-height: min(620px, calc(100dvh - 120px));
+  left: 50%;
+  bottom: calc(var(--safe-bottom) + 6px);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 232, .45);
+}
+
+#hint span {
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(10, 8, 6, .5);
+  border: 1px solid rgba(246, 241, 232, .1);
+}
+
+/* ---------- Project panel ---------- */
+
+#panel {
+  position: fixed;
+  z-index: 40;
+  right: clamp(14px, 3vw, 40px);
+  bottom: calc(var(--safe-bottom) + 8px);
+  width: min(430px, calc(100vw - 28px));
+  max-height: min(70dvh, 640px);
   overflow-y: auto;
   padding: 28px;
-  border: 1px solid rgba(255,255,255,.82);
-  border-radius: 30px;
-  background: rgba(251,253,251,.84);
-  backdrop-filter: blur(24px);
-  box-shadow: 0 30px 100px rgba(22,75,101,.24);
-  transform: translateY(24px) scale(.98);
+  border-radius: 26px;
+  background: rgba(23, 18, 14, .9);
+  border: 1px solid rgba(246, 241, 232, .14);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .6);
+  transform: translateY(20px) scale(.98);
   opacity: 0;
   pointer-events: none;
-  transition: transform .4s cubic-bezier(.16,1,.3,1), opacity .35s ease;
+  transition: transform .45s cubic-bezier(.16, 1, .3, 1), opacity .35s ease;
 }
 
-.story-panel.open {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
+#panel.open { transform: none; opacity: 1; pointer-events: auto; }
 
-.story-close {
+#panelClose {
   position: absolute;
-  right: 18px;
-  top: 17px;
+  right: 16px;
+  top: 15px;
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(21,21,21,.07);
+  background: rgba(246, 241, 232, .1);
   cursor: pointer;
-  font-size: 22px;
+  font-size: 20px;
+  line-height: 1;
 }
 
-.story-number {
-  color: rgba(21,21,21,.35);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .14em;
-}
-
-.story-kicker {
-  margin: 28px 0 8px;
-  color: rgba(21,21,21,.50);
+#panel .kicker {
+  margin: 0 0 10px;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: .15em;
+  letter-spacing: .18em;
   text-transform: uppercase;
+  color: var(--accent, #ffce8c);
 }
 
-.story-panel h3 {
+#panel h2 {
   margin: 0;
-  font-family: "Arial Black", "Helvetica Neue", sans-serif;
-  font-size: clamp(35px, 4vw, 53px);
-  line-height: .93;
-  letter-spacing: -.055em;
+  font-size: clamp(27px, 3.4vw, 38px);
+  line-height: 1.02;
+  letter-spacing: -.035em;
 }
 
-.story-copy {
-  margin: 20px 0 0;
-  color: #59636a;
+#panel .lede {
+  margin: 16px 0 0;
+  color: rgba(246, 241, 232, .72);
   font-size: 14px;
   line-height: 1.65;
 }
 
-.story-facts {
-  display: grid;
-  gap: 8px;
-  margin-top: 23px;
-}
+#panel .facts { display: grid; gap: 8px; margin-top: 22px; }
 
-/* Staggered reveal of the phase panel content */
-.story-panel.revealing .story-number,
-.story-panel.revealing .story-kicker,
-.story-panel.revealing h3,
-.story-panel.revealing .story-copy,
-.story-panel.revealing .story-facts span,
-.story-panel.revealing .story-next {
-  animation: storyReveal .5s cubic-bezier(.16,1,.3,1) backwards;
-}
-
-.story-panel.revealing .story-number { animation-delay: .02s; }
-.story-panel.revealing .story-kicker { animation-delay: .08s; }
-.story-panel.revealing h3 { animation-delay: .14s; }
-.story-panel.revealing .story-copy { animation-delay: .22s; }
-.story-panel.revealing .story-facts span:nth-child(1) { animation-delay: .30s; }
-.story-panel.revealing .story-facts span:nth-child(2) { animation-delay: .37s; }
-.story-panel.revealing .story-facts span:nth-child(3) { animation-delay: .44s; }
-.story-panel.revealing .story-facts span:nth-child(4) { animation-delay: .51s; }
-.story-panel.revealing .story-next { animation-delay: .56s; }
-
-@keyframes storyReveal {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Title micro-parallax on pointer move */
-.story-panel h3 {
-  transition: transform .5s cubic-bezier(.16,1,.3,1);
-  will-change: transform;
-}
-
-/* Phase hotspot preview on hover/tap */
-.hotspot-preview {
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 10px);
-  transform: translate(-50%, 6px);
-  width: max-content;
-  max-width: 210px;
-  padding: 9px 13px;
-  border-radius: 13px;
-  border: 1px solid rgba(255,255,255,.9);
-  background: rgba(20,20,20,.86);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 1.35;
-  text-align: left;
-  white-space: normal;
-  opacity: 0;
-  pointer-events: none;
-  box-shadow: 0 14px 34px rgba(20,52,68,.28);
-  transition: opacity .22s ease, transform .22s cubic-bezier(.16,1,.3,1);
-}
-
-.hotspot:hover .hotspot-preview,
-.hotspot.peek .hotspot-preview {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-.hotspot.active .hotspot-preview {
-  opacity: 0;
-}
-
-.story-facts span {
-  display: block;
+#panel .facts span {
   padding: 13px 15px;
-  border: 1px solid rgba(21,21,21,.09);
-  border-radius: 15px;
-  background: rgba(255,255,255,.48);
-  color: #465057;
-  font-size: 11px;
-  line-height: 1.42;
-}
-
-.story-next {
-  width: 100%;
-  min-height: 50px;
-  margin-top: 20px;
-  border-radius: 999px;
-  background: #171717;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 19px;
-  cursor: pointer;
+  border-radius: 14px;
+  background: rgba(246, 241, 232, .06);
+  border: 1px solid rgba(246, 241, 232, .09);
   font-size: 12px;
-  font-weight: 700;
-}
-
-/* MISC */
-
-.toast {
-  position: fixed;
-  z-index: 200;
-  left: 50%;
-  bottom: calc(24px + var(--safe-bottom));
-  transform: translate(-50%, 20px);
-  padding: 10px 15px;
-  border-radius: 999px;
-  background: rgba(20,20,20,.88);
-  color: white;
-  font-size: 11px;
-  opacity: 0;
-  pointer-events: none;
-  transition: .3s ease;
-}
-
-.toast.show {
-  transform: translate(-50%, 0);
-  opacity: 1;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 850px) {
-  .topbar {
-    grid-template-columns: 1fr auto;
-  }
-
-  .topbar-center {
-    display: none;
-  }
-
-  .intro-copy {
-    top: 15%;
-  }
-
-  .intro h1 {
-    font-size: clamp(54px, 14vw, 92px);
-  }
-
-  .hero-bubble {
-    left: 60%;
-    top: 61%;
-    width: min(68vw, 430px);
-  }
-
-  .map-intro {
-    top: 13%;
-    padding: 20px;
-  }
-
-  .project-index {
-    top: auto;
-    left: 18px;
-    right: 18px;
-    bottom: calc(18px + var(--safe-bottom));
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .project-index::-webkit-scrollbar {
-    display: none;
-  }
-
-  .project-index button {
-    min-width: 135px;
-    grid-template-columns: 27px 1fr;
-  }
-
-  .world-help,
-  .compass {
-    display: none;
-  }
-
-  .island-title {
-    top: 13%;
-  }
-
-  .back-island {
-    bottom: calc(18px + var(--safe-bottom));
-  }
-
-  .story-panel {
-    right: 12px;
-    bottom: calc(12px + var(--safe-bottom));
-    width: calc(100vw - 24px);
-    max-height: 61dvh;
-    border-radius: 25px;
-  }
-
-  .hotspot-label {
-    display: none;
-  }
-
-  .hotspot:hover,
-  .hotspot.active {
-    padding-right: 5px;
-  }
-}
-
-@media (max-width: 560px) {
-  .brand span:last-child {
-    display: none;
-  }
-
-  .intro-copy {
-    left: 20px;
-    right: 20px;
-    top: 14%;
-  }
-
-  .intro h1 {
-    font-size: 15vw;
-  }
-
-  .intro-note {
-    max-width: 260px;
-  }
-
-  .hero-bubble {
-    left: 56%;
-    top: 62%;
-    width: min(74vw, 360px);
-  }
-
-  .intro-coordinates {
-    display: none;
-  }
-
-  .intro-hint {
-    right: 20px;
-    bottom: calc(22px + var(--safe-bottom));
-  }
-
-  .map-intro {
-    left: 14px;
-    right: 14px;
-    width: auto;
-    top: 12%;
-  }
-
-  .map-intro h2 {
-    font-size: 36px;
-  }
-
-  .map-legend {
-    grid-template-columns: repeat(3, auto);
-    overflow-x: auto;
-    padding-bottom: 2px;
-  }
-
-  .map-legend span {
-    min-width: max-content;
-  }
-
-  .island-title {
-    left: 18px;
-    right: 18px;
-    width: auto;
-    top: 13%;
-  }
-
-  .island-title h2 {
-    font-size: 58px;
-  }
-
-  .island-title span {
-    font-size: 12px;
-    max-width: 270px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: .001ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-
-/* Compatibility fallback for iOS Quick Look and restricted previews */
-.hero-bubble {
-  text-decoration: none;
-  color: inherit;
-}
-
-.world:target {
-  display: block !important;
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-}
-
-.static-fallback {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 35% 28%, rgba(255,255,255,.25), transparent 20%),
-    linear-gradient(180deg, #a8e3f8, #70c2e3);
-}
-
-.world.world-ready .static-fallback {
-  display: none;
-}
-
-.fallback-sky {
-  position: absolute;
-  inset: 0;
-  opacity: .26;
-  background-image:
-    radial-gradient(ellipse at 12% 18%, white 0 7%, transparent 8%),
-    radial-gradient(ellipse at 79% 12%, white 0 10%, transparent 11%),
-    radial-gradient(ellipse at 88% 72%, white 0 8%, transparent 9%);
-  filter: blur(10px);
-}
-
-.fallback-copy {
-  position: absolute;
-  z-index: 5;
-  left: clamp(18px, 5vw, 70px);
-  top: 15%;
-  max-width: 340px;
-  padding: 20px;
-  border-radius: 24px;
-  background: rgba(255,255,255,.62);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,.7);
-}
-
-.fallback-copy h2 {
-  margin: 0;
-  font-family: "Arial Black", "Helvetica Neue", sans-serif;
-  font-size: clamp(38px, 5vw, 64px);
-  line-height: .9;
-  letter-spacing: -.06em;
-}
-
-.fallback-copy > p:last-child {
-  color: #59636a;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.fallback-island {
-  position: absolute;
-  z-index: 6;
-  width: clamp(150px, 20vw, 255px);
-  aspect-ratio: 1.18;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  color: #1b2023;
-  text-decoration: none;
-  transition: transform .2s ease;
-}
-
-.fallback-island:hover,
-.fallback-island:focus-visible {
-  transform: translateY(-8px) scale(1.03);
-}
-
-.fallback-land {
-  position: absolute;
-  inset: 10%;
-  border-radius: 46% 54% 50% 50% / 58% 43% 57% 42%;
-  border: 10px solid #ffe2ad;
-  box-shadow: 12px 20px 0 rgba(41,92,118,.18), 0 26px 55px rgba(39,95,122,.18);
-  transform: rotate(-5deg);
-}
-
-.fallback-island::before,
-.fallback-island::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  border-radius: 50%;
-  background: rgba(255,255,255,.38);
-}
-
-.fallback-island::before {
-  width: 18px;
-  height: 18px;
-  left: 19%;
-  top: 28%;
-}
-
-.fallback-island::after {
-  width: 10px;
-  height: 10px;
-  right: 21%;
-  top: 42%;
-}
-
-.fallback-island strong,
-.fallback-island small {
-  position: relative;
-  z-index: 4;
-}
-
-.fallback-island strong {
-  margin-top: 8px;
-  font-size: clamp(20px, 2.5vw, 34px);
-  letter-spacing: -.04em;
-}
-
-.fallback-island small {
-  color: rgba(20,28,32,.58);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-}
-
-.fallback-bloop {
-  left: 23%;
-  top: 50%;
-}
-
-.fallback-bloop .fallback-land {
-  background: linear-gradient(145deg, #bca1f5, #8064cf);
-}
-
-.fallback-merkorn {
-  right: 13%;
-  top: 26%;
-}
-
-.fallback-merkorn .fallback-land {
-  background: linear-gradient(145deg, #ff9a55, #d85c1b);
-}
-
-.fallback-dreambase {
-  right: 31%;
-  bottom: 5%;
-}
-
-.fallback-dreambase .fallback-land {
-  background:
-    radial-gradient(circle at 45% 38%, #b59bff, transparent 17%),
-    linear-gradient(145deg, #6c6aa9, #414174);
-}
-
-.fallback-orsini {
-  right: 4%;
-  bottom: 22%;
-}
-
-.fallback-orsini .fallback-land {
-  background: linear-gradient(145deg, #8fd0d4, #3d7f8c);
-}
-
-.fallback-project {
-  display: none;
-  position: fixed;
-  z-index: 120;
-  inset: auto clamp(14px, 4vw, 48px) calc(14px + var(--safe-bottom));
-  max-height: 74dvh;
-  overflow-y: auto;
-  padding: clamp(24px, 4vw, 44px);
-  border-radius: 30px;
-  background: rgba(251,253,251,.93);
-  backdrop-filter: blur(24px);
-  box-shadow: 0 30px 100px rgba(25,74,98,.28);
-}
-
-.fallback-project:target {
-  display: block;
-}
-
-.fallback-project > p {
-  margin: 0 0 12px;
-  color: #6d7479;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
-.fallback-project h3 {
-  margin: 0;
-  font-family: "Arial Black", "Helvetica Neue", sans-serif;
-  font-size: clamp(48px, 8vw, 92px);
-  line-height: .85;
-  letter-spacing: -.07em;
-}
-
-.fallback-close {
-  position: absolute;
-  right: 18px;
-  top: 16px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(20,20,20,.07);
-  color: #151515;
-  text-decoration: none;
-  font-size: 25px;
-}
-
-.fallback-phases {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 28px;
-}
-
-.fallback-phases article {
-  min-height: 150px;
-  padding: 18px;
-  border: 1px solid rgba(20,20,20,.09);
-  border-radius: 20px;
-  background: rgba(255,255,255,.6);
-  display: grid;
-  align-content: start;
-  gap: 8px;
-}
-
-.fallback-phases i {
-  width: 28px;
-  height: 28px;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.fallback-house {
-  background: #ff785d;
-  clip-path: polygon(50% 0, 100% 40%, 87% 40%, 87% 100%, 13% 100%, 13% 40%, 0 40%);
-}
-
-.fallback-person {
-  border-radius: 50% 50% 45% 45%;
-  background: #8b6eff;
-}
-
-.fallback-animal {
-  border-radius: 47% 53% 58% 42%;
-  background: #2f8b6f;
-}
-
-.fallback-phases strong {
-  font-size: 14px;
-}
-
-.fallback-phases span {
-  color: #5d666c;
-  font-size: 11px;
   line-height: 1.45;
+  color: rgba(246, 241, 232, .82);
 }
+
+#panel .facts a { color: var(--accent, #ffce8c); }
 
 @media (max-width: 720px) {
-  .fallback-copy {
-    top: 11%;
-    left: 14px;
-    right: 14px;
-    max-width: none;
-  }
-
-  .fallback-copy h2 {
-    font-size: 38px;
-  }
-
-  .fallback-bloop {
-    left: 5%;
-    top: 45%;
-  }
-
-  .fallback-merkorn {
-    right: 1%;
-    top: 41%;
-  }
-
-  .fallback-dreambase {
-    right: 28%;
-    bottom: 3%;
-  }
-
-  .fallback-orsini {
-    right: 2%;
-    bottom: 24%;
-  }
-
-  .fallback-island {
-    width: 42vw;
-    max-width: 190px;
-  }
-
-  .fallback-phases {
-    grid-template-columns: 1fr;
-  }
+  #panel { right: 10px; left: 10px; width: auto; padding: 22px; max-height: 62dvh; }
+  #hint span:nth-child(n+3) { display: none; }
 }
-
-/* V4 — transition-style cloud hero */
-.intro-clouds {
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  background:
-    radial-gradient(circle at 50% 46%, rgba(255,255,255,.88), rgba(255,255,255,.30) 31%, transparent 58%),
-    linear-gradient(180deg, #eaf8ff 0%, #c9edff 53%, #a9ddf5 100%);
-}
-
-.intro-clouds::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.16), transparent 45%),
-    radial-gradient(circle at 18% 18%, rgba(255,255,255,.38), transparent 22%),
-    radial-gradient(circle at 82% 72%, rgba(255,255,255,.30), transparent 24%);
-}
-
-.cloud-entry {
-  position: relative;
-  z-index: 4;
-  width: 100%;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  cursor: pointer;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.hero-cloud {
-  position: absolute;
-  display: block;
-  width: min(720px, 58vw);
-  height: min(440px, 36vw);
-  min-width: 390px;
-  min-height: 240px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 24% 55%, rgba(255,255,255,.99) 0 30%, transparent 31%),
-    radial-gradient(circle at 49% 37%, rgba(255,255,255,.99) 0 37%, transparent 38%),
-    radial-gradient(circle at 72% 58%, rgba(255,255,255,.97) 0 32%, transparent 33%);
-  filter: blur(7px);
-  opacity: .96;
-  pointer-events: none;
-  transition:
-    transform .65s cubic-bezier(.16,1,.3,1),
-    opacity .45s ease,
-    filter .45s ease;
-}
-
-.hc-1 { left: -17%; top: -14%; transform: rotate(8deg) scale(.90); }
-.hc-2 { right: -18%; top: -10%; transform: rotate(-9deg) scale(.94); }
-.hc-3 { left: -23%; top: 30%; transform: rotate(-5deg) scale(1.04); }
-.hc-4 { right: -24%; top: 34%; transform: rotate(7deg) scale(1.08); }
-.hc-5 { left: -14%; bottom: -23%; transform: rotate(4deg) scale(.93); }
-.hc-6 { right: -12%; bottom: -24%; transform: rotate(-6deg) scale(.97); }
-
-.cloud-entry::before,
-.cloud-entry::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  width: min(440px, 35vw);
-  height: min(260px, 21vw);
-  min-width: 260px;
-  min-height: 155px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 24% 55%, rgba(255,255,255,.80) 0 30%, transparent 31%),
-    radial-gradient(circle at 49% 37%, rgba(255,255,255,.78) 0 37%, transparent 38%),
-    radial-gradient(circle at 72% 58%, rgba(255,255,255,.75) 0 32%, transparent 33%);
-  filter: blur(12px);
-  opacity: .58;
-  pointer-events: none;
-}
-
-.cloud-entry::before {
-  left: 18%;
-  top: 7%;
-  transform: rotate(-8deg);
-}
-
-.cloud-entry::after {
-  right: 17%;
-  bottom: 5%;
-  transform: rotate(9deg);
-}
-
-.cloud-entry-copy {
-  position: relative;
-  z-index: 8;
-  width: min(940px, 88vw);
-  display: grid;
-  justify-items: center;
-  text-align: center;
-  padding: 36px;
-}
-
-.hero-signature {
-  margin-bottom: 20px;
-  color: rgba(21,21,21,.52);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-
-.cloud-entry-copy h1 {
-  margin: 0;
-  color: #171717;
-  font-family: "Arial Black", "Helvetica Neue", sans-serif;
-  font-size: clamp(64px, 10vw, 148px);
-  line-height: .82;
-  letter-spacing: -.078em;
-  text-wrap: balance;
-}
-
-.cloud-entry-hint {
-  margin-top: 30px;
-  min-height: 52px;
-  padding: 0 20px;
-  border: 1px solid rgba(255,255,255,.90);
-  border-radius: 999px;
-  background: rgba(255,255,255,.62);
-  backdrop-filter: blur(18px);
-  color: rgba(21,21,21,.70);
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  box-shadow: 0 16px 44px rgba(64,113,139,.12);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .11em;
-  text-transform: uppercase;
-  transition: transform .28s ease, background .28s ease, box-shadow .28s ease;
-}
-
-.cloud-entry-hint i {
-  font-style: normal;
-  font-size: 18px;
-}
-
-.cloud-entry:hover .cloud-entry-hint {
-  transform: translateY(-3px);
-  background: rgba(255,255,255,.82);
-  box-shadow: 0 22px 54px rgba(64,113,139,.17);
-}
-
-.cloud-entry:hover .hc-1 { transform: translate(12px, 9px) rotate(8deg) scale(.94); }
-.cloud-entry:hover .hc-2 { transform: translate(-12px, 10px) rotate(-9deg) scale(.98); }
-.cloud-entry:hover .hc-3 { transform: translate(18px, -4px) rotate(-5deg) scale(1.08); }
-.cloud-entry:hover .hc-4 { transform: translate(-18px, -5px) rotate(7deg) scale(1.12); }
-.cloud-entry:hover .hc-5 { transform: translate(12px, -12px) rotate(4deg) scale(.97); }
-.cloud-entry:hover .hc-6 { transform: translate(-12px, -12px) rotate(-6deg) scale(1.01); }
-
-.cloud-entry.entering .hero-cloud {
-  animation: heroCloudRush 1.05s cubic-bezier(.2,.72,.2,1) forwards;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-}
-
-.cloud-entry.entering .hc-2 { animation-delay: .05s; }
-.cloud-entry.entering .hc-3 { animation-delay: .10s; }
-.cloud-entry.entering .hc-4 { animation-delay: .07s; }
-.cloud-entry.entering .hc-5 { animation-delay: .14s; }
-.cloud-entry.entering .hc-6 { animation-delay: .11s; }
-
-.cloud-entry.entering .cloud-entry-copy {
-  animation: heroCopyDisappear .34s ease forwards;
-}
-
-.cloud-entry.entering::before,
-.cloud-entry.entering::after {
-  animation: softCloudRush .9s ease forwards;
-}
-
-@keyframes heroCloudRush {
-  0% { opacity: .96; }
-  45% { opacity: 1; }
-  100% { transform: scale(2.65) translateY(-4vh); opacity: 0; }
-}
-
-@keyframes softCloudRush {
-  to { transform: scale(2.8); opacity: 0; }
-}
-
-@keyframes heroCopyDisappear {
-  to { opacity: 0; transform: translateY(12px) scale(.975); }
-}
-
-@media (max-width: 760px) {
-  .hero-cloud {
-    width: 92vw;
-    height: 58vw;
-  }
-
-  .hc-1 { left: -44%; top: -7%; }
-  .hc-2 { right: -46%; top: 2%; }
-  .hc-3 { left: -51%; top: 34%; }
-  .hc-4 { right: -53%; top: 38%; }
-  .hc-5 { left: -43%; bottom: -12%; }
-  .hc-6 { right: -42%; bottom: -13%; }
-
-  .cloud-entry-copy {
-    padding: 24px 18px;
-  }
-
-  .cloud-entry-copy h1 {
-    font-size: clamp(60px, 17vw, 92px);
-  }
-
-  .cloud-entry-hint {
-    max-width: 90vw;
-    min-height: 48px;
-    margin-top: 24px;
-    padding: 0 16px;
-    font-size: 9px;
-    letter-spacing: .08em;
-  }
-
-  .intro-coordinates {
-    display: none;
-  }
-}
-
 </style>
 </head>
 <body>
-  <div class="app" id="app">
-    <header class="topbar" aria-label="Navigazione del portfolio">
-      <a class="brand" href="#" id="brandHome" aria-label="Torna alla bolla">
-        <span class="brand-orb" aria-hidden="true"></span>
-        <span>Gianmarco</span>
-      </a>
 
-      <div class="topbar-center" id="locationLabel" aria-live="polite">
-        <span class="location-dot"></span>
-        <span>Outside the bubble</span>
-      </div>
+<div id="entrance">
+  <p class="eyebrow">Gianmarco Antonacci · Product designer</p>
+  <h1>La casa dei progetti</h1>
+  <p class="lede">Ogni stanza è un progetto. Entra, gira per le stanze e avvicinati a quello che ti incuriosisce.</p>
+  <button id="enterButton" type="button">Entra nella casa</button>
+  <p class="loading-note" id="loadingNote">Muoviti con W A S D o le frecce · guarda con il mouse</p>
+</div>
 
-      <div class="topbar-actions">
-        <button class="round-button" id="soundToggle" type="button" aria-label="Attiva i suoni" aria-pressed="false">
-          <span class="sound-icon" aria-hidden="true"><i></i><i></i><i></i></span>
-        </button>
-        <button class="round-button hidden" id="mapButton" type="button" aria-label="Torna all'arcipelago">
-          <span aria-hidden="true">⌁</span>
-        </button>
-      </div>
-    </header>
-
-    <main>
-      <section class="intro intro-clouds" id="intro" aria-labelledby="introTitle">
-        <a class="cloud-entry" id="cloudEntry" href="#world" aria-label="Clicca per esplorare l'arcipelago">
-          <span class="hero-cloud hc-1" aria-hidden="true"></span>
-          <span class="hero-cloud hc-2" aria-hidden="true"></span>
-          <span class="hero-cloud hc-3" aria-hidden="true"></span>
-          <span class="hero-cloud hc-4" aria-hidden="true"></span>
-          <span class="hero-cloud hc-5" aria-hidden="true"></span>
-          <span class="hero-cloud hc-6" aria-hidden="true"></span>
-
-          <span class="cloud-entry-copy">
-            <span class="hero-signature">Gianmarco · UX/UI Designer</span>
-            <h1 id="introTitle">Ogni progetto<br />è un mondo</h1>
-            <span class="cloud-entry-hint">Clicca per esplorare l’arcipelago <i aria-hidden="true">↘</i></span>
-          </span>
-        </a>
-
-        <div class="intro-coordinates" aria-hidden="true">
-          <span>41.1171° N</span>
-          <i></i>
-          <span>16.8719° E</span>
-        </div>
-      </section>
-
-      <section class="world hidden" id="world" aria-label="Arcipelago dei progetti">
-        <canvas id="worldCanvas"></canvas>
-
-        <div class="static-fallback" aria-label="Versione compatibile dell'arcipelago">
-          <div class="fallback-sky"></div>
-          <div class="fallback-copy">
-            <p class="eyebrow">Project archipelago</p>
-            <h2>Scegli un’isola.</h2>
-            <p>Questa modalità compatibile funziona anche quando l’anteprima del telefono blocca JavaScript.</p>
-          </div>
-
-          <a class="fallback-island fallback-bloop" href="#fallback-bloop">
-            <span class="fallback-land"></span>
-            <strong>Bloop</strong>
-            <small>Event discovery</small>
-          </a>
-
-          <a class="fallback-island fallback-merkorn" href="#fallback-merkorn">
-            <span class="fallback-land"></span>
-            <strong>Merkorn</strong>
-            <small>B2B software</small>
-          </a>
-
-          <a class="fallback-island fallback-dreambase" href="#fallback-dreambase">
-            <span class="fallback-land"></span>
-            <strong>Dreambase</strong>
-            <small>Wellness concept</small>
-          </a>
-
-          <a class="fallback-island fallback-orsini" href="#fallback-orsini">
-            <span class="fallback-land"></span>
-            <strong>Brand &amp; sito</strong>
-            <small>Fotografo · Brand identity</small>
-          </a>
-
-          <div class="fallback-project" id="fallback-bloop">
-            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
-            <p>01 · Event discovery</p>
-            <h3>Bloop</h3>
-            <div class="fallback-phases">
-              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Eventi sparsi tra social, passaparola e siti diversi.</span></article>
-              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Dalla scoperta all’RSVP in pochi gesti.</span></article>
-              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Curiosa, leggera e profondamente locale.</span></article>
-            </div>
-          </div>
-
-          <div class="fallback-project" id="fallback-merkorn">
-            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
-            <p>02 · B2B software</p>
-            <h3>Merkorn</h3>
-            <div class="fallback-phases">
-              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>I processi reali vengono prima del software.</span></article>
-              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Dashboard orientate a decisioni operative.</span></article>
-              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Pragmatica, intelligente e umana.</span></article>
-            </div>
-          </div>
-
-          <div class="fallback-project" id="fallback-dreambase">
-            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
-            <p>03 · Wellness concept</p>
-            <h3>Dreambase</h3>
-            <div class="fallback-phases">
-              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Un rituale connesso, non un’altra dashboard.</span></article>
-              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Poche decisioni nel momento giusto.</span></article>
-              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Calma, presenza e protezione.</span></article>
-            </div>
-          </div>
-
-          <div class="fallback-project" id="fallback-orsini">
-            <a class="fallback-close" href="#world" aria-label="Chiudi">×</a>
-            <p>05 · Brand identity · Web design</p>
-            <h3>Brand identity e sito fotografo</h3>
-            <div class="fallback-phases">
-              <article><i class="fallback-house"></i><strong>Fondamenta</strong><span>Le fotografie al centro, il resto scompare.</span></article>
-              <article><i class="fallback-person"></i><strong>Esperienza</strong><span>Guardare, non navigare.</span></article>
-              <article><i class="fallback-animal"></i><strong>Carattere</strong><span>Logo su misura disegnato da Gianmarco, toni neutri, a caccia di luce.</span></article>
-            </div>
-          </div>
-        </div>
-
-        <div class="world-vignette" aria-hidden="true"></div>
-        <div class="cloud-layer cloud-layer-back" id="cloudBack" aria-hidden="true"></div>
-        <div class="cloud-layer cloud-layer-front" id="cloudFront" aria-hidden="true"></div>
-
-        <aside class="map-intro" id="mapIntro">
-          <p class="eyebrow">Project archipelago</p>
-          <h2>Scegli un’isola.</h2>
-          <p>
-            Ogni territorio racconta un progetto. Avvicinati per scoprire
-            fondamenta, persone e carattere.
-          </p>
-          <div class="map-legend">
-            <span><i class="legend-house"></i> Casa · struttura</span>
-            <span><i class="legend-person"></i> Persona · esperienza</span>
-            <span><i class="legend-animal"></i> Animale · identità</span>
-          </div>
-        </aside>
-
-        <div class="project-index" id="projectIndex" aria-label="Indice dei progetti">
-          <button type="button" data-project="bloop">
-            <span>01</span>
-            <strong>Bloop</strong>
-          </button>
-          <button type="button" data-project="merkorn">
-            <span>02</span>
-            <strong>Merkorn</strong>
-          </button>
-          <button type="button" data-project="dreambase">
-            <span>03</span>
-            <strong>Dreambase</strong>
-          </button>
-          <button type="button" data-project="about">
-            <span>04</span>
-            <strong>Chi sono</strong>
-          </button>
-          <button type="button" data-project="orsini">
-            <span>05</span>
-            <strong>Brand &amp; sito</strong>
-          </button>
-          <button type="button" data-project="trainee">
-            <span>06</span>
-            <strong>TraineeUX</strong>
-          </button>
-        </div>
-
-        <div class="island-title hidden" id="islandTitle">
-          <p id="islandType"></p>
-          <h2 id="islandName"></h2>
-          <span id="islandTagline"></span>
-        </div>
-
-        <div class="hotspots hidden" id="hotspots" aria-label="Fasi del progetto">
-          <button class="hotspot hotspot-house" type="button" data-phase="house">
-            <span class="hotspot-pulse"></span>
-            <span class="hotspot-label"><small>01</small> Fondamenta</span>
-            <span class="hotspot-preview" data-preview="house" aria-hidden="true"></span>
-          </button>
-          <button class="hotspot hotspot-person" type="button" data-phase="person">
-            <span class="hotspot-pulse"></span>
-            <span class="hotspot-label"><small>02</small> Esperienza</span>
-            <span class="hotspot-preview" data-preview="person" aria-hidden="true"></span>
-          </button>
-          <button class="hotspot hotspot-animal" type="button" data-phase="animal">
-            <span class="hotspot-pulse"></span>
-            <span class="hotspot-label"><small>03</small> Carattere</span>
-            <span class="hotspot-preview" data-preview="animal" aria-hidden="true"></span>
-          </button>
-        </div>
-
-        <div class="world-help" id="worldHelp">
-          <span>Drag to move</span>
-          <span>Scroll to zoom</span>
-          <span>B / M / D / C / R / T to jump</span>
-        </div>
-
-        <div class="compass" id="compass" aria-hidden="true">
-          <span>N</span>
-          <i></i>
-        </div>
-
-        <button class="back-island hidden" id="backIsland" type="button">
-          <span aria-hidden="true">←</span>
-          Arcipelago
-        </button>
-
-        <aside class="story-panel" id="storyPanel" aria-live="polite" aria-hidden="true">
-          <button class="story-close" id="storyClose" type="button" aria-label="Chiudi la fase">×</button>
-          <div class="story-number" id="storyNumber">01</div>
-          <p class="story-kicker" id="storyKicker">Fondamenta</p>
-          <h3 id="storyTitle"></h3>
-          <p class="story-copy" id="storyCopy"></p>
-          <div class="story-facts" id="storyFacts"></div>
-          <button class="story-next" id="storyNext" type="button">
-            Fase successiva
-            <span aria-hidden="true">→</span>
-          </button>
-        </aside>
-      </section>
-
-      <div class="transition-clouds" id="transitionClouds" aria-hidden="true">
-        <div class="transition-cloud tc-1"></div>
-        <div class="transition-cloud tc-2"></div>
-        <div class="transition-cloud tc-3"></div>
-        <div class="transition-cloud tc-4"></div>
-        <div class="transition-cloud tc-5"></div>
-        <div class="transition-cloud tc-6"></div>
-        <div class="transition-copy">
-          <span>Descending through the clouds</span>
-          <i></i>
-        </div>
-      </div>
-
-      <div class="burst-particles" id="burstParticles" aria-hidden="true"></div>
-
-      <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    </main>
+<div id="hud" class="hidden">
+  <div id="roomName"><small id="roomKicker"></small><strong id="roomTitle"></strong></div>
+  <div id="crosshair"></div>
+  <div id="prompt"></div>
+  <div id="hint">
+    <span>W A S D muovi</span>
+    <span>Mouse guarda</span>
+    <span>E apri</span>
+    <span>Esc chiudi</span>
   </div>
+</div>
 
-  <script>
+<div id="panel" aria-hidden="true">
+  <button id="panelClose" type="button" aria-label="Chiudi">×</button>
+  <p class="kicker" id="panelKicker"></p>
+  <h2 id="panelTitle"></h2>
+  <p class="lede" id="panelLede"></p>
+  <div class="facts" id="panelFacts"></div>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script>
 (() => {
   "use strict";
+  const $ = sel => document.querySelector(sel);
 
-  if (typeof CanvasRenderingContext2D !== "undefined" && !CanvasRenderingContext2D.prototype.roundRect) {
-    CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radii) {
-      const r = Array.isArray(radii) ? Number(radii[0] || 0) : Number(radii || 0);
-      const radius = Math.min(Math.abs(width) / 2, Math.abs(height) / 2, r);
-      this.moveTo(x + radius, y);
-      this.arcTo(x + width, y, x + width, y + height, radius);
-      this.arcTo(x + width, y + height, x, y + height, radius);
-      this.arcTo(x, y + height, x, y, radius);
-      this.arcTo(x, y, x + width, y, radius);
-      this.closePath();
-      return this;
-    };
-  }
+  /* ============================================================
+     ROOMS — the content of the house
+     ============================================================ */
 
-
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-
-  const intro = $("#intro");
-  const world = $("#world");
-  const cloudEntry = $("#cloudEntry");
-  const transitionClouds = $("#transitionClouds");
-  const particlesLayer = $("#burstParticles");
-  const worldCanvas = $("#worldCanvas");
-  const mapIntro = $("#mapIntro");
-  const projectIndex = $("#projectIndex");
-  const islandTitle = $("#islandTitle");
-  const islandName = $("#islandName");
-  const islandType = $("#islandType");
-  const islandTagline = $("#islandTagline");
-  const hotspots = $("#hotspots");
-  const storyPanel = $("#storyPanel");
-  const storyClose = $("#storyClose");
-  const storyNext = $("#storyNext");
-  const backIsland = $("#backIsland");
-  const mapButton = $("#mapButton");
-  const brandHome = $("#brandHome");
-  const soundToggle = $("#soundToggle");
-  const locationLabel = $("#locationLabel span:last-child");
-  const toast = $("#toast");
-
-  const ctx = worldCanvas.getContext("2d", { alpha: false });
-  let dpr = Math.min(window.devicePixelRatio || 1, 2);
-  let width = 0;
-  let height = 0;
-  let lastTime = performance.now();
-  let worldStarted = false;
-  let renderLoopActive = false;
-  let viewOffsetX = 0, viewOffsetY = 0, targetOffX = 0, targetOffY = 0;
-  let activeProject = null;
-  let activePhase = null;
-  let hoverProject = null;
-  let aboutWaveUntil = 0;
-  let aboutPlaneStart = 0;
-  let pointerDown = false;
-  let dragMoved = false;
-  let dragStart = { x: 0, y: 0 };
-  let cameraStart = { x: 0, y: 0 };
-  let audioContext = null;
-  let soundEnabled = false;
-
-  const camera = {
-    x: 0,
-    y: 0,
-    zoom: 0.78,
-    targetX: 0,
-    targetY: 0,
-    targetZoom: 0.78
-  };
-
-  const phases = ["house", "person", "animal"];
-
-  const projects = {
-    bloop: {
+  const ROOMS = [
+    {
       id: "bloop",
       name: "Bloop",
-      type: "Event discovery · Product design",
-      tagline: "Un’isola sociale dove scoprire cosa succede davvero intorno a te.",
-      x: -420,
-      y: -70,
-      radius: 220,
-      rotation: -0.10,
-      colors: {
-        cliff: "#976fc9",
-        sand: "#ffe1a8",
-        land: "#a98be9",
-        land2: "#7d62c7",
-        accent: "#ff775c",
-        water: "#77c9ea"
-      },
-      phasePositions: {
-        house: { x: -72, y: -30 },
-        person: { x: 49, y: 38 },
-        animal: { x: 90, y: -70 }
-      },
-      phases: {
-        house: {
-          number: "01",
-          kicker: "Fondamenta · Problem framing",
-          title: "Il caos prima della scoperta.",
-          copy: "Eventi sparsi tra stories, passaparola e siti diversi. La sfida era costruire un punto d’accesso locale, immediato e non promozionale.",
-          facts: [
-            "Discovery basata su rilevanza, distanza e momento.",
-            "RSVP gratuito con capienza e rilasci programmati.",
-            "Strumenti dedicati anche ai piccoli organizzatori."
-          ]
-        },
-        person: {
-          number: "02",
-          kicker: "Esperienza · UX flow",
-          title: "Tre gesti dalla curiosità all’RSVP.",
-          copy: "La persona entra, riconosce il contesto, capisce se l’evento fa per lei e conferma la partecipazione senza attraversare un labirinto.",
-          facts: [
-            "Feed Per te, Oggi e Popolare.",
-            "Mappa, filtri e schede evento leggibili.",
-            "QR personale e wallet dei propri RSVP."
-          ]
-        },
-        animal: {
-          number: "03",
-          kicker: "Carattere · Brand behavior",
-          title: "Curiosa, leggera, locale.",
-          copy: "La creatura di Bloop è un uccello esploratore: si muove, osserva e collega luoghi diversi. È la metafora del prodotto e della community.",
-          facts: [
-            "Tono fresco ma mai infantile.",
-            "Palette lilla, corallo e luce naturale.",
-            "Microinterazioni che premiano la scoperta."
-          ]
-        }
-      }
+      kicker: "Event discovery · Product design",
+      side: "left", z: -8,
+      accent: "#9a7cff",
+      wall: "#d9d0e6",
+      lede: "Un'app per scoprire cosa succede davvero intorno a te. Il problema non era la mancanza di eventi, ma il rumore: Bloop filtra per affinità e vicinanza, e porta dalla curiosità all'RSVP in tre gesti.",
+      facts: [
+        "Scoperta per affinità, non per algoritmo cieco.",
+        "Dalla curiosità all'RSVP in tre passaggi.",
+        "Tono curioso, leggero, locale."
+      ]
     },
-    merkorn: {
+    {
       id: "merkorn",
       name: "Merkorn",
-      type: "B2B software · Product strategy",
-      tagline: "Un’isola operativa: meno attrito, più controllo, dati che servono davvero.",
-      x: 370,
-      y: -155,
-      radius: 235,
-      rotation: 0.08,
-      colors: {
-        cliff: "#9a4b21",
-        sand: "#ffd4a6",
-        land: "#ff9147",
-        land2: "#d9621f",
-        accent: "#202025",
-        water: "#72c3e3"
-      },
-      phasePositions: {
-        house: { x: -58, y: -57 },
-        person: { x: 60, y: 40 },
-        animal: { x: 78, y: -58 }
-      },
-      phases: {
-        house: {
-          number: "01",
-          kicker: "Fondamenta · Service design",
-          title: "Il software parte dall’azienda.",
-          copy: "Prima dei wireframe vengono i processi reali: fogli Excel, passaggi manuali, responsabilità e decisioni che oggi vivono nella testa delle persone.",
-          facts: [
-            "Osservazione sul campo prima della progettazione.",
-            "Mappatura di dati, ruoli e colli di bottiglia.",
-            "MVP costruito sui processi ad alto impatto."
-          ]
-        },
-        person: {
-          number: "02",
-          kicker: "Esperienza · Operational UX",
-          title: "Ogni schermata deve far decidere.",
-          copy: "Dashboard e flussi non mostrano semplicemente dati. Rispondono a domande operative: cosa sta andando storto, dove intervenire e cosa succede dopo.",
-          facts: [
-            "Gerarchia visiva orientata all’azione.",
-            "Complessità progressiva per utenti diversi.",
-            "Design system modulare e verticale."
-          ]
-        },
-        animal: {
-          number: "03",
-          kicker: "Carattere · Product logic",
-          title: "La volpe osserva prima di agire.",
-          copy: "Il carattere Merkorn è intelligente, pragmatico e umano. Non promette magia: elimina lavoro inutile e rende visibili le scelte.",
-          facts: [
-            "Identità tech ma accessibile.",
-            "Metafore visive legate a costruzione e orbite.",
-            "Tono diretto, giovane e competente."
-          ]
-        }
-      }
+      kicker: "B2B software · Product design",
+      side: "right", z: -8,
+      accent: "#ff9147",
+      wall: "#ecd8c4",
+      lede: "Software gestionale per chi lavora sul campo. L'obiettivo era togliere attrito: meno campi, meno passaggi, più chiarezza su cosa fare adesso.",
+      facts: [
+        "Flussi operativi ridotti all'essenziale.",
+        "Dati complessi resi leggibili a colpo d'occhio.",
+        "Affidabile, diretto, senza fronzoli."
+      ]
     },
-    dreambase: {
+    {
       id: "dreambase",
       name: "Dreambase",
-      type: "Wellness concept · Experience design",
-      tagline: "Un’isola notturna dove la tecnologia si abbassa di volume.",
-      x: 30,
-      y: 365,
-      radius: 225,
-      rotation: -0.02,
-      colors: {
-        cliff: "#3c3b72",
-        sand: "#ddd8ef",
-        land: "#6866a6",
-        land2: "#44437b",
-        accent: "#b79aff",
-        water: "#74c2df"
-      },
-      phasePositions: {
-        house: { x: -68, y: -43 },
-        person: { x: 42, y: 45 },
-        animal: { x: 91, y: -55 }
-      },
-      phases: {
-        house: {
-          number: "01",
-          kicker: "Fondamenta · Ecosystem",
-          title: "Un rituale, non un’altra dashboard.",
-          copy: "Il progetto collega dispositivo e app senza trasformare il sonno in una performance. Il sistema accompagna, suggerisce e poi scompare.",
-          facts: [
-            "Pairing semplice tra hardware e app.",
-            "Programmi di luce, suono e respirazione.",
-            "Esperienza serale a basso carico cognitivo."
-          ]
-        },
-        person: {
-          number: "02",
-          kicker: "Esperienza · Calm interaction",
-          title: "Poche decisioni nel momento giusto.",
-          copy: "Di sera l’interfaccia riduce contrasto, testo e scelta. Al risveglio restituisce solo ciò che è utile, senza giudicare la notte appena trascorsa.",
-          facts: [
-            "Rituali attivabili con un gesto.",
-            "Feedback morbidi e non invasivi.",
-            "Personalizzazione progressiva."
-          ]
-        },
-        animal: {
-          number: "03",
-          kicker: "Carattere · Emotional layer",
-          title: "La balena si muove senza rumore.",
-          copy: "Dreambase prende il carattere da una creatura lenta e profonda. Il prodotto deve trasmettere presenza, calma e protezione.",
-          facts: [
-            "Toni notturni e bagliori morbidi.",
-            "Animazioni sincronizzate con il respiro.",
-            "Tecnologia percepita come atmosfera."
-          ]
-        }
-      }
+      kicker: "Wellness concept · Product design",
+      side: "left", z: -22,
+      accent: "#8f8cd8",
+      wall: "#cdcde0",
+      lede: "Un concept dedicato al sonno e al recupero. Tutto è costruito intorno a una sensazione di calma: ritmi lenti, bagliori morbidi, nessuna fretta.",
+      facts: [
+        "Toni notturni e bagliori morbidi.",
+        "Animazioni sincronizzate con il respiro.",
+        "Tecnologia percepita come atmosfera."
+      ]
     },
-    trainee: {
+    {
       id: "trainee",
       name: "TraineeUX",
-      type: "App · Formazione UX gamificata",
-      tagline: "Un’isola-palestra: dal mestiere al giudizio, un esercizio alla volta.",
-      x: -480,
-      y: 330,
-      radius: 205,
-      rotation: 0.05,
-      colors: {
-        cliff: "#2f6b52",
-        sand: "#eaf6ee",
-        land: "#a8dcc0",
-        land2: "#6cbb95",
-        accent: "#0e0e0e",
-        water: "#77c9ea"
-      },
-      phasePositions: {
-        house: { x: -66, y: -34 },
-        person: { x: 52, y: 36 },
-        animal: { x: 86, y: -62 }
-      },
-      phases: {
-        house: {
-          number: "01",
-          kicker: "Fondamenta · Product thinking",
-          title: "Studiare UX senza una rotta.",
-          copy: "Corsi infiniti, articoli sparsi, nessun criterio: si accumulano strumenti ma non si allena il giudizio. TraineeUX nasce come percorso strutturato — cinque livelli, dodici moduli — dove ogni passo allarga l’ambito su cui decidi.",
-          facts: [
-            "Percorso “Dal mestiere al giudizio”.",
-            "Esercizi pratici, non lezioni passive.",
-            "News di settore aggregate ogni ora."
-          ]
-        },
-        person: {
-          number: "02",
-          kicker: "Esperienza · Gamification",
-          title: "Tornare ogni giorno, senza sforzo.",
-          copy: "XP, gradi e serie non sono decorazioni: rendono visibile il progresso e trasformano lo studio in abitudine. L’app apre sempre su “riprendi da qui”, così la sessione parte in un tocco.",
-          facts: [
-            "XP, streak e gradi da Praticante a Expert.",
-            "Ripresa immediata dall’ultimo esercizio.",
-            "Quattro sezioni: Oggi, Percorso, News, Profilo."
-          ]
-        },
-        animal: {
-          number: "03",
-          kicker: "Carattere · Brand",
-          title: "Una bolla che impara con te.",
-          copy: "La mascotte è una bolla espressiva che reagisce ai tuoi progressi: amichevole ma mai infantile. Verde menta e nero, tipografia netta — un tono che tratta chi studia come un professionista.",
-          facts: [
-            "Mascotte-bolla con micro-espressioni.",
-            "Verde menta e nero, contrasti puliti.",
-            "Tono diretto: incoraggia, non celebra."
-          ]
-        }
-      }
+      kicker: "App · Formazione UX gamificata",
+      side: "right", z: -22,
+      accent: "#6cbb95",
+      wall: "#d2e1d6",
+      lede: "Una palestra per designer: cinque livelli, dodici moduli. Ogni livello non aggiunge strumenti, allarga l'ambito su cui decidi. XP, serie e gradi trasformano lo studio in abitudine.",
+      facts: [
+        "Percorso «Dal mestiere al giudizio».",
+        "XP, serie e gradi da Praticante a Expert.",
+        "Mascotte-bolla con micro-espressioni."
+      ]
     },
-    about: {
-      id: "about",
-      name: "Gianmarco",
-      type: "Chi sono · About",
-      tagline: "L’isola più piccola dell’arcipelago: qui vive chi disegna le mappe.",
-      x: -150,
-      y: -300,
-      radius: 82,
-      rotation: -0.03,
-      about: true,
-      colors: {
-        cliff: "#5b7a5f",
-        sand: "#ffe9c2",
-        land: "#86a878",
-        land2: "#5f7f5a",
-        accent: "#6f78b0",
-        water: "#77c9ea"
-      },
-      aboutContent: {
-        number: "04",
-        kicker: "Chi sono · About",
-        title: "Il cartografo.",
-        copy: "Sono Gianmarco, designer UX/UI. Do forma a prodotti digitali come fossero territori: ogni isola è un progetto. Questa piccola, invece, sono io — chi disegna le rotte.",
-        facts: [
-          "UX/UI & product design",
-          "Puglia · 41° N, 16° E",
-          "Curiosità come metodo",
-          "<a style=\"text-decoration:underline\" href=\"tel:+393520295120\">3520295120</a> · <a style=\"text-decoration:underline\" href=\"mailto:giamma.antonacci@gmail.com\">giamma.antonacci@gmail.com</a>"
-        ]
-      }
+    {
+      id: "foto",
+      name: "Riccardo Orsini",
+      kicker: "Brand identity · Sito fotografo",
+      side: "left", z: -36,
+      accent: "#e9e4da",
+      wall: "#dedad3",
+      lede: "Identità e sito per un fotografo di matrimonio, moda e ritratto. Bianco e nero come lingua madre, tipografia editoriale: la fotografia migliore non interrompe il momento, lo riconosce.",
+      facts: [
+        "Matrimonio, moda e ritratto · Italia e worldwide.",
+        "Bianco e nero come scelta, non come filtro.",
+        "Eleganza editoriale, contrasti puliti."
+      ]
     },
-    orsini: {
-      id: "orsini",
-      name: "Brand identity e sito fotografo",
-      type: "Brand identity · Web design",
-      tagline: "Un’isola di luce: logo, identità e sito per il fotografo Riccardo Orsini.",
-      x: 500,
-      y: 210,
-      radius: 205,
-      rotation: 0.05,
-      colors: {
-        cliff: "#35606c",
-        sand: "#ffe4b8",
-        land: "#5fa8b0",
-        land2: "#3d7f8c",
-        accent: "#ffb457",
-        water: "#77c9ea"
-      },
-      phasePositions: {
-        house: { x: -62, y: -40 },
-        person: { x: 52, y: 42 },
-        animal: { x: 84, y: -60 }
-      },
-      phases: {
-        house: {
-          number: "01",
-          kicker: "Fondamenta · Content first",
-          title: "Le foto al centro, il resto scompare.",
-          copy: "Brand identity e sito per il fotografo Riccardo Orsini: gli scatti sparsi tra archivi e social diventano un unico luogo, con un’identità e una struttura che mettono le immagini davanti a tutto.",
-          facts: [
-            "Un solo posto per mostrare il lavoro.",
-            "Serie e progetti al posto di un feed infinito.",
-            "<a style=\"text-decoration:underline\" href=\"https://riccardo-orsini-photography.giamma-antonacci.chatgpt.site\" target=\"_blank\" rel=\"noopener\">Visita il sito →</a>"
-          ]
-        },
-        person: {
-          number: "02",
-          kicker: "Esperienza · Viewing UX",
-          title: "Guardare, non navigare.",
-          copy: "Chi entra deve fare una cosa sola: guardare le fotografie. Percorsi brevi, niente distrazioni, e un contatto sempre a portata di mano per chi vuole lavorare con Riccardo.",
-          facts: [
-            "Navigazione essenziale tra le serie.",
-            "Ritmo visivo: pieni, vuoti e pause.",
-            "Contatto e commissioni in un passaggio."
-          ]
-        },
-        animal: {
-          number: "03",
-          kicker: "Carattere · Brand identity",
-          title: "Il gabbiano insegue la luce.",
-          copy: "L’identità parte dal logo, che ho disegnato io su misura per Riccardo, e sta un passo indietro rispetto agli scatti: toni neutri, tipografia sobria e la luce come unica protagonista.",
-          facts: [
-            "Logo disegnato da me, su misura.",
-            "Palette neutra che non compete con le foto.",
-            "La cornice sparisce, l’immagine resta."
-          ]
-        }
-      }
+    {
+      id: "studio",
+      name: "Lo studio",
+      kicker: "Chi sono · Gianmarco Antonacci",
+      side: "right", z: -36,
+      accent: "#ffce8c",
+      wall: "#e6d8c2",
+      lede: "Sono Gianmarco, product designer. Do forma a prodotti digitali come fossero spazi: ogni progetto è una stanza con le sue regole, la sua luce e il suo carattere. Questa è la mia.",
+      facts: [
+        "UX/UI & product design",
+        "Puglia · 41° N, 16° E",
+        "<a href=\"mailto:giamma.antonacci@gmail.com\">giamma.antonacci@gmail.com</a> · <a href=\"tel:+393520295120\">352 029 5120</a>"
+      ]
     }
+  ];
+
+  /* ============================================================
+     HOUSE GEOMETRY
+     ============================================================ */
+
+  const H = 3.3;              // wall height
+  const T = 0.3;              // wall thickness
+  const HALL_HW = 2.7;        // hallway half width
+  const DOOR_HW = 1.25;       // doorway half width
+  const ROOM_W = 12;          // room depth, measured out from the hallway
+  const ROOM_HD = 6;          // room half size along z
+  const HALL_FRONT = 5;
+  const HALL_BACK = -46;
+
+  const colliders = [];
+
+  function addCollider(cx, cz, w, d) {
+    colliders.push({ minX: cx - w / 2, maxX: cx + w / 2, minZ: cz - d / 2, maxZ: cz + d / 2 });
+  }
+
+  let renderer, scene, camera;
+  let floorMat, hallWallMat, ceilMat, trimMat, darkWoodMat, daylightMat;
+
+  /* ---------- textures ---------- */
+
+  function woodTexture() {
+    const c = document.createElement("canvas");
+    c.width = 512; c.height = 512;
+    const g = c.getContext("2d");
+    g.fillStyle = "#8a6240";
+    g.fillRect(0, 0, 512, 512);
+    for (let i = 0; i < 8; i++) {
+      const y = i * 64;
+      const shade = 140 + Math.floor(Math.random() * 26) - 13;
+      g.fillStyle = `rgb(${shade}, ${Math.floor(shade * .72)}, ${Math.floor(shade * .48)})`;
+      g.fillRect(0, y, 512, 62);
+      g.globalAlpha = .1;
+      for (let k = 0; k < 34; k++) {
+        g.strokeStyle = Math.random() > .5 ? "#3d2817" : "#c99a6e";
+        g.lineWidth = Math.random() * 1.5;
+        g.beginPath();
+        const yy = y + Math.random() * 62;
+        g.moveTo(0, yy);
+        g.bezierCurveTo(170, yy + (Math.random() - .5) * 6, 340, yy + (Math.random() - .5) * 6, 512, yy);
+        g.stroke();
+      }
+      g.globalAlpha = 1;
+      g.fillStyle = "rgba(45,28,16,.45)";
+      g.fillRect(0, y + 62, 512, 2);
+    }
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  }
+
+  function plasterTexture(hex) {
+    const c = document.createElement("canvas");
+    c.width = 256; c.height = 256;
+    const g = c.getContext("2d");
+    g.fillStyle = hex;
+    g.fillRect(0, 0, 256, 256);
+    const img = g.getImageData(0, 0, 256, 256);
+    for (let i = 0; i < img.data.length; i += 4) {
+      const n = (Math.random() - .5) * 13;
+      img.data[i] += n; img.data[i + 1] += n; img.data[i + 2] += n;
+    }
+    g.putImageData(img, 0, 0);
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  }
+
+  /* ---------- scene ---------- */
+
+  function init() {
+    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 0.82;
+    document.body.appendChild(renderer.domElement);
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color("#130f0b");
+    scene.fog = new THREE.Fog("#130f0b", 16, 62);
+
+    camera = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.08, 200);
+
+    buildHouse();
+    buildLights();
+
+    window.addEventListener("resize", onResize);
+  }
+
+  function onResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  function addBox(x, y, z, w, h, d, mat, collide) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    m.position.set(x, y, z);
+    m.castShadow = true;
+    m.receiveShadow = true;
+    scene.add(m);
+    if (collide) addCollider(x, z, w, d);
+    return m;
+  }
+
+  function buildHouse() {
+    const wood = woodTexture();
+    wood.repeat.set(8, 30);
+    floorMat = new THREE.MeshStandardMaterial({ map: wood, roughness: .72, metalness: 0 });
+
+    const plaster = plasterTexture("#e8dfd0");
+    plaster.repeat.set(5, 2);
+    hallWallMat = new THREE.MeshStandardMaterial({ map: plaster, roughness: .95, metalness: 0 });
+
+    ceilMat = new THREE.MeshStandardMaterial({ color: "#efe8dc", roughness: 1, metalness: 0 });
+    trimMat = new THREE.MeshStandardMaterial({ color: "#f7f2e8", roughness: .6, metalness: 0 });
+    darkWoodMat = new THREE.MeshStandardMaterial({ color: "#4a3121", roughness: .55, metalness: 0 });
+    daylightMat = new THREE.MeshStandardMaterial({
+      color: "#ffffff", emissive: "#cfe4ff", emissiveIntensity: 3.2, roughness: 1
+    });
+
+    const hallLen = HALL_FRONT - HALL_BACK;
+    const hallCz = (HALL_FRONT + HALL_BACK) / 2;
+
+    const hallFloor = new THREE.Mesh(new THREE.PlaneGeometry(HALL_HW * 2, hallLen), floorMat);
+    hallFloor.rotation.x = -Math.PI / 2;
+    hallFloor.position.set(0, 0, hallCz);
+    hallFloor.receiveShadow = true;
+    scene.add(hallFloor);
+
+    const hallCeil = new THREE.Mesh(new THREE.PlaneGeometry(HALL_HW * 2, hallLen), ceilMat);
+    hallCeil.rotation.x = Math.PI / 2;
+    hallCeil.position.set(0, H, hallCz);
+    scene.add(hallCeil);
+
+    // hallway side walls, split around each doorway
+    const doorZs = { left: [], right: [] };
+    ROOMS.forEach(r => doorZs[r.side].push(r.z));
+
+    ["left", "right"].forEach(side => {
+      const sx = side === "left" ? -HALL_HW : HALL_HW;
+      const zs = doorZs[side].slice().sort((a, b) => b - a);
+      let cursor = HALL_FRONT;
+      zs.forEach(dz => {
+        segmentWall(sx, cursor, dz + DOOR_HW);
+        addBox(sx, H - 0.45, dz, T, 0.9, DOOR_HW * 2, hallWallMat, false);
+        cursor = dz - DOOR_HW;
+      });
+      segmentWall(sx, cursor, HALL_BACK);
+    });
+
+    function segmentWall(sx, zA, zB) {
+      const len = Math.abs(zA - zB);
+      if (len < 0.02) return;
+      addBox(sx, H / 2, (zA + zB) / 2, T, H, len, hallWallMat, true);
+    }
+
+    addBox(0, H / 2, HALL_BACK, HALL_HW * 2 + T * 2, H, T, hallWallMat, true);
+    addBox(0, H / 2, HALL_FRONT, HALL_HW * 2 + T * 2, H, T, hallWallMat, true);
+
+    // skirting board along both hallway walls
+    ["left", "right"].forEach(side => {
+      const sx = (side === "left" ? -1 : 1) * (HALL_HW - T / 2 - 0.01);
+      addBox(sx, 0.07, hallCz, 0.06, 0.15, hallLen, darkWoodMat, false);
+    });
+
+    // door frames around every opening
+    ROOMS.forEach(r => {
+      const sx = (r.side === "left" ? -1 : 1) * HALL_HW;
+      addBox(sx, H / 2 - 0.3, r.z - DOOR_HW, T + 0.04, H - 0.6, 0.12, trimMat, false);
+      addBox(sx, H / 2 - 0.3, r.z + DOOR_HW, T + 0.04, H - 0.6, 0.12, trimMat, false);
+      addBox(sx, H - 0.92, r.z, T + 0.04, 0.12, DOOR_HW * 2 + 0.24, trimMat, false);
+    });
+
+    // window at the end of the hallway — the daylight you walk toward
+    const win = new THREE.Mesh(new THREE.PlaneGeometry(3.1, 1.9), daylightMat);
+    win.position.set(0, 1.75, HALL_BACK + T / 2 + 0.02);
+    scene.add(win);
+    addBox(0, 1.75, HALL_BACK + T / 2 + 0.06, 3.4, 0.09, 0.09, trimMat, false);
+    addBox(0, 1.75, HALL_BACK + T / 2 + 0.06, 0.09, 2.2, 0.09, trimMat, false);
+
+    const sunShaft = new THREE.PointLight("#cfe4ff", 55, 26, 2);
+    sunShaft.position.set(0, 1.9, HALL_BACK + 1.6);
+    scene.add(sunShaft);
+
+    // runner rug down the hallway
+    const rug = new THREE.Mesh(
+      new THREE.PlaneGeometry(2.6, hallLen - 6),
+      new THREE.MeshStandardMaterial({ color: "#8d4f3a", roughness: 1 })
+    );
+    rug.rotation.x = -Math.PI / 2;
+    rug.position.set(0, 0.012, hallCz);
+    rug.receiveShadow = true;
+    scene.add(rug);
+
+    ROOMS.forEach(buildRoom);
+    ROOMS.forEach(dressRoom);
+  }
+
+  function buildRoom(room) {
+    const dir = room.side === "left" ? -1 : 1;
+    const innerX = dir * HALL_HW;
+    const outerX = dir * (HALL_HW + ROOM_W);
+    const cx = dir * (HALL_HW + ROOM_W / 2);
+    room.center = new THREE.Vector3(cx, 0, room.z);
+
+    const wood = floorMat.map.clone();
+    wood.needsUpdate = true;
+    wood.repeat.set(5, 5);
+    const fm = new THREE.MeshStandardMaterial({ map: wood, roughness: .72 });
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_HD * 2), fm);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.set(cx, 0, room.z);
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_HD * 2), ceilMat);
+    ceil.rotation.x = Math.PI / 2;
+    ceil.position.set(cx, H, room.z);
+    scene.add(ceil);
+
+    const tex = plasterTexture(room.wall);
+    tex.repeat.set(3, 1.5);
+    const wm = new THREE.MeshStandardMaterial({ map: tex, roughness: .95 });
+    room.wallMat = wm;
+
+    addBox(outerX, H / 2, room.z, T, H, ROOM_HD * 2 + T, wm, true);
+    addBox(cx, H / 2, room.z - ROOM_HD, ROOM_W, H, T, wm, true);
+    addBox(cx, H / 2, room.z + ROOM_HD, ROOM_W, H, T, wm, true);
+
+    const frontLen = ROOM_HD - DOOR_HW;
+    if (frontLen > 0.02) {
+      addBox(innerX, H / 2, room.z - DOOR_HW - frontLen / 2, T, H, frontLen, wm, true);
+      addBox(innerX, H / 2, room.z + DOOR_HW + frontLen / 2, T, H, frontLen, wm, true);
+    }
+  }
+
+  // Painted canvas used for the artwork hanging in each room
+  function artTexture(room) {
+    const c = document.createElement("canvas");
+    c.width = 512; c.height = 352;
+    const g = c.getContext("2d");
+    g.fillStyle = "#15110d";
+    g.fillRect(0, 0, 512, 352);
+    const grad = g.createLinearGradient(0, 0, 512, 352);
+    grad.addColorStop(0, room.accent);
+    grad.addColorStop(1, "#15110d");
+    g.globalAlpha = .85;
+    g.fillStyle = grad;
+    g.fillRect(0, 0, 512, 352);
+    g.globalAlpha = 1;
+    g.fillStyle = "rgba(255,255,255,.92)";
+    g.font = "700 46px Inter, Helvetica, sans-serif";
+    g.textBaseline = "top";
+    g.fillText(room.name, 36, 220);
+    g.font = "600 17px Inter, Helvetica, sans-serif";
+    g.fillStyle = "rgba(255,255,255,.72)";
+    g.fillText(room.kicker.toUpperCase(), 38, 284);
+    const t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  }
+
+  function dressRoom(room) {
+    const dir = room.side === "left" ? -1 : 1;
+    const outerX = dir * (HALL_HW + ROOM_W);
+    const cx = room.center.x;
+    const inward = -dir;  // from the far wall back toward the hallway
+
+    // ---- window on the far wall: cool daylight against the warm interior ----
+    const win = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 3.4), daylightMat);
+    win.rotation.y = dir * Math.PI / 2;
+    win.position.set(outerX + inward * (T / 2 + 0.02), 1.75, room.z);
+    scene.add(win);
+
+    const frameX = outerX + inward * (T / 2 + 0.06);
+    addBox(frameX, 1.75, room.z - 1.8, 0.09, 2.1, 0.1, trimMat, false);
+    addBox(frameX, 1.75, room.z + 1.8, 0.09, 2.1, 0.1, trimMat, false);
+    addBox(frameX, 2.8, room.z, 0.09, 0.1, 3.7, trimMat, false);
+    addBox(frameX, 0.7, room.z, 0.09, 0.1, 3.7, trimMat, false);
+
+    const day = new THREE.PointLight("#cfe4ff", 34, 16, 2);
+    day.position.set(outerX + inward * 1.5, 2, room.z);
+    scene.add(day);
+
+    // ---- skirting all around ----
+    addBox(outerX + inward * (T / 2 + 0.03), 0.07, room.z, 0.06, 0.15, ROOM_HD * 2, darkWoodMat, false);
+    addBox(cx, 0.07, room.z - ROOM_HD + T / 2 + 0.03, ROOM_W, 0.15, 0.06, darkWoodMat, false);
+    addBox(cx, 0.07, room.z + ROOM_HD - T / 2 - 0.03, ROOM_W, 0.15, 0.06, darkWoodMat, false);
+
+    // ---- artwork: the project, hanging on the side wall ----
+    const art = new THREE.Mesh(
+      new THREE.PlaneGeometry(3.4, 2.34),
+      new THREE.MeshStandardMaterial({ map: artTexture(room), roughness: .75 })
+    );
+    art.position.set(cx, 1.85, room.z - ROOM_HD + T / 2 + 0.07);
+    scene.add(art);
+    addBox(cx, 1.85, room.z - ROOM_HD + T / 2 + 0.03, 3.66, 2.6, 0.06, darkWoodMat, false);
+    room.art = art;
+
+    // picture light above the artwork
+    const spot = new THREE.PointLight("#ffe9cc", 5, 5.5, 2);
+    spot.position.set(cx, 2.95, room.z - ROOM_HD + 1.3);
+    scene.add(spot);
+
+    // ---- rug ----
+    const rugColor = new THREE.Color(room.accent).lerp(new THREE.Color("#5b4433"), .55);
+    const rug = new THREE.Mesh(
+      new THREE.PlaneGeometry(6.4, 4.6),
+      new THREE.MeshStandardMaterial({ color: rugColor, roughness: 1 })
+    );
+    rug.rotation.x = -Math.PI / 2;
+    rug.position.set(cx, 0.012, room.z + 0.6);
+    rug.receiveShadow = true;
+    scene.add(rug);
+
+    // ---- a low sideboard against the opposite wall ----
+    const sbZ = room.z + ROOM_HD - T / 2 - 0.35;
+    addBox(cx, 0.4, sbZ, 3.2, 0.8, 0.6, darkWoodMat, true);
+    addBox(cx, 0.84, sbZ, 3.3, 0.06, 0.68, trimMat, false);
+
+    // a small lamp on it, glowing in the project colour
+    const lampShade = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.22, 0.3, 0.34, 16),
+      new THREE.MeshStandardMaterial({ color: "#fff1dc", emissive: room.accent, emissiveIntensity: .45, roughness: .9 })
+    );
+    lampShade.position.set(cx + 1.1, 1.12, sbZ);
+    scene.add(lampShade);
+    const lampLight = new THREE.PointLight(room.accent, 7, 5, 2);
+    lampLight.position.set(cx + 1.1, 1.1, sbZ);
+    scene.add(lampLight);
+  }
+
+  function buildLights() {
+    scene.add(new THREE.AmbientLight("#ffe9cf", 0.28));
+    scene.add(new THREE.HemisphereLight("#fff1dc", "#2b211a", 0.3));
+
+    for (let i = 0; i < 4; i++) {
+      const z = HALL_FRONT - 6 - i * 12;
+      const l = new THREE.PointLight("#ffd3a0", 11, 17, 2);
+      l.position.set(0, H - 0.75, z);
+      const bulb = new THREE.Mesh(
+        new THREE.SphereGeometry(0.1, 12, 10),
+        new THREE.MeshStandardMaterial({ color: "#fff6e6", emissive: "#ffd9ad", emissiveIntensity: 2.4 })
+      );
+      bulb.position.set(0, H - 0.72, z);
+      scene.add(bulb);
+      const cord = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.012, 0.012, 0.6, 6),
+        new THREE.MeshStandardMaterial({ color: "#2d241c" })
+      );
+      cord.position.set(0, H - 0.36, z);
+      scene.add(cord);
+      scene.add(l);
+    }
+
+    ROOMS.forEach(room => {
+      const l = new THREE.PointLight("#ffe2bb", 11, 18, 2);
+      l.position.set(room.center.x, H - 0.5, room.z);
+      l.castShadow = true;
+      l.shadow.mapSize.set(512, 512);
+      l.shadow.bias = -0.004;
+      scene.add(l);
+      room.light = l;
+    });
+  }
+
+  /* ============================================================
+     FIRST-PERSON CONTROLS
+     ============================================================ */
+
+  const player = {
+    pos: new THREE.Vector3(0, 1.65, 2),
+    yaw: 0,
+    pitch: 0,
+    radius: 0.42,
+    speed: 4.2
   };
 
-  const islandOrder = ["bloop", "merkorn", "dreambase"];
+  const keys = Object.create(null);
+  let pointerLocked = false;
+  let started = false;
 
-  const birds = [
-    { x: -530, y: -175, t: .1 },
-    { x: -340, y: -220, t: 1.2 },
-    { x: -440, y: 25, t: 2.1 }
-  ];
+  function bindControls() {
+    const el = renderer.domElement;
 
-  const boats = [
-    { x: -40, y: -150, angle: .7 },
-    { x: 260, y: 210, angle: -1.2 }
-  ];
-
-  const fish = [
-    { x: -180, y: 60, rx: 70, ry: 34, t: 0.0, spd: .00030, size: 1.0, color: "#ff785d" },
-    { x: 150, y: 95, rx: 58, ry: 30, t: 1.3, spd: .00036, size: .85, color: "#9a7cff" },
-    { x: -255, y: 165, rx: 64, ry: 30, t: 2.4, spd: .00028, size: .95, color: "#ffb457" },
-    { x: 60, y: 185, rx: 72, ry: 32, t: 0.8, spd: .00033, size: 1.05, color: "#5fd0c8" },
-    { x: 235, y: 45, rx: 54, ry: 28, t: 3.0, spd: .00040, size: .8, color: "#ff785d" },
-    { x: -70, y: -140, rx: 60, ry: 30, t: 1.7, spd: .00034, size: .9, color: "#7fb3ff" },
-    { x: -150, y: -60, rx: 50, ry: 26, t: 2.1, spd: .00038, size: .82, color: "#9a7cff" }
-  ];
-
-  const whaleSpots = [
-    { x: -180, y: 150 }, { x: 180, y: 60 }, { x: -60, y: 110 }, { x: 250, y: 150 }, { x: 60, y: -120 }
-  ];
-  const whale = { active: false, nextAt: 5000, startAt: 0, x: 0, y: 0, dir: 1 };
-  const lighthouse = { x: 255, y: 70 };
-
-  // Day / night keyframes: day -> sunset -> night -> dawn
-  const daySky = [
-    { top: [169, 228, 250], mid: [121, 201, 232], bot: [99, 184, 218], dark: 0.0 },
-    { top: [255, 198, 150], mid: [238, 150, 110], bot: [120, 122, 168], dark: 0.30 },
-    { top: [22, 38, 62],    mid: [16, 30, 50],    bot: [9, 20, 38],     dark: 0.85 },
-    { top: [255, 206, 192], mid: [172, 193, 223], bot: [122, 151, 196], dark: 0.12 }
-  ];
-  const stars = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random(), t: Math.random() * 6, s: Math.random() }));
-
-  function clamp(value, min, max) {
-    return Math.max(min, Math.min(max, value));
-  }
-
-  function lerp(a, b, t) {
-    return a + (b - a) * t;
-  }
-
-  function easeOutCubic(t) {
-    return 1 - Math.pow(1 - t, 3);
-  }
-
-  function ensureAudio() {
-    if (!audioContext) {
-      audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    }
-  }
-
-  function tone(freq = 260, duration = .08, type = "sine", volume = .025) {
-    if (!soundEnabled) return;
-    ensureAudio();
-    const oscillator = audioContext.createOscillator();
-    const gain = audioContext.createGain();
-    oscillator.type = type;
-    oscillator.frequency.value = freq;
-    gain.gain.setValueAtTime(volume, audioContext.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.0001, audioContext.currentTime + duration);
-    oscillator.connect(gain);
-    gain.connect(audioContext.destination);
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + duration);
-  }
-
-  function showToast(message) {
-    toast.textContent = message;
-    toast.classList.add("show");
-    clearTimeout(showToast.timer);
-    showToast.timer = setTimeout(() => toast.classList.remove("show"), 1800);
-  }
-
-  function resizeCanvas() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = window.innerWidth;
-    height = window.innerHeight;
-    worldCanvas.width = Math.round(width * dpr);
-    worldCanvas.height = Math.round(height * dpr);
-    worldCanvas.style.width = `${width}px`;
-    worldCanvas.style.height = `${height}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  function worldToScreen(x, y) {
-    return {
-      x: width / 2 + (x - camera.x) * camera.zoom + viewOffsetX,
-      y: height / 2 + (y - camera.y) * camera.zoom + viewOffsetY
-    };
-  }
-
-  function screenToWorld(x, y) {
-    return {
-      x: camera.x + (x - width / 2 - viewOffsetX) / camera.zoom,
-      y: camera.y + (y - height / 2 - viewOffsetY) / camera.zoom
-    };
-  }
-
-  function roundedPolygonPath(cx, cy, radius, seed = 1, count = 18, squeezeY = .68) {
-    const points = [];
-    for (let i = 0; i < count; i++) {
-      const angle = (Math.PI * 2 * i) / count;
-      const wave =
-        1 +
-        Math.sin(angle * 3 + seed) * .07 +
-        Math.sin(angle * 5 - seed * 1.7) * .05 +
-        Math.cos(angle * 2 + seed * .4) * .035;
-      points.push({
-        x: cx + Math.cos(angle) * radius * wave,
-        y: cy + Math.sin(angle) * radius * squeezeY * wave
-      });
-    }
-
-    ctx.beginPath();
-    points.forEach((point, index) => {
-      const next = points[(index + 1) % points.length];
-      const mx = (point.x + next.x) / 2;
-      const my = (point.y + next.y) / 2;
-      if (index === 0) ctx.moveTo(mx, my);
-      ctx.quadraticCurveTo(point.x, point.y, mx, my);
+    el.addEventListener("click", () => {
+      if (started && !pointerLocked && el.requestPointerLock) el.requestPointerLock();
     });
-    ctx.closePath();
+
+    document.addEventListener("pointerlockchange", () => {
+      pointerLocked = document.pointerLockElement === el;
+    });
+
+    document.addEventListener("mousemove", e => {
+      if (!pointerLocked) return;
+      player.yaw -= e.movementX * 0.0022;
+      player.pitch = Math.max(-1.2, Math.min(1.2, player.pitch - e.movementY * 0.0022));
+    });
+
+    let dragging = false, lx = 0, ly = 0;
+    el.addEventListener("pointerdown", e => {
+      if (pointerLocked) return;
+      dragging = true; lx = e.clientX; ly = e.clientY;
+    });
+    window.addEventListener("pointerup", () => { dragging = false; });
+    window.addEventListener("pointermove", e => {
+      if (!dragging || pointerLocked) return;
+      player.yaw -= (e.clientX - lx) * 0.005;
+      player.pitch = Math.max(-1.2, Math.min(1.2, player.pitch - (e.clientY - ly) * 0.005));
+      lx = e.clientX; ly = e.clientY;
+    });
+
+    window.addEventListener("keydown", e => {
+      keys[e.code] = true;
+      if (e.code === "KeyE" || e.code === "Space") { e.preventDefault(); tryInteract(); }
+      if (e.code === "Escape") closePanel();
+    });
+    window.addEventListener("keyup", e => { keys[e.code] = false; });
   }
 
-  function skyEnv(time) {
-    // Driven by the visitor's real local clock (day -> sunset -> night -> dawn)
-    const now = new Date();
-    const h = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
-    const pts = [[0, 2], [6, 3], [12, 4], [19, 5], [24, 6]]; // [hour, keyframe]: night,dawn,day,sunset,night
-    let ph = 2;
-    for (let k = 0; k < pts.length - 1; k++) {
-      if (h >= pts[k][0] && h <= pts[k + 1][0]) {
-        ph = lerp(pts[k][1], pts[k + 1][1], (h - pts[k][0]) / (pts[k + 1][0] - pts[k][0]));
-        break;
+  function movePlayer(dt) {
+    let fwd = 0, strafe = 0;
+    if (keys.KeyW || keys.ArrowUp) fwd += 1;
+    if (keys.KeyS || keys.ArrowDown) fwd -= 1;
+    if (keys.KeyA || keys.ArrowLeft) strafe -= 1;
+    if (keys.KeyD || keys.ArrowRight) strafe += 1;
+    if (!fwd && !strafe) return;
+
+    const len = Math.hypot(fwd, strafe) || 1;
+    fwd /= len; strafe /= len;
+
+    const sin = Math.sin(player.yaw), cos = Math.cos(player.yaw);
+    const dx = (-sin * fwd + cos * strafe) * player.speed * dt;
+    const dz = (-cos * fwd + sin * strafe) * player.speed * dt;
+
+    const r = player.radius;
+    const nx = player.pos.x + dx;
+    if (!hits(nx, player.pos.z, r)) player.pos.x = nx;
+    const nz = player.pos.z + dz;
+    if (!hits(player.pos.x, nz, r)) player.pos.z = nz;
+  }
+
+  function hits(x, z, r) {
+    for (let i = 0; i < colliders.length; i++) {
+      const c = colliders[i];
+      if (x + r > c.minX && x - r < c.maxX && z + r > c.minZ && z - r < c.maxZ) return true;
+    }
+    return false;
+  }
+
+  /* ============================================================
+     ROOM AWARENESS
+     ============================================================ */
+
+  let currentRoom = null;
+
+  function roomAt(x, z) {
+    for (const room of ROOMS) {
+      const dir = room.side === "left" ? -1 : 1;
+      const a = dir * HALL_HW, b = dir * (HALL_HW + ROOM_W);
+      const minX = Math.min(a, b), maxX = Math.max(a, b);
+      if (x > minX && x < maxX && z > room.z - ROOM_HD && z < room.z + ROOM_HD) return room;
+    }
+    return null;
+  }
+
+  function updateRoomState() {
+    const inside = roomAt(player.pos.x, player.pos.z);
+
+    if (inside !== currentRoom) {
+      currentRoom = inside;
+      const el = $("#roomName");
+      if (inside) {
+        $("#roomKicker").textContent = inside.kicker;
+        $("#roomTitle").textContent = inside.name;
+        el.classList.add("show");
+      } else {
+        el.classList.remove("show");
       }
     }
-    const phase = ((ph % 4) + 4) % 4;
-    const i = Math.floor(phase) % 4, f = phase - Math.floor(phase);
-    const a = daySky[i], b = daySky[(i + 1) % 4];
-    const m = (arr, k) => Math.round(lerp(a[arr][k], b[arr][k], f));
-    const col = arr => `rgb(${m(arr, 0)},${m(arr, 1)},${m(arr, 2)})`;
-    return { top: col("top"), mid: col("mid"), bot: col("bot"), dark: lerp(a.dark, b.dark, f) };
+
+    const open = $("#panel").classList.contains("open");
+    $("#prompt").classList.toggle("show", !!inside && !open);
+    $("#crosshair").classList.toggle("active", !!inside && !open);
+    if (inside && !open) $("#prompt").textContent = `E — apri «${inside.name}»`;
   }
 
-  function drawOcean(time, env) {
-    const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    gradient.addColorStop(0, env.top);
-    gradient.addColorStop(.52, env.mid);
-    gradient.addColorStop(1, env.bot);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-
-    ctx.save();
-    ctx.globalAlpha = .17 * (1 - env.dark * 0.55);
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 1;
-
-    const spacing = 48;
-    const offset = (time * .012) % spacing;
-
-    for (let y = -spacing; y < height + spacing; y += spacing) {
-      ctx.beginPath();
-      for (let x = -20; x <= width + 20; x += 12) {
-        const yy = y + offset + Math.sin(x * .018 + time * .0014 + y * .02) * 5;
-        if (x === -20) ctx.moveTo(x, yy);
-        else ctx.lineTo(x, yy);
-      }
-      ctx.stroke();
-    }
-
-    ctx.globalAlpha = .08 * (1 - env.dark * 0.5);
-    ctx.strokeStyle = "#205f82";
-    for (let x = -100; x < width + 100; x += 105) {
-      ctx.beginPath();
-      ctx.moveTo(x + Math.sin(time * .0004) * 25, 0);
-      ctx.lineTo(x + 65 + Math.sin(time * .0004) * 25, height);
-      ctx.stroke();
-    }
-    ctx.restore();
+  function tryInteract() {
+    if (currentRoom) openPanel(currentRoom);
   }
 
-  function drawIsland(project, time) {
-    const center = worldToScreen(project.x, project.y);
-    const r = project.radius * camera.zoom;
-    const seed = project.id === "bloop" ? 1.3 : project.id === "merkorn" ? 2.7 : 4.1;
-    const hoverScale = hoverProject === project.id && !activeProject ? 1.035 : 1;
-    const detailPulse = activeProject === project.id ? 1 + Math.sin(time * .0015) * .004 : 1;
-    const radius = r * hoverScale * detailPulse;
-
-    ctx.save();
-    ctx.translate(center.x, center.y);
-    ctx.rotate(project.rotation);
-    ctx.translate(-center.x, -center.y);
-
-    // Underwater glow
-    ctx.save();
-    ctx.globalAlpha = .18;
-    ctx.shadowColor = "#ffffff";
-    ctx.shadowBlur = 45 * camera.zoom;
-    roundedPolygonPath(center.x, center.y + 14 * camera.zoom, radius * 1.10, seed, 20);
-    ctx.fillStyle = "#d9f8ff";
-    ctx.fill();
-    ctx.restore();
-
-    // Shadow
-    roundedPolygonPath(center.x + 10 * camera.zoom, center.y + 30 * camera.zoom, radius * 1.02, seed, 20);
-    ctx.fillStyle = "rgba(28,88,119,.22)";
-    ctx.fill();
-
-    // Cliff extrusion
-    roundedPolygonPath(center.x, center.y + 25 * camera.zoom, radius, seed, 20);
-    ctx.fillStyle = project.colors.cliff;
-    ctx.fill();
-
-    // Cliff striations
-    ctx.save();
-    ctx.globalAlpha = .18;
-    ctx.strokeStyle = "#261e2e";
-    ctx.lineWidth = Math.max(1, 2 * camera.zoom);
-    for (let i = 0; i < 6; i++) {
-      const yy = center.y + (7 + i * 5) * camera.zoom;
-      ctx.beginPath();
-      ctx.arc(center.x, yy, radius * (.82 - i * .025), 0.2, Math.PI - .18);
-      ctx.stroke();
-    }
-    ctx.restore();
-
-    // Sand rim
-    roundedPolygonPath(center.x, center.y, radius, seed, 20);
-    ctx.fillStyle = project.colors.sand;
-    ctx.fill();
-
-    // Land
-    roundedPolygonPath(center.x, center.y - 4 * camera.zoom, radius * .88, seed + .2, 20);
-    const landGradient = ctx.createRadialGradient(
-      center.x - radius * .25,
-      center.y - radius * .28,
-      radius * .08,
-      center.x,
-      center.y,
-      radius
-    );
-    landGradient.addColorStop(0, project.colors.land);
-    landGradient.addColorStop(1, project.colors.land2);
-    ctx.fillStyle = landGradient;
-    ctx.fill();
-
-    drawIslandTexture(project, center, radius, time);
-
-    if (camera.zoom < 1.32 && !activeProject) {
-      drawIslandMapLabel(project, center, radius);
-    }
-
-    ctx.restore();
+  function openPanel(room) {
+    const p = $("#panel");
+    p.style.setProperty("--accent", room.accent);
+    $("#panelKicker").textContent = room.kicker;
+    $("#panelTitle").textContent = room.name;
+    $("#panelLede").textContent = room.lede;
+    $("#panelFacts").innerHTML = room.facts.map(f => `<span>${f}</span>`).join("");
+    p.classList.add("open");
+    p.setAttribute("aria-hidden", "false");
+    if (document.exitPointerLock) document.exitPointerLock();
   }
 
-  function drawIslandTexture(project, center, radius, time) {
-    const scale = camera.zoom;
-    const detailMode = activeProject === project.id && camera.zoom > 1.25;
+  function closePanel() {
+    const p = $("#panel");
+    p.classList.remove("open");
+    p.setAttribute("aria-hidden", "true");
+  }
 
-    if (project.about) {
-      drawAboutMotifs(center, scale, detailMode, time);
+  /* ============================================================
+     LOOP
+     ============================================================ */
+
+  let last = performance.now();
+
+  function tick(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+
+    if (started) {
+      movePlayer(dt);
+      updateRoomState();
+    }
+
+    camera.position.copy(player.pos);
+    camera.rotation.set(player.pitch, player.yaw, 0, "YXZ");
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+
+  /* ============================================================
+     BOOT
+     ============================================================ */
+
+  function boot() {
+    if (!window.THREE) {
+      $("#loadingNote").textContent = "Impossibile caricare la scena 3D.";
       return;
     }
+    init();
+    bindControls();
+    requestAnimationFrame(tick);
 
-    // Paths
-    ctx.save();
-    ctx.globalAlpha = .40;
-    ctx.strokeStyle = project.colors.sand;
-    ctx.lineWidth = Math.max(2, 8 * scale);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(center.x - 62 * scale, center.y + 45 * scale);
-    ctx.bezierCurveTo(
-      center.x - 30 * scale, center.y + 5 * scale,
-      center.x + 20 * scale, center.y + 20 * scale,
-      center.x + 78 * scale, center.y - 45 * scale
-    );
-    ctx.stroke();
-    ctx.restore();
-
-    // Trees / vegetation
-    const trees = [
-      [-94, -28, .9], [-118, 18, .75], [-38, -82, .8],
-      [20, -95, .68], [115, 12, .78], [87, 74, .65],
-      [-82, 76, .70], [8, 92, .56]
-    ];
-
-    trees.forEach(([x, y, s], index) => {
-      drawTree(
-        center.x + x * scale,
-        center.y + y * scale,
-        s * scale,
-        project.id,
-        time + index * 400
-      );
+    $("#enterButton").addEventListener("click", () => {
+      started = true;
+      $("#entrance").classList.add("fading");
+      setTimeout(() => $("#entrance").classList.add("hidden"), 900);
+      $("#hud").classList.remove("hidden");
+      if (renderer.domElement.requestPointerLock) renderer.domElement.requestPointerLock();
     });
 
-    if (project.id === "bloop") drawBloopMotifs(center, scale, detailMode, time);
-    if (project.id === "merkorn") drawMerkornMotifs(center, scale, detailMode, time);
-    if (project.id === "dreambase") drawDreambaseMotifs(center, scale, detailMode, time);
-    if (project.id === "orsini") drawOrsiniMotifs(center, scale, detailMode, time);
-    if (project.id === "trainee") drawTraineeMotifs(center, scale, detailMode, time);
+    $("#panelClose").addEventListener("click", closePanel);
   }
 
-  function drawTree(x, y, scale, projectId, time) {
-    const palette =
-      projectId === "bloop" ? ["#3f8c70", "#66b884"] :
-      projectId === "merkorn" ? ["#4d7257", "#7fa26b"] :
-      projectId === "orsini" ? ["#2f6b5e", "#5aa98f"] :
-      projectId === "trainee" ? ["#2f7d5c", "#6fc79b"] :
-      ["#2f5368", "#5e7793"];
-
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.globalAlpha = .95;
-
-    ctx.fillStyle = "rgba(21,37,38,.18)";
-    ctx.beginPath();
-    ctx.ellipse(4 * scale, 8 * scale, 12 * scale, 5 * scale, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.strokeStyle = "#6a4a34";
-    ctx.lineWidth = Math.max(1, 2.3 * scale);
-    ctx.beginPath();
-    ctx.moveTo(0, 6 * scale);
-    ctx.lineTo(Math.sin(time * .001) * 1.5 * scale, -5 * scale);
-    ctx.stroke();
-
-    ctx.fillStyle = palette[0];
-    ctx.beginPath();
-    ctx.arc(-4 * scale, -7 * scale, 8 * scale, 0, Math.PI * 2);
-    ctx.arc(5 * scale, -9 * scale, 8 * scale, 0, Math.PI * 2);
-    ctx.arc(1 * scale, -15 * scale, 9 * scale, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = palette[1];
-    ctx.globalAlpha = .75;
-    ctx.beginPath();
-    ctx.arc(-2 * scale, -15 * scale, 4 * scale, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-  }
-
-  function drawHouse(x, y, scale, projectId) {
-    const body =
-      projectId === "bloop" ? "#fff3df" :
-      projectId === "merkorn" ? "#f5eee6" :
-      projectId === "orsini" ? "#f7efe0" :
-      "#dad9e9";
-    const roof =
-      projectId === "bloop" ? "#ff785d" :
-      projectId === "merkorn" ? "#202025" :
-      projectId === "orsini" ? "#2e4a54" :
-      "#24264c";
-
-    ctx.save();
-    ctx.translate(x, y);
-
-    ctx.fillStyle = "rgba(20,34,40,.18)";
-    ctx.beginPath();
-    ctx.ellipse(6 * scale, 14 * scale, 26 * scale, 9 * scale, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = body;
-    ctx.fillRect(-19 * scale, -8 * scale, 38 * scale, 31 * scale);
-
-    ctx.fillStyle = roof;
-    ctx.beginPath();
-    ctx.moveTo(-26 * scale, -7 * scale);
-    ctx.lineTo(0, -29 * scale);
-    ctx.lineTo(26 * scale, -7 * scale);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.fillStyle = projectId === "dreambase" ? "#a989ff" : "#7ab4d2";
-    ctx.fillRect(-12 * scale, 1 * scale, 10 * scale, 9 * scale);
-    ctx.fillRect(5 * scale, 1 * scale, 9 * scale, 9 * scale);
-
-    ctx.fillStyle = "#6b4b39";
-    ctx.fillRect(-4 * scale, 9 * scale, 8 * scale, 14 * scale);
-
-    if (projectId === "merkorn") {
-      ctx.strokeStyle = "#ff7d31";
-      ctx.lineWidth = 2 * scale;
-      ctx.strokeRect(-17 * scale, -5 * scale, 34 * scale, 26 * scale);
-    }
-
-    ctx.restore();
-  }
-
-  function drawPerson(x, y, scale, projectId, time) {
-    const shirt =
-      projectId === "bloop" ? "#ff785d" :
-      projectId === "merkorn" ? "#202025" :
-      projectId === "orsini" ? "#c96a3f" :
-      "#a98cff";
-
-    ctx.save();
-    ctx.translate(x, y + Math.sin(time * .003) * 1.2 * scale);
-
-    ctx.fillStyle = "rgba(20,34,40,.17)";
-    ctx.beginPath();
-    ctx.ellipse(2 * scale, 12 * scale, 10 * scale, 4 * scale, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.strokeStyle = "#3e3330";
-    ctx.lineWidth = Math.max(1, 2 * scale);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(-2 * scale, 3 * scale);
-    ctx.lineTo(-6 * scale, 13 * scale);
-    ctx.moveTo(2 * scale, 3 * scale);
-    ctx.lineTo(7 * scale, 13 * scale);
-    ctx.stroke();
-
-    ctx.fillStyle = shirt;
-    ctx.beginPath();
-    ctx.roundRect(-8 * scale, -10 * scale, 16 * scale, 16 * scale, 6 * scale);
-    ctx.fill();
-
-    ctx.strokeStyle = "#3e3330";
-    ctx.beginPath();
-    ctx.moveTo(-7 * scale, -5 * scale);
-    ctx.lineTo(-13 * scale, 2 * scale);
-    ctx.moveTo(7 * scale, -5 * scale);
-    ctx.lineTo(13 * scale, -1 * scale);
-    ctx.stroke();
-
-    ctx.fillStyle = "#d99a73";
-    ctx.beginPath();
-    ctx.arc(0, -16 * scale, 6 * scale, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = "#392b2a";
-    ctx.beginPath();
-    ctx.arc(-1 * scale, -18 * scale, 6 * scale, Math.PI, Math.PI * 2);
-    ctx.fill();
-
-    ctx.restore();
-  }
-
-  function drawAnimal(x, y, scale, projectId, time) {
-    ctx.save();
-    ctx.translate(x, y);
-
-    if (projectId === "bloop") {
-      const flap = Math.sin(time * .008) * 3 * scale;
-      ctx.strokeStyle = "#263b46";
-      ctx.lineWidth = Math.max(1, 2 * scale);
-      ctx.lineCap = "round";
-      ctx.beginPath();
-      ctx.moveTo(-1 * scale, 0);
-      ctx.quadraticCurveTo(-9 * scale, -8 * scale - flap, -18 * scale, -3 * scale);
-      ctx.moveTo(1 * scale, 0);
-      ctx.quadraticCurveTo(9 * scale, -8 * scale - flap, 18 * scale, -3 * scale);
-      ctx.stroke();
-      ctx.fillStyle = "#ffda60";
-      ctx.beginPath();
-      ctx.arc(0, 0, 4 * scale, 0, Math.PI * 2);
-      ctx.fill();
-    } else if (projectId === "merkorn") {
-      ctx.fillStyle = "#ad6238";
-      ctx.beginPath();
-      ctx.ellipse(0, 2 * scale, 13 * scale, 8 * scale, -.1, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(-5 * scale, -4 * scale);
-      ctx.lineTo(-10 * scale, -14 * scale);
-      ctx.lineTo(0, -8 * scale);
-      ctx.closePath();
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(5 * scale, -4 * scale);
-      ctx.lineTo(10 * scale, -14 * scale);
-      ctx.lineTo(1 * scale, -8 * scale);
-      ctx.closePath();
-      ctx.fill();
-      ctx.strokeStyle = "#f3dac1";
-      ctx.lineWidth = 3 * scale;
-      ctx.beginPath();
-      ctx.arc(13 * scale, 2 * scale, 8 * scale, -1.4, 1.5);
-      ctx.stroke();
-    } else if (projectId === "orsini") {
-      // Seagull, chasing the light
-      const look = Math.sin(time * .0012) * 1.5 * scale;
-      ctx.fillStyle = "rgba(20,34,40,.15)";
-      ctx.beginPath();
-      ctx.ellipse(0, 8 * scale, 10 * scale, 3 * scale, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = "#e8a33d";
-      ctx.lineWidth = Math.max(1, 1.4 * scale);
-      ctx.lineCap = "round";
-      ctx.beginPath();
-      ctx.moveTo(-2 * scale, 3 * scale);
-      ctx.lineTo(-2.5 * scale, 8 * scale);
-      ctx.moveTo(2 * scale, 3 * scale);
-      ctx.lineTo(2.5 * scale, 8 * scale);
-      ctx.stroke();
-      ctx.fillStyle = "#f4f7f9";
-      ctx.beginPath();
-      ctx.ellipse(0, -1 * scale, 9 * scale, 5.5 * scale, -.08, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#c3ced6";
-      ctx.beginPath();
-      ctx.moveTo(-6 * scale, -2 * scale);
-      ctx.quadraticCurveTo(2 * scale, -4 * scale, 8 * scale, 1 * scale);
-      ctx.quadraticCurveTo(0, 2.5 * scale, -6 * scale, -2 * scale);
-      ctx.closePath();
-      ctx.fill();
-      ctx.fillStyle = "#dfe6ea";
-      ctx.beginPath();
-      ctx.moveTo(-8 * scale, -2 * scale);
-      ctx.lineTo(-14 * scale, -4 * scale);
-      ctx.lineTo(-8 * scale, 1 * scale);
-      ctx.closePath();
-      ctx.fill();
-      ctx.fillStyle = "#f4f7f9";
-      ctx.beginPath();
-      ctx.arc(7 * scale + look * .3, -7 * scale, 4 * scale, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#e8a33d";
-      ctx.beginPath();
-      ctx.moveTo(10.5 * scale + look * .3, -7.5 * scale);
-      ctx.lineTo(14.5 * scale + look * .3, -6.5 * scale);
-      ctx.lineTo(10.5 * scale + look * .3, -5.5 * scale);
-      ctx.closePath();
-      ctx.fill();
-      ctx.fillStyle = "#2b3336";
-      ctx.beginPath();
-      ctx.arc(8 * scale + look * .3, -7.5 * scale, .9 * scale, 0, Math.PI * 2);
-      ctx.fill();
-    } else {
-      ctx.fillStyle = "#8d83c7";
-      ctx.beginPath();
-      ctx.ellipse(0, 2 * scale, 18 * scale, 8 * scale, -.1, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(15 * scale, 0);
-      ctx.lineTo(26 * scale, -8 * scale);
-      ctx.lineTo(24 * scale, 7 * scale);
-      ctx.closePath();
-      ctx.fill();
-      ctx.strokeStyle = "#cfc5ff";
-      ctx.lineWidth = Math.max(1, 1.6 * scale);
-      ctx.beginPath();
-      ctx.moveTo(-6 * scale, -5 * scale);
-      ctx.quadraticCurveTo(-10 * scale, -17 * scale, -1 * scale, -14 * scale);
-      ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  function drawBloopMotifs(center, scale, detailMode, time) {
-    // Event canopy
-    ctx.save();
-    ctx.translate(center.x + 15 * scale, center.y - 30 * scale);
-    ctx.fillStyle = "rgba(28,47,52,.16)";
-    ctx.beginPath();
-    ctx.ellipse(5 * scale, 11 * scale, 28 * scale, 8 * scale, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = "#ffe7ae";
-    ctx.fillRect(-23 * scale, -2 * scale, 46 * scale, 14 * scale);
-    ctx.fillStyle = "#ff785d";
-    for (let i = 0; i < 5; i++) {
-      ctx.beginPath();
-      ctx.moveTo((-25 + i * 10) * scale, -2 * scale);
-      ctx.lineTo((-20 + i * 10) * scale, -18 * scale);
-      ctx.lineTo((-15 + i * 10) * scale, -2 * scale);
-      ctx.closePath();
-      ctx.fill();
-    }
-    ctx.restore();
-
-    // Tiny cloudEntrys
-    for (let i = 0; i < 5; i++) {
-      const angle = time * .0003 + i * 1.7;
-      const x = center.x + Math.cos(angle) * (90 + i * 7) * scale;
-      const y = center.y + Math.sin(angle * 1.2) * (52 + i * 5) * scale;
-      ctx.strokeStyle = "rgba(255,255,255,.74)";
-      ctx.lineWidth = Math.max(.7, scale);
-      ctx.beginPath();
-      ctx.arc(x, y, (3 + i % 2 * 2) * scale, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-
-    if (detailMode) {
-      const p = projects.bloop.phasePositions;
-      drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "bloop");
-      drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "bloop", time);
-      drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.1 * scale, "bloop", time);
-    }
-  }
-
-  function drawMerkornMotifs(center, scale, detailMode, time) {
-    // Data blocks
-    const blocks = [
-      [-8, -25, 36, 24, "#252528"],
-      [36, -5, 28, 40, "#f4e7d8"],
-      [-48, 30, 34, 28, "#ffcf98"]
-    ];
-
-    blocks.forEach(([x, y, w, h, color], index) => {
-      ctx.save();
-      ctx.translate(center.x + x * scale, center.y + y * scale);
-      ctx.fillStyle = "rgba(30,37,39,.16)";
-      ctx.fillRect((-w/2 + 6) * scale, (-h/2 + 8) * scale, w * scale, h * scale);
-      ctx.fillStyle = color;
-      ctx.fillRect(-w/2 * scale, -h/2 * scale, w * scale, h * scale);
-      ctx.fillStyle = index === 0 ? "#ff7d31" : "#d46125";
-      ctx.fillRect((-w/2 + 5) * scale, (-h/2 + 5) * scale, (w - 10) * scale, 4 * scale);
-      ctx.restore();
-    });
-
-    // Orbit line
-    ctx.save();
-    ctx.strokeStyle = "rgba(32,32,37,.25)";
-    ctx.lineWidth = Math.max(1, scale);
-    ctx.setLineDash([5 * scale, 5 * scale]);
-    ctx.beginPath();
-    ctx.ellipse(center.x, center.y, 105 * scale, 57 * scale, .12, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
-
-    if (detailMode) {
-      const p = projects.merkorn.phasePositions;
-      drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "merkorn");
-      drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "merkorn", time);
-      drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.05 * scale, "merkorn", time);
-    }
-  }
-
-  function drawDreambaseMotifs(center, scale, detailMode, time) {
-    // Moon pool
-    const glow = ctx.createRadialGradient(
-      center.x - 10 * scale, center.y - 15 * scale, 2,
-      center.x - 10 * scale, center.y - 15 * scale, 45 * scale
-    );
-    glow.addColorStop(0, "rgba(220,211,255,.95)");
-    glow.addColorStop(.4, "rgba(168,139,255,.78)");
-    glow.addColorStop(1, "rgba(88,76,153,.12)");
-    ctx.fillStyle = glow;
-    ctx.beginPath();
-    ctx.ellipse(center.x - 10 * scale, center.y - 15 * scale, 42 * scale, 23 * scale, -.15, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Stars
-    ctx.fillStyle = "rgba(255,255,255,.8)";
-    for (let i = 0; i < 7; i++) {
-      const angle = i * 1.7 + .4;
-      const x = center.x + Math.cos(angle) * (75 + i * 4) * scale;
-      const y = center.y + Math.sin(angle) * (48 + i * 2) * scale;
-      const pulse = 1 + Math.sin(time * .003 + i) * .35;
-      ctx.beginPath();
-      ctx.arc(x, y, (1.4 + (i % 2)) * scale * pulse, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    if (detailMode) {
-      const p = projects.dreambase.phasePositions;
-      drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "dreambase");
-      drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "dreambase", time);
-      drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.08 * scale, "dreambase", time);
-    }
-  }
-
-  function drawOrsiniMotifs(center, scale, detailMode, time) {
-    // Camera on a tripod, aimed at the horizon
-    ctx.save();
-    ctx.translate(center.x - 8 * scale, center.y + 66 * scale);
-
-    ctx.fillStyle = "rgba(21,37,38,.16)";
-    ctx.beginPath();
-    ctx.ellipse(0, 12 * scale, 16 * scale, 5 * scale, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Tripod legs
-    ctx.strokeStyle = "#2e4a54";
-    ctx.lineWidth = Math.max(1.2, 2 * scale);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(0, -4 * scale);
-    ctx.lineTo(-8 * scale, 11 * scale);
-    ctx.moveTo(0, -4 * scale);
-    ctx.lineTo(8 * scale, 11 * scale);
-    ctx.moveTo(0, -4 * scale);
-    ctx.lineTo(0, 12 * scale);
-    ctx.stroke();
-
-    // Camera body + lens
-    ctx.fillStyle = "#2b3940";
-    ctx.beginPath();
-    ctx.roundRect(-8 * scale, -14 * scale, 16 * scale, 10 * scale, 2.5 * scale);
-    ctx.fill();
-    ctx.fillStyle = "#1d2930";
-    ctx.beginPath();
-    ctx.arc(0, -9 * scale, 3.6 * scale, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#8fd0dc";
-    ctx.beginPath();
-    ctx.arc(1 * scale, -10 * scale, 1.4 * scale, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Shutter flash every few seconds
-    const flash = Math.pow(Math.max(0, Math.sin(time * .0016)), 24);
-    if (flash > .05) {
-      ctx.globalAlpha = flash * .85;
-      ctx.fillStyle = "#fff7dd";
-      ctx.beginPath();
-      ctx.arc(6 * scale, -15 * scale, 6 * scale, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    }
-    ctx.restore();
-
-    // A small open-air gallery of framed prints
-    const prints = [[-96, 40, "#ffb457"], [-70, 62, "#8fd0dc"], [24, 88, "#f2e3c8"]];
-    prints.forEach(([px, py, tone]) => {
-      ctx.save();
-      ctx.translate(center.x + px * scale, center.y + py * scale);
-      ctx.fillStyle = "rgba(21,37,38,.16)";
-      ctx.beginPath();
-      ctx.ellipse(1 * scale, 9 * scale, 9 * scale, 3 * scale, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#f7f2e7";
-      ctx.fillRect(-8 * scale, -12 * scale, 16 * scale, 20 * scale);
-      ctx.fillStyle = tone;
-      ctx.fillRect(-5.5 * scale, -9.5 * scale, 11 * scale, 12 * scale);
-      ctx.restore();
-    });
-
-    const p = projects.orsini.phasePositions;
-    drawHouse(center.x + p.house.x * scale, center.y + p.house.y * scale, .96 * scale, "orsini");
-    drawPerson(center.x + p.person.x * scale, center.y + p.person.y * scale, .96 * scale, "orsini", time);
-    drawAnimal(center.x + p.animal.x * scale, center.y + p.animal.y * scale, 1.05 * scale, "orsini", time);
-  }
-
-  function drawAboutMotifs(center, scale, detailMode, time) {
-    // A couple of small bushes to keep the island alive
-    const bushes = [[-38, 22, .6], [36, 18, .52]];
-    bushes.forEach(([bx, by, bs]) => {
-      ctx.save();
-      ctx.translate(center.x + bx * scale, center.y + by * scale);
-      ctx.fillStyle = "rgba(21,37,38,.16)";
-      ctx.beginPath();
-      ctx.ellipse(2 * scale * bs, 6 * scale * bs, 11 * scale * bs, 4 * scale * bs, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#5f8a63";
-      ctx.beginPath();
-      ctx.arc(-4 * scale * bs, -2 * scale * bs, 7 * scale * bs, 0, Math.PI * 2);
-      ctx.arc(4 * scale * bs, -3 * scale * bs, 7 * scale * bs, 0, Math.PI * 2);
-      ctx.arc(0, -8 * scale * bs, 8 * scale * bs, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    });
-
-    // The elder — "this is me"
-    const waving = activeProject === "about" && time < aboutWaveUntil;
-    drawElder(center.x - 2 * scale, center.y - 4 * scale, (detailMode ? .82 : .7) * scale, time, waving);
-  }
-
-  function drawElder(x, y, scale, time, waving) {
-    const bob = Math.sin(time * .0018) * 1.1 * scale;
-    ctx.save();
-    ctx.translate(x, y + bob);
-
-    // Ground shadow
-    ctx.fillStyle = "rgba(20,34,40,.18)";
-    ctx.beginPath();
-    ctx.ellipse(2 * scale, 21 * scale, 23 * scale, 6 * scale, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Rock he sits on
-    ctx.fillStyle = "#8f8798";
-    ctx.beginPath();
-    ctx.roundRect(-17 * scale, 6 * scale, 34 * scale, 15 * scale, 6 * scale);
-    ctx.fill();
-    ctx.fillStyle = "rgba(20,20,28,.16)";
-    ctx.beginPath();
-    ctx.roundRect(-17 * scale, 14 * scale, 34 * scale, 7 * scale, 5 * scale);
-    ctx.fill();
-
-    // Cane reaching the ground
-    ctx.strokeStyle = "#7b543a";
-    ctx.lineWidth = Math.max(1.4, 2.4 * scale);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(15 * scale, -7 * scale);
-    ctx.lineTo(19 * scale, 20 * scale);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(13 * scale, -7 * scale, 3.2 * scale, Math.PI * .15, Math.PI * 1.5);
-    ctx.stroke();
-
-    // Legs (seated, bent forward)
-    ctx.strokeStyle = "#45415c";
-    ctx.lineWidth = Math.max(2, 5 * scale);
-    ctx.beginPath();
-    ctx.moveTo(-6 * scale, 7 * scale);
-    ctx.lineTo(-11 * scale, 19 * scale);
-    ctx.moveTo(6 * scale, 7 * scale);
-    ctx.lineTo(9 * scale, 19 * scale);
-    ctx.stroke();
-
-    // Robe / body
-    ctx.fillStyle = "#6f78b0";
-    ctx.beginPath();
-    ctx.moveTo(-11 * scale, 9 * scale);
-    ctx.quadraticCurveTo(-13 * scale, -10 * scale, 0, -12 * scale);
-    ctx.quadraticCurveTo(13 * scale, -10 * scale, 11 * scale, 9 * scale);
-    ctx.closePath();
-    ctx.fill();
-
-    // Right arm resting on the cane
-    ctx.strokeStyle = "#6f78b0";
-    ctx.lineWidth = Math.max(2, 4 * scale);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(6 * scale, -5 * scale);
-    ctx.lineTo(14 * scale, -6 * scale);
-    ctx.stroke();
-
-    // Left arm — waves hello on greeting, otherwise rests
-    if (waving) {
-      const swing = Math.sin(time * .02) * 3.4 * scale;
-      const handX = -18 * scale + swing;
-      const handY = -30 * scale;
-      ctx.beginPath();
-      ctx.moveTo(-7 * scale, -6 * scale);
-      ctx.lineTo(-14 * scale, -17 * scale);
-      ctx.lineTo(handX, handY);
-      ctx.stroke();
-      ctx.fillStyle = "#e0b48c";
-      ctx.beginPath();
-      ctx.arc(handX, handY, 2.8 * scale, 0, Math.PI * 2);
-      ctx.fill();
-    } else {
-      ctx.beginPath();
-      ctx.moveTo(-7 * scale, -5 * scale);
-      ctx.lineTo(-12 * scale, 3 * scale);
-      ctx.stroke();
-    }
-
-    // Head
-    ctx.fillStyle = "#e0b48c";
-    ctx.beginPath();
-    ctx.arc(0, -20 * scale, 7 * scale, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Grey hair at the temples
-    ctx.fillStyle = "#dfe3e8";
-    ctx.beginPath();
-    ctx.arc(-6 * scale, -21 * scale, 2.4 * scale, 0, Math.PI * 2);
-    ctx.arc(6 * scale, -21 * scale, 2.4 * scale, 0, Math.PI * 2);
-    ctx.fill();
-
-    // White beard
-    ctx.fillStyle = "#eef2f5";
-    ctx.beginPath();
-    ctx.moveTo(-6 * scale, -18 * scale);
-    ctx.quadraticCurveTo(-8 * scale, -4 * scale, 0, -1 * scale);
-    ctx.quadraticCurveTo(8 * scale, -4 * scale, 6 * scale, -18 * scale);
-    ctx.quadraticCurveTo(0, -13 * scale, -6 * scale, -18 * scale);
-    ctx.closePath();
-    ctx.fill();
-
-    // Eyes
-    ctx.fillStyle = "#392b2a";
-    ctx.beginPath();
-    ctx.arc(-2.5 * scale, -21 * scale, 1 * scale, 0, Math.PI * 2);
-    ctx.arc(2.5 * scale, -21 * scale, 1 * scale, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.restore();
-  }
-
-  function drawAboutPlane(time) {
-    if (!aboutPlaneStart) return;
-    const elapsed = time - aboutPlaneStart;
-    if (elapsed < 0) return;
-
-    const project = projects.about;
-    const flyDur = 6200;
-    const p = clamp(elapsed / flyDur, 0, 1);
-    // easeInOut for smooth (non-jerky) velocity along the path
-    const t = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-    const landed = p >= 1;
-
-    // Smooth curved approach (cubic Bezier), ammaraggio next to the island
-    const ax = project.x, ay = project.y;
-    const cx = [ax + 940, ax + 560, ax + 180, ax - 20];
-    const cy = [ay + 160, ay + 40, ay + 150, ay + 56];
-    const u = 1 - t;
-    const bez = a => u*u*u*a[0] + 3*u*u*t*a[1] + 3*u*t*t*a[2] + t*t*t*a[3];
-    const dbez = a => 3*u*u*(a[1]-a[0]) + 6*u*t*(a[2]-a[1]) + 3*t*t*(a[3]-a[2]);
-    const wx = bez(cx);
-    const wy = bez(cy) + (landed ? Math.sin(time * .0016) * 2.2 : 0);
-    const pos = worldToScreen(wx, wy);
-    const s = Math.max(.7, camera.zoom);
-
-    // Heading follows the tangent (sprite faces left); level out on touchdown, gentle rock when moored
-    let roll = clamp(Math.atan2(dbez(cy), dbez(cx)) - Math.PI, -.5, .5);
-    roll *= 1 - clamp((p - .82) / .18, 0, 1);
-    if (landed) roll = Math.sin(time * .0016) * .03;
-
-    const bannerAlpha = p < .58 ? 1 : Math.max(0, 1 - (p - .58) / .22);
-
-    ctx.save();
-
-    // Trailing contact banner
-    if (bannerAlpha > .02) {
-      const text = "Contatti";
-      ctx.font = `700 ${Math.max(9, 12 * s)}px Inter, sans-serif`;
-      const padX = 14 * s;
-      const bw = ctx.measureText(text).width + padX * 2;
-      const bh = Math.max(20, 26 * s);
-      const bx = pos.x + 15 * s;
-      const by = pos.y - bh / 2;
-
-      ctx.globalAlpha = bannerAlpha;
-      ctx.strokeStyle = "rgba(40,60,70,.45)";
-      ctx.lineWidth = Math.max(1, 1.2 * s);
-      ctx.beginPath();
-      ctx.moveTo(pos.x + 6 * s, pos.y);
-      ctx.lineTo(bx, pos.y);
-      ctx.stroke();
-
-      ctx.fillStyle = "rgba(255,255,255,.92)";
-      ctx.beginPath();
-      ctx.roundRect(bx, by, bw, bh, bh / 2);
-      ctx.fill();
-      ctx.fillStyle = "#ff785d";
-      ctx.beginPath();
-      ctx.roundRect(bx, by, 6 * s, bh, 3 * s);
-      ctx.fill();
-
-      ctx.fillStyle = "#1c252a";
-      ctx.textAlign = "left";
-      ctx.textBaseline = "middle";
-      ctx.fillText(text, bx + padX, pos.y + 1);
-    }
-
-    // Water wake under the moored seaplane
-    ctx.globalAlpha = 1;
-    if (landed) {
-      const spread = 1 + Math.sin(time * .0016) * .06;
-      ctx.fillStyle = "rgba(255,255,255,.26)";
-      ctx.beginPath();
-      ctx.ellipse(pos.x, pos.y + 10 * s, 24 * s * spread, 5 * s, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "rgba(255,255,255,.16)";
-      ctx.beginPath();
-      ctx.ellipse(pos.x, pos.y + 10 * s, 34 * s * spread, 7 * s, 0, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    ctx.translate(pos.x, pos.y);
-    ctx.rotate(roll);
-    drawSeaplane(s, time, landed);
-    ctx.restore();
-  }
-
-  function drawSeaplane(s, time, landed) {
-    // Floats / pontoons with struts (seaplane)
-    ctx.strokeStyle = "#93a0ac";
-    ctx.lineWidth = Math.max(1, 1.4 * s);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(-7 * s, 5 * s); ctx.lineTo(-7 * s, 9 * s);
-    ctx.moveTo(7 * s, 5 * s);  ctx.lineTo(7 * s, 9 * s);
-    ctx.stroke();
-    ctx.fillStyle = "#dfe4ea";
-    ctx.beginPath();
-    ctx.roundRect(-16 * s, 9 * s, 32 * s, 4.6 * s, 2.3 * s);
-    ctx.fill();
-    ctx.fillStyle = "rgba(40,55,70,.14)";
-    ctx.beginPath();
-    ctx.roundRect(-16 * s, 11.6 * s, 32 * s, 2 * s, 1 * s);
-    ctx.fill();
-
-    // Fuselage
-    ctx.fillStyle = "#f7efe1";
-    ctx.beginPath();
-    ctx.ellipse(0, 0, 14 * s, 5.3 * s, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#ff785d";
-    ctx.beginPath();
-    ctx.roundRect(-10 * s, -1.3 * s, 19 * s, 2.5 * s, 1.2 * s);
-    ctx.fill();
-
-    // Nose
-    ctx.fillStyle = "#ffb59f";
-    ctx.beginPath();
-    ctx.moveTo(-14 * s, 0);
-    ctx.lineTo(-20 * s, -1 * s);
-    ctx.lineTo(-14 * s, 3 * s);
-    ctx.closePath();
-    ctx.fill();
-
-    // Tail fin
-    ctx.fillStyle = "#9a7cff";
-    ctx.beginPath();
-    ctx.moveTo(11 * s, -1 * s);
-    ctx.lineTo(18 * s, -9 * s);
-    ctx.lineTo(14 * s, -1 * s);
-    ctx.closePath();
-    ctx.fill();
-
-    // High wing with struts
-    ctx.strokeStyle = "#c9bfa9";
-    ctx.lineWidth = Math.max(1, 1.2 * s);
-    ctx.beginPath();
-    ctx.moveTo(-3 * s, -2 * s); ctx.lineTo(-3 * s, -6 * s);
-    ctx.moveTo(4 * s, -2 * s);  ctx.lineTo(4 * s, -6 * s);
-    ctx.stroke();
-    ctx.fillStyle = "#e7ddca";
-    ctx.beginPath();
-    ctx.roundRect(-10 * s, -9 * s, 22 * s, 3.4 * s, 1.6 * s);
-    ctx.fill();
-
-    // Window
-    ctx.fillStyle = "#7ab4d2";
-    ctx.beginPath();
-    ctx.arc(-5 * s, -1 * s, 2.2 * s, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Spinning propeller while flying
-    if (!landed) {
-      const spin = Math.abs(Math.sin(time * .05)) * 6 * s + 1;
-      ctx.strokeStyle = "rgba(40,50,60,.55)";
-      ctx.lineWidth = Math.max(1, 1.3 * s);
-      ctx.beginPath();
-      ctx.moveTo(-20 * s, -spin);
-      ctx.lineTo(-20 * s, spin);
-      ctx.stroke();
-    }
-  }
-
-  function drawTraineeMotifs(center, scale, detailMode, time) {
-    const s = scale;
-
-    // XP progress arc sweeping the island
-    ctx.save();
-    ctx.strokeStyle = "rgba(14,14,14,.22)";
-    ctx.lineWidth = Math.max(1.5, 4 * s);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.ellipse(center.x, center.y, 104 * s, 56 * s, .1, -2.5, .9);
-    ctx.stroke();
-    ctx.strokeStyle = "#6cbb95";
-    ctx.beginPath();
-    const sweep = -2.5 + (Math.sin(time * .0006) * .5 + .5) * 3.4;
-    ctx.ellipse(center.x, center.y, 104 * s, 56 * s, .1, -2.5, sweep);
-    ctx.stroke();
-    ctx.restore();
-
-    // Floating XP sparks
-    for (let i = 0; i < 4; i++) {
-      const a = time * .0009 + i * 1.6;
-      const x = center.x + Math.cos(a) * (74 + i * 6) * s;
-      const y = center.y + Math.sin(a * 1.3) * (44 + i * 4) * s - ((time * .02 + i * 90) % 60) * .12 * s;
-      ctx.fillStyle = "rgba(108,187,149,.75)";
-      ctx.beginPath();
-      ctx.arc(x, y, 2.2 * s, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // Phone with the XP bar
-    drawTraineePhone(center.x - 52 * s, center.y + 6 * s, s * .95, time);
-
-    // The bubble mascot doing pull-ups on its bar
-    const ms = s * (detailMode ? 1.25 : 1.05);
-    const barX = center.x + 34 * s;
-    const barY = center.y - 46 * s;
-    // 0 = hanging at full stretch, 1 = chin over the bar
-    const reps = Math.pow(Math.sin(time * .0016) * .5 + .5, .7);
-    drawPullUpBar(barX, barY, ms);
-    drawBubbleMascot(barX, barY + (34 - 16 * reps) * ms, ms, time, reps, barY);
-  }
-
-  function drawTraineePhone(x, y, s, time) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.fillStyle = "rgba(20,34,40,.18)";
-    ctx.beginPath();
-    ctx.ellipse(3 * s, 26 * s, 17 * s, 5 * s, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = "#0e0e0e";
-    ctx.beginPath();
-    ctx.roundRect(-14 * s, -24 * s, 28 * s, 48 * s, 6 * s);
-    ctx.fill();
-    ctx.fillStyle = "#f7fbf8";
-    ctx.beginPath();
-    ctx.roundRect(-11.5 * s, -21 * s, 23 * s, 42 * s, 4 * s);
-    ctx.fill();
-
-    // progress bar filling up
-    ctx.fillStyle = "#dfe8e3";
-    ctx.beginPath();
-    ctx.roundRect(-8 * s, -4 * s, 16 * s, 3 * s, 1.5 * s);
-    ctx.fill();
-    const fill = (Math.sin(time * .0011) * .5 + .5) * 16;
-    ctx.fillStyle = "#6cbb95";
-    ctx.beginPath();
-    ctx.roundRect(-8 * s, -4 * s, Math.max(2, fill) * s, 3 * s, 1.5 * s);
-    ctx.fill();
-
-    // content lines
-    ctx.fillStyle = "rgba(14,14,14,.30)";
-    ctx.beginPath(); ctx.roundRect(-8 * s, -15 * s, 12 * s, 2.2 * s, 1 * s); ctx.fill();
-    ctx.beginPath(); ctx.roundRect(-8 * s, 4 * s, 15 * s, 2.2 * s, 1 * s); ctx.fill();
-    ctx.fillStyle = "#a8dcc0";
-    ctx.beginPath(); ctx.roundRect(-8 * s, 10 * s, 16 * s, 8 * s, 2.5 * s); ctx.fill();
-    ctx.restore();
-  }
-
-  function drawPullUpBar(x, y, s) {
-    ctx.save();
-    ctx.translate(x, y);
-
-    // ground shadow
-    ctx.fillStyle = "rgba(20,34,40,.15)";
-    ctx.beginPath();
-    ctx.ellipse(0, 62 * s, 26 * s, 6 * s, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // uprights
-    ctx.strokeStyle = "#0e0e0e";
-    ctx.lineWidth = Math.max(1.4, 3 * s);
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(-20 * s, 0); ctx.lineTo(-20 * s, 60 * s);
-    ctx.moveTo(20 * s, 0); ctx.lineTo(20 * s, 60 * s);
-    ctx.stroke();
-
-    // crossbar
-    ctx.strokeStyle = "#2f6b52";
-    ctx.lineWidth = Math.max(1.6, 3.4 * s);
-    ctx.beginPath();
-    ctx.moveTo(-24 * s, 0); ctx.lineTo(24 * s, 0);
-    ctx.stroke();
-
-    // grip tape
-    ctx.strokeStyle = "#6cbb95";
-    ctx.lineWidth = Math.max(1.6, 3.6 * s);
-    ctx.beginPath();
-    ctx.moveTo(-11 * s, 0); ctx.lineTo(-7 * s, 0);
-    ctx.moveTo(7 * s, 0); ctx.lineTo(11 * s, 0);
-    ctx.stroke();
-    ctx.restore();
-  }
-
-  function drawBubbleMascot(x, y, s, time, reps, barY) {
-    const hanging = typeof reps === "number";
-    const bob = hanging ? 0 : Math.sin(time * .0022) * 2.2 * s;
-    ctx.save();
-    ctx.translate(x, y + bob);
-
-    if (hanging) {
-      // arms reaching up to the grips, bending as the bubble pulls up
-      const gripY = barY - (y + bob);
-      ctx.strokeStyle = "#101418";
-      ctx.lineWidth = Math.max(1.1, 2 * s);
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      const elbow = (11 + 5 * reps) * s;
-      ctx.beginPath();
-      ctx.moveTo(-8 * s, -7 * s);
-      ctx.lineTo(-elbow, gripY * .55);
-      ctx.lineTo(-9 * s, gripY);
-      ctx.moveTo(8 * s, -7 * s);
-      ctx.lineTo(elbow, gripY * .55);
-      ctx.lineTo(9 * s, gripY);
-      ctx.stroke();
-    } else {
-      ctx.fillStyle = "rgba(20,34,40,.16)";
-      ctx.beginPath();
-      ctx.ellipse(2 * s, 17 * s, 13 * s, 4 * s, 0, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // bubble body
-    const g = ctx.createRadialGradient(-5 * s, -6 * s, 1 * s, 0, 0, 15 * s);
-    g.addColorStop(0, "#eaf7ff");
-    g.addColorStop(.55, "#bfe4f7");
-    g.addColorStop(1, "#8fcbe8");
-    ctx.fillStyle = g;
-    ctx.beginPath();
-    ctx.arc(0, 0, 14 * s, 0, Math.PI * 2);
-    ctx.fill();
-
-    // highlight
-    ctx.fillStyle = "rgba(255,255,255,.85)";
-    ctx.beginPath();
-    ctx.ellipse(-5 * s, -6 * s, 4 * s, 2.8 * s, -.5, 0, Math.PI * 2);
-    ctx.fill();
-
-    // eyes (blink every few seconds; squeezed shut at the top of a rep)
-    const straining = hanging && reps > .82;
-    const blink = straining || Math.sin(time * .0016) > .985;
-    ctx.fillStyle = "#101418";
-    if (blink) {
-      ctx.strokeStyle = "#101418";
-      ctx.lineWidth = 1.4 * s;
-      ctx.lineCap = "round";
-      ctx.beginPath();
-      ctx.moveTo(-6.5 * s, -1 * s); ctx.lineTo(-2.5 * s, -1 * s);
-      ctx.moveTo(2.5 * s, -1 * s); ctx.lineTo(6.5 * s, -1 * s);
-      ctx.stroke();
-    } else {
-      ctx.beginPath(); ctx.arc(-4.5 * s, -1.5 * s, 2.1 * s, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.arc(4.5 * s, -1.5 * s, 2.1 * s, 0, Math.PI * 2); ctx.fill();
-    }
-
-    // mouth: a grin, or a little "oof" while straining
-    ctx.strokeStyle = "#101418";
-    ctx.lineWidth = Math.max(1, 1.5 * s);
-    ctx.lineCap = "round";
-    if (straining) {
-      ctx.fillStyle = "#101418";
-      ctx.beginPath();
-      ctx.ellipse(0, 4 * s, 2.6 * s, 2 * s, 0, 0, Math.PI * 2);
-      ctx.fill();
-    } else {
-      ctx.beginPath();
-      ctx.arc(0, 2 * s, 5 * s, .35, Math.PI - .35);
-      ctx.stroke();
-    }
-
-    ctx.restore();
-  }
-
-  function drawIslandMapLabel(project, center, radius) {
-    const isHovered = hoverProject === project.id;
-    const labelY = center.y + radius * .78;
-    const text = project.name;
-    ctx.save();
-    ctx.font = `700 ${Math.max(11, 15 * camera.zoom)}px Inter, sans-serif`;
-    const textWidth = ctx.measureText(text).width;
-    const boxWidth = textWidth + 30;
-    const boxHeight = Math.max(30, 38 * camera.zoom);
-
-    ctx.fillStyle = isHovered ? "rgba(255,255,255,.94)" : "rgba(255,255,255,.72)";
-    ctx.strokeStyle = "rgba(255,255,255,.92)";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.roundRect(center.x - boxWidth / 2, labelY - boxHeight / 2, boxWidth, boxHeight, boxHeight / 2);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = "#1c252a";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(text, center.x, labelY + 1);
-    ctx.restore();
-  }
-
-  function drawBirds(time) {
-    if (activeProject && activeProject !== "bloop") return;
-
-    const project = projects.bloop;
-    birds.forEach((bird, index) => {
-      const angle = time * .00016 + bird.t;
-      const worldX = bird.x + Math.cos(angle + index) * 24;
-      const worldY = bird.y + Math.sin(angle * 1.2 + index) * 16;
-      const p = worldToScreen(worldX, worldY);
-      const s = Math.max(.55, camera.zoom);
-
-      ctx.save();
-      ctx.strokeStyle = "rgba(26,55,66,.7)";
-      ctx.lineWidth = Math.max(1, 1.6 * s);
-      ctx.beginPath();
-      ctx.moveTo(p.x, p.y);
-      ctx.quadraticCurveTo(p.x - 6 * s, p.y - 6 * s, p.x - 12 * s, p.y);
-      ctx.moveTo(p.x, p.y);
-      ctx.quadraticCurveTo(p.x + 6 * s, p.y - 6 * s, p.x + 12 * s, p.y);
-      ctx.stroke();
-      ctx.restore();
-    });
-  }
-
-  function drawBoats(time) {
-    boats.forEach((boat, index) => {
-      const drift = Math.sin(time * .00025 + index) * 16;
-      const p = worldToScreen(boat.x + drift, boat.y + drift * .25);
-      const s = camera.zoom;
-
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(boat.angle);
-      ctx.fillStyle = "rgba(33,76,96,.18)";
-      ctx.beginPath();
-      ctx.ellipse(4 * s, 7 * s, 15 * s, 5 * s, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#f7efe1";
-      ctx.beginPath();
-      ctx.moveTo(-12 * s, 0);
-      ctx.lineTo(12 * s, 0);
-      ctx.lineTo(7 * s, 7 * s);
-      ctx.lineTo(-7 * s, 7 * s);
-      ctx.closePath();
-      ctx.fill();
-      ctx.strokeStyle = "#7b543a";
-      ctx.lineWidth = Math.max(1, 1.4 * s);
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(0, -18 * s);
-      ctx.stroke();
-      ctx.fillStyle = index === 0 ? "#ff785d" : "#9a7cff";
-      ctx.beginPath();
-      ctx.moveTo(1 * s, -17 * s);
-      ctx.lineTo(12 * s, -7 * s);
-      ctx.lineTo(1 * s, -7 * s);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    });
-  }
-
-  function drawFish(time) {
-    fish.forEach((f, index) => {
-      const a = time * f.spd + f.t;
-      const wx = f.x + Math.cos(a) * f.rx;
-      const wy = f.y + Math.sin(a) * f.ry;
-      const dir = Math.atan2(Math.cos(a) * f.ry, -Math.sin(a) * f.rx);
-      const p = worldToScreen(wx, wy);
-      const s = f.size * camera.zoom;
-      const wag = Math.sin(time * .012 + index) * 1.6 * s;
-
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(dir);
-      ctx.globalAlpha = .6;
-
-      // tail (wags)
-      ctx.fillStyle = f.color;
-      ctx.beginPath();
-      ctx.moveTo(-5 * s, 0);
-      ctx.lineTo(-12 * s, -3.4 * s + wag);
-      ctx.lineTo(-12 * s, 3.4 * s + wag);
-      ctx.closePath();
-      ctx.fill();
-
-      // body
-      ctx.beginPath();
-      ctx.ellipse(0, 0, 7 * s, 3.3 * s, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // eye
-      ctx.globalAlpha = .8;
-      ctx.fillStyle = "rgba(20,30,35,.75)";
-      ctx.beginPath();
-      ctx.arc(4 * s, -0.6 * s, .9 * s, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.restore();
-    });
-  }
-
-  function drawWhale(time) {
-    if (!whale.active) {
-      if (time > whale.nextAt) {
-        const sp = whaleSpots[(Math.random() * whaleSpots.length) | 0];
-        whale.x = sp.x; whale.y = sp.y; whale.dir = Math.random() < .5 ? 1 : -1;
-        whale.active = true; whale.startAt = time;
-      }
-      return;
-    }
-    const DUR = 5200;
-    const p = (time - whale.startAt) / DUR;
-    if (p >= 1) { whale.active = false; whale.nextAt = time + 16000 + Math.random() * 16000; return; }
-    const alpha = Math.sin(p * Math.PI);
-    const wx = whale.x + whale.dir * (p - 0.5) * 90;
-    const scr = worldToScreen(wx, whale.y);
-    const s = camera.zoom;
-
-    ctx.save();
-    ctx.translate(scr.x, scr.y);
-    ctx.scale(whale.dir, 1);
-    ctx.globalAlpha = alpha * 0.9;
-    ctx.strokeStyle = "rgba(255,255,255,.5)";
-    ctx.lineWidth = Math.max(1, 1.5 * s);
-    ctx.beginPath();
-    ctx.moveTo(-12 * s, -14 * s); ctx.quadraticCurveTo(-48 * s, 0, -12 * s, 14 * s);
-    ctx.stroke();
-    ctx.fillStyle = "#33566a";
-    ctx.beginPath(); ctx.ellipse(0, 0, 40 * s, 15 * s, 0, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = "#3f647a";
-    ctx.beginPath(); ctx.ellipse(11 * s, 0, 25 * s, 10 * s, 0, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = "#2c4b5d";
-    ctx.beginPath();
-    ctx.moveTo(-34 * s, 0); ctx.lineTo(-53 * s, -15 * s); ctx.lineTo(-44 * s, 0); ctx.lineTo(-53 * s, 15 * s);
-    ctx.closePath(); ctx.fill();
-    ctx.restore();
-
-    const spout = Math.sin(Math.max(0, (p - 0.22)) / 0.5 * Math.PI);
-    if (spout > 0.05) {
-      const hp = worldToScreen(wx + whale.dir * 28, whale.y - 6);
-      ctx.save();
-      ctx.globalAlpha = spout * 0.7 * alpha;
-      ctx.fillStyle = "rgba(255,255,255,.9)";
-      for (let i = 0; i < 6; i++) {
-        const a = -Math.PI / 2 + (i - 2.5) * 0.17;
-        const d = (9 + (i % 3) * 6) * s;
-        ctx.beginPath();
-        ctx.arc(hp.x + Math.cos(a) * d, hp.y + Math.sin(a) * d - 10 * s * spout, (2.2 + (i % 2)) * s, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.restore();
-    }
-  }
-
-  function drawLighthouse(env) {
-    const p = worldToScreen(lighthouse.x, lighthouse.y);
-    const s = camera.zoom;
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.fillStyle = "rgba(58,68,78,.92)";
-    ctx.beginPath(); ctx.ellipse(0, 6 * s, 22 * s, 9 * s, 0, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = "#f4efe6";
-    ctx.beginPath();
-    ctx.moveTo(-7 * s, 4 * s); ctx.lineTo(-4.5 * s, -22 * s); ctx.lineTo(4.5 * s, -22 * s); ctx.lineTo(7 * s, 4 * s);
-    ctx.closePath(); ctx.fill();
-    ctx.fillStyle = "#e0574a";
-    ctx.fillRect(-6.4 * s, -6 * s, 12.8 * s, 5 * s);
-    ctx.fillRect(-5.4 * s, -17 * s, 10.8 * s, 4 * s);
-    ctx.fillStyle = "#33454f";
-    ctx.fillRect(-5 * s, -30 * s, 10 * s, 8 * s);
-    ctx.fillStyle = `rgba(255,236,150,${0.4 + env.dark * 0.6})`;
-    ctx.beginPath(); ctx.arc(0, -26 * s, 3 * s, 0, Math.PI * 2); ctx.fill();
-    ctx.restore();
-  }
-
-  function drawLighthouseBeam(time, env) {
-    if (env.dark < 0.15) return;
-    const p = worldToScreen(lighthouse.x, lighthouse.y);
-    const s = camera.zoom;
-    ctx.save();
-    ctx.globalCompositeOperation = "lighter";
-    ctx.translate(p.x, p.y - 26 * s);
-    ctx.rotate(time * 0.0012);
-    const g = ctx.createLinearGradient(0, 0, 320 * s, 0);
-    g.addColorStop(0, `rgba(255,240,170,${0.30 * env.dark})`);
-    g.addColorStop(1, "rgba(255,240,170,0)");
-    ctx.fillStyle = g;
-    for (let k = 0; k < 2; k++) {
-      ctx.beginPath();
-      ctx.moveTo(0, 0); ctx.lineTo(320 * s, -32 * s); ctx.lineTo(320 * s, 32 * s); ctx.closePath(); ctx.fill();
-      ctx.rotate(Math.PI);
-    }
-    ctx.restore();
-  }
-
-  function drawIslandLights(time, env) {
-    if (env.dark < 0.12) return;
-    ctx.save();
-    ctx.globalCompositeOperation = "lighter";
-    Object.values(projects).forEach(pr => {
-      const center = worldToScreen(pr.x, pr.y);
-      const s = camera.zoom;
-      const seedN = pr.name.length;
-      for (let i = 0; i < 5; i++) {
-        const a = i * 2.3 + seedN;
-        const rr = pr.radius * (0.18 + 0.4 * (((i * 37) % 10) / 10));
-        const lx = center.x + Math.cos(a) * rr * s;
-        const ly = center.y + Math.sin(a) * rr * s * 0.7;
-        const tw = 0.6 + 0.4 * Math.sin(time * 0.004 + i + seedN);
-        const glow = ctx.createRadialGradient(lx, ly, 0, lx, ly, 7 * s);
-        glow.addColorStop(0, `rgba(255,214,130,${env.dark * tw})`);
-        glow.addColorStop(1, "rgba(255,214,130,0)");
-        ctx.fillStyle = glow;
-        ctx.beginPath(); ctx.arc(lx, ly, 7 * s, 0, Math.PI * 2); ctx.fill();
-      }
-    });
-    ctx.restore();
-  }
-
-  function drawStars(time, env) {
-    if (env.dark < 0.3) return;
-    ctx.save();
-    ctx.globalCompositeOperation = "lighter";
-    const base = (env.dark - 0.3) / 0.7;
-    stars.forEach(st => {
-      const tw = 0.4 + 0.6 * Math.sin(time * 0.002 + st.t * 5);
-      ctx.fillStyle = `rgba(255,255,255,${base * tw * (0.35 + st.s * 0.6)})`;
-      ctx.beginPath();
-      ctx.arc(st.x * width, st.y * height * 0.92, 0.6 + st.s * 1.3, 0, Math.PI * 2);
-      ctx.fill();
-    });
-    ctx.restore();
-  }
-
-  function startRenderLoop() {
-    if (renderLoopActive) return;
-    renderLoopActive = true;
-    lastTime = performance.now();
-    requestAnimationFrame(render);
-  }
-
-  function render(time) {
-    const dt = Math.min(32, time - lastTime);
-    lastTime = time;
-
-    const smoothing = 1 - Math.pow(.001, dt / 1000);
-    camera.x = lerp(camera.x, camera.targetX, smoothing);
-    camera.y = lerp(camera.y, camera.targetY, smoothing);
-    camera.zoom = lerp(camera.zoom, camera.targetZoom, smoothing);
-
-    viewOffsetX += (targetOffX - viewOffsetX) * 0.05;
-    viewOffsetY += (targetOffY - viewOffsetY) * 0.05;
-
-    const env = skyEnv(time);
-    drawOcean(time, env);
-    drawFish(time);
-    drawWhale(time);
-    drawBoats(time);
-
-    const sorted = Object.values(projects).sort((a, b) => a.y - b.y);
-    sorted.forEach(project => drawIsland(project, time));
-
-    drawLighthouse(env);
-    drawBirds(time);
-    drawAboutPlane(time);
-
-    if (env.dark > 0.01) {
-      ctx.fillStyle = `rgba(8,15,32,${env.dark * 0.5})`;
-      ctx.fillRect(0, 0, width, height);
-    }
-    drawIslandLights(time, env);
-    drawStars(time, env);
-    drawLighthouseBeam(time, env);
-    updateHotspotPositions();
-
-    requestAnimationFrame(render);
-  }
-
-  function createWorldClouds() {
-    const back = $("#cloudBack");
-    const front = $("#cloudFront");
-    const configs = [
-      [back, "22vw", "12%", ".25", "8px", "42s", "-9s"],
-      [back, "17vw", "58%", ".18", "10px", "52s", "-27s"],
-      [back, "27vw", "78%", ".17", "12px", "58s", "-14s"],
-      [front, "33vw", "18%", ".29", "15px", "48s", "-18s"],
-      [front, "28vw", "66%", ".24", "18px", "55s", "-36s"]
-    ];
-
-    configs.forEach(([parent, w, top, opacity, blur, duration, delay]) => {
-      const cloud = document.createElement("div");
-      cloud.className = "world-cloud";
-      cloud.style.setProperty("--w", w);
-      cloud.style.setProperty("--opacity", opacity);
-      cloud.style.setProperty("--blur", blur);
-      cloud.style.setProperty("--duration", duration);
-      cloud.style.setProperty("--delay", delay);
-      cloud.style.top = top;
-      cloud.innerHTML = "<i></i>";
-      parent.appendChild(cloud);
-    });
-  }
-
-  function createBurstParticles() {
-    const rect = cloudEntry.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
-    const count = window.innerWidth < 700 ? 28 : 46;
-
-    for (let i = 0; i < count; i++) {
-      const particle = document.createElement("i");
-      particle.className = "burst-particle";
-      const angle = (Math.PI * 2 * i) / count + Math.random() * .26;
-      const distance = rect.width * (.36 + Math.random() * .9);
-      particle.style.setProperty("--x", `${x}px`);
-      particle.style.setProperty("--y", `${y}px`);
-      particle.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
-      particle.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
-      particle.style.setProperty("--size", `${4 + Math.random() * 17}px`);
-      particle.style.setProperty("--duration", `${.55 + Math.random() * .55}s`);
-      particle.style.setProperty("--rotate", `${Math.random() * 480 - 240}deg`);
-      particlesLayer.appendChild(particle);
-      setTimeout(() => particle.remove(), 1300);
-    }
-  }
-
-  function enterWorld() {
-    if (worldStarted) return;
-    worldStarted = true;
-    cloudEntry.classList.add("entering");
-    if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === "function") {
-      DeviceOrientationEvent.requestPermission().catch(() => {});
-    }
-    tone(610, .08, "sine", .03);
-    setTimeout(() => tone(180, .45, "sine", .045), 120);
-
-    setTimeout(() => {
-      transitionClouds.classList.add("active");
-    }, 260);
-
-    setTimeout(() => {
-      world.classList.remove("hidden");
-      world.classList.add("world-ready");
-      resizeCanvas();
-      createWorldClouds();
-      startRenderLoop();
-      locationLabel.textContent = "Project archipelago";
-      mapButton.classList.remove("hidden");
-    }, 900);
-
-    setTimeout(() => {
-      intro.classList.add("hidden");
-    }, 1400);
-
-    setTimeout(() => {
-      transitionClouds.classList.remove("active");
-      showToast("Benvenuto nell’arcipelago.");
-    }, 2950);
-
-    setTimeout(() => {
-      aboutPlaneStart = performance.now();
-    }, 3600);
-  }
-
-  function resetToIntro() {
-    closeStory();
-    activeProject = null;
-    activePhase = null;
-    hoverProject = null;
-    aboutPlaneStart = 0;
-    camera.x = camera.targetX = 0;
-    camera.y = camera.targetY = 0;
-    camera.zoom = camera.targetZoom = .78;
-    world.classList.remove("world-ready");
-    world.classList.add("hidden");
-    intro.classList.remove("hidden");
-    cloudEntry.classList.remove("entering");
-    mapButton.classList.add("hidden");
-    worldStarted = false;
-    $("#cloudBack").innerHTML = "";
-    $("#cloudFront").innerHTML = "";
-    locationLabel.textContent = "Above the clouds";
-    showMapUI();
-  }
-
-  function selectProject(projectId) {
-    const project = projects[projectId];
-    if (!project) return;
-
-    activeProject = projectId;
-    activePhase = null;
-    hoverProject = projectId;
-    closeStory();
-
-    mapIntro.classList.add("minimized");
-    projectIndex.classList.add("hidden");
-    $("#worldHelp").classList.add("hidden");
-    $("#compass").classList.add("hidden");
-    backIsland.classList.remove("hidden");
-    islandTitle.classList.remove("hidden");
-    mapButton.classList.remove("hidden");
-
-    islandName.textContent = project.name;
-    islandType.textContent = project.type;
-    islandTagline.textContent = project.tagline;
-    locationLabel.textContent = project.about || project.id === "orsini" ? project.name : `${project.name} island`;
-
-    // Frame the island: on small screens the title block wraps over the
-    // scene, so fit the island (and its hotspots) below it instead of
-    // centering it behind the text.
-    camera.targetX = project.x;
-    if (width < 650) {
-      const titleBottom = islandTitle.getBoundingClientRect().bottom;
-      const free = Math.max(220, height - titleBottom - 28);
-      camera.targetZoom = clamp(free / (project.radius * 1.6), .95, 1.58);
-      camera.targetY = project.y - project.radius * .78 -
-        (titleBottom + 18 - height / 2) / camera.targetZoom;
-    } else {
-      camera.targetY = project.y + 14;
-      camera.targetZoom = 1.82;
-    }
-
-    $$("#projectIndex button").forEach(button => {
-      button.classList.toggle("active", button.dataset.project === projectId);
-    });
-
-    updatePhasePreviews(project);
-
-    if (project.about) {
-      hotspots.classList.add("hidden");
-      openAbout(project);
-      aboutWaveUntil = performance.now() + 3000;
-      tone(300, .16, "sine", .03);
-    } else {
-      hotspots.classList.remove("hidden");
-      tone(projectId === "bloop" ? 420 : projectId === "merkorn" ? 260 : projectId === "orsini" ? 360 : 330, .13, "triangle", .03);
-    }
-  }
-
-  function openAbout(project) {
-    const a = project.aboutContent;
-    activePhase = null;
-    $("#storyNumber").textContent = a.number;
-    $("#storyKicker").textContent = a.kicker;
-    $("#storyTitle").textContent = a.title;
-    $("#storyCopy").textContent = a.copy;
-    $("#storyFacts").innerHTML = a.facts.map(fact => `<span>${fact}</span>`).join("");
-    storyNext.classList.add("hidden");
-    storyPanel.classList.add("open");
-    replayStoryReveal();
-    storyPanel.setAttribute("aria-hidden", "false");
-    $$(".hotspot").forEach(button => button.classList.remove("active"));
-  }
-
-  function showMapUI() {
-    activeProject = null;
-    activePhase = null;
-    hoverProject = null;
-    closeStory();
-
-    camera.targetX = 0;
-    camera.targetY = 45;
-    camera.targetZoom = width < 650 ? .66 : .78;
-
-    mapIntro.classList.remove("minimized");
-    projectIndex.classList.remove("hidden");
-    $("#worldHelp").classList.remove("hidden");
-    $("#compass").classList.remove("hidden");
-    backIsland.classList.add("hidden");
-    hotspots.classList.add("hidden");
-    islandTitle.classList.add("hidden");
-    locationLabel.textContent = "Project archipelago";
-
-    $$("#projectIndex button").forEach(button => button.classList.remove("active"));
-    tone(190, .10, "sine", .02);
-  }
-
-  function updateHotspotPositions() {
-    if (!activeProject || hotspots.classList.contains("hidden")) return;
-    const project = projects[activeProject];
-    const center = worldToScreen(project.x, project.y);
-
-    phases.forEach(phase => {
-      const pos = project.phasePositions[phase];
-      const screenX = center.x + pos.x * camera.zoom;
-      const screenY = center.y + pos.y * camera.zoom;
-      const button = $(`.hotspot-${phase}`);
-      button.style.left = `${screenX}px`;
-      button.style.top = `${screenY}px`;
-    });
-  }
-
-  function updatePhasePreviews(project) {
-    $$(".hotspot-preview").forEach(el => {
-      const data = project.phases && project.phases[el.dataset.preview];
-      el.textContent = data ? data.title : "";
-    });
-  }
-
-  function replayStoryReveal() {
-    storyPanel.classList.remove("revealing");
-    void storyPanel.offsetWidth; // restart the CSS animations
-    storyPanel.classList.add("revealing");
-  }
-
-  function openPhase(phase) {
-    if (!activeProject) return;
-    const project = projects[activeProject];
-    if (!project.phases) return;
-    const data = project.phases[phase];
-    if (!data) return;
-
-    activePhase = phase;
-    storyNext.classList.remove("hidden");
-    $("#storyNumber").textContent = data.number;
-    $("#storyKicker").textContent = data.kicker;
-    $("#storyTitle").textContent = data.title;
-    $("#storyCopy").textContent = data.copy;
-    $("#storyFacts").innerHTML = data.facts.map(fact => `<span>${fact}</span>`).join("");
-    storyPanel.classList.add("open");
-    replayStoryReveal();
-    storyPanel.setAttribute("aria-hidden", "false");
-
-    $$(".hotspot").forEach(button => {
-      button.classList.toggle("active", button.dataset.phase === phase);
-    });
-
-    tone(phase === "house" ? 240 : phase === "person" ? 330 : 480, .09, "sine", .025);
-  }
-
-  function closeStory() {
-    storyPanel.classList.remove("open");
-    storyPanel.setAttribute("aria-hidden", "true");
-    activePhase = null;
-    $$(".hotspot").forEach(button => button.classList.remove("active"));
-  }
-
-  function nextPhase() {
-    const current = Math.max(0, phases.indexOf(activePhase));
-    const next = phases[(current + 1) % phases.length];
-    openPhase(next);
-  }
-
-  function islandHitTest(screenX, screenY) {
-    const point = screenToWorld(screenX, screenY);
-    let hit = null;
-    let minDistance = Infinity;
-
-    Object.values(projects).forEach(project => {
-      const dx = point.x - project.x;
-      const dy = (point.y - project.y) / .70;
-      const distance = Math.hypot(dx, dy);
-      if (distance < project.radius * .94 && distance < minDistance) {
-        hit = project.id;
-        minDistance = distance;
-      }
-    });
-
-    return hit;
-  }
-
-  function onPointerMove(event) {
-    if (!worldStarted) return;
-
-    if (pointerDown && !activeProject) {
-      const dx = event.clientX - dragStart.x;
-      const dy = event.clientY - dragStart.y;
-      if (Math.hypot(dx, dy) > 4) dragMoved = true;
-
-      camera.targetX = cameraStart.x - dx / camera.zoom;
-      camera.targetY = cameraStart.y - dy / camera.zoom;
-      camera.targetX = clamp(camera.targetX, -520, 520);
-      camera.targetY = clamp(camera.targetY, -380, 330);
-    }
-
-    if (!pointerDown && !activeProject) {
-      hoverProject = islandHitTest(event.clientX, event.clientY);
-      worldCanvas.style.cursor = hoverProject ? "pointer" : "grab";
-    }
-
-    if (!pointerDown && projects[activeProject]?.about && !storyPanel.classList.contains("open")) {
-      const overAbout = islandHitTest(event.clientX, event.clientY) === activeProject;
-      worldCanvas.style.cursor = overAbout ? "pointer" : "default";
-    }
-  }
-
-  function onPointerDown(event) {
-    pointerDown = true;
-    dragMoved = false;
-    dragStart = { x: event.clientX, y: event.clientY };
-    cameraStart = { x: camera.targetX, y: camera.targetY };
-    worldCanvas.setPointerCapture?.(event.pointerId);
-  }
-
-  function onPointerUp(event) {
-    if (!pointerDown) return;
-    pointerDown = false;
-
-    if (!dragMoved && !activeProject) {
-      const hit = islandHitTest(event.clientX, event.clientY);
-      if (hit) selectProject(hit);
-    }
-
-    // Re-open the card by clicking the person's island again
-    if (!dragMoved && projects[activeProject]?.about && !storyPanel.classList.contains("open")) {
-      if (islandHitTest(event.clientX, event.clientY) === activeProject) {
-        openAbout(projects[activeProject]);
-        aboutWaveUntil = performance.now() + 3000;
-      }
-    }
-
-    worldCanvas.style.cursor = hoverProject ? "pointer" : "grab";
-  }
-
-  function onWheel(event) {
-    if (!worldStarted || activeProject) return;
-    event.preventDefault();
-
-    const oldZoom = camera.targetZoom;
-    const zoomFactor = Math.exp(-event.deltaY * .001);
-    const newZoom = clamp(oldZoom * zoomFactor, .58, 1.12);
-
-    const pointerWorld = screenToWorld(event.clientX, event.clientY);
-    camera.targetZoom = newZoom;
-    camera.targetX = pointerWorld.x - (event.clientX - width / 2) / newZoom;
-    camera.targetY = pointerWorld.y - (event.clientY - height / 2) / newZoom;
-  }
-  intro.addEventListener("click", event => {
-    if (event.target.closest("#cloudEntry")) return;
-    enterWorld();
-  });
-
-  cloudEntry.addEventListener("click", event => {
-    event.preventDefault();
-    enterWorld();
-  });
-
-  cloudEntry.addEventListener("pointerup", event => {
-    if (event.pointerType === "touch") {
-      event.preventDefault();
-      enterWorld();
-    }
-  });
-
-  soundToggle.addEventListener("click", () => {
-    soundEnabled = !soundEnabled;
-    soundToggle.setAttribute("aria-pressed", String(soundEnabled));
-    soundToggle.setAttribute("aria-label", soundEnabled ? "Disattiva i suoni" : "Attiva i suoni");
-    if (soundEnabled) {
-      ensureAudio();
-      tone(520, .12, "sine", .035);
-      showToast("Suoni attivi.");
-    }
-  });
-
-  mapButton.addEventListener("click", () => {
-    if (activeProject) showMapUI();
-    else showToast("Sei già sull’arcipelago.");
-  });
-
-  backIsland.addEventListener("click", showMapUI);
-  storyClose.addEventListener("click", closeStory);
-  storyNext.addEventListener("click", nextPhase);
-
-  brandHome.addEventListener("click", event => {
-    event.preventDefault();
-    if (!worldStarted) return;
-    resetToIntro();
-  });
-
-  $$("#projectIndex button").forEach(button => {
-    button.addEventListener("click", () => selectProject(button.dataset.project));
-  });
-
-  // Title micro-parallax: the panel heading drifts slightly with the pointer
-  storyPanel.addEventListener("pointermove", event => {
-    if (event.pointerType === "touch") return;
-    const rect = storyPanel.getBoundingClientRect();
-    const dx = (event.clientX - rect.left) / rect.width - .5;
-    const dy = (event.clientY - rect.top) / rect.height - .5;
-    $("#storyTitle").style.transform = `translate(${dx * 9}px, ${dy * 5}px)`;
-  });
-
-  storyPanel.addEventListener("pointerleave", () => {
-    $("#storyTitle").style.transform = "";
-  });
-
-  $$(".hotspot").forEach(button => {
-    // On touch, first tap peeks the preview, second opens the phase
-    button.addEventListener("pointerdown", event => {
-      if (event.pointerType !== "touch") return;
-      if (!button.classList.contains("peek")) {
-        $$(".hotspot").forEach(other => other.classList.remove("peek"));
-        button.classList.add("peek");
-      }
-      setTimeout(() => button.classList.remove("peek"), 2200);
-    });
-
-    button.addEventListener("click", () => openPhase(button.dataset.phase));
-  });
-
-  worldCanvas.addEventListener("pointerdown", onPointerDown);
-  worldCanvas.addEventListener("pointermove", onPointerMove);
-  worldCanvas.addEventListener("pointerup", onPointerUp);
-  worldCanvas.addEventListener("pointercancel", () => { pointerDown = false; });
-  worldCanvas.addEventListener("wheel", onWheel, { passive: false });
-
-  window.addEventListener("resize", () => {
-    resizeCanvas();
-    if (!activeProject) {
-      camera.targetZoom = width < 650 ? .66 : .78;
-    }
-  });
-
-  // Parallax: gentle lean with the mouse (desktop) or device tilt (mobile)
-  window.addEventListener("mousemove", event => {
-    targetOffX = -(event.clientX / window.innerWidth - 0.5) * 30;
-    targetOffY = -(event.clientY / window.innerHeight - 0.5) * 22;
-  });
-  window.addEventListener("deviceorientation", event => {
-    if (event.gamma == null) return;
-    targetOffX = clamp(event.gamma, -35, 35) / 35 * 30;
-    targetOffY = clamp((event.beta || 0) - 45, -35, 35) / 35 * 22;
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      if (storyPanel.classList.contains("open")) closeStory();
-      else if (activeProject) showMapUI();
-      return;
-    }
-
-    if (!worldStarted) {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        enterWorld();
-      }
-      return;
-    }
-
-    const key = event.key.toLowerCase();
-    if (key === "b") selectProject("bloop");
-    if (key === "m") selectProject("merkorn");
-    if (key === "d") selectProject("dreambase");
-    if (key === "c") selectProject("about");
-    if (key === "r") selectProject("orsini");
-    if (key === "t") selectProject("trainee");
-  });
-
-  resizeCanvas();
+  boot();
+
+  // test hooks
+  window.__house = {
+    ROOMS,
+    player,
+    roomAt,
+    start() { started = true; $("#entrance").classList.add("hidden"); $("#hud").classList.remove("hidden"); },
+    get colliderCount() { return colliders.length; }
+  };
 })();
-
 </script>
 </body>
 </html>
