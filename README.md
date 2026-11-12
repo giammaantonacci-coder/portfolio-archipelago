@@ -1,32 +1,15 @@
-# Gianmarco — Project Archipelago V4
+# Gianmarco Antonacci — Portfolio
 
-Portfolio interattivo in HTML, CSS e JavaScript puro.
+Minimal portfolio in plain HTML, CSS and JavaScript: an index of five projects (Bloop, Merkorn, Dreambase, TraineeUX, Riccardo Orsini) and a page for each, with the screens in iPhone or browser frames.
 
-## Hero
+- `index.html` — the whole site; each project has its own link (`#/bloop`, `#/dreambase`, …)
+- `img/` — project screenshots (webp)
+- `folio/` — redirects the old `/folio/` address to the home page
 
-- Titolo: **Ogni progetto è un mondo**
-- CTA: **Clicca per esplorare l’arcipelago**
-- Nuvole costruite con la stessa direzione visiva della transizione iniziale
-- Tutta la hero è cliccabile
-
-## Esperienza
-
-1. Click sulla hero.
-2. Attraversamento delle nuvole.
-3. Arrivo sull’arcipelago.
-4. Selezione di un’isola: Bloop, Merkorn, Dreambase, Brand identity e sito fotografo, oppure l’isola Chi sono del cartografo.
-5. Per le isole progetto, esplorazione delle tre fasi: casa, persona, animale.
-
-Scorciatoie da tastiera: `B / M / D / C / R` per saltare alle isole.
-
-## Avvio
-
-Apri `index.html`.
-
-Per sviluppo locale:
+## Local development
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Poi visita `http://localhost:8080`.
+Then open `http://localhost:8080`.
