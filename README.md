@@ -1,8 +1,8 @@
 # Gianmarco Antonacci — Portfolio
 
-Minimal portfolio in plain HTML, CSS and JavaScript: an index of five projects (Bloop, Merkorn, Dreambase, TraineeUX, Riccardo Orsini) and a page for each, with the screens in iPhone or browser frames.
+GA Studio portfolio in Italian, plain HTML, CSS and JavaScript: home, one page per service (App, Siti web, Brand identity, AI), the projects (Bloop, Merkorn, Dreambase, TraineeUX, Riccardo Orsini) in iPhone or browser frames, brand boards and a contact form.
 
-- `index.html` — the whole site; each project has its own link (`#/bloop`, `#/dreambase`, …)
+- `index.html` — the whole site: the page template and a small renderer that switches between home and service pages
 - `img/` — project screenshots (webp)
 - `folio/` — redirects the old `/folio/` address to the home page
 

@@ -1,248 +1,872 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gianmarco Antonacci — Product designer</title>
-<meta name="description" content="Gianmarco Antonacci, product designer. Selected work: Bloop, Merkorn, Dreambase, TraineeUX, Riccardo Orsini.">
-<meta property="og:title" content="Gianmarco Antonacci — Product designer">
-<meta property="og:description" content="Digital products designed with the rigor of a manifesto.">
+<title>GA Studio — Gianmarco Antonacci, product designer</title>
+<meta name="description" content="Studio di product design di Gianmarco Antonacci: app, siti web, brand identity e AI. Bloop, Merkorn, Dreambase, TraineeUX, Riccardo Orsini.">
+<meta property="og:title" content="GA Studio — Gianmarco Antonacci, product designer">
+<meta property="og:description" content="Idee. Schermate. Chiarezza. Prodotti che si capiscono.">
 <meta property="og:image" content="img/bloop-home.webp">
-<meta name="theme-color" content="#f6f4ef">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23e2231a'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232fe06d'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;family=Inter+Tight:wght@400;500;600;700&amp;family=Manrope:wght@500;700;800&amp;family=Archivo:wght@500;800;900&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&amp;display=swap" rel="stylesheet">
 <style>
-:root{--paper:#f6f4ef;--ink:#0e0e0e;--muted:#6a675f;--red:#e2231a;--rule:#e9e6df}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;overflow-x:hidden}
-a{color:var(--ink);text-decoration:none}a:hover{color:var(--red)}
-:focus-visible{outline:2px solid var(--red);outline-offset:4px}
-.wrap{position:relative;max-width:1200px;margin:0 auto;padding:0 40px}
-.grid12{position:absolute;inset:0 40px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;pointer-events:none}
-.grid12 span{border-left:1px solid var(--rule);border-right:1px solid var(--rule)}
-.lay{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px}
-.mono{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.red{color:var(--red)}
-.hero{margin:0;font-weight:800}.hero:focus{outline:none}
-.dot{border-radius:50%;background:var(--red)}
-.proj{display:flex;flex-direction:column;gap:6px;padding:16px 0;border-top:2px solid var(--ink);cursor:pointer}
-.proj .pn{font-size:clamp(30px,3.6vw,48px);font-weight:700;letter-spacing:-.04em;transition:color .2s,transform .35s cubic-bezier(.16,1,.3,1)}
-.proj:hover .pn,.proj:focus-visible .pn,.proj.on .pn{color:var(--red);transform:translateX(10px)}
-.lnk{min-height:44px;padding:0;border:0;background:none;color:var(--ink);font:500 12px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
-.lnk:hover{color:var(--red)}
-.big{font-family:'Inter Tight',system-ui,sans-serif;font-size:clamp(28px,4vw,56px);font-weight:700;letter-spacing:-.045em;text-transform:none;text-align:left;line-height:1.05}
-.phone{position:relative;width:100%;max-width:260px;padding:8px;border-radius:42px;background:var(--ink);box-shadow:0 24px 50px rgba(14,14,14,.18)}
-.phone .scr{aspect-ratio:169/365;border-radius:34px;overflow:hidden;background:#000}
-.phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
-.phone .isl{position:absolute;top:17px;left:50%;transform:translateX(-50%);width:58px;height:16px;border-radius:9px;background:#000}
-.win{width:100%;border:2px solid var(--ink);border-radius:12px;overflow:hidden;background:#fff}
-.win .bar{display:flex;align-items:center;gap:7px;height:32px;padding:0 14px;border-bottom:2px solid var(--ink);background:#fff}
-.win .bar i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink)}
-.win .bar i:first-child{background:var(--red);border-color:var(--red)}
-.win .bar span{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.win img{display:block;width:100%;height:auto}
-.prev{position:sticky;top:32px;display:flex;flex-direction:column;gap:18px}
-.prev .phone{max-width:220px}
-.lede{margin:0;font-size:clamp(22px,2.4vw,32px);line-height:1.22;font-weight:500;letter-spacing:-.025em}
-.fig{margin:0;display:flex;flex-direction:column;gap:14px}
-.fig.ph{align-items:center}
-.fig figcaption{line-height:1.5}
-.fig.ph figcaption{text-align:center;max-width:26ch}
-.view{animation:in .5s cubic-bezier(.16,1,.3,1)}
-@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.view{animation:none}.proj .pn{transition:none}}
-@media (max-width:820px){
-  .wrap{padding:0 20px}.grid12{display:none}
-  .lay{grid-template-columns:minmax(0,1fr);row-gap:10px}
-  .lay>*{grid-column:auto !important;grid-row:auto !important;justify-self:start !important}
-  .hero{font-size:22vw !important}.dot{display:none}
-  .prev{position:static}.prev .hint{display:none}
-  .navrow{display:flex;justify-content:space-between}
-  .shots{grid-template-columns:repeat(2,minmax(0,1fr)) !important;column-gap:14px}
-  .shots>.ph{grid-column:span 1 !important}
-  .shots>.dk{grid-column:1 / -1 !important}
-  .phone{border-radius:30px;padding:6px}.phone .scr{border-radius:25px}.phone .isl{top:12px;width:40px;height:11px}
-}
+body{margin:0}
+a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
+.f-root{--ink:#111;--mute:#6b6b6b;--line:#e6e6e6;--soft:#f4f4f4;--card:#fafafa;--g:#2fe06d;background:#fff;color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;overflow-x:clip;font-size:15px}
+.w{position:relative;max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.h{margin:0;font-weight:600;letter-spacing:-.04em;line-height:1.02}
+.sub{margin:0;color:var(--mute);font-size:15px;line-height:1.55}
+.lbl{margin:0;font-size:12px;font-weight:600;color:#0a7a36}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:0;background:#111;color:#fff;font:600 14px 'Inter Tight',sans-serif;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.18)}
+.btn:hover{color:var(--g)}
+.btn-l{background:#fff;color:#111;box-shadow:0 0 0 1px var(--line),0 4px 10px rgba(0,0,0,.05)}.btn-l:hover{color:#0a7a36}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line),0 2px 6px rgba(0,0,0,.05);font-size:12px;font-weight:600}
+.pill.dk{background:#111;color:#fff;box-shadow:none}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 0 3px rgba(47,224,109,.25)}
+.card{position:relative;border-radius:22px;background:var(--card);box-shadow:0 0 0 1px var(--line),0 10px 30px rgba(0,0,0,.05);overflow:hidden}
+.panel{border-radius:28px;background:linear-gradient(180deg,#f2f2f2,#fbfbfb);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* mockups */
+.ip{position:relative;display:flow-root;border-radius:15.5%/7.2%;background:linear-gradient(150deg,#d8d8d6 0%,#9a9a97 35%,#c4c4c1 70%,#e6e6e4 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 24px 50px rgba(0,0,0,.18)}
+.ip::before{content:"";position:absolute;left:-1.4%;top:19%;width:1.4%;height:11%;border-radius:2px 0 0 2px;background:#b3b3b0;box-shadow:0 160% 0 #b3b3b0}
+.ip::after{content:"";position:absolute;right:-1.4%;top:26%;width:1.4%;height:15%;border-radius:0 2px 2px 0;background:#b3b3b0}
+.ip .scr{position:relative;margin:3.4%;border-radius:12.6%/5.8%;overflow:hidden;background:#000}
+.ip img{display:block;width:100%;aspect-ratio:1206/2622;object-fit:cover;object-position:top}
+.ip .di{position:absolute;z-index:2;top:2.3%;left:50%;width:31%;aspect-ratio:3.7;margin-left:-15.5%;border-radius:999px;background:#000}
+.bw{background:#fff;border:1px solid #d9d9d9;border-radius:14px;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.12)}
+.bw .bar{display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-bottom:1px solid #e6e6e6;background:#f6f6f6}
+.bw .bar i{width:8px;height:8px;background:#d4d4d4}.bw .bar i:first-child{background:var(--g)}
+.bw .bar span{flex:1;margin:0 12%;height:14px;line-height:14px;text-align:center;background:#fff;border:1px solid #e6e6e6;font-size:9px;color:var(--mute)}
+.bw img{display:block;width:100%;height:auto}
+
+.tool{display:inline-flex;align-items:center;gap:6px;padding:6px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line),0 8px 20px rgba(0,0,0,.06);flex-wrap:wrap;justify-content:center}
+.tb{min-height:36px;padding:0 14px;border-radius:999px;border:0;background:transparent;font:600 13px 'Inter Tight',sans-serif;color:var(--mute);cursor:pointer}
+.tb:hover{color:#111;background:var(--soft)}
+.tb.on{background:#111;color:#fff}
+.tgo{width:36px;height:36px;border-radius:50%;background:var(--g);display:grid;place-items:center;color:#111}
+
+.sec{padding:clamp(72px,9vw,120px) 0}
+.secg{background:var(--soft)}
+.trust{display:flex;justify-content:center;gap:clamp(16px,3vw,40px);flex-wrap:wrap;padding:22px 0;color:var(--mute);font-size:13px;font-weight:500}
+.trust span{display:inline-flex;align-items:center;gap:8px}
+.mt{min-height:34px;padding:0 12px;border-radius:999px;border:0;background:transparent;font:600 12px 'Inter Tight',sans-serif;color:var(--mute);cursor:pointer}
+.mt:hover{background:#fff;color:#111}
+.mt.on{background:#fff;color:#111;box-shadow:0 0 0 1px var(--line),0 2px 6px rgba(0,0,0,.06)}
+
+.feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.feat .card{display:flex;flex-direction:column;cursor:pointer;transition:transform .45s cubic-bezier(.16,1,.3,1);color:var(--ink)}
+.feat .card:hover{transform:translateY(-4px);color:var(--ink)}
+.feat .vis{position:relative;height:210px;margin:8px;border-radius:16px;background:linear-gradient(180deg,#ececec,#f7f7f7);overflow:hidden}
+.feat .tx{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;padding:8px 22px 22px}
+.go{flex:none;width:34px;height:34px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center;transition:background .2s,color .2s}
+.card:hover .go{background:var(--g);color:#111}
+
+.works{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.wk{display:flex;flex-direction:column;cursor:pointer;color:var(--ink)}
+.wk:hover{color:var(--ink)}
+.wk .vis{position:relative;height:300px;margin:8px;border-radius:16px;overflow:hidden;display:flex;justify-content:center;align-items:flex-start;padding-top:30px;background:linear-gradient(180deg,#ececec,#f8f8f8)}
+.wk .vis>div{transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.wk:hover .vis>div{transform:translateY(-10px)}
+
+.fl{display:flex;gap:14px}
+.fl .ic{flex:none;width:36px;height:36px;border-radius:10px;background:#fff;box-shadow:0 0 0 1px var(--line);display:grid;place-items:center}
+
+/* contact form */
+.chipb{min-height:40px;padding:0 16px;border-radius:999px;border:0;background:#fff;box-shadow:0 0 0 1px var(--line);font:600 13px 'Inter Tight',sans-serif;color:var(--ink);cursor:pointer}
+.chipb:hover{box-shadow:0 0 0 1px #111}
+.chipb.on{background:#111;color:#fff;box-shadow:none}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:600;color:var(--mute)}
+.fld input,.fld textarea{font:inherit;font-size:15px;font-weight:400;color:var(--ink);padding:12px 14px;border-radius:12px;border:0;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.fld input:focus,.fld textarea:focus{outline:none;box-shadow:0 0 0 1.5px #111}
+
+/* service pages */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.steps.six{grid-template-columns:repeat(3,minmax(0,1fr))}
+.steps>div{padding:20px;border-radius:18px;background:#fff;box-shadow:0 0 0 1px var(--line);display:flex;flex-direction:column;gap:8px}
+.ticks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px}
+.ticks li{display:flex;gap:10px;font-size:14px;line-height:1.45;color:#444}
+.ticks li::before{content:"";flex:none;width:7px;height:7px;margin-top:6px;border-radius:50%;background:var(--g)}
+.proj{padding:clamp(40px,5vw,64px) 0;border-top:1px solid var(--line)}
+.gal{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(16px,2.4vw,32px);padding:clamp(28px,4vw,48px);border-radius:24px;background:linear-gradient(180deg,#efefef,#f9f9f9)}
+.gal figure{margin:0;display:flex;flex-direction:column;gap:10px}
+
+/* brand boards */
+.bb{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.bc{border-radius:20px;background:#fff;box-shadow:0 0 0 1px var(--line);padding:20px;display:flex;flex-direction:column;gap:12px;overflow:hidden;position:relative}
+.bc .k{margin:0;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.sw{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:12px;border-radius:12px;min-height:64px;font-size:12px;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){[data-par]{transform:none !important}}
+@media (max-width:860px){.links{display:none !important}.feat,.two{grid-template-columns:minmax(0,1fr) !important}.works{grid-template-columns:minmax(0,1fr)}.works>*{grid-column:auto !important}.foot{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.steps,.steps.six{grid-template-columns:minmax(0,1fr)}.ticks{grid-template-columns:minmax(0,1fr)}.bb{grid-template-columns:minmax(0,1fr)}.bb>*{grid-column:auto !important;grid-row:auto !important}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="grid12" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<template id="tpl">
 
-  <header class="lay" style="padding:26px 0 0">
-    <a class="mono" href="#" data-home style="grid-column:1 / span 4;color:var(--ink)">Gianmarco Antonacci</a>
-    <span class="mono" style="grid-column:5 / span 4">Product designer</span>
-    <a class="mono" href="mailto:giamma.antonacci@gmail.com" style="grid-column:9 / span 4;justify-self:end;color:var(--ink)">Contact ↗</a>
-  </header>
+<div class="f-root">
 
-  <main id="app"></main>
+  <!-- NAV + HERO -->
+  <section style="padding: 14px">
+    <div class="panel" style="position: relative; overflow: hidden">
+      <div class="w" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 20px; padding-bottom: 20px">
+        <a href="#top" onClick="{{goHome}}" style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; letter-spacing: -.03em"><span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 6px; background: #111; color: #2fe06d; display: grid; place-items: center; font-size: 10px; font-weight: 700">GA</span>GA Studio</a>
+        <nav class="links" aria-label="Pagine" style="display: flex; gap: 20px; font-size: 13px; font-weight: 500; color: #6b6b6b">
+          <sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="#top" onClick="{{v.go}}" style="{{v.style}}">{{v.label}}</a></sc-for>
+          <a href="#lavori" onClick="{{goWork}}">Lavori</a>
+          <a href="#contatti">Contatti</a>
+        </nav>
+        <a class="btn" href="#contatti" style="min-height: 38px; font-size: 13px">Prenota una call</a>
+      </div>
 
-  <footer class="lay" style="padding:140px 0 40px;align-items:end">
-    <a href="mailto:giamma.antonacci@gmail.com" style="grid-column:1 / span 8;font-size:clamp(28px,4vw,56px);font-weight:700;letter-spacing:-.045em;line-height:1">giamma.antonacci<br>@gmail.com</a>
-    <a class="mono" href="tel:+393520295120" style="grid-column:10 / span 3;justify-self:end;color:var(--ink)">+39 352 029 5120</a>
+      <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
+        <div id="top" class="w" style="text-align: center; padding-top: clamp(32px, 5vw, 56px)">
+          <span class="pill"><span class="dot" aria-hidden="true"></span>Disponibile per nuovi progetti</span>
+          <h1 class="h" data-par="0.04" style="margin: 22px auto 0; max-width: 16ch; font-size: clamp(40px, 6vw, 72px)">Idee. Schermate. Chiarezza.<br><span style="color: #8a8a8a">Prodotti che si capiscono.</span></h1>
+          <p class="sub" style="margin: 18px auto 0; max-width: 46ch; font-size: 16px">Uno studio di product design per app, siti web e brand, con foto, video e processi potenziati dall'AI. Un solo referente, dall'idea al lancio.</p>
+          <div style="margin-top: 28px">
+            <div class="tool" role="group" aria-label="Cosa ti serve?">
+              <sc-for list="{{needs}}" as="n" hint-placeholder-count="4"><button type="button" class="{{n.cls}}" aria-pressed="{{n.pressed}}" onClick="{{n.pick}}">{{n.label}}</button></sc-for>
+              <a class="tgo" href="#top" onClick="{{cur.go}}" aria-label="Apri il servizio"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px">
+            <a class="btn" href="#top" onClick="{{cur.go}}">{{cur.cta}}</a>
+            <a class="btn btn-l" href="#lavori">Guarda i lavori ›</a>
+          </div>
+        </div>
+
+        <div aria-live="polite" style="position: relative; height: clamp(320px, 38vw, 460px); margin-top: clamp(36px, 5vw, 56px); overflow: hidden; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent)">
+          <div data-par="0.1" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-start; gap: 22px">
+            <sc-if value="{{cur.isApp}}" hint-placeholder-val="{{ true }}">
+              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(-6deg)"><div class="scr"><img src="img/bloop-home.webp" alt="App Bloop"><span class="di"></span></div></div>
+              <div class="ip" style="width: 220px; margin-top: 20px"><div class="scr"><img src="img/trainee-home.webp" alt="App TraineeUX"><span class="di"></span></div></div>
+              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(6deg)"><div class="scr"><img src="img/dreambase-home.webp" alt="App Dreambase"><span class="di"></span></div></div>
+            </sc-if>
+            <sc-if value="{{cur.isWeb}}" hint-placeholder-val="{{ false }}">
+              <div class="bw" style="width: min(820px, 86%); margin-top: 20px"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="img/orsini-home.webp" alt="Sito di Riccardo Orsini"></div>
+            </sc-if>
+            <sc-if value="{{cur.isBrand}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; justify-content: center">
+                <div class="card" style="width: 200px; height: 200px; display: grid; place-items: center; background: #9747ff"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 18px); grid-template-rows: repeat(3, 18px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 3px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 3px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 3px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 3px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 3px"></i></span></div>
+                <div class="card" style="width: 200px; height: 200px; display: grid; place-items: center; background: #000"><span aria-hidden="true" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 106px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></div>
+                <div class="card" style="width: 200px; height: 200px; display: grid; place-items: center; background: #f2fbf6"><img src="img/trainee-icon.webp" alt="Logo TraineeUX" style="display: block; width: 130px; height: auto"></div>
+                <div class="card" style="width: 200px; height: 200px; display: grid; place-items: center; background: #fff"><span style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="position: relative; display: inline-block; width: 34px; height: 54px"><i style="position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 38px; width: 36px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 12px; letter-spacing: .16em">RICCARDO ORSINI</b><span style="font-size: 9px; letter-spacing: .3em; color: #6b6b6b">PHOTOGRAPHER</span></span></span></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{cur.isAi}}" hint-placeholder-val="{{ false }}">
+              <div style="position: relative; width: 420px; height: 420px; margin-top: 10px">
+                <div style="position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 0 1px #dcdcdc"></div>
+                <div style="position: absolute; inset: 70px; border-radius: 50%; box-shadow: inset 0 0 0 1px #dcdcdc"></div>
+                <div style="position: absolute; left: 50%; top: 50%; width: 92px; height: 92px; margin: -46px 0 0 -46px; border-radius: 50%; background: #111; color: #2fe06d; display: grid; place-items: center; font-weight: 700; font-size: 22px; box-shadow: 0 20px 40px rgba(0,0,0,.25)">AI</div>
+                <span class="pill dk" style="position: absolute; left: 6%; top: 24%">Foto</span>
+                <span class="pill dk" style="position: absolute; right: 2%; top: 38%">Video</span>
+                <span class="pill" style="position: absolute; left: 22%; bottom: 20%">Processi automatici</span>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isSvc}}" hint-placeholder-val="{{ false }}">
+        <div id="top" class="w" style="padding-top: clamp(24px, 4vw, 48px); padding-bottom: clamp(40px, 6vw, 72px)">
+          <button type="button" class="btn btn-l" onClick="{{goHome}}" style="min-height: 36px; font-size: 13px">← Home</button>
+          <div class="two" style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 56px); align-items: end; margin-top: clamp(28px, 4vw, 48px)">
+            <div>
+              <span class="pill"><span class="dot" aria-hidden="true"></span>Servizio {{sv.n}} di 4</span>
+              <h1 class="h" data-par="0.04" style="margin-top: 18px; font-size: clamp(44px, 6.4vw, 80px)">{{sv.title}}</h1>
+              <p class="sub" style="margin-top: 16px; max-width: 48ch; font-size: 17px">{{sv.lead}}</p>
+            </div>
+            <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px">
+              <p class="lbl">Ideale per</p><p style="margin: 0; font-size: 14px; line-height: 1.5">{{sv.for}}</p>
+              <p class="lbl" style="margin-top: 6px">Tempi indicativi</p><p style="margin: 0; font-size: 14px">{{sv.time}}</p>
+              <a class="btn" href="#contatti" style="margin-top: 6px">Richiedi un preventivo</a>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <div class="w">
+    <div class="trust">
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle><path d="M5.5 8.2l1.7 1.7 3.3-3.6"></path></svg>Prima call gratuita</span>
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2l5 2v4c0 3-2.2 5-5 6-2.8-1-5-3-5-6V4z"></path></svg>Prezzo chiaro prima di iniziare</span>
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="5.5" r="2.5"></circle><path d="M3 14c.6-2.8 2.6-4 5-4s4.4 1.2 5 4"></path></svg>Un solo referente</span>
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h3l2-4 2 8 2-4h3"></path></svg>Aggiornamenti ogni settimana</span>
+    </div>
+  </div>
+
+  <!-- ===================== HOME ===================== -->
+  <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
+
+    <section id="metodo" class="sec">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
+          <h2 class="h" data-par="0.04" style="font-size: clamp(30px, 3.6vw, 44px)">Un metodo che lavora<br>come pensano le persone.</h2>
+          <p class="sub">Cinque passi, uguali per un'app, un sito o un brand. Al centro c'è sempre la UX: le decisioni si prendono guardando chi userà il prodotto.</p>
+        </div>
+        <div class="panel" style="padding: clamp(16px, 2.4vw, 28px)">
+          <div class="card" data-par="0.04" style="max-width: 900px; margin: 0 auto">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 12px; border-bottom: 1px solid #e6e6e6; background: #f3f3f3">
+              <div role="group" aria-label="Passi del metodo" style="display: flex; gap: 4px; flex-wrap: wrap">
+                <sc-for list="{{steps}}" as="s" hint-placeholder-count="5"><button type="button" class="{{s.cls}}" aria-pressed="{{s.pressed}}" onClick="{{s.pick}}">{{s.n}} {{s.short}}</button></sc-for>
+              </div>
+              <span style="display: flex; gap: 6px" aria-hidden="true"><span style="width: 12px; height: 12px; border-radius: 50%; background: #111"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #2fe06d"></span></span>
+            </div>
+            <div aria-live="polite" style="padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 16px; min-height: 260px; background: #fff">
+              <p class="lbl">Passo {{st.n}} di 5 · {{st.when}}</p>
+              <h3 class="h" style="font-size: clamp(24px, 2.6vw, 32px)">{{st.title}}</h3>
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #444; max-width: 62ch">{{st.text}}</p>
+              <p style="margin: 0; display: inline-flex; align-self: flex-start; gap: 6px; padding: 8px 12px; border-radius: 10px; background: #f3f3f3; font-size: 13px"><b>Ricevi:</b> {{st.out}}</p>
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto">
+                <div aria-hidden="true" style="flex: 1; max-width: 320px; height: 6px; border-radius: 3px; background: #ececec; overflow: hidden"><div style="height: 100%; background: #2fe06d; {{st.bar}}"></div></div>
+                <button type="button" class="btn" onClick="{{nextStep}}" style="min-height: 36px; font-size: 13px">{{st.btn}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servizi" class="sec secg">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
+          <h2 class="h" data-par="0.04" style="font-size: clamp(30px, 3.6vw, 44px)">Quattro servizi.<br><span style="color: #8a8a8a">Un solo studio.</span></h2>
+          <p class="sub">Ogni servizio ha la sua pagina, con cosa ricevi, come si svolge e i progetti realizzati. Clicca per aprirla.</p>
+        </div>
+        <div class="feat">
+          <a class="card" href="#top" onClick="{{goApp}}">
+            <div class="vis">
+              <div data-par="0.08" style="position: absolute; left: 50%; top: 26px; width: 120px; margin-left: -60px"><div class="ip"><div class="scr"><img src="img/bloop-home.webp" alt=""><span class="di"></span></div></div></div>
+              <span class="pill dk" style="position: absolute; left: 14%; top: 40px">Prototipo testato</span>
+              <span class="pill" style="position: absolute; right: 12%; top: 110px">Flussi chiari</span>
+            </div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">App e prodotti digitali</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Bloop, TraineeUX, Dreambase</p></div><span class="go" aria-hidden="true">→</span></div>
+          </a>
+          <a class="card" href="#top" onClick="{{goWeb}}">
+            <div class="vis">
+              <div data-par="0.08" style="position: absolute; left: 10%; right: 10%; top: 30px"><div class="bw"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="img/orsini-home.webp" alt=""></div></div>
+              <span class="pill dk" style="position: absolute; left: 6%; top: 22px; z-index: 2">Messaggio chiaro</span>
+              <span class="pill" style="position: absolute; right: 6%; top: 120px; z-index: 2">Più contatti</span>
+            </div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">Siti web</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Riccardo Orsini, Merkorn</p></div><span class="go" aria-hidden="true">→</span></div>
+          </a>
+          <a class="card" href="#top" onClick="{{goBrand}}">
+            <div class="vis" style="display: flex; align-items: center; justify-content: center; gap: 10px">
+              <div data-par="0.08" style="display: flex; gap: 10px">
+                <span style="width: 84px; height: 84px; border-radius: 18px; background: #9747ff; display: grid; place-items: center"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 9px); grid-template-rows: repeat(3, 9px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 2px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 2px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 2px"></i></span></span>
+                <span style="width: 84px; height: 84px; border-radius: 18px; background: #000; display: grid; place-items: center"><span aria-hidden="true" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></span>
+                <img src="img/trainee-icon.webp" alt="" style="display: block; width: 84px; height: 84px">
+                <span style="width: 84px; height: 84px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px #e0e0e0; display: grid; place-items: center"><span aria-hidden="true" style="position: relative; display: inline-block; width: 26px; height: 40px"><i style="position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 28px; width: 28px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span></span>
+              </div>
+              <span class="pill dk" style="position: absolute; left: 8%; top: 22px">Linee guida</span>
+              <span class="pill" style="position: absolute; right: 8%; bottom: 22px">Sistema coerente</span>
+            </div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">Brand identity</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Merkorn, Bloop, TraineeUX, Riccardo Orsini</p></div><span class="go" aria-hidden="true">→</span></div>
+          </a>
+          <a class="card" href="#top" onClick="{{goAi}}">
+            <div class="vis">
+              <div data-par="0.08" style="position: absolute; inset: 0">
+                <div style="position: absolute; left: 50%; top: 50%; width: 200px; height: 200px; margin: -100px 0 0 -100px; border-radius: 50%; box-shadow: inset 0 0 0 1px #d6d6d6"></div>
+                <div style="position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: #111; color: #2fe06d; display: grid; place-items: center; font-weight: 700">AI</div>
+                <span class="pill dk" style="position: absolute; left: 14%; top: 34px">Foto</span>
+                <span class="pill dk" style="position: absolute; right: 14%; top: 120px">Video</span>
+                <span class="pill" style="position: absolute; left: 22%; bottom: 26px">Processi</span>
+              </div>
+            </div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">Foto, video e processi con l'AI</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Contenuti e automazioni</p></div><span class="go" aria-hidden="true">→</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="lavori" class="sec">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
+          <h2 class="h" data-par="0.04" style="font-size: clamp(30px, 3.6vw, 44px)">Lavori scelti.<br><span style="color: #8a8a8a">Schermate vere.</span></h2>
+          <p class="sub">Cinque progetti tra app, siti, un prodotto fisico e tre brand. Clicca per vederli nella pagina del servizio.</p>
+        </div>
+        <div class="works">
+          <sc-for list="{{works}}" as="k" hint-placeholder-count="5">
+            <a class="card wk" href="#top" onClick="{{k.go}}" style="{{k.span}}">
+              <div class="vis">
+                <div data-par="0.06" style="{{k.box}}">
+                  <sc-if value="{{k.isApp}}" hint-placeholder-val="{{ true }}"><div class="ip"><div class="scr"><img src="{{k.src}}" alt="{{k.name}}" loading="lazy"><span class="di"></span></div></div></sc-if>
+                  <sc-if value="{{k.isWeb}}" hint-placeholder-val="{{ false }}"><div class="bw"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{{k.url}}</span></div><img src="{{k.src}}" alt="{{k.name}}" loading="lazy"></div></sc-if>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 8px 22px 22px">
+                <div><h3 class="h" style="font-size: 19px">{{k.name}}</h3><p class="sub" style="margin-top: 4px; font-size: 13px">{{k.kind}}</p></div>
+                <span class="pill">{{k.tag}}</span>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" class="sec secg">
+      <div class="w">
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Usata ogni giorno nello studio</span>
+        <h2 class="h" data-par="0.04" style="margin-top: 14px; font-size: clamp(30px, 3.6vw, 44px); max-width: 18ch">Più contenuti, meno lavoro ripetitivo. Con l'AI.</h2>
+        <p class="sub" style="margin-top: 12px; max-width: 56ch">Usiamo l'AI come strumento, non come scorciatoia: per creare foto e video di qualità in poco tempo e per automatizzare i passaggi che rubano ore a te e al tuo team.</p>
+        <div style="margin-top: 22px"><button type="button" class="btn btn-l" onClick="{{goAi}}">Scopri il servizio AI ›</button></div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ===================== PAGINA SERVIZIO ===================== -->
+  <sc-if value="{{isSvc}}" hint-placeholder-val="{{ false }}">
+    <section class="sec" style="padding-top: clamp(40px, 5vw, 64px)">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px)">
+          <div><p class="lbl">Cosa risolve</p><h2 class="h" style="margin-top: 10px; font-size: clamp(26px, 3vw, 36px)">{{sv.solves}}</h2></div>
+          <div><p class="lbl" style="margin-bottom: 14px">Cosa ricevi</p><ul class="ticks"><sc-for list="{{sv.gets}}" as="g" hint-placeholder-count="6"><li>{{g}}</li></sc-for></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec secg">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 32px">
+          <h2 class="h" data-par="0.04" style="font-size: clamp(30px, 3.6vw, 44px)">{{sv.procTitle}}</h2>
+          <p class="sub">{{sv.procLead}}</p>
+        </div>
+        <div class="{{sv.stepsCls}}">
+          <sc-for list="{{sv.flow}}" as="f" hint-placeholder-count="4">
+            <div><span class="lbl">{{f.n}}</span><p style="margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -.02em">{{f.t}}</p><p class="sub" style="font-size: 13px">{{f.d}}</p></div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- progetti app / web -->
+    <sc-if value="{{sv.hasShots}}" hint-placeholder-val="{{ true }}">
+      <section class="sec" style="padding-bottom: 0">
+        <div class="w">
+          <h2 class="h" data-par="0.04" style="font-size: clamp(30px, 3.6vw, 44px)">Progetti realizzati</h2>
+          <p class="sub" style="margin-top: 10px">{{sv.projLead}}</p>
+          <sc-for list="{{sv.projects}}" as="p" hint-placeholder-count="3">
+            <article id="p-{{p.id}}" class="proj">
+              <div class="two" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); align-items: end; margin-bottom: 24px">
+                <div><p class="lbl">{{p.kind}}</p><h3 class="h" style="margin-top: 8px; font-size: clamp(30px, 3.4vw, 44px)">{{p.name}}</h3></div>
+                <p class="sub">{{p.desc}}</p>
+              </div>
+              <div class="gal" data-par="0.04">
+                <sc-for list="{{p.shots}}" as="s" hint-placeholder-count="3">
+                  <figure style="{{s.box}}">
+                    <sc-if value="{{s.isApp}}" hint-placeholder-val="{{ true }}"><div class="ip"><div class="scr"><img src="{{s.src}}" alt="{{s.alt}}" loading="lazy"><span class="di"></span></div></div></sc-if>
+                    <sc-if value="{{s.isWeb}}" hint-placeholder-val="{{ false }}"><div class="bw"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{{p.url}}</span></div><img src="{{s.src}}" alt="{{s.alt}}" loading="lazy"></div></sc-if>
+                    <figcaption style="font-size: 12px; font-weight: 600; text-align: center; color: #6b6b6b">{{s.cap}}</figcaption>
+                  </figure>
+                </sc-for>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- brand identity -->
+    <sc-if value="{{sv.isBrand}}" hint-placeholder-val="{{ false }}">
+      <section class="sec" style="padding-bottom: 0">
+        <div class="w">
+          <h2 class="h" data-par="0.04" style="font-size: clamp(30px, 3.6vw, 44px)">Quattro brand, la stessa struttura.</h2>
+          <p class="sub" style="margin-top: 10px; max-width: 60ch">Ogni identità viene raccontata negli stessi sei passaggi: dal concetto al marchio, fino al sistema e alle applicazioni. Solo il brand, senza le schermate del prodotto.</p>
+          <sc-for list="{{brands}}" as="b" hint-placeholder-count="3">
+            <article id="b-{{b.id}}" class="proj">
+              <div class="two" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); align-items: end; margin-bottom: 24px">
+                <div><p class="lbl">Brand {{b.n}} · {{b.kind}}</p><h3 class="h" style="margin-top: 8px; font-size: clamp(30px, 3.4vw, 44px)">{{b.name}}</h3></div>
+                <p class="sub">{{b.brief}}</p>
+              </div>
+              <div class="bb">
+                <!-- 01 concetto -->
+                <div class="bc" style="grid-column: span 4">
+                  <p class="k">01 · Concetto</p>
+                  <p style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.03em; line-height: 1.15">{{b.concept}}</p>
+                  <p class="sub" style="font-size: 13px">{{b.conceptText}}</p>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto"><sc-for list="{{b.words}}" as="w" hint-placeholder-count="3"><span class="pill">{{w}}</span></sc-for></div>
+                </div>
+                <!-- 02 marchio -->
+                <div class="bc" style="grid-column: span 8; padding: 0">
+                  <p class="k" style="position: absolute; left: 20px; top: 18px; z-index: 2; color: {{b.kInk}}">02 · Marchio</p>
+                  <div style="display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); min-height: 260px; height: 100%">
+                    <div style="display: grid; place-items: center; background: {{b.c1}}">
+                      <sc-if value="{{b.isMerkorn}}" hint-placeholder-val="{{ true }}"><span role="img" aria-label="Logo Merkorn" style="display: flex; align-items: center; gap: 20px; color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800; letter-spacing: .3em; font-size: clamp(22px, 2.6vw, 34px)"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 14px); grid-template-rows: repeat(3, 14px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 3px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 3px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 3px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 3px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 3px"></i></span>MERKORN</span></sc-if>
+                      <sc-if value="{{b.isBloop}}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Logo Bloop" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 150px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></sc-if>
+                      <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 18px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 44px); letter-spacing: -.04em; color: #0f1014"><img src="img/trainee-icon.webp" alt="Logo TraineeUX" style="display: block; width: 120px; height: auto; filter: drop-shadow(0 12px 18px rgba(0,0,0,.12))">TraineeUX</span></sc-if>
+                      <sc-if value="{{b.isOrsini}}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Logo Riccardo Orsini Photographer" style="display: flex; align-items: center; gap: 22px"><span aria-hidden="true" style="position: relative; display: inline-block; width: 64px; height: 100px"><i style="position: absolute; left: 0; top: 0; width: 58px; height: 58px; border-radius: 50%; border: 3px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 2px; top: 72px; width: 68px; height: 3px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span><span style="display: flex; flex-direction: column; gap: 8px"><b style="font-size: clamp(18px, 2vw, 26px); letter-spacing: .16em; color: #111">RICCARDO ORSINI</b><span style="font-size: clamp(11px, 1.1vw, 14px); letter-spacing: .32em; color: #6b6b6b">PHOTOGRAPHER</span></span></span></sc-if>
+                    </div>
+                    <div style="display: grid; grid-template-rows: 1fr 1fr">
+                      <div style="display: grid; place-items: center; background: {{b.c2}}">
+                        <sc-if value="{{b.isMerkorn}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 14px); grid-template-rows: repeat(3, 14px)"><i style="grid-column: 3; grid-row: 1; background: #9747ff; border-radius: 3px"></i><i style="grid-column: 2; grid-row: 2; background: #9747ff; border-radius: 3px"></i><i style="grid-column: 4; grid-row: 2; background: #9747ff; border-radius: 3px"></i><i style="grid-column: 1; grid-row: 3; background: #9747ff; border-radius: 3px"></i><i style="grid-column: 5; grid-row: 3; background: #9747ff; border-radius: 3px"></i></span></sc-if>
+                        <sc-if value="{{b.isBloop}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 83px; line-height: .8; letter-spacing: -.04em"><span style="color: #000">o</span><span style="color: #fff">o</span></span></sc-if>
+                        <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><img src="img/trainee-icon.webp" alt="" style="display: block; width: 76px; height: auto"></sc-if>
+                        <sc-if value="{{b.isOrsini}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: relative; display: inline-block; width: 40px; height: 62px"><i style="position: absolute; left: 0; top: 0; width: 36px; height: 36px; border-radius: 50%; border: 2px solid #fff; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 45px; width: 42px; height: 2px; background: #fff; transform-origin: 0 0; transform: rotate(32deg)"></i></span></sc-if>
+                      </div>
+                      <div style="display: grid; place-items: center; background: #fff; border-top: 1px solid #e6e6e6">
+                        <p style="margin: 0; font-size: 12px; color: #6b6b6b; text-align: center; padding: 0 12px">{{b.markNote}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 03 colori -->
+                <div class="bc" style="grid-column: span 4">
+                  <p class="k">03 · Colori</p>
+                  <div style="display: flex; flex-direction: column; gap: 6px">
+                    <sc-for list="{{b.colors}}" as="c" hint-placeholder-count="4"><div class="sw" style="{{c.style}}"><span>{{c.name}}</span><span style="font-family: ui-monospace, Menlo, monospace; font-weight: 500">{{c.hex}}</span></div></sc-for>
+                  </div>
+                </div>
+                <!-- 04 caratteri -->
+                <div class="bc" style="grid-column: span 4">
+                  <p class="k">04 · Caratteri</p>
+                  <p style="margin: 0; font-size: 96px; line-height: .9; letter-spacing: -.05em; {{b.fontStyle}}">Aa</p>
+                  <p style="margin: 0; font-size: 18px; {{b.fontStyle}}">{{b.fontName}}</p>
+                  <p class="sub" style="font-size: 13px">{{b.fontNote}}</p>
+                  <p style="margin: auto 0 0; font-size: 13px; letter-spacing: .02em; color: #6b6b6b; {{b.fontStyle}}">ABCDEFGHIJKLM abcdefghijklm 0123456789</p>
+                </div>
+                <!-- 05 tono -->
+                <div class="bc" style="grid-column: span 4; background: {{b.c1}}; color: {{b.ink}}; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08)">
+                  <p class="k" style="color: {{b.kInk}}">05 · Tono di voce</p>
+                  <sc-for list="{{b.voice}}" as="v" hint-placeholder-count="2"><p style="margin: 0; font-size: 22px; line-height: 1.15; letter-spacing: -.03em; {{b.fontStyle}}">“{{v}}”</p></sc-for>
+                  <p style="margin: auto 0 0; font-size: 13px; line-height: 1.5; opacity: .75">{{b.voiceNote}}</p>
+                </div>
+                <!-- 06 elementi + applicazioni -->
+                <div class="bc" style="grid-column: span 12">
+                  <p class="k">06 · Sistema e applicazioni</p>
+                  <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: stretch">
+                    <div style="flex: 1 1 220px; min-height: 180px; border-radius: 16px; display: grid; place-items: center; background: {{b.c2}}; position: relative; overflow: hidden">
+                      <sc-if value="{{b.isMerkorn}}" hint-placeholder-val="{{ true }}"><div aria-hidden="true" style="display: grid; grid-template-columns: repeat(8, 12px); gap: 5px"><sc-for list="{{pixels}}" as="px" hint-placeholder-count="32"><i style="height: 12px; {{px}}"></i></sc-for></div></sc-if>
+                      <sc-if value="{{b.isBloop}}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 130px; line-height: .8; letter-spacing: -.04em"><span style="color: #000">o</span><span style="color: #9a7cff">o</span><span style="color: #fff">o</span></div></sc-if>
+                      <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="display: flex; gap: 14px"><sc-for list="{{moods}}" as="m" hint-placeholder-count="3"><span style="position: relative; width: 70px; height: 70px; border-radius: 18px; background: #9fe7c7; box-shadow: inset 0 -5px 0 #72d4aa, 0 10px 18px rgba(0,0,0,.12)"><i style="position: absolute; left: 13px; top: 20px; width: 20px; height: 22px; border-radius: 50%; background: #fff; color: #0f1014; font: 800 12px/22px 'Plus Jakarta Sans', sans-serif; text-align: center; font-style: normal">{{m.l}}</i><i style="position: absolute; right: 13px; top: 20px; width: 20px; height: 22px; border-radius: 50%; background: #fff; color: #0f1014; font: 800 12px/22px 'Plus Jakarta Sans', sans-serif; text-align: center; font-style: normal">{{m.r}}</i><i style="position: absolute; left: 50%; bottom: 13px; background: #0f1014; {{m.mouth}}"></i></span></sc-for></div></sc-if>
+                      <sc-if value="{{b.isOrsini}}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="position: absolute; inset: 22px 22px 52px; display: grid; place-items: center"><i style="position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-left: 1.5px solid #fff; border-top: 1.5px solid #fff"></i><i style="position: absolute; right: 0; top: 0; width: 18px; height: 18px; border-right: 1.5px solid #fff; border-top: 1.5px solid #fff"></i><i style="position: absolute; left: 0; bottom: 0; width: 18px; height: 18px; border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff"></i><i style="position: absolute; right: 0; bottom: 0; width: 18px; height: 18px; border-right: 1.5px solid #fff; border-bottom: 1.5px solid #fff"></i><span style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 46px; color: #fff">addosso.</span></div></sc-if>
+                      <span class="pill" style="position: absolute; left: 12px; bottom: 12px">Elemento grafico</span>
+                    </div>
+                    <div style="flex: 0 0 180px; min-height: 180px; border-radius: 16px; background: #f4f4f4; display: grid; place-items: center; position: relative">
+                      <sc-if value="{{b.isMerkorn}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="width: 84px; height: 84px; border-radius: 20px; background: #9747ff; display: grid; place-items: center; box-shadow: 0 14px 28px rgba(0,0,0,.18)"><span style="display: grid; grid-template-columns: repeat(5, 9px); grid-template-rows: repeat(3, 9px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 2px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 2px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 2px"></i></span></span></sc-if>
+                      <sc-if value="{{b.isBloop}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width: 84px; height: 84px; border-radius: 20px; background: #000; display: grid; place-items: center; box-shadow: 0 14px 28px rgba(0,0,0,.18)"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></span></sc-if>
+                      <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><img src="img/trainee-icon.webp" alt="" style="display: block; width: 88px; height: auto; filter: drop-shadow(0 12px 18px rgba(0,0,0,.16))"></sc-if>
+                      <sc-if value="{{b.isOrsini}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width: 84px; height: 84px; border-radius: 20px; background: #fff; display: grid; place-items: center; box-shadow: 0 0 0 1px #e0e0e0, 0 14px 28px rgba(0,0,0,.12)"><span style="position: relative; display: inline-block; width: 28px; height: 44px"><i style="position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 31px; width: 30px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span></span></sc-if>
+                      <span class="pill" style="position: absolute; left: 12px; bottom: 12px">Icona app</span>
+                    </div>
+                    <div style="flex: 1 1 240px; min-height: 180px; border-radius: 16px; background: #f4f4f4; display: grid; place-items: center; position: relative">
+                      <div aria-hidden="true" style="width: 210px; height: 120px; border-radius: 10px; background: {{b.c1}}; color: {{b.ink}}; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 14px 28px rgba(0,0,0,.15); transform: rotate(-4deg)">
+                        <span style="font-size: 14px; font-weight: 800; letter-spacing: -.02em; {{b.fontStyle}}">{{b.name}}</span>
+                        <span style="display: flex; flex-direction: column; gap: 5px"><i style="width: 70%; height: 5px; border-radius: 3px; background: currentColor; opacity: .5"></i><i style="width: 45%; height: 5px; border-radius: 3px; background: currentColor; opacity: .5"></i></span>
+                      </div>
+                      <span class="pill" style="position: absolute; left: 12px; bottom: 12px">Biglietto da visita</span>
+                    </div>
+                    <div style="flex: 0 0 200px; min-height: 180px; border-radius: 16px; background: #f4f4f4; display: grid; place-items: center; position: relative">
+                      <div aria-hidden="true" style="width: 130px; height: 130px; border-radius: 12px; background: {{b.c2}}; padding: 14px; box-sizing: border-box; display: flex; align-items: flex-end; box-shadow: 0 14px 28px rgba(0,0,0,.12)"><span style="font-size: 15px; font-weight: 800; line-height: 1.05; letter-spacing: -.03em; color: {{b.postInk}}; {{b.fontStyle}}">{{b.post}}</span></div>
+                      <span class="pill" style="position: absolute; left: 12px; bottom: 12px">Post social</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- AI -->
+    <sc-if value="{{sv.isAi}}" hint-placeholder-val="{{ false }}">
+      <section class="sec" style="padding-bottom: 0">
+        <div class="w">
+          <h2 class="h" data-par="0.04" style="font-size: clamp(30px, 3.6vw, 44px)">Tre modi di usare l'AI</h2>
+          <div class="feat" style="grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 28px">
+            <div class="card" style="padding: 22px; cursor: default"><p class="lbl">Foto</p><h3 class="h" style="margin-top: 8px; font-size: 22px">Visual senza set fotografici</h3><p class="sub" style="margin-top: 8px; font-size: 14px">Foto di prodotto, ambientazioni e immagini per campagne, generate e ritoccate con l'AI.</p></div>
+            <div class="card" style="padding: 22px; cursor: default"><p class="lbl">Video</p><h3 class="h" style="margin-top: 8px; font-size: 22px">Clip pronte in pochi giorni</h3><p class="sub" style="margin-top: 8px; font-size: 14px">Video brevi per lanci, social e presentazioni, creati con l'AI e montati da noi.</p></div>
+            <div class="card" style="padding: 22px; cursor: default"><p class="lbl">Processi</p><h3 class="h" style="margin-top: 8px; font-size: 22px">Meno lavoro ripetitivo</h3><p class="sub" style="margin-top: 8px; font-size: 14px">Automazioni che raccolgono, ordinano e preparano il lavoro al posto tuo.</p></div>
+          </div>
+          <div class="panel" style="margin-top: 22px; padding: clamp(20px, 3vw, 32px)">
+            <div class="card" style="max-width: 760px; margin: 0 auto; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+              <p class="lbl">Esempio di automazione</p>
+              <p style="margin: 0; padding: 14px 16px; border-radius: 12px; background: #f3f3f3; font-size: 15px; line-height: 1.5">Ogni lunedì raccogli le richieste arrivate via email, dividile per tipo di progetto e prepara una bozza di risposta per ognuna.</p>
+              <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-radius: 10px; box-shadow: 0 0 0 1px #e6e6e6; font-size: 14px"><span>Leggi le email nuove</span><span style="color: #0a7a36; font-weight: 600">fatto</span></div>
+              <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-radius: 10px; box-shadow: 0 0 0 1px #e6e6e6; font-size: 14px"><span>Classifica per tipo</span><span style="color: #0a7a36; font-weight: 600">fatto</span></div>
+              <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-radius: 10px; background: #111; color: #fff; font-size: 14px"><span>Scrivi le bozze di risposta</span><span style="color: #2fe06d; font-weight: 600">in corso</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <section class="sec" style="padding-bottom: 0">
+      <div class="w">
+        <p class="lbl" style="margin-bottom: 14px">Altri servizi</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <sc-for list="{{others}}" as="o" hint-placeholder-count="3"><button type="button" class="btn btn-l" onClick="{{o.go}}">{{o.label}} ›</button></sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ===================== CONTATTI (sempre) ===================== -->
+  <section id="contatti" class="sec">
+    <div class="w">
+      <div class="panel" style="padding: clamp(24px, 4vw, 48px)">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); align-items: start">
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <span class="pill" style="align-self: flex-start"><span class="dot" aria-hidden="true"></span>Rispondiamo entro un giorno lavorativo</span>
+            <h2 class="h" data-par="0.04" style="font-size: clamp(32px, 4vw, 52px)">Raccontaci<br>il tuo progetto.</h2>
+            <p class="sub">Compila il modulo o scrivici direttamente. La prima call è gratuita e senza impegno.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; font-size: 14px">
+              <a href="mailto:giamma.antonacci@gmail.com" style="font-weight: 600">giamma.antonacci@gmail.com</a>
+              <a href="tel:+393520295120" style="font-weight: 600">+39 352 029 5120</a>
+            </div>
+          </div>
+          <form class="card" aria-label="Modulo di contatto" style="padding: clamp(20px, 3vw, 30px); display: flex; flex-direction: column; gap: 18px; background: #fff">
+            <fieldset style="border: 0; margin: 0; padding: 0">
+              <legend style="font-size: 12px; font-weight: 600; color: #6b6b6b; margin-bottom: 10px">Di cosa hai bisogno?</legend>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{types}}" as="t" hint-placeholder-count="4"><button type="button" class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.toggle}}">{{t.label}}</button></sc-for></div>
+            </fieldset>
+            <div class="two" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+              <label class="fld">Nome<input type="text" name="nome" autocomplete="name"></label>
+              <label class="fld">Email<input type="email" name="email" autocomplete="email"></label>
+            </div>
+            <label class="fld">Azienda o progetto<input type="text" name="azienda" autocomplete="organization"></label>
+            <label class="fld">Raccontaci in due righe<textarea name="messaggio" rows="4"></textarea></label>
+            <a class="btn" id="send" href="mailto:giamma.antonacci@gmail.com?subject=Nuovo%20progetto" style="min-height: 50px">Invia la richiesta</a>
+            <p style="margin: 0; font-size: 12px; color: #6b6b6b; text-align: center">Usiamo i tuoi dati solo per risponderti.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid #e6e6e6">
+    <div class="w">
+      <div class="foot" style="display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 24px; padding: 44px 0 28px">
+        <div><p style="margin: 0 0 10px; font-weight: 700; letter-spacing: -.03em">GA Studio</p><p class="sub" style="font-size: 13px; max-width: 30ch">Studio di product design di Gianmarco Antonacci. App, siti, brand e AI, dalla Puglia per tutti.</p></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Servizi</b><sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="#top" onClick="{{v.go}}">{{v.label}}</a></sc-for></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Studio</b><a href="#metodo" onClick="{{goHome}}">Metodo</a><a href="#lavori" onClick="{{goWork}}">Lavori</a></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Contatti</b><a href="mailto:giamma.antonacci@gmail.com">Email</a><a href="tel:+393520295120">Telefono</a></div>
+      </div>
+      <p style="margin: 0; padding: 18px 0 26px; border-top: 1px solid #e6e6e6; font-size: 12px; color: #6b6b6b">© 2026 GA Studio · Gianmarco Antonacci · Tutti i diritti riservati</p>
+    </div>
   </footer>
 </div>
-
+</template>
+<div id="app"></div>
+<noscript><p style="font-family: system-ui, sans-serif; padding: 24px">Questo sito ha bisogno di JavaScript. Scrivimi a <a href="mailto:giamma.antonacci@gmail.com">giamma.antonacci@gmail.com</a>.</p></noscript>
 <script>
-const PROJECTS = [
-  { id: "bloop", n: "01", name: "Bloop", short: "Event discovery", kicker: "Event discovery · App",
-    desc: "Discover what's happening around you: from curiosity to RSVP in three taps.",
-    shots: [
-      ["bloop-home", "Home with recommended events"],
-      ["bloop-search", "Search with suggestions"],
-      ["bloop-results", "Results near you"]
-    ] },
-  { id: "merkorn", n: "02", name: "Merkorn", short: "Software house", kicker: "Software house · Website", device: "desktop", url: "merkorn.com",
-    desc: "The website of a software house from Apulia that builds custom management software for small and medium businesses: putting data in order, to decide sooner.",
-    shots: [
-      ["merkorn-home", "Home: custom management software for SMEs"],
-      ["merkorn-clients", "Who we work for: manufacturing, distribution, services"],
-      ["merkorn-services", "Services: tailored software for every department"]
-    ] },
-  { id: "dreambase", n: "03", name: "Dreambase", short: "Physical product + app", kicker: "Physical product + app · Sleep",
-    desc: "A sleep device that works with light and sound, guided by an app: pairing in a few steps, tailored programs and a summary of every night.",
-    shots: [
-      ["dreambase-home", "Home with device status and sleep summary"],
-      ["dreambase-quick", "Quick programs"],
-      ["dreambase-velo", "Detail of the “Velo di Sogno” program"],
-      ["dreambase-custom", "A freshly created custom program"]
-    ] },
-  { id: "traineeux", n: "04", name: "TraineeUX", short: "UX training", kicker: "App · Gamified UX training",
-    desc: "An app to train your judgment as a designer: a levelled path, timed exercises, XP and streaks, industry news and a leaderboard with friends.",
-    shots: [
-      ["trainee-home", "Home with rank, XP and the exercise to resume"],
-      ["trainee-path", "The “From craft to judgment” path and its modules"],
-      ["trainee-news", "Industry news, aggregated in real time"],
-      ["trainee-friends", "Friends: invites and leaderboard"]
-    ] },
-  { id: "riccardo-orsini", n: "05", name: "Riccardo Orsini", short: "Brand identity", kicker: "Brand identity · Photographer website", device: "desktop", url: "riccardo-orsini-photography",
-    desc: "Identity and website for a wedding, fashion and portrait photographer: editorial typography and black and white, so the pictures do the talking.",
-    shots: [
-      ["orsini-home", "Home: “Images that stay with you.”"],
-      ["orsini-manifesto", "Manifesto: “Presence, not pose.”"],
-      ["orsini-work", "Work: weddings, brand & fashion, people"]
-    ] }
+(function () {
+  var RE = /\{\{([^}]*)\}\}/g;
+  function get(scope, path) {
+    return path.replace(/[{}]/g, "").trim().split(".").reduce(function (o, k) { return o == null ? undefined : o[k]; }, scope);
+  }
+  function interp(str, scope) {
+    return str.replace(RE, function (_, p) { var v = get(scope, p); return v == null ? "" : String(v); });
+  }
+  function build(node, scope, out) {
+    if (node.nodeType === 3) { out.push(document.createTextNode(interp(node.data, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName, i, c;
+    if (tag === "sc-for") {
+      var list = get(scope, node.getAttribute("list")) || [], as = node.getAttribute("as");
+      list.forEach(function (it, idx) {
+        var sc = Object.create(scope); sc[as] = it; sc.index = idx;
+        for (i = 0; i < node.childNodes.length; i++) build(node.childNodes[i], sc, out);
+      });
+      return;
+    }
+    if (tag === "sc-if") {
+      if (get(scope, node.getAttribute("value")))
+        for (i = 0; i < node.childNodes.length; i++) build(node.childNodes[i], scope, out);
+      return;
+    }
+    var el = document.createElementNS(node.namespaceURI, node.localName);
+    el.__h = {};
+    for (i = 0; i < node.attributes.length; i++) {
+      var a = node.attributes[i];
+      if (a.name.indexOf("hint-") === 0) continue;
+      if (a.name.indexOf("on") === 0 && a.value.indexOf("{{") >= 0) { el.__h[a.name.slice(2)] = get(scope, a.value); continue; }
+      el.setAttribute(a.name, interp(a.value, scope));
+    }
+    var kids = [];
+    for (i = 0; i < node.childNodes.length; i++) build(node.childNodes[i], scope, kids);
+    for (i = 0; i < kids.length; i++) el.appendChild(kids[i]);
+    out.push(el);
+  }
+  function patch(parent, kids) {
+    var old = Array.prototype.slice.call(parent.childNodes), i;
+    kids.forEach(function (n, idx) {
+      var o = old[idx];
+      if (!o) { parent.appendChild(n); return; }
+      if (o.nodeType !== n.nodeType || (o.nodeType === 1 && o.localName !== n.localName)) { parent.replaceChild(n, o); return; }
+      if (o.nodeType === 3) { if (o.data !== n.data) o.data = n.data; return; }
+      if (o.nodeType !== 1) { parent.replaceChild(n, o); return; }
+      var oa = Array.prototype.slice.call(o.attributes);
+      for (i = 0; i < oa.length; i++) if (!n.hasAttribute(oa[i].name)) o.removeAttribute(oa[i].name);
+      for (i = 0; i < n.attributes.length; i++) { var a = n.attributes[i]; if (o.getAttribute(a.name) !== a.value) o.setAttribute(a.name, a.value); }
+      o.__h = n.__h;
+      patch(o, Array.prototype.slice.call(n.childNodes));
+    });
+    for (i = old.length - 1; i >= kids.length; i--) parent.removeChild(old[i]);
+  }
+  var comp, tpl, app;
+  function render() {
+    var vals = comp.renderVals(), kids = [], nodes = tpl.content.childNodes;
+    for (var i = 0; i < nodes.length; i++) build(nodes[i], vals, kids);
+    patch(app, kids);
+  }
+  window.DCLogic = function () { this.state = {}; this.props = {}; };
+  window.DCLogic.prototype.setState = function (p, cb) {
+    var next = typeof p === "function" ? p(this.state) : p;
+    this.state = Object.assign({}, this.state, next);
+    render();
+    if (this.componentDidUpdate) this.componentDidUpdate();
+    if (cb) cb();
+  };
+  window.dcMount = function (Component) {
+    tpl = document.getElementById("tpl");
+    app = document.getElementById("app");
+    comp = new Component();
+    ["click", "input", "change", "submit", "keydown"].forEach(function (type) {
+      app.addEventListener(type, function (e) {
+        for (var el = e.target; el && el !== app; el = el.parentNode) {
+          var h = el.__h && el.__h[type];
+          if (typeof h === "function") h(e);
+        }
+      });
+    });
+    render();
+    if (comp.componentDidMount) comp.componentDidMount();
+  };
+})();
+</script>
+<script>
+
+const IMG = {
+  bloop: [["img/bloop-home.webp", "Home"], ["img/bloop-search.webp", "Ricerca"], ["img/bloop-results.webp", "Risultati vicino a te"]],
+  dream: [["img/dreambase-home.webp", "Home"], ["img/dreambase-quick.webp", "Programmi rapidi"], ["img/dreambase-velo.webp", "Dettaglio programma"], ["img/dreambase-custom.webp", "Programma personalizzato"]],
+  trainee: [["img/trainee-home.webp", "Home"], ["img/trainee-path.webp", "Percorso"], ["img/trainee-news.webp", "News"], ["img/trainee-friends.webp", "Amici"]],
+  merkorn: [["img/merkorn-home.webp", "Home"], ["img/merkorn-clients.webp", "Per chi lavoriamo"], ["img/merkorn-services.webp", "Servizi"]],
+  orsini: [["img/orsini-home.webp", "Home"], ["img/orsini-manifesto.webp", "Manifesto"], ["img/orsini-work.webp", "Lavori"]]
+};
+
+const SERVICES = {
+  app: { n: "1", label: "App", title: "App e prodotti digitali", time: "[TEMPO] settimane",
+    lead: "Disegniamo app che le persone usano senza bisogno di istruzioni, dal primo flusso all'ultima schermata.",
+    for: "Startup, aziende che lanciano un prodotto, team che vogliono rifare o migliorare un'app.",
+    solves: "Idee che non si sa come trasformare in schermate, app difficili da usare, prodotti da rifare.",
+    gets: ["Ricerca e interviste agli utenti", "Mappa dei percorsi principali", "Flussi e wireframe", "Interfaccia completa", "Libreria di componenti", "Prototipo cliccabile testato"],
+    procTitle: "Come si svolge", procLead: "Quattro fasi, con un aggiornamento ogni settimana e un prototipo da provare.",
+    flow: [["Ricerca", "Chi userà l'app, cosa deve ottenere e dove si blocca oggi."], ["Struttura", "Percorsi e wireframe: si decide qui la UX."], ["Interfaccia", "Design completo, componenti e prototipo cliccabile."], ["Test e consegna", "Prove con utenti veri, poi file pronti per lo sviluppo."]],
+    projLead: "App progettate dalla ricerca alla consegna. Ogni schermata è nel mockup di un iPhone.",
+    projects: [["bloop", "Bloop", "App iOS · Scoperta eventi", "Scopri cosa succede intorno a te e conferma in tre tocchi: tre ingressi, suggerimenti pronti e le informazioni decisive sempre in vista.", IMG.bloop, true],
+               ["trainee", "TraineeUX", "App · Formazione UX", "Livelli, serie ed esercizi a tempo per allenare il giudizio da designer, con un esercizio sempre pronto e amici con cui confrontarsi.", IMG.trainee, true],
+               ["dream", "Dreambase", "Prodotto fisico + app · Sonno", "Una lampada per il sonno guidata dalla sua app: programmi pronti, nessuna configurazione e un riepilogo di ogni notte.", IMG.dream, true]] },
+  web: { n: "2", label: "Siti web", title: "Siti web", time: "[TEMPO] settimane",
+    lead: "Siti costruiti attorno a un messaggio solo, perché chi arriva capisca subito cosa fai e cosa fare dopo.",
+    for: "Aziende, professionisti, studi e software house che vogliono più contatti qualificati.",
+    solves: "Siti che non spiegano bene il servizio, che non portano contatti o che non rappresentano più chi sei.",
+    gets: ["Strategia e messaggio principale", "Struttura delle pagine", "Gerarchia dei contenuti", "Design desktop e mobile", "Sistema visivo coerente", "Specifiche per lo sviluppo"],
+    procTitle: "Come si svolge", procLead: "Dal messaggio alle pagine, con il percorso verso il contatto sempre al centro.",
+    flow: [["Messaggio", "A chi parla il sito e cosa deve far fare."], ["Struttura", "Pagine, sezioni e percorso verso il contatto."], ["Design", "Tutte le pagine, desktop e mobile."], ["Lancio", "Specifiche, supporto allo sviluppo e verifiche."]],
+    projLead: "Siti progettati attorno a un messaggio chiaro. Ogni pagina è in una finestra del browser.",
+    projects: [["orsini", "Riccardo Orsini", "Sito web · Fotografo", "Un sito editoriale in bianco e nero che lascia parlare le foto e porta ognuno al proprio servizio: matrimoni, moda, ritratti.", IMG.orsini, false, "orsiniphoto.it"],
+               ["merkorn", "Merkorn", "Sito web · Software house", "Software su misura spiegato alle piccole imprese: una promessa chiara, i settori in cui riconoscersi e servizi raccontati per reparto.", IMG.merkorn, false, "merkorn.com"]] },
+  brand: { n: "3", label: "Brand identity", title: "Brand identity", time: "[TEMPO] settimane",
+    lead: "Costruiamo identità con un'idea chiara al centro e regole semplici, perché il brand resti riconoscibile ovunque.",
+    for: "Startup, prodotti digitali, professionisti e piccole aziende che vogliono farsi riconoscere.",
+    solves: "Un'immagine confusa o generica, materiali diversi tra loro, nessuna regola da seguire.",
+    gets: ["Concetto e parole chiave", "Logo e varianti del marchio", "Palette colori", "Caratteri tipografici", "Elementi grafici e tono di voce", "Applicazioni e linee guida"],
+    procTitle: "Come creo una brand identity", procLead: "Sei passaggi, dall'ascolto alle linee guida. Sono gli stessi che trovi nei tre progetti qui sotto.",
+    flow: [["Ascolto", "Valori, pubblico e concorrenti: cosa deve dire il brand e a chi."], ["Concetto", "Un'idea guida e tre parole chiave che orientano ogni scelta."], ["Marchio", "Logo, simbolo e varianti per ogni dimensione e sfondo."], ["Sistema", "Colori, caratteri ed elementi grafici che lavorano insieme."], ["Tono di voce", "Come parla il brand: parole, ritmo, frasi tipo."], ["Applicazioni", "Icona, materiali, social e linee guida per usarlo bene."]] },
+  ai: { n: "4", label: "AI", title: "Foto, video e processi con l'AI", time: "da pochi giorni",
+    lead: "Contenuti visivi creati con l'AI e automazioni che tolgono lavoro ripetitivo a te e al tuo team.",
+    for: "Brand che devono produrre contenuti spesso, aziende e team che vogliono lavorare meglio.",
+    solves: "Servizi fotografici costosi e lenti, contenuti che non bastano mai, ore perse in attività ripetitive.",
+    gets: ["Foto di prodotto e ambientazioni", "Visual per campagne e social", "Video brevi per lanci", "Automazione di processi", "Flussi di lavoro con l'AI", "Formazione al team"],
+    procTitle: "Come si svolge", procLead: "Partiamo da un esempio concreto e in pochi giorni hai i primi risultati.",
+    flow: [["Obiettivo", "Cosa ti serve o quale processo ti rallenta."], ["Esempi", "Direzioni visive o una prima automazione di prova."], ["Produzione", "Contenuti finali o automazione attiva."], ["Passaggio", "Ti lasciamo tutto pronto e spiegato."]] }
+};
+
+const BRANDS = [
+  { id: "merkorn", n: "01", name: "Merkorn", kind: "Software house",
+    brief: "Una software house che crea gestionali su misura per le PMI. Doveva sembrare solida e tecnologica, ma vicina a chi non parla tecnico.",
+    concept: "Ordine che cresce.", conceptText: "Cinque blocchi ordinati che salgono verso un punto: i dati sparsi che diventano una direzione. È l'idea dietro al simbolo e a tutto il sistema.", words: ["Chiaro", "Solido", "Vicino"],
+    markNote: "Cinque quadrati arrotondati a forma di freccia verso l'alto. Funziona da solo come icona.",
+    c1: "#9747ff", c2: "#0b0a10", ink: "#ffffff", kInk: "rgba(255,255,255,.75)", postInk: "#ffffff", iconTxt: "",
+    colors: [["Viola Merkorn", "#9747FF", "#9747ff", "#fff"], ["Nero", "#0B0A10", "#0b0a10", "#fff"], ["Bianco", "#FFFFFF", "#fff", "#111"], ["Lilla", "#C9A8FF", "#c9a8ff", "#111"]],
+    fontStyle: "font-family: 'Manrope', sans-serif; font-weight: 800", fontName: "Manrope", fontNote: "Geometrica e decisa per i titoli, leggibile nei testi lunghi.",
+    voice: ["Mettiamo in ordine i dati della tua azienda.", "Decidi prima, con più sicurezza."], voiceNote: "Concreto, rassicurante, senza tecnicismi.",
+    post: "Software su misura per le PMI" },
+  { id: "bloop", n: "02", name: "Bloop", kind: "App di eventi",
+    brief: "Un'app per scoprire cosa succede intorno a te. Il brand doveva trasmettere curiosità ed energia, ed essere riconoscibile anche in piccolissimo.",
+    concept: "Due occhi curiosi.", conceptText: "Le due «o» diventano due occhi che si guardano intorno, o due bolle che scoppiano: la curiosità prima di uscire.", words: ["Curioso", "Energico", "Notturno"],
+    markNote: "Due «o» orizzontali, arancio e viola: bastano da sole come simbolo, anche a 16 pixel.",
+    c1: "#000000", c2: "#ff6a2b", ink: "#ffffff", kInk: "#9a9a9a", postInk: "#000000", iconTxt: "oo",
+    colors: [["Nero notte", "#000000", "#000", "#fff"], ["Arancio Bloop", "#FF6A2B", "#ff6a2b", "#111"], ["Viola", "#9A7CFF", "#9a7cff", "#111"], ["Bianco", "#FFFFFF", "#fff", "#111"]],
+    fontStyle: "font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800", fontName: "Bricolage Grotesque", fontNote: "Grottesco con carattere: morbido, energico e leggibile anche sui telefoni.",
+    voice: ["Cerca l'evento giusto.", "Filtra o lasciati ispirare."], voiceNote: "Diretto, amichevole, frasi brevi da serata.",
+    post: "Stasera cosa fai?" },
+  { id: "trainee", n: "03", name: "TraineeUX", kind: "App di formazione UX",
+    brief: "Un'app che allena il giudizio da designer. Il brand doveva rendere lo studio leggero e costante, senza sembrare un gioco per bambini.",
+    concept: "Un compagno di allenamento.", conceptText: "Il simbolo è un volto: gli occhi sono la U e la X, il sorriso incoraggia. Cambia espressione mentre impari, festeggia i progressi e ti ricorda la serie.", words: ["Leggero", "Costante", "Incoraggiante"],
+    markNote: "Un volto sorridente con gli occhi a forma di U e X: il nome dentro il simbolo.",
+    c1: "#9fe7c7", c2: "#72d4aa", ink: "#0f1014", kInk: "#1d5b40", postInk: "#0f1014", iconTxt: "UX",
+    colors: [["Menta", "#9FE7C7", "#9fe7c7", "#111"], ["Verde profondo", "#72D4AA", "#72d4aa", "#111"], ["Nero", "#0F1014", "#0f1014", "#fff"], ["Bianco", "#FFFFFF", "#fff", "#111"]],
+    fontStyle: "font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800", fontName: "Plus Jakarta Sans", fontNote: "Morbida e moderna: seria quanto basta, mai fredda.",
+    voice: ["Non spezzare la serie oggi.", "Dal mestiere al giudizio."], voiceNote: "Incoraggiante, da allenatore, mai paternalistico.",
+    post: "Una sfida al giorno" },
+  { id: "orsini", n: "04", name: "Riccardo Orsini", kind: "Fotografo",
+    brief: "Un fotografo di ritratto e moda. Il brand doveva farsi da parte e lasciare spazio alle foto, con un segno elegante e riconoscibile.",
+    concept: "La presenza, non la posa.", conceptText: "Un cerchio e una linea: l'obiettivo e lo sguardo. Un monogramma sottile, in bianco e nero, che incornicia le immagini senza coprirle.", words: ["Editoriale", "Essenziale", "Autentico"],
+    markNote: "Monogramma a linea sottile con nome spaziato: sta bene su foto, carta e schermo.",
+    c1: "#ffffff", c2: "#111111", ink: "#111111", kInk: "#6b6b6b", postInk: "#ffffff", iconTxt: "",
+    colors: [["Nero", "#111111", "#111", "#fff"], ["Bianco", "#FFFFFF", "#fff", "#111"], ["Grigio pietra", "#8A8A86", "#8a8a86", "#fff"], ["Carta", "#F2F2EE", "#f2f2ee", "#111"]],
+    fontStyle: "font-family: 'Bodoni Moda', serif; font-weight: 500", fontName: "Bodoni Moda", fontNote: "Un serif da rivista: contrasto alto, eleganza senza sforzo.",
+    voice: ["Immagini che restano addosso.", "La presenza, non la posa."], voiceNote: "Poche parole, tono editoriale, mai urlato.",
+    post: "Immagini che restano addosso." }
 ];
 
-const app = document.getElementById("app");
-const img = k => "img/" + k + ".webp";
-const isDesk = p => p.device === "desktop";
-let hover = null;
+const STEPS = [
+  { n: "01", short: "Call", when: "gratuita, 20 minuti", title: "Call conoscitiva", text: "Ci racconti il progetto, gli obiettivi e i vincoli. Facciamo le domande giuste e ti diciamo con sincerità se e come possiamo aiutarti.", out: "un primo parere e i prossimi passi." },
+  { n: "02", short: "Proposta", when: "prima di iniziare", title: "Analisi e proposta", text: "Studiamo il contesto, gli utenti e la concorrenza. Mettiamo per iscritto cosa faremo, in quanto tempo e a che prezzo.", out: "una proposta scritta con costi e tempi." },
+  { n: "03", short: "Struttura", when: "fase 1", title: "Struttura e UX", text: "Disegniamo i flussi e i wireframe: come si muove la persona, cosa trova e in che ordine. Si decide qui, quando cambiare costa poco.", out: "flussi e wireframe approvati." },
+  { n: "04", short: "Design", when: "fase 2", title: "Design e prototipo", text: "Creiamo l'interfaccia e un prototipo cliccabile, lo testiamo con persone vere e lo miglioriamo con un aggiornamento ogni settimana.", out: "il design completo e un prototipo testato." },
+  { n: "05", short: "Consegna", when: "fase 3", title: "Consegna e supporto", text: "Prepariamo file, componenti e specifiche per chi sviluppa, e restiamo accanto a te mentre il progetto prende vita.", out: "tutto il necessario per costruire." }
+];
 
-function device(p, [key, cap], eager) {
-  const alt = p.name + ", " + cap.charAt(0).toLowerCase() + cap.slice(1);
-  const load = eager ? "" : ' loading="lazy"';
-  return isDesk(p)
-    ? `<div class="win"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>${p.url}</span></div><img src="${img(key)}" alt="${alt}"${load}></div>`
-    : `<div class="phone"><div class="scr"><img src="${img(key)}" alt="${alt}"${load}></div><span class="isl" aria-hidden="true"></span></div>`;
-}
+const NEEDS = [
+  { id: "app", label: "App", kind: "app", cta: "Scopri il servizio App" },
+  { id: "web", label: "Siti web", kind: "web", cta: "Scopri il servizio Siti web" },
+  { id: "brand", label: "Brand", kind: "brand", cta: "Scopri la Brand identity" },
+  { id: "ai", label: "AI", kind: "ai", cta: "Scopri il servizio AI" }
+];
 
-function preview() {
-  const p = PROJECTS.find(x => x.id === hover);
-  if (!p) return `
-    <p class="lede">I design digital products with the rigor of a manifesto: every element has a reason to be where it is.</p>
-    <p class="mono hint" style="margin:0">Hover a project, click to open it →</p>`;
-  return `
-    ${device(p, p.shots[0], true)}
-    <p class="mono red" style="margin:0">${p.n} — ${p.kicker}</p>
-    <p style="margin:0;font-size:18px;line-height:1.45;max-width:40ch">${p.desc}</p>
-    <p class="mono" style="margin:0">Click to open the project →</p>`;
-}
+const WORKS = [
+  { name: "Bloop", kind: "App iOS · Brand", tag: "App", app: true, src: IMG.bloop[0][0], span: 2, svc: "app", anchor: "p-bloop" },
+  { name: "Riccardo Orsini", kind: "Sito web · Fotografo", tag: "Web", src: IMG.orsini[0][0], url: "orsiniphoto.it", span: 4, svc: "web", anchor: "p-orsini" },
+  { name: "Merkorn", kind: "Sito web · Brand", tag: "Web", src: IMG.merkorn[0][0], url: "merkorn.com", span: 4, svc: "web", anchor: "p-merkorn" },
+  { name: "TraineeUX", kind: "App · Brand", tag: "App", app: true, src: IMG.trainee[0][0], span: 2, svc: "app", anchor: "p-trainee" },
+  { name: "Dreambase", kind: "Prodotto fisico + app", tag: "Prodotto", app: true, src: IMG.dream[0][0], span: 6, svc: "app", anchor: "p-dream" }
+];
 
-function listView() {
-  return `<div class="view">
-    <section class="lay" style="padding-top:72px;align-items:start">
-      <h1 class="hero" style="grid-column:1 / span 12;font-size:clamp(120px,21vw,290px);line-height:.78;letter-spacing:-.07em">Gian<br>marco</h1>
-      <div class="dot" aria-hidden="true" style="grid-column:10 / span 3;grid-row:1;justify-self:end;align-self:end;width:clamp(120px,17vw,220px);aspect-ratio:1;margin-bottom:4%"></div>
-    </section>
-    <div class="lay" aria-hidden="true" style="padding:18px 0 0">
-      <span class="mono" style="grid-column:1 / span 3">↕ cap height 0.78</span>
-      <span class="mono" style="grid-column:4 / span 3">tracking −70</span>
-      <span class="mono" style="grid-column:7 / span 3">grid 12 · gutter 20</span>
-      <span class="mono" style="grid-column:10 / span 3;justify-self:end">41° N 16° E</span>
-    </div>
-    <section class="lay" style="padding:120px 0 0;row-gap:40px;align-items:start">
-      <div style="grid-column:1 / span 5;align-self:stretch">
-        <div class="prev" id="prev" aria-live="polite">${preview()}</div>
-      </div>
-      <nav aria-label="Projects" style="grid-column:7 / span 6;display:flex;flex-direction:column;border-bottom:2px solid var(--ink)">
-        ${PROJECTS.map(p => `
-          <a class="proj${p.id === hover ? " on" : ""}" href="#/${p.id}" data-id="${p.id}">
-            <span class="mono red">${p.n} — ${p.short}</span>
-            <span class="pn">${p.name}</span>
-          </a>`).join("")}
-      </nav>
-    </section>
-  </div>`;
-}
+const TYPES = ["Un'app", "Un sito web", "Un brand", "Contenuti con l'AI"];
 
-function projectView(p) {
-  const nxt = PROJECTS[(PROJECTS.indexOf(p) + 1) % PROJECTS.length];
-  const span = p.shots.length >= 4 ? 3 : 4;
-  const shots = p.shots.map((s, i) => {
-    const cap = `<figcaption class="mono"><span class="red">${String(i + 1).padStart(2, "0")} —</span> ${s[1]}</figcaption>`;
-    return isDesk(p)
-      ? `<figure class="fig dk" style="grid-column:1 / span 12">${device(p, s, i === 0)}${cap}</figure>`
-      : `<figure class="fig ph" style="grid-column:span ${span}">${device(p, s, i < 2)}${cap}</figure>`;
-  }).join("");
-  return `<article class="view" aria-labelledby="pt" style="padding-top:48px">
-    <div class="lay navrow">
-      <a class="lnk" href="#" data-home style="grid-column:1 / span 6;justify-self:start;display:flex;align-items:center">← Index</a>
-      <a class="lnk" href="#/${nxt.id}" style="grid-column:7 / span 6;justify-self:end;display:flex;align-items:center">${nxt.name} →</a>
-    </div>
-    <div class="lay" style="padding-top:64px;align-items:end">
-      <h1 class="hero" id="pt" tabindex="-1" style="grid-column:1 / span 10;font-size:clamp(80px,13vw,190px);line-height:.82;letter-spacing:-.065em">${p.name}</h1>
-      <div class="dot" aria-hidden="true" style="grid-column:11 / span 2;justify-self:end;width:clamp(90px,10vw,140px);aspect-ratio:1;display:grid;place-items:center;color:#fff;font:500 clamp(22px,2.6vw,34px) 'JetBrains Mono',monospace">${p.n}</div>
-    </div>
-    <div class="lay" style="padding:18px 0 0">
-      <span class="mono" style="grid-column:1 / span 3">Project ${p.n} / 05</span>
-      <span class="mono" style="grid-column:4 / span 4">${p.kicker}</span>
-      <span class="mono" style="grid-column:8 / span 2">${isDesk(p) ? "Desktop · browser" : "Mobile · iPhone"}</span>
-      <span class="mono" style="grid-column:10 / span 3;justify-self:end">${p.shots.length} screens</span>
-    </div>
-    <div class="lay" style="padding-top:72px">
-      <p class="lede" style="grid-column:1 / span 6;line-height:1.25">${p.desc}</p>
-    </div>
-    <div class="lay shots" style="padding-top:96px;row-gap:${isDesk(p) ? 64 : 56}px">${shots}</div>
-    <div class="lay" style="padding-top:96px">
-      <a class="lnk big" href="#/${nxt.id}" style="grid-column:1 / span 12;justify-self:start">Next: ${nxt.name} →</a>
-    </div>
-  </article>`;
-}
-
-function route() {
-  const id = location.hash.replace(/^#\/?/, "");
-  const p = PROJECTS.find(x => x.id === id);
-  if (p) hover = p.id;
-  app.innerHTML = p ? projectView(p) : listView();
-  document.title = p ? p.name + " — Gianmarco Antonacci" : "Gianmarco Antonacci — Product designer";
-  window.scrollTo(0, 0);
-  if (p) document.getElementById("pt").focus({ preventScroll: true });
-}
-
-function setHover(id) {
-  if (id === hover) return;
-  hover = id;
-  const prev = document.getElementById("prev");
-  if (!prev) return;
-  prev.innerHTML = preview();
-  document.querySelectorAll(".proj").forEach(a => a.classList.toggle("on", a.dataset.id === id));
-}
-
-app.addEventListener("mouseover", e => { const a = e.target.closest(".proj"); if (a) setHover(a.dataset.id); });
-app.addEventListener("focusin", e => { const a = e.target.closest(".proj"); if (a) setHover(a.dataset.id); });
-document.addEventListener("click", e => {
-  if (e.target.closest("[data-home]")) { e.preventDefault(); history.pushState(null, "", location.pathname); route(); }
+// Merkorn: pixel field that rises left to right
+const PIXELS = Array.from({ length: 32 }, (_, i) => {
+  const x = i % 8, y = Math.floor(i / 8);
+  const on = (3 - y) <= x / 2;
+  return "border-radius: 3px; background: " + (on ? "#9747ff" : "rgba(255,255,255,.12)");
 });
-window.addEventListener("hashchange", route);
-window.addEventListener("popstate", route);
-route();
+const MOODS = [
+  { l: "U", r: "X", mouth: "width: 22px; height: 9px; margin-left: -11px; border-radius: 0 0 12px 12px" },
+  { l: "•", r: "•", mouth: "width: 10px; height: 10px; margin-left: -5px; border-radius: 50%" },
+  { l: "^", r: "^", mouth: "width: 26px; height: 12px; margin-left: -13px; border-radius: 0 0 14px 14px" }
+];
 
-// warm the cache for the hover previews
-PROJECTS.forEach(p => { const i = new Image(); i.src = img(p.shots[0][0]); });
+class Component extends DCLogic {
+  componentDidMount() {
+    this.reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    this.onScroll = () => {
+      if (this.raf || this.reduce) return;
+      this.raf = requestAnimationFrame(() => {
+        this.raf = 0;
+        const h = window.innerHeight || 800;
+        document.querySelectorAll("[data-par]").forEach(el => {
+          const f = parseFloat(el.getAttribute("data-par")) || 0;
+          const r = (el.parentElement || el).getBoundingClientRect();
+          el.style.transform = "translate3d(0," + ((r.top + r.height / 2 - h / 2) * -f).toFixed(1) + "px,0)";
+        });
+      });
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    window.addEventListener("resize", this.onScroll);
+    this.onScroll();
+  }
+  componentDidUpdate() { if (this.onScroll) this.onScroll(); }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll);
+    window.removeEventListener("resize", this.onScroll);
+    cancelAnimationFrame(this.raf);
+  }
+  renderVals() {
+    const page = this.state.page || "home";
+    const need = this.state.need || "app";
+    const step = this.state.step ?? 0;
+    const types = this.state.types || {};
+    const go = (p, anchor) => e => {
+      if (e && e.preventDefault) e.preventDefault();
+      this.setState({ page: p }, () => {
+        const el = anchor && document.getElementById(anchor);
+        if (el && el.scrollIntoView) el.scrollIntoView({ block: "start" });
+        else if (window.scrollTo) window.scrollTo(0, 0);
+      });
+    };
+    const svcKey = page.startsWith("svc:") ? page.slice(4) : null;
+    const S = svcKey ? SERVICES[svcKey] : null;
+    const n = NEEDS.find(x => x.id === need);
+    const st = STEPS[step];
+    const shot = (app, [src, cap], name) => ({
+      isApp: app, isWeb: !app, src, cap, alt: name + ", " + cap.toLowerCase(),
+      box: app ? "flex: 0 1 220px; min-width: 0" : "flex: 1 1 100%; max-width: 900px"
+    });
+    return {
+      isHome: page === "home",
+      isSvc: !!S,
+      goHome: go("home"),
+      goWork: go("home", "lavori"),
+      goApp: go("svc:app"), goWeb: go("svc:web"), goBrand: go("svc:brand"), goAi: go("svc:ai"),
+      navSvc: Object.keys(SERVICES).map(k => ({ label: SERVICES[k].label, go: go("svc:" + k), style: svcKey === k ? "color: #111; font-weight: 600" : "" })),
+
+      needs: NEEDS.map(x => ({ label: x.label, cls: x.id === need ? "tb on" : "tb", pressed: x.id === need ? "true" : "false", pick: () => this.setState({ need: x.id }) })),
+      cur: { ...n, isApp: n.kind === "app", isWeb: n.kind === "web", isBrand: n.kind === "brand", isAi: n.kind === "ai", go: go("svc:" + n.id) },
+
+      steps: STEPS.map((x, i) => ({ n: x.n, short: x.short, cls: i === step ? "mt on" : "mt", pressed: i === step ? "true" : "false", pick: () => this.setState({ step: i }) })),
+      st: { ...st, n: step + 1, bar: "width: " + ((step + 1) * 20) + "%", btn: step < 4 ? "Passo successivo →" : "Ricomincia" },
+      nextStep: () => this.setState({ step: (step + 1) % 5 }),
+
+      works: WORKS.map(k => ({ ...k, isApp: !!k.app, isWeb: !k.app, span: "grid-column: span " + k.span, box: k.app ? "width: 170px" : "width: 88%", go: go("svc:" + k.svc, k.anchor) })),
+
+      sv: S ? {
+        ...S,
+        isBrand: svcKey === "brand", isAi: svcKey === "ai", hasShots: !!S.projects,
+        stepsCls: S.flow.length > 4 ? "steps six" : "steps",
+        flow: S.flow.map(([t, d], i) => ({ n: String(i + 1).padStart(2, "0"), t, d })),
+        projects: (S.projects || []).map(([id, name, kind, desc, shots, app, url]) => ({ id, name, kind, desc, url, shots: shots.map(s => shot(app, s, name)) }))
+      } : { flow: [], projects: [], gets: [] },
+
+      brands: BRANDS.map(b => ({
+        ...b,
+        isMerkorn: b.id === "merkorn", isBloop: b.id === "bloop", isTrainee: b.id === "trainee", isOrsini: b.id === "orsini",
+        colors: b.colors.map(([name, hex, bg, fg]) => ({ name, hex, style: "background: " + bg + "; color: " + fg + "; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08)" }))
+      })),
+      pixels: PIXELS,
+      moods: MOODS,
+
+      others: Object.keys(SERVICES).filter(k => k !== svcKey).map(k => ({ label: SERVICES[k].title, go: go("svc:" + k) })),
+      types: TYPES.map((label, i) => ({ label, cls: types[i] ? "chipb on" : "chipb", pressed: types[i] ? "true" : "false", toggle: () => this.setState({ types: { ...types, [i]: !types[i] } }) }))
+    };
+  }
+}
+
+dcMount(Component);
+
+document.addEventListener("click", function (e) {
+  var btn = e.target.closest && e.target.closest("#send");
+  if (!btn) return;
+  var f = btn.closest("form");
+  if (!f) return;
+  e.preventDefault();
+  var v = function (n) { var el = f.querySelector("[name=" + n + "]"); return el ? el.value.trim() : ""; };
+  var types = Array.prototype.map.call(f.querySelectorAll('button[aria-pressed="true"]'), function (b) { return b.textContent.trim(); });
+  var lines = [];
+  if (types.length) lines.push("Mi serve: " + types.join(", "));
+  if (v("nome")) lines.push("Nome: " + v("nome"));
+  if (v("email")) lines.push("Email: " + v("email"));
+  if (v("azienda")) lines.push("Azienda o progetto: " + v("azienda"));
+  if (v("messaggio")) lines.push("", v("messaggio"));
+  location.href = "mailto:giamma.antonacci@gmail.com?subject=" + encodeURIComponent("Nuovo progetto" + (v("nome") ? " — " + v("nome") : "")) + "&body=" + encodeURIComponent(lines.join("\n"));
+});
+
 </script>
 </body>
 </html>
