@@ -181,8 +181,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
             </div>
             <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px">
               <p class="lbl">Ideale per</p><p style="margin: 0; font-size: 14px; line-height: 1.5">{{sv.for}}</p>
-              <p class="lbl" style="margin-top: 6px">Tempi indicativi</p><p style="margin: 0; font-size: 14px">{{sv.time}}</p>
-              <a class="btn" href="#contatti" style="margin-top: 6px">Richiedi un preventivo</a>
+              <a class="btn" href="#contatti" style="margin-top: 6px">Raccontaci il progetto</a>
             </div>
           </div>
         </div>
@@ -193,7 +192,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
   <div class="w">
     <div class="trust">
       <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle><path d="M5.5 8.2l1.7 1.7 3.3-3.6"></path></svg>Prima call gratuita</span>
-      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2l5 2v4c0 3-2.2 5-5 6-2.8-1-5-3-5-6V4z"></path></svg>Prezzo chiaro prima di iniziare</span>
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2l5 2v4c0 3-2.2 5-5 6-2.8-1-5-3-5-6V4z"></path></svg>Tempi decisi insieme a te</span>
       <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="5.5" r="2.5"></circle><path d="M3 14c.6-2.8 2.6-4 5-4s4.4 1.2 5 4"></path></svg>Un solo referente</span>
       <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h3l2-4 2 8 2-4h3"></path></svg>Aggiornamenti ogni settimana</span>
     </div>
@@ -650,7 +649,7 @@ const IMG = {
 };
 
 const SERVICES = {
-  app: { n: "1", label: "App", title: "App e prodotti digitali", time: "[TEMPO] settimane",
+  app: { n: "1", label: "App", title: "App e prodotti digitali",
     lead: "Disegniamo app che le persone usano senza bisogno di istruzioni, dal primo flusso all'ultima schermata.",
     for: "Startup, aziende che lanciano un prodotto, team che vogliono rifare o migliorare un'app.",
     solves: "Idee che non si sa come trasformare in schermate, app difficili da usare, prodotti da rifare.",
@@ -661,7 +660,7 @@ const SERVICES = {
     projects: [["bloop", "Bloop", "App iOS · Scoperta eventi", "Scopri cosa succede intorno a te e conferma in tre tocchi: tre ingressi, suggerimenti pronti e le informazioni decisive sempre in vista.", IMG.bloop, true],
                ["trainee", "TraineeUX", "App · Formazione UX", "Livelli, serie ed esercizi a tempo per allenare il giudizio da designer, con un esercizio sempre pronto e amici con cui confrontarsi.", IMG.trainee, true],
                ["dream", "Dreambase", "Prodotto fisico + app · Sonno", "Una lampada per il sonno guidata dalla sua app: programmi pronti, nessuna configurazione e un riepilogo di ogni notte.", IMG.dream, true]] },
-  web: { n: "2", label: "Siti web", title: "Siti web", time: "[TEMPO] settimane",
+  web: { n: "2", label: "Siti web", title: "Siti web",
     lead: "Siti costruiti attorno a un messaggio solo, perché chi arriva capisca subito cosa fai e cosa fare dopo.",
     for: "Aziende, professionisti, studi e software house che vogliono più contatti qualificati.",
     solves: "Siti che non spiegano bene il servizio, che non portano contatti o che non rappresentano più chi sei.",
@@ -671,14 +670,14 @@ const SERVICES = {
     projLead: "Siti progettati attorno a un messaggio chiaro. Ogni pagina è in una finestra del browser.",
     projects: [["orsini", "Riccardo Orsini", "Sito web · Fotografo", "Un sito editoriale in bianco e nero che lascia parlare le foto e porta ognuno al proprio servizio: matrimoni, moda, ritratti.", IMG.orsini, false, "orsiniphoto.it"],
                ["merkorn", "Merkorn", "Sito web · Software house", "Software su misura spiegato alle piccole imprese: una promessa chiara, i settori in cui riconoscersi e servizi raccontati per reparto.", IMG.merkorn, false, "merkorn.com"]] },
-  brand: { n: "3", label: "Brand identity", title: "Brand identity", time: "[TEMPO] settimane",
+  brand: { n: "3", label: "Brand identity", title: "Brand identity",
     lead: "Costruiamo identità con un'idea chiara al centro e regole semplici, perché il brand resti riconoscibile ovunque.",
     for: "Startup, prodotti digitali, professionisti e piccole aziende che vogliono farsi riconoscere.",
     solves: "Un'immagine confusa o generica, materiali diversi tra loro, nessuna regola da seguire.",
     gets: ["Concetto e parole chiave", "Logo e varianti del marchio", "Palette colori", "Caratteri tipografici", "Elementi grafici e tono di voce", "Applicazioni e linee guida"],
     procTitle: "Come creo una brand identity", procLead: "Sei passaggi, dall'ascolto alle linee guida. Sono gli stessi che trovi nei tre progetti qui sotto.",
     flow: [["Ascolto", "Valori, pubblico e concorrenti: cosa deve dire il brand e a chi."], ["Concetto", "Un'idea guida e tre parole chiave che orientano ogni scelta."], ["Marchio", "Logo, simbolo e varianti per ogni dimensione e sfondo."], ["Sistema", "Colori, caratteri ed elementi grafici che lavorano insieme."], ["Tono di voce", "Come parla il brand: parole, ritmo, frasi tipo."], ["Applicazioni", "Icona, materiali, social e linee guida per usarlo bene."]] },
-  ai: { n: "4", label: "AI", title: "Foto, video e processi con l'AI", time: "da pochi giorni",
+  ai: { n: "4", label: "AI", title: "Foto, video e processi con l'AI",
     lead: "Contenuti visivi creati con l'AI e automazioni che tolgono lavoro ripetitivo a te e al tuo team.",
     for: "Brand che devono produrre contenuti spesso, aziende e team che vogliono lavorare meglio.",
     solves: "Servizi fotografici costosi e lenti, contenuti che non bastano mai, ore perse in attività ripetitive.",
@@ -728,7 +727,7 @@ const BRANDS = [
 
 const STEPS = [
   { n: "01", short: "Call", when: "gratuita, 20 minuti", title: "Call conoscitiva", text: "Ci racconti il progetto, gli obiettivi e i vincoli. Facciamo le domande giuste e ti diciamo con sincerità se e come possiamo aiutarti.", out: "un primo parere e i prossimi passi." },
-  { n: "02", short: "Proposta", when: "prima di iniziare", title: "Analisi e proposta", text: "Studiamo il contesto, gli utenti e la concorrenza. Mettiamo per iscritto cosa faremo, in quanto tempo e a che prezzo.", out: "una proposta scritta con costi e tempi." },
+  { n: "02", short: "Proposta", when: "prima di iniziare", title: "Analisi e proposta", text: "Studiamo il contesto, gli utenti e la concorrenza. Mettiamo per iscritto cosa faremo e decidiamo insieme i tempi.", out: "una proposta scritta, su misura per te." },
   { n: "03", short: "Struttura", when: "fase 1", title: "Struttura e UX", text: "Disegniamo i flussi e i wireframe: come si muove la persona, cosa trova e in che ordine. Si decide qui, quando cambiare costa poco.", out: "flussi e wireframe approvati." },
   { n: "04", short: "Design", when: "fase 2", title: "Design e prototipo", text: "Creiamo l'interfaccia e un prototipo cliccabile, lo testiamo con persone vere e lo miglioriamo con un aggiornamento ogni settimana.", out: "il design completo e un prototipo testato." },
   { n: "05", short: "Consegna", when: "fase 3", title: "Consegna e supporto", text: "Prepariamo file, componenti e specifiche per chi sviluppa, e restiamo accanto a te mentre il progetto prende vita.", out: "tutto il necessario per costruire." }
