@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GA Studio — Gianmarco Antonacci, product designer</title>
-<meta name="description" content="Studio di product design di Gianmarco Antonacci: app, siti web, brand identity e AI. Bloop, Merkorn, Dreambase, TraineeUX, Riccardo Orsini.">
+<meta name="description" content="Studio di product design di Gianmarco Antonacci: app, siti web, brand identity e AI. Bloop, Merkorn, TraineeUX, Riccardo Orsini.">
 <meta property="og:title" content="GA Studio — Gianmarco Antonacci, product designer">
 <meta property="og:description" content="Idee. Schermate. Chiarezza. Prodotti che si capiscono.">
 <meta property="og:image" content="img/bloop-home.webp">
@@ -143,7 +143,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
             <sc-if value="{{cur.isApp}}" hint-placeholder-val="{{ true }}">
               <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(-6deg)"><div class="scr"><img src="img/bloop-home.webp" alt="App Bloop"><span class="di"></span></div></div>
               <div class="ip" style="width: 220px; margin-top: 20px"><div class="scr"><img src="img/trainee-home.webp" alt="App TraineeUX"><span class="di"></span></div></div>
-              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(6deg)"><div class="scr"><img src="img/dreambase-home.webp" alt="App Dreambase"><span class="di"></span></div></div>
+              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(6deg)"><div class="scr"><img src="img/bloop-results.webp" alt="App Bloop, risultati"><span class="di"></span></div></div>
             </sc-if>
             <sc-if value="{{cur.isWeb}}" hint-placeholder-val="{{ false }}">
               <div class="bw" style="width: min(820px, 86%); margin-top: 20px"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="img/orsini-home.webp" alt="Sito di Riccardo Orsini"></div>
@@ -243,7 +243,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
               <span class="pill dk" style="position: absolute; left: 14%; top: 40px">Prototipo testato</span>
               <span class="pill" style="position: absolute; right: 12%; top: 110px">Flussi chiari</span>
             </div>
-            <div class="tx"><div><h3 class="h" style="font-size: 19px">App e prodotti digitali</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Bloop, TraineeUX, Dreambase</p></div><span class="go" aria-hidden="true">→</span></div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">App e prodotti digitali</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Bloop, TraineeUX</p></div><span class="go" aria-hidden="true">→</span></div>
           </a>
           <a class="card" href="#top" onClick="{{goWeb}}">
             <div class="vis">
@@ -286,7 +286,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
       <div class="w">
         <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
           <h2 class="h" data-par="0.04" style="font-size: clamp(30px, 3.6vw, 44px)">Lavori scelti.<br><span style="color: #8a8a8a">Schermate vere.</span></h2>
-          <p class="sub">Cinque progetti tra app, siti, un prodotto fisico e tre brand. Clicca per vederli nella pagina del servizio.</p>
+          <p class="sub">Quattro progetti tra app e siti, e quattro brand. Clicca per vederli nella pagina del servizio.</p>
         </div>
         <div class="works">
           <sc-for list="{{works}}" as="k" hint-placeholder-count="5">
@@ -642,7 +642,6 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 
 const IMG = {
   bloop: [["img/bloop-home.webp", "Home"], ["img/bloop-search.webp", "Ricerca"], ["img/bloop-results.webp", "Risultati vicino a te"]],
-  dream: [["img/dreambase-home.webp", "Home"], ["img/dreambase-quick.webp", "Programmi rapidi"], ["img/dreambase-velo.webp", "Dettaglio programma"], ["img/dreambase-custom.webp", "Programma personalizzato"]],
   trainee: [["img/trainee-home.webp", "Home"], ["img/trainee-path.webp", "Percorso"], ["img/trainee-news.webp", "News"], ["img/trainee-friends.webp", "Amici"]],
   merkorn: [["img/merkorn-home.webp", "Home"], ["img/merkorn-clients.webp", "Per chi lavoriamo"], ["img/merkorn-services.webp", "Servizi"]],
   orsini: [["img/orsini-home.webp", "Home"], ["img/orsini-manifesto.webp", "Manifesto"], ["img/orsini-work.webp", "Lavori"]]
@@ -658,8 +657,7 @@ const SERVICES = {
     flow: [["Ricerca", "Chi userà l'app, cosa deve ottenere e dove si blocca oggi."], ["Struttura", "Percorsi e wireframe: si decide qui la UX."], ["Interfaccia", "Design completo, componenti e prototipo cliccabile."], ["Test e consegna", "Prove con utenti veri, poi file pronti per lo sviluppo."]],
     projLead: "App progettate dalla ricerca alla consegna. Ogni schermata è nel mockup di un iPhone.",
     projects: [["bloop", "Bloop", "App iOS · Scoperta eventi", "Scopri cosa succede intorno a te e conferma in tre tocchi: tre ingressi, suggerimenti pronti e le informazioni decisive sempre in vista.", IMG.bloop, true],
-               ["trainee", "TraineeUX", "App · Formazione UX", "Livelli, serie ed esercizi a tempo per allenare il giudizio da designer, con un esercizio sempre pronto e amici con cui confrontarsi.", IMG.trainee, true],
-               ["dream", "Dreambase", "Prodotto fisico + app · Sonno", "Una lampada per il sonno guidata dalla sua app: programmi pronti, nessuna configurazione e un riepilogo di ogni notte.", IMG.dream, true]] },
+               ["trainee", "TraineeUX", "App · Formazione UX", "Livelli, serie ed esercizi a tempo per allenare il giudizio da designer, con un esercizio sempre pronto e amici con cui confrontarsi.", IMG.trainee, true]]  },
   web: { n: "2", label: "Siti web", title: "Siti web",
     lead: "Siti costruiti attorno a un messaggio solo, perché chi arriva capisca subito cosa fai e cosa fare dopo.",
     for: "Aziende, professionisti, studi e software house che vogliono più contatti qualificati.",
@@ -744,8 +742,7 @@ const WORKS = [
   { name: "Bloop", kind: "App iOS · Brand", tag: "App", app: true, src: IMG.bloop[0][0], span: 2, svc: "app", anchor: "p-bloop" },
   { name: "Riccardo Orsini", kind: "Sito web · Fotografo", tag: "Web", src: IMG.orsini[0][0], url: "orsiniphoto.it", span: 4, svc: "web", anchor: "p-orsini" },
   { name: "Merkorn", kind: "Sito web · Brand", tag: "Web", src: IMG.merkorn[0][0], url: "merkorn.com", span: 4, svc: "web", anchor: "p-merkorn" },
-  { name: "TraineeUX", kind: "App · Brand", tag: "App", app: true, src: IMG.trainee[0][0], span: 2, svc: "app", anchor: "p-trainee" },
-  { name: "Dreambase", kind: "Prodotto fisico + app", tag: "Prodotto", app: true, src: IMG.dream[0][0], span: 6, svc: "app", anchor: "p-dream" }
+  { name: "TraineeUX", kind: "App · Brand", tag: "App", app: true, src: IMG.trainee[0][0], span: 2, svc: "app", anchor: "p-trainee" }
 ];
 
 const TYPES = ["Un'app", "Un sito web", "Un brand", "Contenuti con l'AI"];
