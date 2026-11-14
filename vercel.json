@@ -1,4 +1,18 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "gianmarco-antonacci-portfolio.vercel.app" }],
+      "destination": "https://gianmarcoantonaccidesigner.it/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "portfolio-archipelago.vercel.app" }],
+      "destination": "https://gianmarcoantonaccidesigner.it/:path*",
+      "permanent": true
+    }
+  ]
 }
