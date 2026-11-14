@@ -3,15 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GA Studio — Gianmarco Antonacci, product designer</title>
-<meta name="description" content="Studio di product design di Gianmarco Antonacci: app, siti web, brand identity e AI. Bloop, Merkorn, TraineeUX, Riccardo Orsini.">
-<meta property="og:title" content="GA Studio — Gianmarco Antonacci, product designer">
-<meta property="og:description" content="Idee. Schermate. Chiarezza. Prodotti che si capiscono.">
-<meta property="og:image" content="img/bloop-home.webp">
+<title>GA Studio — Product design: app, siti web, brand e AI | Gianmarco Antonacci</title>
+<meta name="description" content="Studio di product design di Gianmarco Antonacci: app, siti web, brand identity e contenuti con l'AI. Prodotti che si capiscono, con la UX al centro. Prima call gratuita.">
+<link rel="canonical" href="https://gianmarcoantonaccidesigner.it/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="GA Studio">
+<meta property="og:title" content="GA Studio — Product design: app, siti web, brand e AI | Gianmarco Antonacci">
+<meta property="og:description" content="Studio di product design di Gianmarco Antonacci: app, siti web, brand identity e contenuti con l'AI. Prodotti che si capiscono, con la UX al centro. Prima call gratuita.">
+<meta property="og:url" content="https://gianmarcoantonaccidesigner.it/">
+<meta property="og:image" content="https://gianmarcoantonaccidesigner.it/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://gianmarcoantonaccidesigner.it/#studio","name":"GA Studio","url":"https://gianmarcoantonaccidesigner.it/","image":"https://gianmarcoantonaccidesigner.it/img/og.jpg","description":"Studio di product design di Gianmarco Antonacci: app, siti web, brand identity e contenuti con l'AI. Prodotti che si capiscono, con la UX al centro. Prima call gratuita.","telephone":"+39 352 029 5120","areaServed":"IT","address":{"@type":"PostalAddress","addressRegion":"Puglia","addressCountry":"IT"},"founder":{"@type":"Person","name":"Gianmarco Antonacci","jobTitle":"Product designer","url":"https://gianmarcoantonaccidesigner.it/chi-siamo"},"knowsAbout":["UX design","UI design","App design","Web design","Brand identity","Intelligenza artificiale"],"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Design di app e prodotti digitali — UX e UI","url":"https://gianmarcoantonaccidesigner.it/servizi/app"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Siti web chiari che portano contatti","url":"https://gianmarcoantonaccidesigner.it/servizi/siti-web"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Brand identity: marchio, sistema e linee guida","url":"https://gianmarcoantonaccidesigner.it/servizi/brand-identity"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Foto, video e automazioni con l'AI","url":"https://gianmarcoantonaccidesigner.it/servizi/ai"}}]}</script>
+<meta name="ga-site" content="1">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232fe06d'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;family=Inter+Tight:wght@400;500;600;700&amp;family=Manrope:wght@500;700;800&amp;family=Archivo:wght@500;800;900&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 body{margin:0}
 a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
@@ -47,6 +56,37 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 .pick .tool{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:2px;width:0;min-width:100%;box-sizing:border-box}
 .pick .tb{padding:0 12px}
 .pick-cta{display:flex;justify-content:center;gap:10px}
+.links{display:flex;align-items:center;gap:22px;font-size:13px;font-weight:500;color:#6b6b6b}
+.links a{color:#6b6b6b}.links a:hover,.links a.on{color:#111}.links a.on{font-weight:600}
+.dd{position:relative;display:flex;align-items:center;gap:2px}
+.ddb{width:22px;height:22px;border:0;border-radius:50%;background:none;color:#6b6b6b;display:grid;place-items:center;cursor:pointer;padding:0}
+.ddb:hover{background:var(--soft);color:#111}.ddb svg{transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.ddp{position:absolute;top:calc(100% + 18px);left:50%;width:340px;padding:8px;border-radius:22px;background:#fff;box-shadow:0 0 0 1px var(--line),0 24px 50px rgba(0,0,0,.14);display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;transform:translate(-50%,-6px);transition:opacity .2s,transform .3s cubic-bezier(.16,1,.3,1),visibility .2s}
+.ddp::before{content:"";position:absolute;left:0;right:0;top:-20px;height:20px}
+.dd:hover .ddp,.dd:focus-within .ddp,.dd.open .ddp{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.dd:hover .ddb svg,.dd.open .ddb svg{transform:rotate(180deg)}
+.ddi{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px}
+.ddi:hover,.ddi.on{background:var(--soft)}
+.ddico{flex:none;width:36px;height:36px;border-radius:11px;background:#111;color:var(--g);display:grid;place-items:center}
+.ddi span:last-child{display:flex;flex-direction:column;gap:2px}.ddi b{font-size:14px;font-weight:600;color:#111;letter-spacing:-.01em}.ddi small{font-size:12px;color:var(--mute);font-weight:500}
+.ddall{margin-top:4px;padding:10px 12px;border-radius:14px;font-weight:600;color:#111 !important;box-shadow:inset 0 0 0 1px var(--line);display:flex;justify-content:space-between}
+.ddall:hover{background:#111;color:#fff !important}
+.me{position:relative;background:linear-gradient(180deg,#f2f2f2,#e9e9e9);aspect-ratio:4/5;display:flex;align-items:flex-end;justify-content:center}
+.me img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;mix-blend-mode:multiply}
+.me figcaption{position:relative;margin:0 0 16px}
+.legal{max-width:760px;display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.65;color:#333}
+.legal h2{margin-top:22px;color:#111}.legal p{margin:0}.legal a{color:#0a7a36;text-decoration:underline;text-underline-offset:2px}
+.legal code{font-size:13px;padding:2px 6px;border-radius:6px;background:var(--soft)}
+.tbl{border-radius:16px;box-shadow:0 0 0 1px var(--line);overflow:hidden;font-size:13px}
+.tr{display:grid;grid-template-columns:1fr 1.2fr 1.6fr 1fr;gap:12px;padding:12px 14px}.tr+.tr{border-top:1px solid var(--line)}.th{background:var(--soft);font-weight:600;color:#111}
+.lnk{border:0;background:none;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.legal .lnk{color:#0a7a36}
+.fbot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 0 26px;border-top:1px solid #e6e6e6;font-size:12px;color:#6b6b6b}.fbot a,.fbot .lnk{color:#6b6b6b}.fbot a:hover,.fbot .lnk:hover{color:#111}
+.e404{margin:22px 0 6px;font-size:clamp(110px,18vw,220px);font-weight:700;letter-spacing:-.08em;line-height:.9;color:#111}.e404 span{color:var(--g)}
+.ck{position:fixed;z-index:45;left:50%;bottom:16px;transform:translateX(-50%);width:min(760px,calc(100% - 28px));box-sizing:border-box;display:flex;align-items:center;gap:14px;padding:14px 14px 14px 16px;border-radius:24px;background:#fff;box-shadow:0 0 0 1px var(--line),0 24px 50px rgba(0,0,0,.16);font-size:13px;line-height:1.5;animation:ckin .5s cubic-bezier(.16,1,.3,1)}
+.ck p{margin:0;flex:1;color:#333}.ck-b{display:flex;gap:8px;flex:none}.ck .btn{min-height:40px;font-size:13px;padding:0 16px}
+@keyframes ckin{from{opacity:0;transform:translate(-50%,16px)}}
+@media (max-width:700px){.ck{flex-wrap:wrap}.ck .ico{display:none}.ck-b{width:100%}.ck-b>*{flex:1}.tr{grid-template-columns:1fr 1fr}.th{display:none}}
 .cta-s{display:none}
 @media (max-width:520px){.cta-l{display:none}.cta-s{display:inline}.nav .btn{padding:0 16px}}
 /* fixed header: transparent at the top, a pill when scrolled */
@@ -163,7 +203,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 @keyframes teeter{0%,100%{transform:rotate(7deg)}45%{transform:rotate(13deg)}55%{transform:rotate(12deg)}}
 .stk-floor{display:block;width:180px;height:14px;margin-top:4px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.18),transparent)}
 @media (max-width:700px){.stk{transform:scale(.78);transform-origin:50% 0}}
-@media (prefers-reduced-motion:reduce){.mback,.mlist .msub a{animation:none}.mbtn,.hbg,.hdr .nav{transition:none}[data-par]{transform:none !important;will-change:auto}.stk-top .ic{animation:none;transform:rotate(12deg)}}
+@media (prefers-reduced-motion:reduce){.ck{animation:none}.mback,.mlist .msub a{animation:none}.mbtn,.hbg,.hdr .nav{transition:none}[data-par]{transform:none !important;will-change:auto}.stk-top .ic{animation:none;transform:rotate(12deg)}}
 @media (max-width:860px){.links{display:none !important}.feat,.two{grid-template-columns:minmax(0,1fr) !important}.works{grid-template-columns:minmax(0,1fr)}.works>*{grid-column:auto !important}.foot{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.steps,.steps.six{grid-template-columns:minmax(0,1fr)}.ticks{grid-template-columns:minmax(0,1fr)}.bb{grid-template-columns:minmax(0,1fr)}.bb>*{grid-column:auto !important;grid-row:auto !important}}
 </style>
 </head>
@@ -179,19 +219,20 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
         <button type="button" class="mclose" onClick="{{closeMenu}}" aria-label="Chiudi il menu"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"></path></svg></button>
       </div>
       <nav aria-label="Menu" class="mlist">
-        <a href="#top" onClick="{{goHome}}" class="mfade {{mHome}}"><span><b>Home</b><small>Lo studio, il metodo, i lavori</small></span><i aria-hidden="true">→</i></a>
+        <a href="/" onClick="{{goHome}}" class="mfade {{mHome}}"><span><b>Home</b><small>Lo studio, il metodo, i lavori</small></span><i aria-hidden="true">→</i></a>
         <div class="mfade mgroup {{mSvcCls}}">
           <div class="mrow">
-            <a href="#top" onClick="{{goAll}}"><span><b>Servizi</b><small>App, siti web, brand identity e AI</small></span></a>
+            <a href="/servizi" onClick="{{goAll}}"><span><b>Servizi</b><small>App, siti web, brand identity e AI</small></span></a>
             <button type="button" class="mexp" aria-expanded="{{mSvcExp}}" aria-controls="msub" aria-label="Mostra i servizi" onClick="{{toggleSvc}}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"></path></svg></button>
           </div>
           <sc-if value="{{mSvcOpen}}" hint-placeholder-val="{{ false }}">
             <div id="msub" class="msub">
-              <sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="#top" onClick="{{v.go}}" class="{{v.mcls}}"><span><b>{{v.title}}</b><small>Servizio {{v.n}} di 4</small></span><i aria-hidden="true">→</i></a></sc-for>
+              <sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="{{v.href}}" onClick="{{v.go}}" class="{{v.mcls}}"><span><b>{{v.title}}</b><small>Servizio {{v.n}} di 4</small></span><i aria-hidden="true">→</i></a></sc-for>
             </div>
           </sc-if>
         </div>
-        <a href="#lavori" onClick="{{goWork}}" class="mfade"><span><b>Lavori</b><small>Bloop, Merkorn, TraineeUX, Riccardo Orsini</small></span><i aria-hidden="true">→</i></a>
+        <a href="/chi-siamo" onClick="{{goChi}}" class="mfade {{mChi}}"><span><b>Chi siamo</b><small>Lo studio e Gianmarco Antonacci</small></span><i aria-hidden="true">→</i></a>
+        <a href="/#lavori" onClick="{{goWork}}" class="mfade"><span><b>Progetti</b><small>Bloop, Merkorn, TraineeUX, Riccardo Orsini</small></span><i aria-hidden="true">→</i></a>
         <a href="#contatti" onClick="{{goContact}}" class="mfade"><span><b>Contatti</b><small>Raccontaci il tuo progetto</small></span><i aria-hidden="true">→</i></a>
       </nav>
       <a class="btn mfade" href="#contatti" onClick="{{menuCall}}" style="width: 100%; min-height: 50px; margin-top: 10px; box-sizing: border-box">Prenota una call gratuita</a>
@@ -202,12 +243,21 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
   <header class="{{hdrCls}}">
     <div class="w nav">
       <span class="hbg" aria-hidden="true"></span>
-      <a class="hlogo" href="#top" onClick="{{goHome}}" style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; letter-spacing: -.03em"><span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 50%; background: #111; color: #2fe06d; display: grid; place-items: center; font-size: 10px; font-weight: 700">GA</span>GA Studio</a>
-      <nav class="links" aria-label="Pagine" style="display: flex; gap: 20px; font-size: 13px; font-weight: 500; color: #6b6b6b">
-          <sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="#top" onClick="{{v.go}}" style="{{v.style}}">{{v.label}}</a></sc-for>
-          <a href="#lavori" onClick="{{goWork}}">Lavori</a>
-          <a href="#contatti">Contatti</a>
-        </nav>
+      <a class="hlogo" href="/" onClick="{{goHome}}" style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; letter-spacing: -.03em"><span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 50%; background: #111; color: #2fe06d; display: grid; place-items: center; font-size: 10px; font-weight: 700">GA</span>GA Studio</a>
+      <nav class="links" aria-label="Pagine">
+        <a href="/" onClick="{{goHome}}" class="{{nHome}}">Home</a>
+        <div class="dd {{ddCls}}">
+          <a href="/servizi" onClick="{{goAll}}" class="{{nSvc}}">Servizi</a>
+          <button type="button" class="ddb" aria-expanded="{{ddExp}}" aria-label="Mostra i servizi" onClick="{{toggleDd}}"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"></path></svg></button>
+          <div class="ddp">
+            <sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="{{v.href}}" onClick="{{v.go}}" class="ddi {{v.mcls}}"><span class="ddico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{v.i0}}"></path><path d="{{v.i1}}"></path><path d="{{v.i2}}"></path></svg></span><span><b>{{v.title}}</b><small>{{v.short}}</small></span></a></sc-for>
+            <a href="/servizi" onClick="{{goAll}}" class="ddall">Tutti i servizi <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <a href="/chi-siamo" onClick="{{goChi}}" class="{{nChi}}">Chi siamo</a>
+        <a href="/#lavori" onClick="{{goWork}}">Progetti</a>
+        <a href="#contatti" onClick="{{goContact}}">Contatti</a>
+      </nav>
       <button type="button" class="mbtn" aria-haspopup="dialog" aria-expanded="{{menuExp}}" aria-label="Apri il menu" onClick="{{openMenu}}"><span class="mb-ga" aria-hidden="true">GA</span><span class="mb-l"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 5.5h11M2.5 10.5h11"></path></svg>Menu</span></button>
       <a class="btn hcta" href="#contatti" style="min-height: 38px; font-size: 13px; white-space: nowrap"><span class="cta-l">Prenota una call</span><span class="cta-s">Prenota</span></a>
     </div>
@@ -225,10 +275,10 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
           <div class="pick">
             <div class="tool" role="group" aria-label="Cosa ti serve?">
               <sc-for list="{{needs}}" as="n" hint-placeholder-count="4"><button type="button" class="{{n.cls}}" aria-pressed="{{n.pressed}}" onClick="{{n.pick}}">{{n.label}}</button></sc-for>
-              <a class="tgo" href="#top" onClick="{{cur.go}}" aria-label="Apri il servizio"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
+              <a class="tgo" href="{{cur.href}}" onClick="{{cur.go}}" aria-label="Apri il servizio"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
             </div>
           <div class="pick-cta">
-            <a class="btn" href="#top" onClick="{{cur.go}}">{{cur.cta}}</a>
+            <a class="btn" href="{{cur.href}}" onClick="{{cur.go}}">{{cur.cta}}</a>
             <a class="btn btn-l" href="#lavori">Guarda i lavori ›</a>
           </div>
           </div>
@@ -237,21 +287,21 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
         <div aria-live="polite" style="position: relative; height: clamp(320px, 38vw, 460px); margin-top: clamp(36px, 5vw, 56px); overflow: hidden; {{cur.mask}}">
           <div data-par="0.08" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-start; gap: 22px">
             <sc-if value="{{cur.isApp}}" hint-placeholder-val="{{ true }}">
-              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(-6deg)"><div class="scr"><img src="img/bloop-home.webp" alt="App Bloop"><span class="di"></span></div></div>
-              <div class="ip" style="width: 220px; margin-top: 20px"><div class="scr"><img src="img/trainee-home.webp" alt="App TraineeUX"><span class="di"></span></div></div>
-              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(6deg)"><div class="scr"><img src="img/bloop-results.webp" alt="App Bloop, risultati"><span class="di"></span></div></div>
+              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(-6deg)"><div class="scr"><img src="/img/bloop-home.webp" alt="App Bloop"><span class="di"></span></div></div>
+              <div class="ip" style="width: 220px; margin-top: 20px"><div class="scr"><img src="/img/trainee-home.webp" alt="App TraineeUX"><span class="di"></span></div></div>
+              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(6deg)"><div class="scr"><img src="/img/bloop-results.webp" alt="App Bloop, risultati"><span class="di"></span></div></div>
             </sc-if>
             <sc-if value="{{cur.isWeb}}" hint-placeholder-val="{{ false }}">
               <div style="position: relative; width: min(900px, 94%); height: 100%">
-                <div class="bw" style="position: absolute; left: 0; top: 16px; width: 74%"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="img/orsini-home.webp" alt="Sito di Riccardo Orsini"></div>
-                <div class="bw" style="position: absolute; right: 0; top: 22%; width: 52%; box-shadow: 0 30px 60px rgba(0,0,0,.22)"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>merkorn.com</span></div><img src="img/merkorn-home.webp" alt="Sito di Merkorn"></div>
+                <div class="bw" style="position: absolute; left: 0; top: 16px; width: 74%"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="/img/orsini-home.webp" alt="Sito di Riccardo Orsini"></div>
+                <div class="bw" style="position: absolute; right: 0; top: 22%; width: 52%; box-shadow: 0 30px 60px rgba(0,0,0,.22)"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>merkorn.com</span></div><img src="/img/merkorn-home.webp" alt="Sito di Merkorn"></div>
               </div>
             </sc-if>
             <sc-if value="{{cur.isBrand}}" hint-placeholder-val="{{ false }}">
               <div class="stk" role="img" aria-label="I loghi di Merkorn, Bloop, TraineeUX e Riccardo Orsini impilati, con quello in cima in bilico">
                 <div class="stk-top"><span class="ic" style="background: #9747ff"><span style="display: grid; grid-template-columns: repeat(5, 10px); grid-template-rows: repeat(3, 10px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 2px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 2px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 2px"></i></span></span></div>
                 <span class="ic" style="background: #000; transform: translateX(-10px) rotate(-3deg)"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 52px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></span>
-                <span class="ic" style="background: #9fe7c7; transform: translateX(8px) rotate(2deg)"><img src="img/trainee-icon.webp" alt="" style="display: block; width: 100%; height: 100%"></span>
+                <span class="ic" style="background: #9fe7c7; transform: translateX(8px) rotate(2deg)"><img src="/img/trainee-icon.webp" alt="" style="display: block; width: 100%; height: 100%"></span>
                 <span class="ic" style="background: #fff; box-shadow: inset 0 0 0 1px #e0e0e0, 0 10px 20px rgba(0,0,0,.08); transform: rotate(-1deg)"><span style="position: relative; display: inline-block; width: 28px; height: 44px"><i style="position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 31px; width: 30px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span></span>
                 <i class="stk-floor"></i>
               </div>
@@ -302,9 +352,50 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
           </div>
         </div>
       </sc-if>
+
+      <sc-if value="{{isChi}}" hint-placeholder-val="{{ false }}">
+        <div id="top" class="w" style="padding-top: clamp(24px, 4vw, 48px); padding-bottom: clamp(40px, 6vw, 72px)">
+          <a class="btn btn-l" href="/" onClick="{{goHome}}" style="min-height: 36px; font-size: 13px">← Home</a>
+          <div class="two" style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 56px); align-items: end; margin-top: clamp(28px, 4vw, 48px)">
+            <div>
+              <span class="pill"><span class="dot" aria-hidden="true"></span>Chi siamo</span>
+              <h1 class="h" style="margin-top: 18px; font-size: clamp(44px, 6.4vw, 80px)">Un designer.<br><span style="color: #8a8a8a">Uno studio.</span></h1>
+              <p class="sub" style="margin-top: 16px; max-width: 48ch; font-size: 17px">GA Studio è lo studio di product design di Gianmarco Antonacci. Progettiamo app, siti web e brand identity, e usiamo l'AI per creare foto, video e semplificare i processi.</p>
+            </div>
+            <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px">
+              <p class="lbl">Un solo referente</p><p style="margin: 0; font-size: 14px; line-height: 1.5">Parli sempre con chi progetta davvero, dalla prima call alla consegna.</p>
+              <a class="btn" href="#contatti">Raccontaci il progetto</a>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isLegal}}" hint-placeholder-val="{{ false }}">
+        <div id="top" class="w" style="padding-top: clamp(24px, 4vw, 48px); padding-bottom: clamp(36px, 5vw, 60px)">
+          <a class="btn btn-l" href="/" onClick="{{goHome}}" style="min-height: 36px; font-size: 13px">← Home</a>
+          <span class="pill" style="display: flex; width: fit-content; margin-top: clamp(28px, 4vw, 48px)"><span class="dot" aria-hidden="true"></span>Aggiornata il 14 novembre 2026</span>
+          <h1 class="h" style="margin-top: 18px; font-size: clamp(40px, 5.6vw, 68px)">{{legalTitle}}</h1>
+          <p class="sub" style="margin-top: 14px; max-width: 56ch; font-size: 17px">{{legalLead}}</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{is404}}" hint-placeholder-val="{{ false }}">
+        <div id="top" class="w" style="text-align: center; padding-top: clamp(40px, 7vw, 90px); padding-bottom: clamp(56px, 8vw, 110px)">
+          <span class="pill"><span class="dot" aria-hidden="true"></span>Errore 404</span>
+          <p class="e404" aria-hidden="true">4<span>0</span>4</p>
+          <h1 class="h" style="font-size: clamp(32px, 4.4vw, 52px)">Questa pagina non esiste.</h1>
+          <p class="sub" style="margin: 14px auto 0; max-width: 44ch; font-size: 17px">Forse il link è sbagliato o la pagina è stata spostata. Riparti da qui:</p>
+          <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 26px">
+            <a class="btn" href="/" onClick="{{goHome}}">Torna alla home</a>
+            <a class="btn btn-l" href="/servizi" onClick="{{goAll}}">Servizi</a>
+            <a class="btn btn-l" href="/#lavori" onClick="{{goWork}}">Progetti</a>
+          </div>
+        </div>
+      </sc-if>
     </div>
   </section>
 
+  <sc-if value="{{showTrust}}" hint-placeholder-val="{{ true }}">
   <div class="w">
     <div class="trust">
       <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle><path d="M5.5 8.2l1.7 1.7 3.3-3.6"></path></svg>Prima call gratuita</span>
@@ -313,6 +404,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
       <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h3l2-4 2 8 2-4h3"></path></svg>Aggiornamenti ogni settimana</span>
     </div>
   </div>
+  </sc-if>
 
   <!-- ===================== HOME ===================== -->
   <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
@@ -355,28 +447,28 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
           <p class="sub">Ogni servizio ha la sua pagina, con cosa ricevi, come si svolge e i progetti realizzati. Clicca per aprirla.</p>
         </div>
         <div class="feat">
-          <a class="card" href="#top" onClick="{{goApp}}">
+          <a class="card" href="/servizi/app" onClick="{{goApp}}">
             <div class="vis">
-              <div data-par="0.06" style="position: absolute; left: 50%; top: 26px; width: 120px; margin-left: -60px"><div class="ip"><div class="scr"><img src="img/bloop-home.webp" alt=""><span class="di"></span></div></div></div>
+              <div data-par="0.06" style="position: absolute; left: 50%; top: 26px; width: 120px; margin-left: -60px"><div class="ip"><div class="scr"><img src="/img/bloop-home.webp" alt=""><span class="di"></span></div></div></div>
               <span class="pill dk" style="position: absolute; left: 14%; top: 40px">Prototipo testato</span>
               <span class="pill" style="position: absolute; right: 12%; top: 110px">Flussi chiari</span>
             </div>
             <div class="tx"><div><h3 class="h" style="font-size: 19px">App e prodotti digitali</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Bloop, TraineeUX</p></div><span class="go" aria-hidden="true">→</span></div>
           </a>
-          <a class="card" href="#top" onClick="{{goWeb}}">
+          <a class="card" href="/servizi/siti-web" onClick="{{goWeb}}">
             <div class="vis">
-              <div data-par="0.06" style="position: absolute; left: 10%; right: 10%; top: 30px"><div class="bw"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="img/orsini-home.webp" alt=""></div></div>
+              <div data-par="0.06" style="position: absolute; left: 10%; right: 10%; top: 30px"><div class="bw"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="/img/orsini-home.webp" alt=""></div></div>
               <span class="pill dk" style="position: absolute; left: 6%; top: 22px; z-index: 2">Messaggio chiaro</span>
               <span class="pill" style="position: absolute; right: 6%; top: 120px; z-index: 2">Più contatti</span>
             </div>
             <div class="tx"><div><h3 class="h" style="font-size: 19px">Siti web</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Riccardo Orsini, Merkorn</p></div><span class="go" aria-hidden="true">→</span></div>
           </a>
-          <a class="card" href="#top" onClick="{{goBrand}}">
+          <a class="card" href="/servizi/brand-identity" onClick="{{goBrand}}">
             <div class="vis" style="display: flex; align-items: center; justify-content: center; gap: 10px">
               <div data-par="0.06" style="display: flex; gap: 10px">
                 <span style="width: 84px; height: 84px; border-radius: 18px; background: #9747ff; display: grid; place-items: center"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 9px); grid-template-rows: repeat(3, 9px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 2px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 2px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 2px"></i></span></span>
                 <span style="width: 84px; height: 84px; border-radius: 18px; background: #000; display: grid; place-items: center"><span aria-hidden="true" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></span>
-                <img src="img/trainee-icon.webp" alt="" style="display: block; width: 84px; height: 84px">
+                <img src="/img/trainee-icon.webp" alt="" style="display: block; width: 84px; height: 84px">
                 <span style="width: 84px; height: 84px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px #e0e0e0; display: grid; place-items: center"><span aria-hidden="true" style="position: relative; display: inline-block; width: 26px; height: 40px"><i style="position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 28px; width: 28px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span></span>
               </div>
               <span class="pill dk" style="position: absolute; left: 8%; top: 22px">Linee guida</span>
@@ -384,7 +476,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
             </div>
             <div class="tx"><div><h3 class="h" style="font-size: 19px">Brand identity</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Merkorn, Bloop, TraineeUX, Riccardo Orsini</p></div><span class="go" aria-hidden="true">→</span></div>
           </a>
-          <a class="card" href="#top" onClick="{{goAi}}">
+          <a class="card" href="/servizi/ai" onClick="{{goAi}}">
             <div class="vis">
               <div data-par="0.06" style="position: absolute; inset: 0">
                 <div style="position: absolute; left: 50%; top: 50%; width: 200px; height: 200px; margin: -100px 0 0 -100px; border-radius: 50%; box-shadow: inset 0 0 0 1px #d6d6d6"></div>
@@ -410,7 +502,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
         </div>
         <div class="works">
           <sc-for list="{{works}}" as="k" hint-placeholder-count="5">
-            <a class="card wk" href="#top" onClick="{{k.go}}" style="{{k.span}}">
+            <a class="card wk" href="{{k.href}}" onClick="{{k.go}}" style="{{k.span}}">
               <div class="vis">
                 <div data-par="0.05" style="{{k.box}}">
                   <sc-if value="{{k.isApp}}" hint-placeholder-val="{{ true }}"><div class="ip"><div class="scr"><img src="{{k.src}}" alt="{{k.name}}" loading="lazy"><span class="di"></span></div></div></sc-if>
@@ -516,14 +608,14 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
                     <div style="display: grid; place-items: center; background: {{b.c1}}">
                       <sc-if value="{{b.isMerkorn}}" hint-placeholder-val="{{ true }}"><span role="img" aria-label="Logo Merkorn" style="display: flex; align-items: center; gap: 20px; color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800; letter-spacing: .3em; font-size: clamp(22px, 2.6vw, 34px)"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 14px); grid-template-rows: repeat(3, 14px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 3px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 3px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 3px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 3px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 3px"></i></span>MERKORN</span></sc-if>
                       <sc-if value="{{b.isBloop}}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Logo Bloop" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 150px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></sc-if>
-                      <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 18px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 44px); letter-spacing: -.04em; color: #0f1014"><img src="img/trainee-icon.webp" alt="Logo TraineeUX" style="display: block; width: 120px; height: auto; filter: drop-shadow(0 12px 18px rgba(0,0,0,.12))">TraineeUX</span></sc-if>
+                      <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 18px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 44px); letter-spacing: -.04em; color: #0f1014"><img src="/img/trainee-icon.webp" alt="Logo TraineeUX" style="display: block; width: 120px; height: auto; filter: drop-shadow(0 12px 18px rgba(0,0,0,.12))">TraineeUX</span></sc-if>
                       <sc-if value="{{b.isOrsini}}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Logo Riccardo Orsini Photographer" style="display: flex; align-items: center; gap: 22px"><span aria-hidden="true" style="position: relative; display: inline-block; width: 64px; height: 100px"><i style="position: absolute; left: 0; top: 0; width: 58px; height: 58px; border-radius: 50%; border: 3px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 2px; top: 72px; width: 68px; height: 3px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span><span style="display: flex; flex-direction: column; gap: 8px"><b style="font-size: clamp(18px, 2vw, 26px); letter-spacing: .16em; color: #111">RICCARDO ORSINI</b><span style="font-size: clamp(11px, 1.1vw, 14px); letter-spacing: .32em; color: #6b6b6b">PHOTOGRAPHER</span></span></span></sc-if>
                     </div>
                     <div style="display: grid; grid-template-rows: 1fr 1fr">
                       <div style="display: grid; place-items: center; background: {{b.c2}}">
                         <sc-if value="{{b.isMerkorn}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 14px); grid-template-rows: repeat(3, 14px)"><i style="grid-column: 3; grid-row: 1; background: #9747ff; border-radius: 3px"></i><i style="grid-column: 2; grid-row: 2; background: #9747ff; border-radius: 3px"></i><i style="grid-column: 4; grid-row: 2; background: #9747ff; border-radius: 3px"></i><i style="grid-column: 1; grid-row: 3; background: #9747ff; border-radius: 3px"></i><i style="grid-column: 5; grid-row: 3; background: #9747ff; border-radius: 3px"></i></span></sc-if>
                         <sc-if value="{{b.isBloop}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 83px; line-height: .8; letter-spacing: -.04em"><span style="color: #000">o</span><span style="color: #fff">o</span></span></sc-if>
-                        <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><img src="img/trainee-icon.webp" alt="" style="display: block; width: 76px; height: auto"></sc-if>
+                        <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><img src="/img/trainee-icon.webp" alt="" style="display: block; width: 76px; height: auto"></sc-if>
                         <sc-if value="{{b.isOrsini}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: relative; display: inline-block; width: 40px; height: 62px"><i style="position: absolute; left: 0; top: 0; width: 36px; height: 36px; border-radius: 50%; border: 2px solid #fff; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 45px; width: 42px; height: 2px; background: #fff; transform-origin: 0 0; transform: rotate(32deg)"></i></span></sc-if>
                       </div>
                       <div style="display: grid; place-items: center; background: #fff; border-top: 1px solid #e6e6e6">
@@ -567,7 +659,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
                     <div style="flex: 0 0 180px; min-height: 180px; border-radius: 16px; background: #f4f4f4; display: grid; place-items: center; position: relative">
                       <sc-if value="{{b.isMerkorn}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="width: 84px; height: 84px; border-radius: 20px; background: #9747ff; display: grid; place-items: center; box-shadow: 0 14px 28px rgba(0,0,0,.18)"><span style="display: grid; grid-template-columns: repeat(5, 9px); grid-template-rows: repeat(3, 9px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 2px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 2px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 2px"></i></span></span></sc-if>
                       <sc-if value="{{b.isBloop}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width: 84px; height: 84px; border-radius: 20px; background: #000; display: grid; place-items: center; box-shadow: 0 14px 28px rgba(0,0,0,.18)"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></span></sc-if>
-                      <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><img src="img/trainee-icon.webp" alt="" style="display: block; width: 88px; height: auto; filter: drop-shadow(0 12px 18px rgba(0,0,0,.16))"></sc-if>
+                      <sc-if value="{{b.isTrainee}}" hint-placeholder-val="{{ false }}"><img src="/img/trainee-icon.webp" alt="" style="display: block; width: 88px; height: auto; filter: drop-shadow(0 12px 18px rgba(0,0,0,.16))"></sc-if>
                       <sc-if value="{{b.isOrsini}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width: 84px; height: 84px; border-radius: 20px; background: #fff; display: grid; place-items: center; box-shadow: 0 0 0 1px #e0e0e0, 0 14px 28px rgba(0,0,0,.12)"><span style="position: relative; display: inline-block; width: 28px; height: 44px"><i style="position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 31px; width: 30px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span></span></sc-if>
                       <span class="pill" style="position: absolute; left: 12px; bottom: 12px">Icona app</span>
                     </div>
@@ -618,13 +710,101 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
       <div class="w">
         <p class="lbl" style="margin-bottom: 14px">Altri servizi</p>
         <div style="display: flex; gap: 10px; flex-wrap: wrap">
-          <sc-for list="{{others}}" as="o" hint-placeholder-count="3"><button type="button" class="btn btn-l" onClick="{{o.go}}">{{o.label}} ›</button></sc-for>
+          <sc-for list="{{others}}" as="o" hint-placeholder-count="3"><a class="btn btn-l" href="{{o.href}}" onClick="{{o.go}}">{{o.label}} ›</a></sc-for>
         </div>
       </div>
     </section>
   </sc-if>
 
-  <!-- ===================== CONTATTI (sempre) ===================== -->
+  <!-- ===================== CHI SIAMO ===================== -->
+  <sc-if value="{{isChi}}" hint-placeholder-val="{{ false }}">
+    <section class="sec" style="padding-top: clamp(40px, 5vw, 64px)">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 64px); align-items: center">
+          <figure class="card me" style="margin: 0">
+            <img src="/img/gianmarco.webp" alt="Ritratto di Gianmarco Antonacci" loading="lazy">
+            <figcaption class="pill"><span class="dot" aria-hidden="true"></span>Gianmarco Antonacci · Product designer</figcaption>
+          </figure>
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <p class="lbl">Lo studio</p>
+            <h2 class="h" style="font-size: clamp(30px, 3.6vw, 44px)">Dietro GA Studio<br><span style="color: #8a8a8a">c'è una persona.</span></h2>
+            <p class="sub" style="font-size: 16px">Dietro GA Studio c'è Gianmarco Antonacci, product designer. Ogni progetto lo segue in prima persona, dalla prima call alla consegna: niente passaggi di mano, niente telefono senza fili.</p>
+            <p class="sub" style="font-size: 16px">Il punto di partenza è sempre la stessa domanda: chi userà questo prodotto, e cosa deve riuscire a fare? Da lì nascono flussi, schermate e identità visive che si capiscono al primo sguardo.</p>
+            <p class="sub" style="font-size: 16px">Lo studio lavora dalla Puglia, con chi lavora ovunque, anche da remoto.</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px">
+              <a class="btn" href="/servizi" onClick="{{goAll}}">Scopri i servizi</a>
+              <a class="btn btn-l" href="/#lavori" onClick="{{goWork}}">Vedi i progetti</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sec secg">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
+          <h2 class="h" style="font-size: clamp(30px, 3.6vw, 44px)">In cosa crediamo.</h2>
+          <p class="sub">Quattro principi che valgono per un'app, un sito o un brand, e che trovi in ogni progetto.</p>
+        </div>
+        <div class="steps">
+            <div><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z"></path><path d="M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8z"></path><path d="M12 12h.01"></path></svg></span><p style="margin: 6px 0 0; font-size: 17px; font-weight: 600; letter-spacing: -.02em">La UX al centro</p><p class="sub" style="font-size: 13px">Ogni scelta parte da chi userà il prodotto: cosa deve fare, dove si blocca, cosa lo convince.</p></div>
+            <div><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path><path d="M9.5 18.5h5"></path><path d="M10.5 21h3"></path></svg></span><p style="margin: 6px 0 0; font-size: 17px; font-weight: 600; letter-spacing: -.02em">Chiarezza prima di tutto</p><p class="sub" style="font-size: 13px">Un messaggio solo, schermate semplici, decisioni spiegate. Se una cosa va spiegata troppo, va ripensata.</p></div>
+            <div><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></svg></span><p style="margin: 6px 0 0; font-size: 17px; font-weight: 600; letter-spacing: -.02em">Un solo referente</p><p class="sub" style="font-size: 13px">Parli sempre con chi progetta. Aggiornamenti ogni settimana e nessun passaggio di mano.</p></div>
+            <div><span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path><path d="M6.5 6.5l2.5 2.5M15 15l2.5 2.5"></path><path d="M17.5 6.5L15 9M9 15l-2.5 2.5"></path></svg></span><p style="margin: 6px 0 0; font-size: 17px; font-weight: 600; letter-spacing: -.02em">L'AI come strumento</p><p class="sub" style="font-size: 13px">Per creare foto e video in meno tempo e togliere lavoro ripetitivo, mai al posto delle idee.</p></div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px">
+          <a class="btn btn-l" href="/#metodo" onClick="{{goMethod}}">Come lavoriamo: il metodo ›</a>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ===================== PRIVACY / COOKIE ===================== -->
+  <sc-if value="{{isPrivacy}}" hint-placeholder-val="{{ false }}">
+    <section class="sec" style="padding-top: clamp(24px, 3vw, 40px)">
+      <div class="w"><div class="legal">
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">1. Titolare del trattamento</h2>
+          <p>Il titolare del trattamento è <b>Gianmarco Antonacci</b> (GA Studio). Per qualsiasi richiesta sui tuoi dati puoi scrivere a <a href="mailto:giamma.antonacci@gmail.com">giamma.antonacci@gmail.com</a>.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">2. Quali dati trattiamo</h2>
+          <p><b>Dati di navigazione.</b> Il servizio di hosting registra in modo automatico alcuni dati tecnici delle visite (indirizzo IP, tipo di browser, pagina richiesta, data e ora). Servono a far funzionare il sito e a proteggerlo da abusi; non li usiamo per profilarti.</p>
+          <p><b>Dati che ci invii tu.</b> Quando ci scrivi via email, ci chiami o usi il modulo di contatto, trattiamo i dati che scegli di condividere: nome, email, telefono, azienda e il contenuto del messaggio. Il modulo non salva nulla sul sito: prepara un'email nel tuo programma di posta, e la invii tu.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">3. Perché li trattiamo e su quale base</h2>
+          <p>Per rispondere alle tue richieste e preparare una proposta, su tua iniziativa (misure precontrattuali, art. 6.1.b GDPR). Per la sicurezza e il funzionamento del sito, per nostro legittimo interesse (art. 6.1.f GDPR). Non inviamo newsletter e non vendiamo dati a nessuno.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">4. Per quanto tempo</h2>
+          <p>I messaggi li conserviamo per il tempo necessario a rispondere e, se nasce una collaborazione, per il tempo richiesto dagli obblighi di legge (per esempio fiscali). I dati di navigazione sono conservati dal servizio di hosting per il periodo previsto dalle sue policy.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">5. A chi li affidiamo</h2>
+          <p>I dati possono essere trattati da fornitori che ci aiutano a erogare il servizio, nominati responsabili del trattamento: <b>Vercel Inc.</b> (hosting del sito) e <b>Google</b> (servizio di posta elettronica). Alcuni di questi fornitori hanno sede negli Stati Uniti: il trasferimento avviene sulla base dell'EU-U.S. Data Privacy Framework o delle clausole contrattuali standard approvate dalla Commissione europea. I caratteri tipografici sono ospitati direttamente sul nostro sito, senza richieste a server esterni.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">6. I tuoi diritti</h2>
+          <p>Puoi chiedere in qualsiasi momento di accedere ai tuoi dati, correggerli, cancellarli, limitarne il trattamento, opporti o riceverli in un formato portabile (artt. 15–22 GDPR), scrivendo all'indirizzo qui sopra. Se ritieni che il trattamento non sia corretto, puoi presentare reclamo al <a href="https://www.garanteprivacy.it" rel="noopener">Garante per la protezione dei dati personali</a>.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">7. Cookie</h2>
+          <p>Il sito usa solo strumenti tecnici. Trovi i dettagli nella <a href="/cookie-policy" onClick="{{goCookie}}">cookie policy</a>.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">8. Modifiche</h2>
+          <p>Possiamo aggiornare questa informativa, per esempio se aggiungiamo nuovi servizi al sito. La data in alto indica l'ultima modifica.</p>
+      </div></div>
+    </section>
+  </sc-if>
+  <sc-if value="{{isCookie}}" hint-placeholder-val="{{ false }}">
+    <section class="sec" style="padding-top: clamp(24px, 3vw, 40px)">
+      <div class="w"><div class="legal">
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">In breve</h2>
+          <p>Questo sito <b>non usa cookie di profilazione, di statistica o di terze parti</b>. Non ci sono pubblicità, pixel di tracciamento o strumenti di analisi.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">Cosa usiamo</h2>
+          <p>Usiamo un solo strumento tecnico: una voce nella memoria locale del browser (<code>ga-cookie</code>) che ricorda che hai chiuso il banner sui cookie, così non te lo mostriamo a ogni visita. Non contiene dati personali e non viene inviata a nessun server.</p>
+          <div class="tbl" role="table" aria-label="Strumenti usati dal sito">
+            <div role="row" class="tr th"><span role="columnheader">Nome</span><span role="columnheader">Tipo</span><span role="columnheader">Finalità</span><span role="columnheader">Durata</span></div>
+            <div role="row" class="tr"><span role="cell"><code>ga-cookie</code></span><span role="cell">Tecnico, memoria locale</span><span role="cell">Ricorda la chiusura del banner</span><span role="cell">Finché non la cancelli</span></div>
+          </div>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">Serve il consenso?</h2>
+          <p>No: per gli strumenti tecnici necessari al funzionamento del sito non è richiesto il consenso (art. 122 del Codice privacy e Linee guida del Garante del 10 giugno 2021). Il banner serve solo a informarti.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">Come gestirli</h2>
+          <p>Puoi cancellare in qualsiasi momento la memoria locale dalle impostazioni del browser, oppure <button type="button" class="lnk" onClick="{{cookieReset}}">rivedere le preferenze sui cookie</button>. Se in futuro aggiungeremo strumenti di statistica o di terze parti, aggiorneremo questa pagina e ti chiederemo il consenso prima di attivarli.</p>
+          <h2 class="h" style="font-size: clamp(20px, 2vw, 24px); letter-spacing: -.02em">Titolare</h2>
+          <p>Gianmarco Antonacci (GA Studio), <a href="mailto:giamma.antonacci@gmail.com">giamma.antonacci@gmail.com</a>. Per sapere come trattiamo i dati personali leggi la <a href="/privacy-policy" onClick="{{goPrivacy}}">privacy policy</a>.</p>
+      </div></div>
+    </section>
+  </sc-if>
+
+  <!-- ===================== CONTATTI ===================== -->
+  <sc-if value="{{showContact}}" hint-placeholder-val="{{ true }}">
   <section id="contatti" class="sec">
     <div class="w">
       <div class="panel" style="padding: clamp(24px, 4vw, 48px)">
@@ -656,21 +836,337 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
       </div>
     </div>
   </section>
+  </sc-if>
 
-  <footer style="border-top: 1px solid #e6e6e6">
+  <footer id="contatti-footer" style="border-top: 1px solid #e6e6e6">
     <div class="w">
       <div class="foot" style="display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 24px; padding: 44px 0 28px">
         <div><p style="margin: 0 0 10px; font-weight: 700; letter-spacing: -.03em">GA Studio</p><p class="sub" style="font-size: 13px; max-width: 30ch">Studio di product design di Gianmarco Antonacci. App, siti, brand e AI, dalla Puglia per tutti.</p></div>
-        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Servizi</b><sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="#top" onClick="{{v.go}}">{{v.label}}</a></sc-for></div>
-        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Studio</b><a href="#metodo" onClick="{{goHome}}">Metodo</a><a href="#lavori" onClick="{{goWork}}">Lavori</a></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Servizi</b><sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="{{v.href}}" onClick="{{v.go}}">{{v.label}}</a></sc-for></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Studio</b><a href="/chi-siamo" onClick="{{goChi}}">Chi siamo</a><a href="/#metodo" onClick="{{goMethod}}">Metodo</a><a href="/#lavori" onClick="{{goWork}}">Progetti</a></div>
         <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Contatti</b><a href="mailto:giamma.antonacci@gmail.com">Email</a><a href="tel:+393520295120">Telefono</a></div>
       </div>
-      <p style="margin: 0; padding: 18px 0 26px; border-top: 1px solid #e6e6e6; font-size: 12px; color: #6b6b6b">© 2026 GA Studio · Gianmarco Antonacci · Tutti i diritti riservati</p>
+      <div class="fbot"><p style="margin: 0">© 2026 GA Studio · Gianmarco Antonacci · Tutti i diritti riservati</p><p style="margin: 0; display: flex; gap: 16px; flex-wrap: wrap"><a href="/privacy-policy" onClick="{{goPrivacy}}">Privacy policy</a><a href="/cookie-policy" onClick="{{goCookie}}">Cookie policy</a><button type="button" class="lnk" onClick="{{cookieReset}}">Preferenze cookie</button></p></div>
     </div>
   </footer>
+
+  <sc-if value="{{cookieAsk}}" hint-placeholder-val="{{ false }}">
+    <div class="ck" role="region" aria-label="Informativa sui cookie">
+      <span class="ico" aria-hidden="true" style="flex: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9 3 3 0 0 1-3.5-3A3 3 0 0 1 14 5.5 3 3 0 0 1 12 3z"></path><path d="M8.5 10.5h.01M12 15h.01M15.5 13h.01M9 15.5h.01"></path></svg></span>
+      <p><b>Solo cookie tecnici.</b> Usiamo solo ciò che serve a far funzionare il sito: niente profilazione, niente tracciamento, niente terze parti.</p>
+      <div class="ck-b"><a class="btn btn-l" href="/cookie-policy" onClick="{{goCookie}}">Cookie policy</a><button type="button" class="btn" onClick="{{cookieOk}}">Ho capito</button></div>
+    </div>
+  </sc-if>
 </div>
 </template>
-<div id="app"></div>
+<div id="app">
+
+<div class="f-root">
+  
+
+  
+  <header class="hdr">
+    <div class="w nav">
+      <span class="hbg" aria-hidden="true"></span>
+      <a class="hlogo" href="/" style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; letter-spacing: -.03em"><span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 50%; background: #111; color: #2fe06d; display: grid; place-items: center; font-size: 10px; font-weight: 700">GA</span>GA Studio</a>
+      <nav class="links" aria-label="Pagine">
+        <a href="/" class="on">Home</a>
+        <div class="dd ">
+          <a href="/servizi" class="">Servizi</a>
+          <button type="button" class="ddb" aria-expanded="false" aria-label="Mostra i servizi"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"></path></svg></button>
+          <div class="ddp">
+            <a href="/servizi/app" class="ddi "><span class="ddico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 2.5h9a1 1 0 0 1 1 1v17a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-17a1 1 0 0 1 1-1z"></path><path d="M10.5 18.5h3"></path><path d=""></path></svg></span><span><b>App e prodotti digitali</b><small>UX e UI per app e prodotti</small></span></a><a href="/servizi/siti-web" class="ddi "><span class="ddico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v14H3z"></path><path d="M3 9h18"></path><path d="M9 9v10"></path></svg></span><span><b>Siti web</b><small>Siti chiari che portano contatti</small></span></a><a href="/servizi/brand-identity" class="ddi "><span class="ddico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"></path><path d="M12 8.5l3.5 3.5-3.5 3.5-3.5-3.5z"></path><path d=""></path></svg></span><span><b>Brand identity</b><small>Marchio, sistema e linee guida</small></span></a><a href="/servizi/ai" class="ddi "><span class="ddico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path><path d="M6.5 6.5l2.5 2.5M15 15l2.5 2.5"></path><path d="M17.5 6.5L15 9M9 15l-2.5 2.5"></path></svg></span><span><b>Foto, video e processi con l'AI</b><small>Foto, video e automazioni</small></span></a>
+            <a href="/servizi" class="ddall">Tutti i servizi <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <a href="/chi-siamo" class="">Chi siamo</a>
+        <a href="/#lavori">Progetti</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+      <button type="button" class="mbtn" aria-haspopup="dialog" aria-expanded="false" aria-label="Apri il menu"><span class="mb-ga" aria-hidden="true">GA</span><span class="mb-l"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 5.5h11M2.5 10.5h11"></path></svg>Menu</span></button>
+      <a class="btn hcta" href="#contatti" style="min-height: 38px; font-size: 13px; white-space: nowrap"><span class="cta-l">Prenota una call</span><span class="cta-s">Prenota</span></a>
+    </div>
+  </header>
+
+  <section style="padding: 14px">
+    <div class="panel" style="position: relative; overflow: hidden">
+      <div class="hspace" aria-hidden="true"></div>
+
+      
+        <div id="top" class="w" style="text-align: center; padding-top: clamp(32px, 5vw, 56px)">
+          <span class="pill"><span class="dot" aria-hidden="true"></span>Disponibile per nuovi progetti</span>
+          <h1 class="h" style="margin: 22px auto 0; max-width: 16ch; font-size: clamp(40px, 6vw, 72px)">Idee. Schermate. Chiarezza.<br><span style="color: #8a8a8a">Prodotti che si capiscono.</span></h1>
+          <p class="sub" style="margin: 18px auto 0; max-width: 46ch; font-size: 16px">Uno studio di product design per app, siti web e brand, con foto, video e processi potenziati dall'AI. Un solo referente, dall'idea al lancio.</p>
+          <div class="pick">
+            <div class="tool" role="group" aria-label="Cosa ti serve?">
+              <button type="button" class="tb on" aria-pressed="true">App</button><button type="button" class="tb" aria-pressed="false">Siti web</button><button type="button" class="tb" aria-pressed="false">Brand</button><button type="button" class="tb" aria-pressed="false">AI</button>
+              <a class="tgo" href="/servizi/app" aria-label="Apri il servizio"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
+            </div>
+          <div class="pick-cta">
+            <a class="btn" href="/servizi/app">Scopri il servizio App</a>
+            <a class="btn btn-l" href="#lavori">Guarda i lavori ›</a>
+          </div>
+          </div>
+        </div>
+
+        <div aria-live="polite" style="position: relative; height: clamp(320px, 38vw, 460px); margin-top: clamp(36px, 5vw, 56px); overflow: hidden; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent)">
+          <div data-par="0.08" style="position: absolute; inset: 0px; display: flex; justify-content: center; align-items: flex-start; gap: 22px; transform: translate3d(0px, -44.6px, 0px);">
+            
+              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(-6deg)"><div class="scr"><img src="/img/bloop-home.webp" alt="App Bloop"><span class="di"></span></div></div>
+              <div class="ip" style="width: 220px; margin-top: 20px"><div class="scr"><img src="/img/trainee-home.webp" alt="App TraineeUX"><span class="di"></span></div></div>
+              <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(6deg)"><div class="scr"><img src="/img/bloop-results.webp" alt="App Bloop, risultati"><span class="di"></span></div></div>
+            
+            
+            
+            
+          </div>
+        </div>
+      
+
+      
+      
+
+      
+
+      
+
+      
+    </div>
+  </section>
+
+  
+  <div class="w">
+    <div class="trust">
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle><path d="M5.5 8.2l1.7 1.7 3.3-3.6"></path></svg>Prima call gratuita</span>
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2l5 2v4c0 3-2.2 5-5 6-2.8-1-5-3-5-6V4z"></path></svg>Tempi decisi insieme a te</span>
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="5.5" r="2.5"></circle><path d="M3 14c.6-2.8 2.6-4 5-4s4.4 1.2 5 4"></path></svg>Un solo referente</span>
+      <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h3l2-4 2 8 2-4h3"></path></svg>Aggiornamenti ogni settimana</span>
+    </div>
+  </div>
+  
+
+  
+  
+
+    <section id="metodo" class="sec">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
+          <h2 class="h" style="font-size: clamp(30px, 3.6vw, 44px)">Un metodo che lavora<br>come pensano le persone.</h2>
+          <p class="sub">Cinque passi, uguali per un'app, un sito o un brand. Al centro c'è sempre la UX: le decisioni si prendono guardando chi userà il prodotto.</p>
+        </div>
+        <div class="panel" style="padding: clamp(16px, 2.4vw, 28px)">
+          <div class="card" style="max-width: 900px; margin: 0 auto">
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px; border-bottom: 1px solid #e6e6e6; background: #f3f3f3">
+              <span style="display: flex; gap: 6px" aria-hidden="true"><span style="width: 10px; height: 10px; border-radius: 50%; background: #111"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #2fe06d"></span></span>
+              <div role="group" aria-label="Passi del metodo" style="display: flex; gap: 4px; flex-wrap: wrap">
+                <button type="button" class="mt on" aria-pressed="true">01 Call</button><button type="button" class="mt" aria-pressed="false">02 Proposta</button><button type="button" class="mt" aria-pressed="false">03 Struttura</button><button type="button" class="mt" aria-pressed="false">04 Design</button><button type="button" class="mt" aria-pressed="false">05 Consegna</button>
+              </div>
+            </div>
+            <div aria-live="polite" style="padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 16px; min-height: 260px; background: #fff">
+              <p class="lbl">Passo 1 di 5 · gratuita, 20 minuti</p>
+              <h3 class="h" style="font-size: clamp(24px, 2.6vw, 32px)">Call conoscitiva</h3>
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #444; max-width: 62ch">Ci racconti il progetto, gli obiettivi e i vincoli. Facciamo le domande giuste e ti diciamo con sincerità se e come possiamo aiutarti.</p>
+              <p style="margin: 0; display: inline-flex; align-self: flex-start; gap: 6px; padding: 8px 12px; border-radius: 10px; background: #f3f3f3; font-size: 13px"><b>Ricevi:</b> un primo parere e i prossimi passi.</p>
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto">
+                <div aria-hidden="true" style="flex: 1; max-width: 320px; height: 6px; border-radius: 3px; background: #ececec; overflow: hidden"><div style="height: 100%; background: #2fe06d; width: 20%"></div></div>
+                <button type="button" class="btn" style="min-height: 36px; font-size: 13px">Passo successivo →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+
+  
+    <section id="servizi" class="sec secg">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
+          <h2 class="h" style="font-size: clamp(30px, 3.6vw, 44px)">Quattro servizi.<br><span style="color: #8a8a8a">Un solo studio.</span></h2>
+          <p class="sub">Ogni servizio ha la sua pagina, con cosa ricevi, come si svolge e i progetti realizzati. Clicca per aprirla.</p>
+        </div>
+        <div class="feat">
+          <a class="card" href="/servizi/app">
+            <div class="vis">
+              <div data-par="0.06" style="position: absolute; left: 50%; top: 26px; width: 120px; margin-left: -60px"><div class="ip"><div class="scr"><img src="/img/bloop-home.webp" alt=""><span class="di"></span></div></div></div>
+              <span class="pill dk" style="position: absolute; left: 14%; top: 40px">Prototipo testato</span>
+              <span class="pill" style="position: absolute; right: 12%; top: 110px">Flussi chiari</span>
+            </div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">App e prodotti digitali</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Bloop, TraineeUX</p></div><span class="go" aria-hidden="true">→</span></div>
+          </a>
+          <a class="card" href="/servizi/siti-web">
+            <div class="vis">
+              <div data-par="0.06" style="position: absolute; left: 10%; right: 10%; top: 30px"><div class="bw"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="/img/orsini-home.webp" alt=""></div></div>
+              <span class="pill dk" style="position: absolute; left: 6%; top: 22px; z-index: 2">Messaggio chiaro</span>
+              <span class="pill" style="position: absolute; right: 6%; top: 120px; z-index: 2">Più contatti</span>
+            </div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">Siti web</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Riccardo Orsini, Merkorn</p></div><span class="go" aria-hidden="true">→</span></div>
+          </a>
+          <a class="card" href="/servizi/brand-identity">
+            <div class="vis" style="display: flex; align-items: center; justify-content: center; gap: 10px">
+              <div data-par="0.06" style="display: flex; gap: 10px">
+                <span style="width: 84px; height: 84px; border-radius: 18px; background: #9747ff; display: grid; place-items: center"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 9px); grid-template-rows: repeat(3, 9px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 2px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 2px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 2px"></i></span></span>
+                <span style="width: 84px; height: 84px; border-radius: 18px; background: #000; display: grid; place-items: center"><span aria-hidden="true" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></span>
+                <img src="/img/trainee-icon.webp" alt="" style="display: block; width: 84px; height: 84px">
+                <span style="width: 84px; height: 84px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px #e0e0e0; display: grid; place-items: center"><span aria-hidden="true" style="position: relative; display: inline-block; width: 26px; height: 40px"><i style="position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 28px; width: 28px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span></span>
+              </div>
+              <span class="pill dk" style="position: absolute; left: 8%; top: 22px">Linee guida</span>
+              <span class="pill" style="position: absolute; right: 8%; bottom: 22px">Sistema coerente</span>
+            </div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">Brand identity</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Merkorn, Bloop, TraineeUX, Riccardo Orsini</p></div><span class="go" aria-hidden="true">→</span></div>
+          </a>
+          <a class="card" href="/servizi/ai">
+            <div class="vis">
+              <div data-par="0.06" style="position: absolute; inset: 0">
+                <div style="position: absolute; left: 50%; top: 50%; width: 200px; height: 200px; margin: -100px 0 0 -100px; border-radius: 50%; box-shadow: inset 0 0 0 1px #d6d6d6"></div>
+                <div style="position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: #111; color: #2fe06d; display: grid; place-items: center; font-weight: 700">AI</div>
+                <span class="pill dk" style="position: absolute; left: 14%; top: 34px">Foto</span>
+                <span class="pill dk" style="position: absolute; right: 14%; top: 120px">Video</span>
+                <span class="pill" style="position: absolute; left: 22%; bottom: 26px">Processi</span>
+              </div>
+            </div>
+            <div class="tx"><div><h3 class="h" style="font-size: 19px">Foto, video e processi con l'AI</h3><p class="sub" style="margin-top: 6px; font-size: 13px">Contenuti e automazioni</p></div><span class="go" aria-hidden="true">→</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  
+
+  
+    <section id="lavori" class="sec">
+      <div class="w">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
+          <h2 class="h" style="font-size: clamp(30px, 3.6vw, 44px)">Lavori scelti.<br><span style="color: #8a8a8a">Schermate vere.</span></h2>
+          <p class="sub">Quattro progetti tra app e siti, e quattro brand. Clicca per vederli nella pagina del servizio.</p>
+        </div>
+        <div class="works">
+          
+            <a class="card wk" href="/servizi/app#p-bloop" style="grid-column: span 2">
+              <div class="vis">
+                <div data-par="0.05" style="width: 170px">
+                  <div class="ip"><div class="scr"><img src="/img/bloop-home.webp" alt="Bloop" loading="lazy"><span class="di"></span></div></div>
+                  
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 8px 22px 22px">
+                <div><h3 class="h" style="font-size: 19px">Bloop</h3><p class="sub" style="margin-top: 4px; font-size: 13px">App iOS · Brand</p></div>
+                <span class="pill">App</span>
+              </div>
+            </a>
+          
+            <a class="card wk" href="/servizi/siti-web#p-orsini" style="grid-column: span 4">
+              <div class="vis">
+                <div data-par="0.05" style="width: 88%">
+                  
+                  <div class="bw"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="/img/orsini-home.webp" alt="Riccardo Orsini" loading="lazy"></div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 8px 22px 22px">
+                <div><h3 class="h" style="font-size: 19px">Riccardo Orsini</h3><p class="sub" style="margin-top: 4px; font-size: 13px">Sito web · Fotografo</p></div>
+                <span class="pill">Web</span>
+              </div>
+            </a>
+          
+            <a class="card wk" href="/servizi/siti-web#p-merkorn" style="grid-column: span 4">
+              <div class="vis">
+                <div data-par="0.05" style="width: 88%">
+                  
+                  <div class="bw"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>merkorn.com</span></div><img src="/img/merkorn-home.webp" alt="Merkorn" loading="lazy"></div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 8px 22px 22px">
+                <div><h3 class="h" style="font-size: 19px">Merkorn</h3><p class="sub" style="margin-top: 4px; font-size: 13px">Sito web · Brand</p></div>
+                <span class="pill">Web</span>
+              </div>
+            </a>
+          
+            <a class="card wk" href="/servizi/app#p-trainee" style="grid-column: span 2">
+              <div class="vis">
+                <div data-par="0.05" style="width: 170px">
+                  <div class="ip"><div class="scr"><img src="/img/trainee-home.webp" alt="TraineeUX" loading="lazy"><span class="di"></span></div></div>
+                  
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 8px 22px 22px">
+                <div><h3 class="h" style="font-size: 19px">TraineeUX</h3><p class="sub" style="margin-top: 4px; font-size: 13px">App · Brand</p></div>
+                <span class="pill">App</span>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" class="sec secg">
+      <div class="w">
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Usata ogni giorno nello studio</span>
+        <h2 class="h" style="margin-top: 14px; font-size: clamp(30px, 3.6vw, 44px); max-width: 18ch">Più contenuti, meno lavoro ripetitivo. Con l'AI.</h2>
+        <p class="sub" style="margin-top: 12px; max-width: 56ch">Usiamo l'AI come strumento, non come scorciatoia: per creare foto e video di qualità in poco tempo e per automatizzare i passaggi che rubano ore a te e al tuo team.</p>
+        <div style="margin-top: 22px"><button type="button" class="btn btn-l">Scopri il servizio AI ›</button></div>
+      </div>
+    </section>
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  <section id="contatti" class="sec">
+    <div class="w">
+      <div class="panel" style="padding: clamp(24px, 4vw, 48px)">
+        <div class="two" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); align-items: start">
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <span class="pill" style="align-self: flex-start"><span class="dot" aria-hidden="true"></span>Rispondiamo entro un giorno lavorativo</span>
+            <h2 class="h" style="font-size: clamp(32px, 4vw, 52px)">Raccontaci<br>il tuo progetto.</h2>
+            <p class="sub">Compila il modulo o scrivici direttamente. La prima call è gratuita e senza impegno.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; font-size: 14px">
+              <a href="mailto:giamma.antonacci@gmail.com" style="font-weight: 600">giamma.antonacci@gmail.com</a>
+              <a href="tel:+393520295120" style="font-weight: 600">+39 352 029 5120</a>
+            </div>
+          </div>
+          <form class="card" aria-label="Modulo di contatto" style="padding: clamp(20px, 3vw, 30px); display: flex; flex-direction: column; gap: 18px; background: #fff">
+            <fieldset style="border: 0; margin: 0; padding: 0">
+              <legend style="font-size: 12px; font-weight: 600; color: #6b6b6b; margin-bottom: 10px">Di cosa hai bisogno?</legend>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><button type="button" class="chipb" aria-pressed="false">Un'app</button><button type="button" class="chipb" aria-pressed="false">Un sito web</button><button type="button" class="chipb" aria-pressed="false">Un brand</button><button type="button" class="chipb" aria-pressed="false">Contenuti con l'AI</button></div>
+            </fieldset>
+            <div class="two" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+              <label class="fld">Nome<input type="text" name="nome" autocomplete="name"></label>
+              <label class="fld">Email<input type="email" name="email" autocomplete="email"></label>
+            </div>
+            <label class="fld">Azienda o progetto<input type="text" name="azienda" autocomplete="organization"></label>
+            <label class="fld">Raccontaci in due righe<textarea name="messaggio" rows="4"></textarea></label>
+            <a class="btn" id="send" href="mailto:giamma.antonacci@gmail.com?subject=Nuovo%20progetto" style="min-height: 50px">Invia la richiesta</a>
+            <p style="margin: 0; font-size: 12px; color: #6b6b6b; text-align: center">Usiamo i tuoi dati solo per risponderti.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <footer id="contatti-footer" style="border-top: 1px solid #e6e6e6">
+    <div class="w">
+      <div class="foot" style="display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 24px; padding: 44px 0 28px">
+        <div><p style="margin: 0 0 10px; font-weight: 700; letter-spacing: -.03em">GA Studio</p><p class="sub" style="font-size: 13px; max-width: 30ch">Studio di product design di Gianmarco Antonacci. App, siti, brand e AI, dalla Puglia per tutti.</p></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Servizi</b><a href="/servizi/app">App</a><a href="/servizi/siti-web">Siti web</a><a href="/servizi/brand-identity">Brand identity</a><a href="/servizi/ai">AI</a></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Studio</b><a href="/chi-siamo">Chi siamo</a><a href="/#metodo">Metodo</a><a href="/#lavori">Progetti</a></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px"><b style="margin-bottom: 4px">Contatti</b><a href="mailto:giamma.antonacci@gmail.com">Email</a><a href="tel:+393520295120">Telefono</a></div>
+      </div>
+      <div class="fbot"><p style="margin: 0">© 2026 GA Studio · Gianmarco Antonacci · Tutti i diritti riservati</p><p style="margin: 0; display: flex; gap: 16px; flex-wrap: wrap"><a href="/privacy-policy">Privacy policy</a><a href="/cookie-policy">Cookie policy</a><button type="button" class="lnk">Preferenze cookie</button></p></div>
+    </div>
+  </footer>
+
+  
+</div>
+</div>
 <noscript><p style="font-family: system-ui, sans-serif; padding: 24px">Questo sito ha bisogno di JavaScript. Scrivimi a <a href="mailto:giamma.antonacci@gmail.com">giamma.antonacci@gmail.com</a>.</p></noscript>
 <script>
 (function () {
@@ -761,10 +1257,10 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 <script>
 
 const IMG = {
-  bloop: [["img/bloop-home.webp", "Home"], ["img/bloop-search.webp", "Ricerca"], ["img/bloop-results.webp", "Risultati vicino a te"]],
-  trainee: [["img/trainee-home.webp", "Home"], ["img/trainee-path.webp", "Percorso"], ["img/trainee-news.webp", "News"], ["img/trainee-friends.webp", "Amici"]],
-  merkorn: [["img/merkorn-home.webp", "Home"], ["img/merkorn-clients.webp", "Per chi lavoriamo"], ["img/merkorn-services.webp", "Servizi"]],
-  orsini: [["img/orsini-home.webp", "Home"], ["img/orsini-manifesto.webp", "Manifesto"], ["img/orsini-work.webp", "Lavori"]]
+  bloop: [["/img/bloop-home.webp", "Home"], ["/img/bloop-search.webp", "Ricerca"], ["/img/bloop-results.webp", "Risultati vicino a te"]],
+  trainee: [["/img/trainee-home.webp", "Home"], ["/img/trainee-path.webp", "Percorso"], ["/img/trainee-news.webp", "News"], ["/img/trainee-friends.webp", "Amici"]],
+  merkorn: [["/img/merkorn-home.webp", "Home"], ["/img/merkorn-clients.webp", "Per chi lavoriamo"], ["/img/merkorn-services.webp", "Servizi"]],
+  orsini: [["/img/orsini-home.webp", "Home"], ["/img/orsini-manifesto.webp", "Manifesto"], ["/img/orsini-work.webp", "Lavori"]]
 };
 
 const SERVICES = {
@@ -879,6 +1375,27 @@ const MOODS = [
   { l: "^", r: "^", mouth: "width: 26px; height: 12px; margin-left: -13px; border-radius: 0 0 14px 14px" }
 ];
 
+// Pages and their addresses (used for links, the browser address bar and search engines)
+const PAGES = {
+  "home": { path: "/", title: "GA Studio — Product design: app, siti web, brand e AI | Gianmarco Antonacci", desc: "Studio di product design di Gianmarco Antonacci: app, siti web, brand identity e contenuti con l'AI. Prodotti che si capiscono, con la UX al centro. Prima call gratuita." },
+  "servizi": { path: "/servizi", title: "Servizi — App, siti web, brand identity e AI | GA Studio", desc: "Quattro servizi, un solo studio: app e prodotti digitali, siti web, brand identity, foto, video e processi con l'AI. Scopri cosa ricevi e come lavoriamo." },
+  "svc:app": { path: "/servizi/app", title: "Design di app e prodotti digitali — UX e UI | GA Studio", desc: "Progettiamo app che le persone usano senza istruzioni: ricerca, flussi, wireframe, interfaccia e prototipo testato. Progetti: Bloop, TraineeUX." },
+  "svc:web": { path: "/servizi/siti-web", title: "Siti web chiari che portano contatti | GA Studio", desc: "Siti costruiti attorno a un messaggio solo, desktop e mobile, dal messaggio al lancio. Progetti: Riccardo Orsini fotografo, Merkorn." },
+  "svc:brand": { path: "/servizi/brand-identity", title: "Brand identity: marchio, sistema e linee guida | GA Studio", desc: "Come creiamo una brand identity in sei passi: ascolto, concetto, marchio, sistema, tono di voce e applicazioni. Casi: Merkorn, Bloop, TraineeUX, Riccardo Orsini." },
+  "svc:ai": { path: "/servizi/ai", title: "Foto, video e automazioni con l'AI | GA Studio", desc: "Foto e video di qualità creati con l'AI in poco tempo e automazioni che tolgono lavoro ripetitivo a te e al tuo team." },
+  "chi": { path: "/chi-siamo", title: "Chi siamo — Gianmarco Antonacci, product designer | GA Studio", desc: "GA Studio è lo studio di product design di Gianmarco Antonacci: un solo referente dalla prima call alla consegna, la UX al centro di ogni progetto." },
+  "privacy": { path: "/privacy-policy", title: "Privacy policy | GA Studio", desc: "Come GA Studio tratta i dati personali di chi visita il sito o ci contatta." },
+  "cookie": { path: "/cookie-policy", title: "Cookie policy | GA Studio", desc: "Il sito di GA Studio usa solo strumenti tecnici: niente cookie di profilazione, statistica o terze parti." },
+  "404": { path: "/404", title: "Pagina non trovata | GA Studio", desc: "La pagina che cerchi non esiste." }
+};
+const SITE = typeof document !== "undefined" && !!document.querySelector('meta[name="ga-site"]');
+function pageFromPath() {
+  if (!SITE) return "home";
+  const p = (location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "")) || "/";
+  for (const k in PAGES) if (PAGES[k].path === p) return k;
+  return "404";
+}
+
 // Line icons for the process steps (24px grid, drawn with the same stroke as the rest of the site)
 const IC = {
   search: ["M11 4a7 7 0 1 0 0 14a7 7 0 1 0 0-14z", "M20 20l-4-4", ""],
@@ -896,14 +1413,33 @@ const IC = {
   target: ["M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z", "M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8z", "M12 12h.01"],
   image: ["M3 5h18v14H3z", "M3 16l5-5 4 4 3-3 6 6", "M15.5 9h.01"],
   spark: ["M12 3v5M12 16v5M3 12h5M16 12h5", "M6.5 6.5l2.5 2.5M15 15l2.5 2.5", "M17.5 6.5L15 9M9 15l-2.5 2.5"],
-  box: ["M3 7.5l9-4.5 9 4.5v9l-9 4.5-9-4.5z", "M3 7.5l9 4.5 9-4.5", "M12 12v9"]
+  box: ["M3 7.5l9-4.5 9 4.5v9l-9 4.5-9-4.5z", "M3 7.5l9 4.5 9-4.5", "M12 12v9"],
+  phone: ["M7.5 2.5h9a1 1 0 0 1 1 1v17a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-17a1 1 0 0 1 1-1z", "M10.5 18.5h3", ""]
 };
+const SVC_META = { app: ["phone", "UX e UI per app e prodotti"], web: ["screen", "Siti chiari che portano contatti"], brand: ["mark", "Marchio, sistema e linee guida"], ai: ["spark", "Foto, video e automazioni"] };
 const STEP_IC = { "Ricerca": "search", "Struttura": "structure", "Interfaccia": "screen", "Test e consegna": "check", "Messaggio": "chat", "Design": "screen", "Lancio": "plane", "Ascolto": "mic", "Concetto": "bulb", "Marchio": "mark", "Sistema": "grid", "Tono di voce": "wave", "Applicazioni": "layers", "Obiettivo": "target", "Esempi": "image", "Produzione": "spark", "Passaggio": "box" };
 
 class Component extends DCLogic {
   componentDidMount() {
-    this.onKey = e => { if (e.key === "Escape" && this.state.menu) this.closeMenu(); };
+    this.onKey = e => {
+      if (e.key !== "Escape") return;
+      if (this.state.menu) this.closeMenu(); else if (this.state.dd) this.setState({ dd: false });
+    };
     window.addEventListener("keydown", this.onKey);
+    this.onDoc = e => { if (this.state.dd && !(e.target.closest && e.target.closest(".dd"))) this.setState({ dd: false }); };
+    document.addEventListener("click", this.onDoc);
+    this.onPop = () => {
+      const p = pageFromPath();
+      if (PAGES[p]) document.title = PAGES[p].title;
+      this.setState({ page: p, menu: false, dd: false }, () => {
+        const el = location.hash && document.getElementById(location.hash.slice(1));
+        if (el) el.scrollIntoView({ block: "start" }); else window.scrollTo(0, 0);
+      });
+    };
+    window.addEventListener("popstate", this.onPop);
+    let seen = null;
+    try { seen = localStorage.getItem("ga-cookie"); } catch (e) {}
+    if (!seen) this.setState({ cookieAsk: true });
     this.reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
     // Parallax only on a few showcase visuals. Read every position first, then write, once per frame.
     this.onScroll = () => {
@@ -972,17 +1508,25 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.onScroll);
     window.removeEventListener("keydown", this.onKey);
+    window.removeEventListener("popstate", this.onPop);
+    document.removeEventListener("click", this.onDoc);
     window.removeEventListener("resize", this.onScroll);
     cancelAnimationFrame(this.raf);
   }
   renderVals() {
-    const page = this.state.page || "home";
+    if (!this.initPage) this.initPage = pageFromPath();
+    const page = this.state.page || this.initPage;
     const need = this.state.need || "app";
     const step = this.state.step ?? 0;
     const types = this.state.types || {};
     const go = (p, anchor) => e => {
       if (e && e.preventDefault) e.preventDefault();
-      this.setState({ page: p, menu: false }, () => {
+      if (SITE && window.history && window.history.pushState) {
+        const url = PAGES[p].path + (anchor ? "#" + anchor : "");
+        if (location.pathname + location.hash !== url) window.history.pushState({ page: p }, "", url);
+        document.title = PAGES[p].title;
+      }
+      this.setState({ page: p, menu: false, dd: false }, () => {
         const el = anchor && document.getElementById(anchor);
         if (el && el.scrollIntoView) el.scrollIntoView({ block: "start" });
         else if (window.scrollTo) window.scrollTo(0, 0);
@@ -999,6 +1543,19 @@ class Component extends DCLogic {
     });
     return {
       isHome: page === "home",
+      isChi: page === "chi", isPrivacy: page === "privacy", isCookie: page === "cookie",
+      isLegal: page === "privacy" || page === "cookie", is404: page === "404",
+      legalTitle: page === "privacy" ? "Privacy policy" : "Cookie policy",
+      legalLead: page === "privacy" ? "Come trattiamo i dati personali di chi visita il sito o ci contatta. In parole semplici, come richiesto dal GDPR." : "Quali strumenti usa il sito e perché. Spoiler: solo quelli tecnici.",
+      showTrust: page === "home" || page === "servizi" || page === "chi" || page.startsWith("svc:"),
+      showContact: true,
+      nHome: page === "home" ? "on" : "", nSvc: page === "servizi" || page.startsWith("svc:") ? "on" : "", nChi: page === "chi" ? "on" : "", mChi: page === "chi" ? "on" : "",
+      ddCls: this.state.dd ? "open" : "", ddExp: this.state.dd ? "true" : "false",
+      toggleDd: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ dd: !this.state.dd }); },
+      goChi: go("chi"), goPrivacy: go("privacy"), goCookie: go("cookie"), goMethod: go("home", "metodo"),
+      cookieAsk: !!this.state.cookieAsk,
+      cookieOk: () => { try { localStorage.setItem("ga-cookie", "1"); } catch (e) {} this.setState({ cookieAsk: false }); },
+      cookieReset: () => { try { localStorage.removeItem("ga-cookie"); } catch (e) {} this.setState({ cookieAsk: true }); },
       menuOpen: !!this.state.menu,
       hdrCls: this.state.scrolled ? "hdr on" : "hdr",
       menuExp: this.state.menu ? "true" : "false",
@@ -1018,16 +1575,16 @@ class Component extends DCLogic {
       goHome: go("home"),
       goWork: go("home", "lavori"),
       goApp: go("svc:app"), goWeb: go("svc:web"), goBrand: go("svc:brand"), goAi: go("svc:ai"),
-      navSvc: Object.keys(SERVICES).map(k => ({ label: SERVICES[k].label, title: SERVICES[k].title, n: SERVICES[k].n, go: go("svc:" + k), style: svcKey === k ? "color: #111; font-weight: 600" : "", mcls: svcKey === k ? "on" : "" })),
+      navSvc: Object.keys(SERVICES).map(k => ({ label: SERVICES[k].label, title: SERVICES[k].title, n: SERVICES[k].n, href: PAGES["svc:" + k].path, short: SVC_META[k][1], i0: IC[SVC_META[k][0]][0], i1: IC[SVC_META[k][0]][1], i2: IC[SVC_META[k][0]][2], go: go("svc:" + k), style: svcKey === k ? "color: #111; font-weight: 600" : "", mcls: svcKey === k ? "on" : "" })),
 
       needs: NEEDS.map(x => ({ label: x.label, cls: x.id === need ? "tb on" : "tb", pressed: x.id === need ? "true" : "false", pick: () => this.setState({ need: x.id }) })),
-      cur: { ...n, mask: n.kind === "brand" ? "" : "-webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent)", isApp: n.kind === "app", isWeb: n.kind === "web", isBrand: n.kind === "brand", isAi: n.kind === "ai", go: go("svc:" + n.id) },
+      cur: { ...n, href: PAGES["svc:" + n.id].path, mask: n.kind === "brand" ? "" : "-webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent)", isApp: n.kind === "app", isWeb: n.kind === "web", isBrand: n.kind === "brand", isAi: n.kind === "ai", go: go("svc:" + n.id) },
 
       steps: STEPS.map((x, i) => ({ n: x.n, short: x.short, cls: i === step ? "mt on" : "mt", pressed: i === step ? "true" : "false", pick: () => this.setState({ step: i }) })),
       st: { ...st, n: step + 1, bar: "width: " + ((step + 1) * 20) + "%", btn: step < 4 ? "Passo successivo →" : "Ricomincia" },
       nextStep: () => this.setState({ step: (step + 1) % 5 }),
 
-      works: WORKS.map(k => ({ ...k, isApp: !!k.app, isWeb: !k.app, span: "grid-column: span " + k.span, box: k.app ? "width: 170px" : "width: 88%", go: go("svc:" + k.svc, k.anchor) })),
+      works: WORKS.map(k => ({ ...k, href: PAGES["svc:" + k.svc].path + "#" + k.anchor, isApp: !!k.app, isWeb: !k.app, span: "grid-column: span " + k.span, box: k.app ? "width: 170px" : "width: 88%", go: go("svc:" + k.svc, k.anchor) })),
 
       sv: S ? {
         ...S,
@@ -1045,7 +1602,7 @@ class Component extends DCLogic {
       pixels: PIXELS,
       moods: MOODS,
 
-      others: Object.keys(SERVICES).filter(k => k !== svcKey).map(k => ({ label: SERVICES[k].title, go: go("svc:" + k) })),
+      others: Object.keys(SERVICES).filter(k => k !== svcKey).map(k => ({ label: SERVICES[k].title, href: PAGES["svc:" + k].path, go: go("svc:" + k) })),
       types: TYPES.map((label, i) => ({ label, cls: types[i] ? "chipb on" : "chipb", pressed: types[i] ? "true" : "false", toggle: () => this.setState({ types: { ...types, [i]: !types[i] } }) }))
     };
   }
