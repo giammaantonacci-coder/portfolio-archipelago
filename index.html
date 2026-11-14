@@ -43,6 +43,11 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 .bw img{display:block;width:100%;height:auto}
 
 .tool{display:inline-flex;align-items:center;gap:6px;padding:6px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line),0 8px 20px rgba(0,0,0,.06);flex-wrap:wrap;justify-content:center}
+.pick{display:inline-flex;flex-direction:column;gap:18px;margin-top:28px;max-width:100%}
+.pick .tool{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:2px;width:0;min-width:100%;box-sizing:border-box}
+.pick .tb{padding:0 12px}
+.pick-cta{display:flex;justify-content:center;gap:10px}
+@media (max-width:360px){.pick .tb{padding:0 8px}.pick-cta .btn{padding:0 14px}}
 .tb{min-height:36px;padding:0 14px;border-radius:999px;border:0;background:transparent;font:600 13px 'Inter Tight',sans-serif;color:var(--mute);cursor:pointer}
 .tb:hover{color:#111;background:var(--soft)}
 .tb.on{background:#111;color:#fff}
@@ -134,13 +139,12 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
           <span class="pill"><span class="dot" aria-hidden="true"></span>Disponibile per nuovi progetti</span>
           <h1 class="h" style="margin: 22px auto 0; max-width: 16ch; font-size: clamp(40px, 6vw, 72px)">Idee. Schermate. Chiarezza.<br><span style="color: #8a8a8a">Prodotti che si capiscono.</span></h1>
           <p class="sub" style="margin: 18px auto 0; max-width: 46ch; font-size: 16px">Uno studio di product design per app, siti web e brand, con foto, video e processi potenziati dall'AI. Un solo referente, dall'idea al lancio.</p>
-          <div style="margin-top: 28px">
+          <div class="pick">
             <div class="tool" role="group" aria-label="Cosa ti serve?">
               <sc-for list="{{needs}}" as="n" hint-placeholder-count="4"><button type="button" class="{{n.cls}}" aria-pressed="{{n.pressed}}" onClick="{{n.pick}}">{{n.label}}</button></sc-for>
               <a class="tgo" href="#top" onClick="{{cur.go}}" aria-label="Apri il servizio"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px">
+          <div class="pick-cta">
             <a class="btn" href="#top" onClick="{{cur.go}}">{{cur.cta}}</a>
             <a class="btn btn-l" href="#lavori">Guarda i lavori ›</a>
           </div>
@@ -221,11 +225,11 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
         </div>
         <div class="panel" style="padding: clamp(16px, 2.4vw, 28px)">
           <div class="card" style="max-width: 900px; margin: 0 auto">
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 12px; border-bottom: 1px solid #e6e6e6; background: #f3f3f3">
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px; border-bottom: 1px solid #e6e6e6; background: #f3f3f3">
+              <span style="display: flex; gap: 6px" aria-hidden="true"><span style="width: 10px; height: 10px; border-radius: 50%; background: #111"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #2fe06d"></span></span>
               <div role="group" aria-label="Passi del metodo" style="display: flex; gap: 4px; flex-wrap: wrap">
                 <sc-for list="{{steps}}" as="s" hint-placeholder-count="5"><button type="button" class="{{s.cls}}" aria-pressed="{{s.pressed}}" onClick="{{s.pick}}">{{s.n}} {{s.short}}</button></sc-for>
               </div>
-              <span style="display: flex; gap: 6px" aria-hidden="true"><span style="width: 12px; height: 12px; border-radius: 50%; background: #111"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #2fe06d"></span></span>
             </div>
             <div aria-live="polite" style="padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 16px; min-height: 260px; background: #fff">
               <p class="lbl">Passo {{st.n}} di 5 · {{st.when}}</p>
