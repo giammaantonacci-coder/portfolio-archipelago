@@ -9,7 +9,7 @@
 <meta property="og:description" content="Idee. Schermate. Chiarezza. Prodotti che si capiscono.">
 <meta property="og:image" content="img/bloop-home.webp">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232fe06d'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232fe06d'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;family=Inter+Tight:wght@400;500;600;700&amp;family=Manrope:wght@500;700;800&amp;family=Archivo:wght@500;800;900&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&amp;display=swap" rel="stylesheet">
 <style>
@@ -60,15 +60,18 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 .hdr.on .hbg{opacity:1;transform:none}
 .mbtn{display:none;position:absolute;z-index:2;top:50%;left:calc(50% - 50px);right:calc(50% - 50px);height:42px;margin-top:-21px;padding:0 6px;border-radius:999px;border:0;background:#fff;color:#111;font:600 13px 'Inter Tight',sans-serif;cursor:pointer;box-shadow:0 0 0 1px var(--line),0 4px 10px rgba(0,0,0,.05);align-items:center;justify-content:space-between;transition:left .5s cubic-bezier(.16,1,.3,1),right .5s cubic-bezier(.16,1,.3,1),height .4s,margin .4s,box-shadow .4s}
 .mbtn:hover{color:#0a7a36}
-.mb-l{display:inline-flex;align-items:center;gap:8px;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap}
-.mb-ga,.mb-sp{width:30px;height:30px;flex:none;opacity:0;transition:opacity .3s}
-.mb-ga{border-radius:9px;background:#111;color:#2fe06d;display:grid;place-items:center;font-size:11px;font-weight:700}
+.mb-l{display:inline-flex;align-items:center;gap:8px;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;transition:left .5s cubic-bezier(.16,1,.3,1)}
+.mb-ga{width:38px;height:38px;flex:none;opacity:0;transition:opacity .3s}
+.mb-ga{border-radius:50%;background:#111;color:#2fe06d;display:grid;place-items:center;font-size:11px;font-weight:700}
 @media (max-width:860px){
   .hbg{display:none}
   .mbtn{display:flex}
   .hdr.on .mbtn{left:clamp(18px,4vw,40px);right:clamp(18px,4vw,40px);height:50px;margin-top:-25px;box-shadow:0 0 0 1px var(--line),0 14px 30px rgba(0,0,0,.12)}
   .hdr.on .mb-ga{opacity:1;transition-delay:.15s}
-  .hdr.on .hlogo,.hdr.on .hcta{opacity:0;pointer-events:none}
+  .hdr.on .hlogo{opacity:0;pointer-events:none}
+  .hcta{z-index:3;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .3s}
+  .hdr.on .hcta{transform:translateX(-6px)}
+  .hdr.on .mb-l{left:calc(50% - 30px)}
 }
 [id]{scroll-margin-top:90px}
 .mback{position:fixed;inset:0;z-index:50;background:rgba(17,17,17,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:mfade .2s ease-out}
@@ -160,7 +163,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
     <div class="mback" onClick="{{closeMenu}}"></div>
     <div class="mpop" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="mfade" style="display: flex; justify-content: space-between; align-items: center; padding: 6px 6px 10px 10px">
-        <span style="display: flex; align-items: center; gap: 8px; font-weight: 700; letter-spacing: -.03em"><span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 6px; background: #111; color: #2fe06d; display: grid; place-items: center; font-size: 10px; font-weight: 700">GA</span>GA Studio</span>
+        <span style="display: flex; align-items: center; gap: 8px; font-weight: 700; letter-spacing: -.03em"><span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 50%; background: #111; color: #2fe06d; display: grid; place-items: center; font-size: 10px; font-weight: 700">GA</span>GA Studio</span>
         <button type="button" class="mclose" onClick="{{closeMenu}}" aria-label="Chiudi il menu"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"></path></svg></button>
       </div>
       <nav aria-label="Menu" class="mlist">
@@ -174,13 +177,13 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
   <header class="{{hdrCls}}">
     <div class="w nav">
       <span class="hbg" aria-hidden="true"></span>
-      <a class="hlogo" href="#top" onClick="{{goHome}}" style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; letter-spacing: -.03em"><span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 6px; background: #111; color: #2fe06d; display: grid; place-items: center; font-size: 10px; font-weight: 700">GA</span>GA Studio</a>
+      <a class="hlogo" href="#top" onClick="{{goHome}}" style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; letter-spacing: -.03em"><span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 50%; background: #111; color: #2fe06d; display: grid; place-items: center; font-size: 10px; font-weight: 700">GA</span>GA Studio</a>
       <nav class="links" aria-label="Pagine" style="display: flex; gap: 20px; font-size: 13px; font-weight: 500; color: #6b6b6b">
           <sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="#top" onClick="{{v.go}}" style="{{v.style}}">{{v.label}}</a></sc-for>
           <a href="#lavori" onClick="{{goWork}}">Lavori</a>
           <a href="#contatti">Contatti</a>
         </nav>
-      <button type="button" class="mbtn" aria-haspopup="dialog" aria-expanded="{{menuExp}}" aria-label="Apri il menu" onClick="{{openMenu}}"><span class="mb-ga" aria-hidden="true">GA</span><span class="mb-l"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 5.5h11M2.5 10.5h11"></path></svg>Menu</span><span class="mb-sp" aria-hidden="true"></span></button>
+      <button type="button" class="mbtn" aria-haspopup="dialog" aria-expanded="{{menuExp}}" aria-label="Apri il menu" onClick="{{openMenu}}"><span class="mb-ga" aria-hidden="true">GA</span><span class="mb-l"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 5.5h11M2.5 10.5h11"></path></svg>Menu</span></button>
       <a class="btn hcta" href="#contatti" style="min-height: 38px; font-size: 13px; white-space: nowrap"><span class="cta-l">Prenota una call</span><span class="cta-s">Prenota</span></a>
     </div>
   </header>
