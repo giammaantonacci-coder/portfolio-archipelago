@@ -100,7 +100,14 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 .sw{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:12px;border-radius:12px;min-height:64px;font-size:12px;font-weight:600}
 
 [data-par]{will-change:transform;backface-visibility:hidden}
-@media (prefers-reduced-motion:reduce){[data-par]{transform:none !important;will-change:auto}}
+.stk{position:relative;display:flex;flex-direction:column;align-items:center;margin-top:24px}
+.stk .ic{position:relative;z-index:1;display:grid;place-items:center;width:88px;height:88px;border-radius:22px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.12)}
+.stk-top{position:relative;z-index:2;transform:translateX(38px);margin-bottom:-7px}
+.stk-top .ic{transform-origin:36px 96%;animation:teeter 2.6s ease-in-out infinite}
+@keyframes teeter{0%,100%{transform:rotate(7deg)}45%{transform:rotate(13deg)}55%{transform:rotate(12deg)}}
+.stk-floor{display:block;width:180px;height:14px;margin-top:4px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.18),transparent)}
+@media (max-width:700px){.stk{transform:scale(.78);transform-origin:50% 0}}
+@media (prefers-reduced-motion:reduce){[data-par]{transform:none !important;will-change:auto}.stk-top .ic{animation:none;transform:rotate(12deg)}}
 @media (max-width:860px){.links{display:none !important}.feat,.two{grid-template-columns:minmax(0,1fr) !important}.works{grid-template-columns:minmax(0,1fr)}.works>*{grid-column:auto !important}.foot{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.steps,.steps.six{grid-template-columns:minmax(0,1fr)}.ticks{grid-template-columns:minmax(0,1fr)}.bb{grid-template-columns:minmax(0,1fr)}.bb>*{grid-column:auto !important;grid-row:auto !important}}
 </style>
 </head>
@@ -139,7 +146,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
           </div>
         </div>
 
-        <div aria-live="polite" style="position: relative; height: clamp(320px, 38vw, 460px); margin-top: clamp(36px, 5vw, 56px); overflow: hidden; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent)">
+        <div aria-live="polite" style="position: relative; height: clamp(320px, 38vw, 460px); margin-top: clamp(36px, 5vw, 56px); overflow: hidden; {{cur.mask}}">
           <div data-par="0.08" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-start; gap: 22px">
             <sc-if value="{{cur.isApp}}" hint-placeholder-val="{{ true }}">
               <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(-6deg)"><div class="scr"><img src="img/bloop-home.webp" alt="App Bloop"><span class="di"></span></div></div>
@@ -147,14 +154,18 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
               <div class="ip" style="width: 200px; margin-top: 70px; transform: rotate(6deg)"><div class="scr"><img src="img/bloop-results.webp" alt="App Bloop, risultati"><span class="di"></span></div></div>
             </sc-if>
             <sc-if value="{{cur.isWeb}}" hint-placeholder-val="{{ false }}">
-              <div class="bw" style="width: min(820px, 86%); margin-top: 20px"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="img/orsini-home.webp" alt="Sito di Riccardo Orsini"></div>
+              <div style="position: relative; width: min(900px, 94%); height: 100%">
+                <div class="bw" style="position: absolute; left: 0; top: 16px; width: 74%"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>orsiniphoto.it</span></div><img src="img/orsini-home.webp" alt="Sito di Riccardo Orsini"></div>
+                <div class="bw" style="position: absolute; right: 0; top: 22%; width: 52%; box-shadow: 0 30px 60px rgba(0,0,0,.22)"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>merkorn.com</span></div><img src="img/merkorn-home.webp" alt="Sito di Merkorn"></div>
+              </div>
             </sc-if>
             <sc-if value="{{cur.isBrand}}" hint-placeholder-val="{{ false }}">
-              <div style="display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; justify-content: center">
-                <div class="card" style="width: 200px; height: 200px; display: grid; place-items: center; background: #9747ff"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, 18px); grid-template-rows: repeat(3, 18px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 3px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 3px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 3px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 3px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 3px"></i></span></div>
-                <div class="card" style="width: 200px; height: 200px; display: grid; place-items: center; background: #000"><span aria-hidden="true" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 106px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></div>
-                <div class="card" style="width: 200px; height: 200px; display: grid; place-items: center; background: #f2fbf6"><img src="img/trainee-icon.webp" alt="Logo TraineeUX" style="display: block; width: 130px; height: auto"></div>
-                <div class="card" style="width: 200px; height: 200px; display: grid; place-items: center; background: #fff"><span style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="position: relative; display: inline-block; width: 34px; height: 54px"><i style="position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 38px; width: 36px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 12px; letter-spacing: .16em">RICCARDO ORSINI</b><span style="font-size: 9px; letter-spacing: .3em; color: #6b6b6b">PHOTOGRAPHER</span></span></span></div>
+              <div class="stk" role="img" aria-label="I loghi di Merkorn, Bloop, TraineeUX e Riccardo Orsini impilati, con quello in cima in bilico">
+                <div class="stk-top"><span class="ic" style="background: #9747ff"><span style="display: grid; grid-template-columns: repeat(5, 10px); grid-template-rows: repeat(3, 10px)"><i style="grid-column: 3; grid-row: 1; background: #fff; border-radius: 2px"></i><i style="grid-column: 2; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 4; grid-row: 2; background: #fff; border-radius: 2px"></i><i style="grid-column: 1; grid-row: 3; background: #fff; border-radius: 2px"></i><i style="grid-column: 5; grid-row: 3; background: #fff; border-radius: 2px"></i></span></span></div>
+                <span class="ic" style="background: #000; transform: translateX(-10px) rotate(-3deg)"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 52px; line-height: .8; letter-spacing: -.04em"><span style="color: #ff6a2b">o</span><span style="color: #9a7cff">o</span></span></span>
+                <span class="ic" style="background: #9fe7c7; transform: translateX(8px) rotate(2deg)"><img src="img/trainee-icon.webp" alt="" style="display: block; width: 100%; height: 100%"></span>
+                <span class="ic" style="background: #fff; box-shadow: inset 0 0 0 1px #e0e0e0, 0 10px 20px rgba(0,0,0,.08); transform: rotate(-1deg)"><span style="position: relative; display: inline-block; width: 28px; height: 44px"><i style="position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #111; box-sizing: border-box"></i><i style="position: absolute; left: 1px; top: 31px; width: 30px; height: 2px; background: #111; transform-origin: 0 0; transform: rotate(32deg)"></i></span></span>
+                <i class="stk-floor"></i>
               </div>
             </sc-if>
             <sc-if value="{{cur.isAi}}" hint-placeholder-val="{{ false }}">
@@ -825,7 +836,7 @@ class Component extends DCLogic {
       navSvc: Object.keys(SERVICES).map(k => ({ label: SERVICES[k].label, go: go("svc:" + k), style: svcKey === k ? "color: #111; font-weight: 600" : "" })),
 
       needs: NEEDS.map(x => ({ label: x.label, cls: x.id === need ? "tb on" : "tb", pressed: x.id === need ? "true" : "false", pick: () => this.setState({ need: x.id }) })),
-      cur: { ...n, isApp: n.kind === "app", isWeb: n.kind === "web", isBrand: n.kind === "brand", isAi: n.kind === "ai", go: go("svc:" + n.id) },
+      cur: { ...n, mask: n.kind === "brand" ? "" : "-webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent)", isApp: n.kind === "app", isWeb: n.kind === "web", isBrand: n.kind === "brand", isAi: n.kind === "ai", go: go("svc:" + n.id) },
 
       steps: STEPS.map((x, i) => ({ n: x.n, short: x.short, cls: i === step ? "mt on" : "mt", pressed: i === step ? "true" : "false", pick: () => this.setState({ step: i }) })),
       st: { ...st, n: step + 1, bar: "width: " + ((step + 1) * 20) + "%", btn: step < 4 ? "Passo successivo →" : "Ricomincia" },
