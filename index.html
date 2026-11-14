@@ -71,7 +71,6 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
   .hdr.on .hlogo{opacity:0;pointer-events:none}
   .hcta{z-index:3;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .3s}
   .hdr.on .hcta{transform:translateX(-6px)}
-  .hdr.on .mb-l{left:calc(50% - 30px)}
 }
 [id]{scroll-margin-top:90px}
 .mback{position:fixed;inset:0;z-index:50;background:rgba(17,17,17,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:mfade .2s ease-out}
@@ -79,10 +78,23 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 .mclose{width:36px;height:36px;border-radius:50%;border:0;background:var(--soft);color:#111;display:grid;place-items:center;cursor:pointer}
 .mlist{display:flex;flex-direction:column;gap:4px}
 .mlist a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);color:#111}
-.mlist a:hover,.mlist a.on{background:#111;color:#fff;box-shadow:none}
+.mlist a:hover,.mlist a.on,.mlist .mrow a:hover{background:#111;color:#fff;box-shadow:none}
 .mlist a span{display:flex;flex-direction:column;gap:2px}.mlist b{font-size:16px;font-weight:600;letter-spacing:-.02em}
 .mlist small{font-size:12px;color:var(--mute)}.mlist a:hover small,.mlist a.on small{color:#bdbdbd}
 .mlist i{font-style:normal;color:#0a7a36}.mlist a:hover i,.mlist a.on i{color:var(--g)}
+.mgroup{border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.mgroup.on{background:#fff}
+.mrow{display:flex;align-items:stretch}
+.mlist .mrow a{flex:1;background:none;box-shadow:none;border-radius:16px 0 0 16px}
+.mexp{flex:none;width:56px;border:0;border-left:1px solid var(--line);background:none;color:#111;display:grid;place-items:center;cursor:pointer;border-radius:0 16px 16px 0}
+.mexp:hover{background:var(--soft)}
+.mexp svg{transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.mgroup.open .mexp svg{transform:rotate(180deg)}
+.msub{display:flex;flex-direction:column;gap:4px;padding:0 6px 6px}
+.mlist .msub a{padding:10px 12px;background:#fff;animation:msub .3s cubic-bezier(.16,1,.3,1) backwards}
+.mlist .msub a:nth-child(2){animation-delay:.03s}.mlist .msub a:nth-child(3){animation-delay:.06s}.mlist .msub a:nth-child(4){animation-delay:.09s}
+.mlist .msub b{font-size:15px}
+@keyframes msub{from{opacity:0;transform:translateY(-6px)}}
 @keyframes mfade{from{opacity:0}}
 .ico{width:42px;height:42px;border-radius:13px;background:#111;color:var(--g);display:grid;place-items:center;box-shadow:0 6px 14px rgba(0,0,0,.14)}
 .stp-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
@@ -151,7 +163,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 @keyframes teeter{0%,100%{transform:rotate(7deg)}45%{transform:rotate(13deg)}55%{transform:rotate(12deg)}}
 .stk-floor{display:block;width:180px;height:14px;margin-top:4px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.18),transparent)}
 @media (max-width:700px){.stk{transform:scale(.78);transform-origin:50% 0}}
-@media (prefers-reduced-motion:reduce){.mback{animation:none}.mbtn,.hbg,.hdr .nav{transition:none}[data-par]{transform:none !important;will-change:auto}.stk-top .ic{animation:none;transform:rotate(12deg)}}
+@media (prefers-reduced-motion:reduce){.mback,.mlist .msub a{animation:none}.mbtn,.hbg,.hdr .nav{transition:none}[data-par]{transform:none !important;will-change:auto}.stk-top .ic{animation:none;transform:rotate(12deg)}}
 @media (max-width:860px){.links{display:none !important}.feat,.two{grid-template-columns:minmax(0,1fr) !important}.works{grid-template-columns:minmax(0,1fr)}.works>*{grid-column:auto !important}.foot{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.steps,.steps.six{grid-template-columns:minmax(0,1fr)}.ticks{grid-template-columns:minmax(0,1fr)}.bb{grid-template-columns:minmax(0,1fr)}.bb>*{grid-column:auto !important;grid-row:auto !important}}
 </style>
 </head>
@@ -167,7 +179,20 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
         <button type="button" class="mclose" onClick="{{closeMenu}}" aria-label="Chiudi il menu"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"></path></svg></button>
       </div>
       <nav aria-label="Menu" class="mlist">
-        <sc-for list="{{menuItems}}" as="m" hint-placeholder-count="7"><a href="#top" onClick="{{m.go}}" class="mfade {{m.cls}}"><span><b>{{m.label}}</b><small>{{m.sub}}</small></span><i aria-hidden="true">→</i></a></sc-for>
+        <a href="#top" onClick="{{goHome}}" class="mfade {{mHome}}"><span><b>Home</b><small>Lo studio, il metodo, i lavori</small></span><i aria-hidden="true">→</i></a>
+        <div class="mfade mgroup {{mSvcCls}}">
+          <div class="mrow">
+            <a href="#top" onClick="{{goAll}}"><span><b>Servizi</b><small>App, siti web, brand identity e AI</small></span></a>
+            <button type="button" class="mexp" aria-expanded="{{mSvcExp}}" aria-controls="msub" aria-label="Mostra i servizi" onClick="{{toggleSvc}}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"></path></svg></button>
+          </div>
+          <sc-if value="{{mSvcOpen}}" hint-placeholder-val="{{ false }}">
+            <div id="msub" class="msub">
+              <sc-for list="{{navSvc}}" as="v" hint-placeholder-count="4"><a href="#top" onClick="{{v.go}}" class="{{v.mcls}}"><span><b>{{v.title}}</b><small>Servizio {{v.n}} di 4</small></span><i aria-hidden="true">→</i></a></sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <a href="#lavori" onClick="{{goWork}}" class="mfade"><span><b>Lavori</b><small>Bloop, Merkorn, TraineeUX, Riccardo Orsini</small></span><i aria-hidden="true">→</i></a>
+        <a href="#contatti" onClick="{{goContact}}" class="mfade"><span><b>Contatti</b><small>Raccontaci il tuo progetto</small></span><i aria-hidden="true">→</i></a>
       </nav>
       <a class="btn mfade" href="#contatti" onClick="{{menuCall}}" style="width: 100%; min-height: 50px; margin-top: 10px; box-sizing: border-box">Prenota una call gratuita</a>
     </div>
@@ -205,6 +230,7 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
           <div class="pick-cta">
             <a class="btn" href="#top" onClick="{{cur.go}}">{{cur.cta}}</a>
             <a class="btn btn-l" href="#lavori">Guarda i lavori ›</a>
+          </div>
           </div>
         </div>
 
@@ -244,6 +270,22 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
         </div>
       </sc-if>
 
+      <sc-if value="{{isAll}}" hint-placeholder-val="{{ false }}">
+        <div id="top" class="w" style="padding-top: clamp(24px, 4vw, 48px); padding-bottom: clamp(40px, 6vw, 72px)">
+          <button type="button" class="btn btn-l" onClick="{{goHome}}" style="min-height: 36px; font-size: 13px">← Home</button>
+          <div class="two" style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 56px); align-items: end; margin-top: clamp(28px, 4vw, 48px)">
+            <div>
+              <span class="pill"><span class="dot" aria-hidden="true"></span>4 servizi, un solo studio</span>
+              <h1 class="h" style="margin-top: 18px; font-size: clamp(44px, 6.4vw, 80px)">Servizi</h1>
+              <p class="sub" style="margin-top: 16px; max-width: 48ch; font-size: 17px">App, siti web, brand identity e contenuti con l'AI. Scegli da dove partire: ogni servizio ha la sua pagina con cosa ricevi, come si svolge e i progetti realizzati.</p>
+            </div>
+            <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px">
+              <p class="lbl">Non sai da dove partire?</p><p style="margin: 0; font-size: 14px; line-height: 1.5">Raccontaci cosa ti serve: nella prima call, gratuita, capiamo insieme il servizio giusto.</p>
+              <a class="btn" href="#contatti" style="margin-top: 6px">Raccontaci il progetto</a>
+            </div>
+          </div>
+        </div>
+      </sc-if>
       <sc-if value="{{isSvc}}" hint-placeholder-val="{{ false }}">
         <div id="top" class="w" style="padding-top: clamp(24px, 4vw, 48px); padding-bottom: clamp(40px, 6vw, 72px)">
           <button type="button" class="btn btn-l" onClick="{{goHome}}" style="min-height: 36px; font-size: 13px">← Home</button>
@@ -303,7 +345,9 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
         </div>
       </div>
     </section>
+  </sc-if>
 
+  <sc-if value="{{showGrid}}" hint-placeholder-val="{{ true }}">
     <section id="servizi" class="sec secg">
       <div class="w">
         <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
@@ -355,7 +399,9 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
         </div>
       </div>
     </section>
+  </sc-if>
 
+  <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
     <section id="lavori" class="sec">
       <div class="w">
         <div class="two" style="display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 24px; align-items: end; margin-bottom: 36px">
@@ -943,6 +989,7 @@ class Component extends DCLogic {
       });
     };
     const svcKey = page.startsWith("svc:") ? page.slice(4) : null;
+    const svcOpen = this.state.menuSvc === undefined ? !!svcKey : this.state.menuSvc;
     const S = svcKey ? SERVICES[svcKey] : null;
     const n = NEEDS.find(x => x.id === need);
     const st = STEPS[step];
@@ -955,20 +1002,23 @@ class Component extends DCLogic {
       menuOpen: !!this.state.menu,
       hdrCls: this.state.scrolled ? "hdr on" : "hdr",
       menuExp: this.state.menu ? "true" : "false",
-      openMenu: () => this.setState({ menu: true }),
+      openMenu: () => this.setState({ menu: true, menuSvc: undefined }),
       closeMenu: () => this.closeMenu(),
       menuCall: () => this.setState({ menu: false }),
-      menuItems: [
-        { label: "Home", sub: "Lo studio, il metodo, i lavori", go: go("home"), cls: page === "home" ? "on" : "" },
-        ...Object.keys(SERVICES).map(k => ({ label: SERVICES[k].title, sub: "Servizio " + SERVICES[k].n + " di 4", go: go("svc:" + k), cls: svcKey === k ? "on" : "" })),
-        { label: "Lavori", sub: "Bloop, Merkorn, TraineeUX, Riccardo Orsini", go: go("home", "lavori"), cls: "" },
-        { label: "Contatti", sub: "Raccontaci il tuo progetto", go: go(page, "contatti"), cls: "" }
-      ],
+      mHome: page === "home" ? "on" : "",
+      mSvcOpen: svcOpen,
+      mSvcExp: svcOpen ? "true" : "false",
+      mSvcCls: (svcOpen ? "open " : "") + (page === "servizi" ? "on" : ""),
+      toggleSvc: () => this.setState({ menuSvc: !svcOpen }),
+      goAll: go("servizi"),
+      goContact: go(page, "contatti"),
+      isAll: page === "servizi",
+      showGrid: page === "home" || page === "servizi",
       isSvc: !!S,
       goHome: go("home"),
       goWork: go("home", "lavori"),
       goApp: go("svc:app"), goWeb: go("svc:web"), goBrand: go("svc:brand"), goAi: go("svc:ai"),
-      navSvc: Object.keys(SERVICES).map(k => ({ label: SERVICES[k].label, go: go("svc:" + k), style: svcKey === k ? "color: #111; font-weight: 600" : "" })),
+      navSvc: Object.keys(SERVICES).map(k => ({ label: SERVICES[k].label, title: SERVICES[k].title, n: SERVICES[k].n, go: go("svc:" + k), style: svcKey === k ? "color: #111; font-weight: 600" : "", mcls: svcKey === k ? "on" : "" })),
 
       needs: NEEDS.map(x => ({ label: x.label, cls: x.id === need ? "tb on" : "tb", pressed: x.id === need ? "true" : "false", pick: () => this.setState({ need: x.id }) })),
       cur: { ...n, mask: n.kind === "brand" ? "" : "-webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent)", isApp: n.kind === "app", isWeb: n.kind === "web", isBrand: n.kind === "brand", isAi: n.kind === "ai", go: go("svc:" + n.id) },
