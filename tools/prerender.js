@@ -47,9 +47,9 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replac
     name: 'GA Studio', url: ORIGIN + '/', image: ORIGIN + '/img/og.jpg',
     description: PAGES.home.desc, telephone: '+39 352 029 5120',
     areaServed: 'IT', address: { '@type': 'PostalAddress', addressRegion: 'Puglia', addressCountry: 'IT' },
-    founder: { '@type': 'Person', name: 'Gianmarco Antonacci', jobTitle: 'Product designer', url: ORIGIN + '/chi-siamo' },
-    knowsAbout: ['UX design', 'UI design', 'App design', 'Web design', 'Brand identity', 'Intelligenza artificiale'],
-    makesOffer: ['svc:app', 'svc:web', 'svc:brand', 'svc:ai'].map(k => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: PAGES[k].title.split(' | ')[0], url: ORIGIN + PAGES[k].path } }))
+    founder: { '@type': 'Person', name: 'Gianmarco Antonacci', jobTitle: 'UX/UI designer', url: ORIGIN + '/chi-siamo' },
+    knowsAbout: ['UX design', 'UI design', 'User research', 'Usability testing', 'Design system', 'UX audit', 'Consulenza UX'],
+    makesOffer: ['svc:ux', 'svc:ui', 'svc:cons'].map(k => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: PAGES[k].title.split(' | ')[0], url: ORIGIN + PAGES[k].path } }))
   };
 
   const urls = [];

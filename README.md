@@ -1,6 +1,6 @@
 # GA Studio — Gianmarco Antonacci
 
-Portfolio of GA Studio in Italian, plain HTML, CSS and JavaScript, served by Vercel.
+Portfolio of GA Studio (UX design, UI design and UX consulting) in Italian, plain HTML, CSS and JavaScript, served by Vercel.
 
 ## Pages
 
@@ -8,7 +8,7 @@ Portfolio of GA Studio in Italian, plain HTML, CSS and JavaScript, served by Ver
 |---|---|
 | `/` | Home: method, services, projects, AI |
 | `/servizi` | All services |
-| `/servizi/app`, `/servizi/siti-web`, `/servizi/brand-identity`, `/servizi/ai` | One page per service |
+| `/servizi/ux-design`, `/servizi/ui-design`, `/servizi/consulenza-ux` | One page per service (old service addresses redirect in `vercel.json`) |
 | `/chi-siamo` | About the studio |
 | `/privacy-policy`, `/cookie-policy` | Legal pages |
 | `404.html` | Page not found |
