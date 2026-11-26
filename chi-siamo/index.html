@@ -82,9 +82,12 @@ a{color:#111;text-decoration:none}a:hover{color:#0a7a36}
 .ddi span:last-child{display:flex;flex-direction:column;gap:2px}.ddi b{font-size:14px;font-weight:600;color:#111;letter-spacing:-.01em}.ddi small{font-size:12px;color:var(--mute);font-weight:500}
 .ddall{margin-top:4px;padding:10px 12px;border-radius:14px;font-weight:600;color:#111 !important;box-shadow:inset 0 0 0 1px var(--line);display:flex;justify-content:space-between}
 .ddall:hover{background:#111;color:#fff !important}
-.me{position:relative;background:linear-gradient(180deg,#f2f2f2,#e9e9e9);aspect-ratio:4/5;display:flex;align-items:flex-end;justify-content:center}
-.me img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;mix-blend-mode:multiply}
-.me figcaption{position:relative;margin:0 0 16px}
+.me{position:relative;aspect-ratio:4/5;display:flex;align-items:flex-end;justify-content:center;background-color:#f5f5f3;background-image:radial-gradient(circle,#d4d4d0 1px,transparent 1.4px);background-size:18px 18px}
+.me-disc{position:absolute;left:50%;top:40%;width:66%;aspect-ratio:1;border-radius:50%;background:var(--g);transform:translateX(-50%)}
+.me-ring{position:absolute;left:50%;top:33%;width:82%;aspect-ratio:1;border-radius:50%;border:1.5px dashed rgba(17,17,17,.22);transform:translateX(-50%)}
+.me img{position:absolute;left:50%;bottom:0;width:70%;height:auto;transform:translateX(-50%);filter:grayscale(1) contrast(1.05)}
+.me-tag{position:absolute;z-index:2}
+.me figcaption{position:relative;z-index:2;margin:0 0 16px}
 .legal{max-width:760px;display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.65;color:#333}
 .legal h2{margin-top:22px;color:#111}.legal p{margin:0}.legal a{color:#0a7a36;text-decoration:underline;text-underline-offset:2px}
 .legal code{font-size:13px;padding:2px 6px;border-radius:6px;background:var(--soft)}
@@ -619,6 +622,11 @@ html.scrolled .hdr .hbg{opacity:1;transform:none}
       <div class="w">
         <div class="two" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 64px); align-items: center">
           <figure class="card me" style="margin: 0">
+            <span class="me-ring" aria-hidden="true"></span>
+            <span class="me-disc" aria-hidden="true"></span>
+            <span class="pill dk me-tag" style="left: 7%; top: 9%">UX design</span>
+            <span class="pill me-tag" style="right: 7%; top: 17%">UI design</span>
+            <span class="pill me-tag" style="left: 6%; top: 27%">Consulenza UX</span>
             <img src="/img/gianmarco.webp" alt="Ritratto di Gianmarco Antonacci" loading="lazy">
             <figcaption class="pill"><span class="dot" aria-hidden="true"></span>Gianmarco Antonacci · UX/UI designer</figcaption>
           </figure>
@@ -844,6 +852,11 @@ html.scrolled .hdr .hbg{opacity:1;transform:none}
       <div class="w">
         <div class="two" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 64px); align-items: center">
           <figure class="card me" style="margin: 0">
+            <span class="me-ring" aria-hidden="true"></span>
+            <span class="me-disc" aria-hidden="true"></span>
+            <span class="pill dk me-tag" style="left: 7%; top: 9%">UX design</span>
+            <span class="pill me-tag" style="right: 7%; top: 17%">UI design</span>
+            <span class="pill me-tag" style="left: 6%; top: 27%">Consulenza UX</span>
             <img src="/img/gianmarco.webp" alt="Ritratto di Gianmarco Antonacci" loading="lazy">
             <figcaption class="pill"><span class="dot" aria-hidden="true"></span>Gianmarco Antonacci · UX/UI designer</figcaption>
           </figure>
