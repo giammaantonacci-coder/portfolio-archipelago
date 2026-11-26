@@ -3,14 +3,44 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/servizi/app",
+      "destination": "/servizi/ux-design",
+      "permanent": true
+    },
+    {
+      "source": "/servizi/siti-web",
+      "destination": "/servizi/ui-design",
+      "permanent": true
+    },
+    {
+      "source": "/servizi/brand-identity",
+      "destination": "/servizi",
+      "permanent": true
+    },
+    {
+      "source": "/servizi/ai",
+      "destination": "/servizi",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "gianmarco-antonacci-portfolio.vercel.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "gianmarco-antonacci-portfolio.vercel.app"
+        }
+      ],
       "destination": "https://gianmarcoantonaccidesigner.it/:path*",
       "permanent": true
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "portfolio-archipelago.vercel.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "portfolio-archipelago.vercel.app"
+        }
+      ],
       "destination": "https://gianmarcoantonaccidesigner.it/:path*",
       "permanent": true
     }
